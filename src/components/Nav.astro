@@ -48,10 +48,12 @@ const isCurrentPage = (href: string) => {
             loading="eager"
           />
           <span
-            class="text-lg lg:text-2xl font-display font-bold text-theme-primary whitespace-nowrap"
+            class="hidden sm:inline text-lg lg:text-2xl font-display font-bold text-theme-primary whitespace-nowrap"
           >
             {t.brand.name}
           </span>
+          <!-- Narrow phones: the logo alone stands in for the name -->
+          <span class="sm:hidden sr-only">{t.brand.name}</span>
         </a>
 
         <!-- Desktop Navigation -->
@@ -94,14 +96,20 @@ const isCurrentPage = (href: string) => {
         </nav>
 
         <!--
-          Mobile Menu Button
-
-          Hand-rolled instead of astro-navbar's <MenuIcon />, whose aria-label and
-          SVG title are hardcoded English. The `astronav-menu` id and
-          `astronav-toggle` classes are what Astronav's script binds to, so the
-          toggle behaviour is unchanged.
+          Mobile header controls: the language flags stay visible in the bar, so
+          switching language takes one tap instead of opening the menu first.
         -->
-        <div class="lg:hidden flex items-center">
+        <div class="lg:hidden flex items-center gap-1">
+          <LanguageSwitcher locale={locale} variant="compact" />
+
+          <!--
+            Mobile Menu Button
+
+            Hand-rolled instead of astro-navbar's <MenuIcon />, whose aria-label and
+            SVG title are hardcoded English. The `astronav-menu` id and
+            `astronav-toggle` classes are what Astronav's script binds to, so the
+            toggle behaviour is unchanged.
+          -->
           <button id="astronav-menu" aria-label={t.nav.menuLabel} aria-expanded="false">
             <svg
               fill="currentColor"
@@ -170,11 +178,6 @@ const isCurrentPage = (href: string) => {
                 <Icon name="phone" size="sm" />
                 <span>{site.contact.phone}</span>
               </a>
-            </div>
-
-            <!-- Language Switcher -->
-            <div class="mt-4">
-              <LanguageSwitcher locale={locale} variant="mobile" />
             </div>
           </div>
         </nav>
