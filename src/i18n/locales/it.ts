@@ -16,7 +16,6 @@ export const it: Translation = {
       { label: "Informazioni", href: "/info", icon: "book" },
     ],
     cta: { label: "Contattaci", href: "/contact" },
-    themeLabel: "Tema",
     languageLabel: "Lingua",
     menuLabel: "Apri il menu",
   },
@@ -36,14 +35,6 @@ export const it: Translation = {
       saturday: "Sabato: 09:00 - 15:00",
       sunday: "Domenica: solo servizi d'emergenza",
     },
-  },
-
-  themeSwitcher: {
-    heading: "Sistema di design",
-    subheading: "Cambia combinazione di colori",
-    footer: "Preferenza salvata localmente",
-    toggleLabel: "Apri selezione tema",
-    dialogLabel: "Selezione tema",
   },
 
   home: {

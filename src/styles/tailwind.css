@@ -34,12 +34,12 @@
 	--breakpoint-xxl: 1366px;
 
 	/* Theme Colors - Auto-generates bg-theme-*, text-theme-*, border-theme-* utilities */
-	/* Primary Brand Colors */
-	--color-theme-primary: #0d9488; /* teal-600 */
-	--color-theme-primary-dark: #0f766e; /* teal-700 */
-	--color-theme-primary-darker: #115e59; /* teal-800 */
-	--color-theme-primary-light: #14b8a6; /* teal-500 */
-	--color-theme-primary-lighter: #5eead4; /* teal-300 */
+	/* Primary Brand Colors - "Modern Sky" palette */
+	--color-theme-primary: #0369a1; /* sky-700 */
+	--color-theme-primary-dark: #075985; /* sky-800 */
+	--color-theme-primary-darker: #0c4a6e; /* sky-900 */
+	--color-theme-primary-light: #0284c7; /* sky-600 */
+	--color-theme-primary-lighter: #38bdf8; /* sky-400 */
 
 	/* Surface Colors */
 	--color-theme-surface: #ffffff;
@@ -58,11 +58,11 @@
 	--color-theme-border: #e5e7eb; /* gray-200 */
 	--color-theme-border-medium: #d1d5db; /* gray-300 */
 
-	/* Accent Colors */
-	--color-theme-accent-sky: #0ea5e9; /* sky-500 */
-	--color-theme-accent-sky-light: #0ea5e9cc; /* sky-500/80 */
-	--color-theme-accent-orange: #fb923c; /* orange-400 */
-	--color-theme-accent-orange-light: #fb923ccc; /* orange-400/80 */
+	/* Accent Colors - "Modern Sky" palette */
+	--color-theme-accent-sky: #8b5cf6; /* violet-500 */
+	--color-theme-accent-sky-light: #8b5cf6cc; /* violet-500/80 */
+	--color-theme-accent-orange: #f97316; /* orange-500 */
+	--color-theme-accent-orange-light: #f97316cc; /* orange-500/80 */
 
 	/* Semantic Colors */
 	--color-theme-success: #10b981; /* green-500 */
@@ -73,7 +73,7 @@
 	/* Overlay/Gradient Colors */
 	--color-theme-overlay-dark: #00000080; /* black/50 */
 	--color-theme-overlay-darker: #0000004d; /* black/30 */
-	--color-theme-gradient-primary: linear-gradient(to right, #0d9488, #0f766e);
+	--color-theme-gradient-primary: linear-gradient(to right, #0369a1, #075985);
 
 	/* Button Design Tokens */
 	--button-radius: 9999px; /* rounded-full */

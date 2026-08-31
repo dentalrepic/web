@@ -87,9 +87,9 @@ If you are adapting this theme for a real site, these are the highest-impact cha
 4. Set your real domain as `site` in `astro.config.mjs` so `hreflang` URLs are correct
 5. Adjust colors and spacing tokens in `src/styles/tailwind.css`
 
-Theme switcher preview for the token-driven design system:
-
-![Healthcare theme switcher demo](./README-assets/demo-images/healthcare-theme-switcher.gif)
+The color scheme is the "Modern Sky" palette, set directly in the design tokens in
+`src/styles/tailwind.css`. Change `--color-theme-primary` and its variants there to
+restyle the whole site.
 
 ## Languages
 
@@ -188,6 +188,7 @@ The included contact form is a front-end demo. Connect it to your preferred form
 - `Heading.astro`
 - `Icon.astro`
 - `NumberCounter.astro`
+- `LanguageSwitcher.astro`
 
 ## Deployment
 

@@ -16,7 +16,6 @@ export const hr: Translation = {
       { label: "Informacije", href: "/info", icon: "book" },
     ],
     cta: { label: "Kontaktirajte nas", href: "/contact" },
-    themeLabel: "Tema",
     languageLabel: "Jezik",
     menuLabel: "Otvori izbornik",
   },
@@ -36,14 +35,6 @@ export const hr: Translation = {
       saturday: "Subota: 09:00 - 15:00",
       sunday: "Nedjelja: samo hitne usluge",
     },
-  },
-
-  themeSwitcher: {
-    heading: "Dizajnerski sustav",
-    subheading: "Promijenite paletu boja",
-    footer: "Postavka je pohranjena lokalno",
-    toggleLabel: "Otvori odabir teme",
-    dialogLabel: "Odabir teme",
   },
 
   home: {

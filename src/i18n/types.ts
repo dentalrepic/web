@@ -49,7 +49,6 @@ export interface Translation {
   nav: {
     links: NavLink[];
     cta: { label: string; href: string };
-    themeLabel: string;
     languageLabel: string;
     menuLabel: string;
   };
@@ -68,14 +67,6 @@ export interface Translation {
       saturday: string;
       sunday: string;
     };
-  };
-
-  themeSwitcher: {
-    heading: string;
-    subheading: string;
-    footer: string;
-    toggleLabel: string;
-    dialogLabel: string;
   };
 
   home: {
