@@ -2,103 +2,57 @@
 /**
  * LanguageSwitcher - Links to the current page in every available language.
  *
- * Rendered as plain anchors so language switching works without JavaScript and
- * remains crawlable by search engines.
+ * Rendered as a row of flags on every breakpoint: one click or tap to switch,
+ * with no dropdown to open. Plain anchors, so it works without JavaScript and
+ * stays crawlable by search engines.
+ *
+ * Flags carry no visible text label: the header is tight at the lg breakpoint
+ * with five nav links and a booking button, and language codes cost roughly
+ * 100px. Each link still exposes the language name to assistive tech via
+ * sr-only text, and as a title tooltip on hover.
  */
-import { locales, localeNames, localeShortNames, type Locale } from "../i18n/config";
+import { locales, localeNames, type Locale } from "../i18n/config";
 import { getAlternateLinks, useTranslations } from "../i18n/utils";
 import FlagIcon from "./FlagIcon.astro";
 
 interface Props {
   locale: Locale;
   /**
-   * - `desktop`: dropdown with language names, for the wide header
-   * - `compact`: inline flag row, for the mobile header bar
+   * - `default`: sizing for the wide header
+   * - `compact`: tightened for the mobile header bar
    */
-  variant?: "desktop" | "compact";
+  variant?: "default" | "compact";
+  class?: string;
 }
 
-const { locale, variant = "desktop" } = Astro.props;
+const { locale, variant = "default", class: className = "" } = Astro.props;
 const t = useTranslations(locale);
 
 const alternates = getAlternateLinks(Astro.url.pathname);
 const hrefFor = (target: Locale) =>
   alternates.find((alternate) => alternate.locale === target)?.path ?? "/";
+
+const isCompact = variant === "compact";
 ---
 
-{
-  variant === "desktop" ? (
-    <div class="relative" id="language-switcher">
-      <button
-        id="language-toggle"
-        class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-theme-text-secondary hover:text-theme-primary hover:bg-theme-surface-hover transition-colors duration-200"
-        aria-label={t.nav.languageLabel}
-        aria-expanded="false"
-      >
-        <FlagIcon
-          locale={locale}
-          class="w-5 h-auto rounded-sm ring-1 ring-black/10 flex-shrink-0"
-        />
-        <span>{localeShortNames[locale]}</span>
-        <span class="sr-only">{t.nav.languageLabel}</span>
-        <svg
-          class="w-3 h-3 transition-transform duration-200"
-          id="language-chevron"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-        >
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-        </svg>
-      </button>
-
-      <div
-        id="language-dropdown"
-        class="absolute top-full right-0 mt-2 w-48 bg-theme-surface rounded-xl shadow-lg border border-theme-border overflow-hidden transform scale-95 opacity-0 pointer-events-none transition-all duration-200 origin-top-right z-50"
-      >
-        <ul class="p-2">
-          {locales.map((option) => (
-            <li>
-              <a
-                href={hrefFor(option)}
-                hreflang={option}
-                lang={option}
-                aria-current={option === locale ? "true" : undefined}
-                class:list={[
-                  "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200",
-                  option === locale
-                    ? "bg-theme-primary/10 text-theme-primary"
-                    : "text-theme-text-primary hover:bg-theme-surface-hover hover:text-theme-primary",
-                ]}
-              >
-                <FlagIcon
-                  locale={option}
-                  class="w-5 h-auto rounded-sm ring-1 ring-black/10 flex-shrink-0"
-                />
-                <span class="flex-1">{localeNames[option]}</span>
-                <span class="text-xs text-theme-text-muted">{localeShortNames[option]}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  ) : (
-    <nav aria-label={t.nav.languageLabel}>
-      <ul class="flex items-center gap-0.5 xs:gap-1">
-        {locales.map((option) => (
+<nav aria-label={t.nav.languageLabel} class={className}>
+  <ul class:list={["flex items-center", isCompact ? "gap-0.5 xs:gap-1" : "gap-0.5"]}>
+    {
+      locales.map((option) => {
+        const isActive = option === locale;
+        return (
           <li>
             <a
               href={hrefFor(option)}
               hreflang={option}
               lang={option}
-              aria-current={option === locale ? "true" : undefined}
+              aria-current={isActive ? "true" : undefined}
               title={localeNames[option]}
               class:list={[
-                // 40px tap target, comfortably above the WCAG 2.5.8 minimum.
-                "flex h-10 w-9 xs:w-10 items-center justify-center rounded-lg transition-colors duration-200",
-                option === locale
+                "flex items-center justify-center rounded-lg transition-colors duration-200",
+                // 40px tall on mobile, comfortably above the WCAG 2.5.8 minimum.
+                isCompact ? "h-10 w-9 xs:w-10" : "h-9 w-9",
+                isActive
                   ? "bg-theme-primary/10 ring-1 ring-theme-primary-lighter"
                   : "hover:bg-theme-surface-hover",
               ]}
@@ -106,73 +60,16 @@ const hrefFor = (target: Locale) =>
               <FlagIcon
                 locale={option}
                 class:list={[
-                  "w-6 h-auto rounded-sm ring-1 ring-black/10 transition-opacity duration-200",
-                  option === locale ? "opacity-100" : "opacity-55",
+                  "h-auto rounded-sm ring-1 ring-black/10 transition-opacity duration-200 flex-shrink-0",
+                  isCompact ? "w-6" : "w-5",
+                  isActive ? "opacity-100" : "opacity-55 hover:opacity-100",
                 ]}
               />
               <span class="sr-only">{localeNames[option]}</span>
             </a>
           </li>
-        ))}
-      </ul>
-    </nav>
-  )
-}
-
-<style>
-  #language-chevron.rotate {
-    transform: rotate(180deg);
-  }
-</style>
-
-<script>
-  function setupLanguageSwitcher() {
-    const toggle = document.getElementById("language-toggle");
-    const dropdown = document.getElementById("language-dropdown");
-    const chevron = document.getElementById("language-chevron");
-
-    if (!toggle || !dropdown) return;
-    const toggleEl = toggle as HTMLButtonElement;
-    const dropdownEl = dropdown as HTMLDivElement;
-
-    if (toggleEl.dataset.bound === "true") return;
-    toggleEl.dataset.bound = "true";
-
-    let isOpen = false;
-
-    function open() {
-      isOpen = true;
-      toggleEl.setAttribute("aria-expanded", "true");
-      dropdownEl.classList.remove("scale-95", "opacity-0", "pointer-events-none");
-      dropdownEl.classList.add("scale-100", "opacity-100", "pointer-events-auto");
-      chevron?.classList.add("rotate");
+        );
+      })
     }
-
-    function close() {
-      isOpen = false;
-      toggleEl.setAttribute("aria-expanded", "false");
-      dropdownEl.classList.add("scale-95", "opacity-0", "pointer-events-none");
-      dropdownEl.classList.remove("scale-100", "opacity-100", "pointer-events-auto");
-      chevron?.classList.remove("rotate");
-    }
-
-    toggleEl.addEventListener("click", (event) => {
-      event.stopPropagation();
-      isOpen ? close() : open();
-    });
-
-    document.addEventListener("click", (event) => {
-      const switcher = document.getElementById("language-switcher");
-      if (isOpen && switcher && !switcher.contains(event.target as Node)) {
-        close();
-      }
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (isOpen && event.key === "Escape") close();
-    });
-  }
-
-  setupLanguageSwitcher();
-  document.addEventListener("astro:page-load", setupLanguageSwitcher);
-</script>
+  </ul>
+</nav>

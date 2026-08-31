@@ -33,7 +33,7 @@ const isCurrentPage = (href: string) => {
 >
   <div class="container">
     <Astronav>
-      <div class="flex items-center justify-between w-full py-4 lg:py-5">
+      <div class="flex items-center justify-between w-full py-4 xl:py-5">
         <!-- Logo -->
         <a
           href={localizePath("/", locale)}
@@ -44,11 +44,11 @@ const isCurrentPage = (href: string) => {
             alt={t.brand.logoAlt}
             width={44}
             height={44}
-            class="w-10 h-10 lg:w-11 lg:h-11 rounded-full transition-transform duration-300 group-hover:scale-[1.04]"
+            class="w-10 h-10 xl:w-11 xl:h-11 rounded-full transition-transform duration-300 group-hover:scale-[1.04]"
             loading="eager"
           />
           <span
-            class="hidden sm:inline text-lg lg:text-2xl font-display font-bold text-theme-primary whitespace-nowrap"
+            class="hidden sm:inline text-lg xl:text-2xl font-display font-bold text-theme-primary whitespace-nowrap"
           >
             {t.brand.name}
           </span>
@@ -57,13 +57,13 @@ const isCurrentPage = (href: string) => {
         </a>
 
         <!-- Desktop Navigation -->
-        <nav class="hidden lg:flex items-center gap-1">
+        <nav class="hidden xl:flex items-center gap-1">
           <ul class="flex items-center gap-0.5">
             {
               t.nav.links.map((link) => (
                 <li>
                   <a
-                    class="nav-link"
+                    class="nav-link whitespace-nowrap"
                     href={localizePath(link.href, locale)}
                     aria-current={isCurrentPage(link.href) ? "page" : undefined}
                   >
@@ -75,19 +75,19 @@ const isCurrentPage = (href: string) => {
           </ul>
 
           <!-- Language Switcher -->
-          <LanguageSwitcher locale={locale} variant="desktop" />
+          <LanguageSwitcher locale={locale} class="ml-1 xxl:ml-2" />
 
           <!-- Phone and booking CTA -->
-          <div class="ml-3 pl-3 border-l border-theme-border flex items-center gap-3">
+          <div class="ml-2 pl-2 xxl:ml-3 xxl:pl-3 border-l border-theme-border flex items-center gap-3">
             <a
               href={site.contact.phoneHref}
-              class="hidden xl:flex items-center gap-2 text-sm font-semibold text-theme-primary hover:text-theme-primary-dark transition-colors"
+              class="hidden xxl:flex items-center gap-2 text-sm font-semibold text-theme-primary hover:text-theme-primary-dark transition-colors whitespace-nowrap"
             >
               <Icon name="phone" size="sm" />
               <span>{site.contact.phone}</span>
             </a>
             <a
-              class="button button-primary text-sm"
+              class="button button-primary text-sm whitespace-nowrap"
               href={localizePath(t.nav.cta.href, locale)}
             >
               {t.nav.cta.label}
@@ -99,7 +99,7 @@ const isCurrentPage = (href: string) => {
           Mobile header controls: the language flags stay visible in the bar, so
           switching language takes one tap instead of opening the menu first.
         -->
-        <div class="lg:hidden flex items-center gap-1">
+        <div class="xl:hidden flex items-center gap-1">
           <LanguageSwitcher locale={locale} variant="compact" />
 
           <!--
@@ -137,7 +137,7 @@ const isCurrentPage = (href: string) => {
       </div>
 
       <!-- Mobile Navigation Menu -->
-      <MenuItems class="hidden lg:hidden mobile-menu">
+      <MenuItems class="hidden xl:hidden mobile-menu">
         <nav class="bg-theme-surface border-t border-theme-border shadow-md">
           <div class="max-w-md mx-auto px-4 py-6">
             <ul class="space-y-1 mb-6">
