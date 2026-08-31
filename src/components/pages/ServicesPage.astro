@@ -3,15 +3,13 @@
  * Services page body. Rendered by the localized route files.
  */
 import Layout from "../../layouts/Layout.astro";
-import professionalPortraitImage from "../../assets/professional-portrait.jpg";
 import { Image } from "astro:assets";
-import serviceDetailImage from "../../assets/service-detail.jpg";
-import heroServicesImage from "../../assets/hero-services.jpg";
+import heroImage from "../../assets/hero-services.jpg";
+import equipmentImage from "../../assets/service-detail.jpg";
 import PageHero from "../PageHero.astro";
 import CallToActionSection from "../CallToActionSection.astro";
 import Icon from "../Icon.astro";
 import CheckListItem from "../CheckListItem.astro";
-import ServiceCard from "../ServiceCard.astro";
 import Heading from "../Heading.astro";
 import type { IconName } from "../../types/icons";
 import type { Locale } from "../../i18n/config";
@@ -25,181 +23,49 @@ const { locale } = Astro.props;
 const t = useTranslations(locale);
 const services = t.services;
 
-// Presentation for each capability group, paired positionally with translations.
-const groupStyles: Array<{
-  icon: IconName;
-  cardClass: string;
-  iconWrapperClass: string;
-}> = [
-  {
-    icon: "heart",
-    cardClass: "from-theme-primary-lighter/20 to-theme-surface",
-    iconWrapperClass: "bg-theme-primary",
-  },
-  {
-    icon: "medical",
-    cardClass: "from-[color:var(--color-theme-accent-sky)]/20 to-theme-surface",
-    iconWrapperClass: "bg-[color:var(--color-theme-accent-sky)]",
-  },
-  {
-    icon: "star",
-    cardClass: "from-[color:var(--color-theme-accent-orange)]/20 to-theme-surface",
-    iconWrapperClass: "bg-[color:var(--color-theme-accent-orange)]",
-  },
+// Icon and accent per service group, paired positionally with the translations.
+const groupStyles: Array<{ icon: IconName; iconWrapperClass: string }> = [
+  { icon: "medical", iconWrapperClass: "bg-theme-primary" },
+  { icon: "star", iconWrapperClass: "bg-[color:var(--color-theme-accent-sky)]" },
+  { icon: "heart", iconWrapperClass: "bg-theme-primary-light" },
+  { icon: "star", iconWrapperClass: "bg-[color:var(--color-theme-accent-orange)]" },
+  { icon: "clipboard", iconWrapperClass: "bg-theme-primary-dark" },
+  { icon: "users", iconWrapperClass: "bg-theme-primary" },
 ];
 
-const capabilityGroups = services.capabilities.groups.map((group, index) => ({
+const groups = services.groups.map((group, index) => ({
   ...group,
-  ...groupStyles[index],
+  ...groupStyles[index % groupStyles.length],
 }));
 ---
 
 <Layout locale={locale} title={services.meta.title} description={services.meta.description}>
-  <!-- Hero Section -->
   <PageHero
     title={services.hero.title}
     description={services.hero.description}
-    image={heroServicesImage}
+    image={heroImage}
   />
 
-  <!-- Mission Statement -->
-  <section
-    class="section bg-gradient-to-b from-theme-surface to-theme-surface-muted"
-  >
+  <!-- Intro -->
+  <section class="section-sm bg-gradient-to-b from-theme-surface to-theme-surface-muted">
     <div class="container">
-      <div class="narrow mx-auto text-center space-y-6">
-        <Heading level="h2" align="center">{services.mission.heading}</Heading>
+      <div class="narrow mx-auto text-center space-y-5">
+        <Heading level="h2" align="center">{services.intro.heading}</Heading>
         <p class="text-lg lg:text-xl text-theme-text-secondary leading-relaxed">
-          {services.mission.paragraph1}
-        </p>
-        <p class="text-base lg:text-lg text-theme-text-secondary leading-relaxed">
-          {services.mission.paragraph2}
+          {services.intro.paragraph}
         </p>
       </div>
     </div>
   </section>
 
-  <!-- Specialized Healthcare Services -->
-  <section
-    class="section bg-gradient-to-b from-theme-surface-muted to-theme-surface"
-    id="professional-healthcare-services"
-  >
+  <!-- Treatment catalogue -->
+  <section class="section bg-theme-surface-muted">
     <div class="container">
-      <div class="narrow mx-auto text-center mb-12">
-        <Heading level="h2" align="center" class="mb-4">
-          {services.specialized.heading}
-        </Heading>
-        <p class="text-base lg:text-lg text-theme-text-secondary">
-          {services.specialized.description}
-        </p>
-      </div>
-      <div
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 max-w-7xl mx-auto"
-      >
-        {services.specialized.cards.map((card) => <ServiceCard title={card} />)}
-      </div>
-    </div>
-  </section>
-
-  <!-- Patient Care Approach -->
-  <section class="section bg-theme-surface" id="our-patient-care">
-    <div class="container">
-      <div class="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-16">
-        <div class="w-full order-2 lg:order-1">
-          <Image
-            src={professionalPortraitImage}
-            alt={services.approach.imageAlt}
-            class="w-full object-cover rounded-2xl shadow-xl"
-          />
-        </div>
-        <div class="space-y-6 order-1 lg:order-2">
-          <Heading level="h2">{services.approach.heading}</Heading>
-          <p class="text-base lg:text-lg text-theme-text-secondary leading-relaxed">
-            {services.approach.paragraph}
-          </p>
-          <div class="space-y-4">
-            <h4 class="text-lg font-semibold text-theme-text-primary">
-              {services.approach.listHeading}
-            </h4>
-            <ul class="space-y-3">
-              {services.approach.items.map((item) => <CheckListItem>{item}</CheckListItem>)}
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Our Professional Staff -->
-  <section
-    class="section bg-gradient-to-b from-theme-surface-muted to-theme-surface"
-    id="our-staff"
-  >
-    <div class="container">
-      <div class="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-16">
-        <div class="space-y-6">
-          <Heading level="h2">{services.staff.heading}</Heading>
-          <p class="text-base lg:text-lg text-theme-text-secondary leading-relaxed">
-            {services.staff.paragraph1}
-          </p>
-          <div
-            class="bg-theme-surface rounded-xl p-6 lg:p-8 shadow-md border border-theme-border"
-          >
-            <div class="space-y-4">
-              {
-                services.staff.features.map((feature) => (
-                  <div class="flex items-start gap-3">
-                    <Icon
-                      name="check"
-                      size="md"
-                      class="text-theme-primary flex-shrink-0 mt-1"
-                    />
-                    <div>
-                      <h4 class="font-semibold text-theme-text-primary mb-1">
-                        {feature.title}
-                      </h4>
-                      <p class="text-theme-text-secondary">{feature.description}</p>
-                    </div>
-                  </div>
-                ))
-              }
-            </div>
-          </div>
-          <p class="text-base lg:text-lg text-theme-text-secondary leading-relaxed">
-            {services.staff.paragraph2}
-          </p>
-        </div>
-        <div class="w-full">
-          <Image
-            src={serviceDetailImage}
-            alt={services.staff.imageAlt}
-            class="w-full object-cover rounded-2xl shadow-xl"
-          />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Clinical Capabilities -->
-  <section class="section bg-theme-surface">
-    <div class="container">
-      <div class="text-center mb-12">
-        <Heading level="h2" align="center" class="mb-4">
-          {services.capabilities.heading}
-        </Heading>
-        <p class="text-base lg:text-lg text-theme-text-secondary narrow mx-auto">
-          {services.capabilities.description}
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
         {
-          capabilityGroups.map((group) => (
+          groups.map((group) => (
             <div
-              class:list={[
-                "bg-gradient-to-br rounded-xl p-6 lg:p-8 border border-theme-border",
-                group.cardClass,
-              ]}
+              class="bg-theme-surface rounded-xl p-6 lg:p-8 border border-theme-border shadow-md"
             >
               <div class="flex items-center gap-3 mb-6">
                 <div
@@ -210,9 +76,7 @@ const capabilityGroups = services.capabilities.groups.map((group, index) => ({
                 >
                   <Icon name={group.icon} size="lg" class="text-white" />
                 </div>
-                <h3 class="text-xl font-bold text-theme-text-primary">
-                  {group.title}
-                </h3>
+                <h2 class="text-xl font-bold text-theme-text-primary">{group.title}</h2>
               </div>
               <ul class="space-y-3">
                 {group.items.map((item) => (
@@ -223,16 +87,50 @@ const capabilityGroups = services.capabilities.groups.map((group, index) => ({
           ))
         }
       </div>
+    </div>
+  </section>
 
-      <!-- Research Notice -->
-      <div
-        class="mt-12 bg-theme-primary-darker rounded-2xl p-8 lg:p-12 text-center text-white"
-      >
-        <Icon name="star" size="xl" class="mx-auto mb-4 text-theme-primary-lighter" />
-        <h3 class="text-2xl font-bold mb-4">{services.research.heading}</h3>
-        <p class="text-lg text-white/90 narrow mx-auto">
-          {services.research.text}
-        </p>
+  <!-- Equipment -->
+  <section class="section bg-theme-surface">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-16">
+        <div class="space-y-6">
+          <Heading level="h2">{services.equipment.heading}</Heading>
+          <p class="text-base lg:text-lg text-theme-text-secondary leading-relaxed">
+            {services.equipment.paragraph}
+          </p>
+          <div
+            class="bg-theme-surface-muted rounded-xl p-6 lg:p-8 border border-theme-border"
+          >
+            <div class="space-y-4">
+              {
+                services.equipment.features.map((feature) => (
+                  <div class="flex items-start gap-3">
+                    <Icon
+                      name="check"
+                      size="md"
+                      class="text-theme-primary flex-shrink-0 mt-1"
+                    />
+                    <div>
+                      <h3 class="font-semibold text-theme-text-primary mb-1">
+                        {feature.title}
+                      </h3>
+                      <p class="text-theme-text-secondary">{feature.description}</p>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+        <div class="w-full">
+          <Image
+            src={equipmentImage}
+            alt={services.equipment.imageAlt}
+            class="w-full object-cover rounded-2xl shadow-xl"
+            loading="lazy"
+          />
+        </div>
       </div>
     </div>
   </section>
@@ -243,6 +141,6 @@ const capabilityGroups = services.capabilities.groups.map((group, index) => ({
     primaryButtonText={services.cta.primaryButton}
     primaryButtonLink={localizePath("/contact", locale)}
     secondaryButtonText={services.cta.secondaryButton}
-    secondaryButtonLink={localizePath("/careers", locale)}
+    secondaryButtonLink={localizePath("/dental-tourism", locale)}
   />
 </Layout>

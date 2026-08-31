@@ -14,6 +14,8 @@ export type {
   FaqItem,
   ServiceSummary,
   FeatureItem,
-  CapabilityGroup,
-  LeadershipPerson,
+  ServiceGroup,
+  TeamMember,
+  Testimonial,
+  OpeningHoursRow,
 } from "./types";

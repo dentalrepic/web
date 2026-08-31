@@ -1,7 +1,7 @@
 ---
-import infusionImage from "../assets/professional-staff.jpg";
-import patientCareImage from "../assets/about-main.jpg";
-import staffImage from "../assets/team-professionals.jpg";
+import implantsImage from "../assets/professional-care.jpg";
+import orthodonticsImage from "../assets/service-detail.jpg";
+import aestheticImage from "../assets/about-main.jpg";
 import Card from "./Card.astro";
 import type { Locale } from "../i18n/config";
 import { localizePath, useTranslations } from "../i18n/utils";
@@ -13,27 +13,25 @@ interface Props {
 const { locale } = Astro.props;
 const t = useTranslations(locale);
 
-// Images and anchors are locale-independent; titles and summaries are translated.
-const images = [infusionImage, patientCareImage, staffImage];
-const anchors = [
-  "/services#professional-healthcare-services",
-  "/services#our-patient-care",
-  "/services#our-staff",
-];
+// Images pair positionally with the translated service summaries.
+const images = [implantsImage, orthodonticsImage, aestheticImage];
 
 const services = t.home.servicesIntro.services.map((service, index) => ({
   ...service,
   image: images[index],
-  link: localizePath(anchors[index], locale),
+  link: localizePath("/services", locale),
 }));
 ---
 
 <div class="container">
-  <div class="text-center mb-12">
+  <div class="narrow mx-auto text-center mb-12">
     <p class="text-sm font-medium tracking-widest uppercase text-theme-primary mb-4">
       {t.home.servicesIntro.eyebrow}
     </p>
-    <h2>{t.home.servicesIntro.heading}</h2>
+    <h2 class="mb-4">{t.home.servicesIntro.heading}</h2>
+    <p class="text-base lg:text-lg text-theme-text-secondary">
+      {t.home.servicesIntro.description}
+    </p>
   </div>
 
   <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">

@@ -1,10 +1,15 @@
 import type { Translation } from "../types";
 
-/** Croatian translations (default locale). */
+/**
+ * Croatian translations (default locale).
+ *
+ * Copy is taken from the clinic's existing site, dentalrepic.com.hr.
+ */
 export const hr: Translation = {
   brand: {
-    name: "Viva Medical",
-    tagline: "Stručna zdravstvena njega u vašem domu",
+    name: "Dental Centar Repić",
+    tagline: "Brinemo za vaš savršen osmijeh",
+    logoAlt: "Dental Centar Repić",
   },
 
   nav: {
@@ -12,88 +17,166 @@ export const hr: Translation = {
       { label: "Početna", href: "/", icon: "home" },
       { label: "O nama", href: "/about", icon: "info" },
       { label: "Usluge", href: "/services", icon: "clipboard" },
-      { label: "Karijere", href: "/careers", icon: "users" },
+      { label: "Dentalni turizam", href: "/dental-tourism", icon: "star" },
       { label: "Informacije", href: "/info", icon: "book" },
     ],
-    cta: { label: "Kontaktirajte nas", href: "/contact" },
+    cta: { label: "Rezervirajte termin", href: "/contact" },
     languageLabel: "Jezik",
     menuLabel: "Otvori izbornik",
   },
 
   footer: {
     description:
-      "Profesionalne zdravstvene usluge za zajednice širom regije, uz brižnu i stručnu njegu koja dolazi izravno u vaš dom.",
+      "Očuvanje oralnog zdravlja, funkcije i estetike temelj su našeg rada s pacijentima. Svakom pacijentu pristupamo individualno, pratimo napredak tehnologije i u svakom trenutku nastojimo svojim pacijentima omogućiti najbolju moguću uslugu. Konstantno ulažemo u novu opremu kao i u stručnu edukaciju našeg tima.",
+    servicesHeading: "Usluge",
+    hoursHeading: "Radno vrijeme",
+    rightsReserved: "Sva prava pridržana",
   },
 
   common: {
     learnMore: "Saznajte više",
     readMore: "Pročitajte više",
     readLess: "Prikaži manje",
-    workingHours: {
-      heading: "Radno vrijeme",
-      weekdays: "Ponedjeljak - petak: 08:00 - 18:00",
-      saturday: "Subota: 09:00 - 15:00",
-      sunday: "Nedjelja: samo hitne usluge",
-    },
+    callUsToday: "Nazovite nas već danas!",
+    bookAppointment: "Rezervirajte termin",
+    openingHours: "Radno vrijeme",
+    openingHoursRows: [
+      { day: "Ponedjeljak", hours: "8:00 - 20:00" },
+      { day: "Utorak", hours: "8:00 - 20:00" },
+      { day: "Srijeda", hours: "8:00 - 20:00" },
+      { day: "Četvrtak", hours: "8:00 - 20:00" },
+      { day: "Petak", hours: "8:00 - 20:00" },
+      { day: "Subota", hours: "Ne radimo" },
+      { day: "Nedjelja", hours: "Ne radimo" },
+    ],
   },
 
   home: {
     meta: {
-      title: "Zdravstvena njega u vašem domu | Viva Medical",
+      title: "Dental Centar Repić | Stomatologija u Trogiru",
       description:
-        "Kvalitetna medicinska njega u vašem domu koju pružaju licencirani stručnjaci. Povjerenje obitelji od 2010. godine.",
+        "Dental Centar Repić u Trogiru: implantologija, ortodoncija, endodoncija, protetika i estetska dentalna medicina. Besplatan prvi pregled. Nazovite +385 21 796 241.",
     },
     hero: {
-      title: "Zdravstvena njega u vašem domu",
-      subtitleLine1: "Licencirani stručnjaci koji donose stručnu medicinsku njegu",
-      subtitleLine2: "izravno u vaš dom.",
-      ctaPrimary: "Započnite",
-      ctaSecondary: "Pridružite se timu",
-      imageAlt: "Profesionalne zdravstvene usluge",
+      title: "Vrhunska dentalna rješenja",
+      subtitleLine1: "Rješenje za sve vaše dentalne potrebe",
+      subtitleLine2: "na jednom mjestu.",
+      ctaPrimary: "Rezervirajte termin",
+      ctaSecondary: "Naše usluge",
+      imageAlt: "Ordinacija Dental Centra Repić",
     },
-    about: {
-      eyebrow: "O nama",
-      heading: "Njega dolazi tamo gdje ste vi",
+    welcome: {
+      eyebrow: "Dobrodošli na naše web stranice",
+      heading: "Brinemo za vaš savršen osmijeh",
       intro:
-        "Specijalizirani smo za pružanje sveobuhvatne medicinske njege izravno u vašem domu. Bez čekaonica i stresa oko putovanja — samo kvalitetna zdravstvena njega u vašem prostoru.",
-      bullets: [
-        "Stručna njega prilagođena vašim potrebama u udobnosti vašeg doma",
-        "Specijalizirana podrška za složena medicinska stanja",
-        "Njega i podrška 24 sata dnevno, kada vam je najpotrebnija",
+        "Visoko educirano osoblje (specijalisti iz stomatoloških područja, doktori znanosti), interdisciplinarni pristup i ugodan ambijent je ono što Dental Centar Repić čini pravim izborom za Vas. Garantiramo Vam stručan pristup, visokokvalitetnu uslugu i upotrebu najmodernijih materijala. Želimo da se u našem centru osjećate ugodno, a mi ćemo svojim znanjem, stručnošću i iskustvom opravdati Vaše povjerenje.",
+      highlights: [
+        {
+          title: "Oprema najviše kvalitete",
+          description:
+            "Koristimo najkvalitetnije materijale renomiranih svjetskih proizvođača",
+        },
+        {
+          title: "Prostrane i opremljene ordinacije",
+          description:
+            "Pored vrhunskog tretmana, brinemo da se u našim ordinacijama osjećate ugodno",
+        },
+        {
+          title: "Prijateljsko i stručno osoblje",
+          description:
+            "Doktori i medicinsko osoblje su Vam uvijek na raspolaganju",
+        },
       ],
       link: "Saznajte više o nama",
-      imageAlt: "Zdravstveni radnik s pacijentom",
+      imageAlt: "Tim Dental Centra Repić",
     },
     servicesIntro: {
-      eyebrow: "Čime se bavimo",
-      heading: "Naše usluge",
+      eyebrow: "Stručnost i profesionalnost",
+      heading: "Kompletna dentalna usluga",
+      description:
+        "Sve naše usluge i tretmane pružamo u moderno opremljenom prostoru, prema profesionalnim pravilima struke, kako bi se naši pacijenti osjećali ugodno i bili zadovoljni uslugom.",
       services: [
         {
-          title: "Zdravstvena njega u domu",
-          summary: "Medicinski postupci i infuzije koje provodimo u vašem domu.",
+          title: "Dentalni implantati",
+          summary:
+            "Trajno riješite problem nedostatka zuba i povratite funkciju zuba.",
         },
         {
-          title: "Koordinacija njege",
-          summary: "Potpuno upravljanje njegom od prijema do trajnog liječenja.",
+          title: "Ortodoncija (aparatići za zube)",
+          summary:
+            "Ostvarite svoj san o prekrasnom osmijehu uz naše vrhunske doktore ortodonte.",
         },
         {
-          title: "Licencirani stručnjaci",
-          summary: "Licencirane medicinske sestre koje pružaju kvalitetnu njegu.",
+          title: "Estetska dentalna medicina",
+          summary:
+            "Osigurajte osmijeh kakav ste oduvijek željeli i uživajte u novostečenom samopouzdanju.",
         },
       ],
     },
-    stats: {
-      heading: "Više od 15 godina izvrsnosti",
-      subheading: "Zdravstvena njega vrijedna povjerenja od 2010.",
-      monthlyVisitsLabel: "Mjesečnih posjeta",
-      professionalsLabel: "Stručnjaka",
-      paragraph1Lead: "Osnovana 2010. godine,",
-      paragraph1:
-        "Viva Medical se etablirala kao pouzdan pružatelj sveobuhvatnih zdravstvenih usluga. Naša predanost izvrsnosti i njezi usmjerenoj na pacijenta učinila nas je predvodnikom u zdravstvenom sektoru.",
-      paragraph2:
-        "Danas, kao regionalna zdravstvena ustanova, s ponosom služimo zajednicama širom regije s više od 500 mjesečnih posjeta i predanim timom od više od 75 vještih zdravstvenih stručnjaka koji brižnu njegu donose izravno u domove pacijenata.",
-      link: "Saznajte više o našem putu",
-      imageAlt: "Profesionalni zdravstveni radnik",
+    whyUs: {
+      heading: "Zašto odabrati Dental Centar Repić",
+      subheading:
+        "Od besplatnog prvog pregleda do vrhunske opreme — sve na jednom mjestu, u srcu Dalmacije.",
+      reasons: [
+        "Besplatan prvi pregled",
+        "Prijateljsko osoblje",
+        "Prostrane ordinacije",
+        "Vrhunski doktori",
+        "Prilagođeno obiteljima",
+        "Pristupačna lokacija",
+        "Bez čekanja",
+        "Garancija kvalitete",
+        "Prilagođeno osobama s invaliditetom",
+        "Moderna oprema",
+        "Vrhunski materijali",
+        "RTG dijagnostika",
+      ],
+      imageAlt: "Moderna oprema u ordinaciji",
+    },
+    problems: {
+      heading: "Imamo rješenja za Vaše dentalne probleme",
+      items: [
+        {
+          title: "Nedostatak zuba",
+          description:
+            "Ponosno se nasmijte, s našim protetskim i implantološkim rješenjima vraćamo Vam osmijeh na lice, kao i pravilnu funkciju zuba.",
+        },
+        {
+          title: "Zubobolja",
+          description:
+            "Zubobolja može biti uzrokovana različitim faktorima. Detaljnim dentalnim pregledom odlučujemo o primjerenoj terapiji i liječenju.",
+        },
+        {
+          title: "Strah od zubara",
+          description:
+            "Uspješno otklanjamo strah od zubara. Poseban naglasak stavljamo na rad s djecom, kako bi se od prvog posjeta osjećala ugodno.",
+        },
+        {
+          title: "Slomljeni / otkrhnuti zubi",
+          description:
+            "Liječimo slomljene i otkrhnute zube zubnim krunicama ili drugim zahvatima.",
+        },
+        {
+          title: "Parodontitis",
+          description:
+            "Nudimo kompletnu parodontološku uslugu, individualno prilagođenu potrebama svakog pacijenta.",
+        },
+        {
+          title: "Nejednaki / razmaknuti zubi",
+          description:
+            "Specijalizirani smo za široku paletu ortodontoloških usluga koje će Vam donijeti savršeni osmijeh o kojem ste oduvijek sanjali.",
+        },
+        {
+          title: "Karijes i propadanje zubi",
+          description:
+            "Koristimo modernu tehnologiju kako bismo detektirali bolesti u najranijem stadiju, te kako bismo osigurali pravovremeno liječenje i očuvanje vaših zubi.",
+        },
+        {
+          title: "Mrlje na zubima / diskoloracija",
+          description:
+            "Naša usluga izbjeljivanja zubi osigurava Vam bijele zube kakve ste oduvijek željeli.",
+        },
+      ],
     },
     faq: {
       eyebrow: "ČPP",
@@ -101,333 +184,338 @@ export const hr: Translation = {
       viewAll: "Prikaži sva pitanja",
     },
     cta: {
-      heading: "Spremni za početak?",
-      text: "Kontaktirajte nas kako bismo razgovarali o tome kako možemo podržati vaše zdravstvene potrebe u domu.",
-      button: "Kontaktirajte nas",
+      heading: "Rezervirajte svoj termin ili se naručite za besplatni pregled",
+      text: "Ispunite formu ili nas nazovite — kontaktirat ćemo Vas unutar našeg radnog vremena.",
+      button: "Naručite se",
     },
   },
 
   about: {
     meta: {
-      title: "O nama - Naša priča i vodstvo | Viva Medical",
+      title: "O nama - Naš tim | Dental Centar Repić",
       description:
-        "Saznajte više o više od 15 godina zdravstvene izvrsnosti Viva Medicala. Upoznajte naš vodeći tim predan brižnoj i profesionalnoj njezi od 2010. godine.",
+        "Upoznajte tim Dental Centra Repić u Trogiru: specijalisti ortodoncije, endodoncije i restaurativne stomatologije s doktoratima znanosti.",
     },
     hero: {
       title: "O NAMA",
       description:
-        "Viva Medical osnovana je 2010. godine s vizijom pružanja izvanrednih zdravstvenih usluga. Naša je misija pružati brižnu, profesionalnu njegu koja odgovara raznolikim potrebama naše zajednice. <br /> Danas, kao regionalna zdravstvena ustanova, služimo zajednicama širom regije s više od 500 mjesečnih posjeta i predanim timom od više od 75 zdravstvenih stručnjaka koji stručnost i brižnost donose izravno u domove pacijenata.",
+        "Visoko educirano osoblje, interdisciplinarni pristup i ugodan ambijent je ono što Dental Centar Repić čini pravim izborom za Vas. <br /> Garantiramo Vam stručan pristup, visokokvalitetnu uslugu i upotrebu najmodernijih materijala.",
     },
-    leadership: {
-      heading: "Upoznajte naše vodstvo",
+    team: {
+      heading: "Upoznajte naš tim",
       subheading:
-        "Predani stručnjaci posvećeni pružanju izvanrednih zdravstvenih usluga",
+        "Stručni i nagrađivani doktori te profesionalno i ljubazno medicinsko osoblje",
+      members: [
+        {
+          name: "Dr. sc. Slavica Pejda Repić",
+          role: "Dr. med. dent., specijalist ortodoncije",
+        },
+        {
+          name: "Dr. sc. Dario Repić",
+          role: "Dr. med. dent., specijalist endodoncije i restaurativne stomatologije",
+        },
+      ],
     },
-    people: [
-      {
-        name: "David Thompson",
-        role: "Suosnivač, direktor, predsjednik i glavni izvršni direktor",
-        paragraphs: [
-          "David Thompson osnovao je Viva Medical 2010. godine s vizijom da preobrazi način pružanja zdravstvene njege. Njegovo bogato iskustvo u upravljanju zdravstvenim ustanovama i njezi pacijenata bilo je ključno u izgradnji temelja naše organizacije. S više od 15 godina iskustva u zdravstvenom menadžmentu, David donosi jedinstven pogled na pružanje brižne, profesionalne njege koja stvarno mijenja život pacijenata.",
-          "Davidova filozofija vodstva temelji se na stavljanju pacijenata na prvo mjesto uz održavanje najviših standarda njege. Njegova predanost inovacijama i stalnom napretku pomogla je da Viva Medical iz male lokalne prakse izraste u regionalnog lidera u zdravstvu. Pod njegovim vodstvom proširili smo usluge kako bismo odgovorili na promjenjive potrebe zajednice, zadržavajući pritom temeljne vrijednosti: brižnost, integritet i izvrsnost.",
-          "U 35. godini David je prepoznao potrebu za osobnijim pristupom zdravstvenim uslugama u našoj regiji. Njegova je vizija bila stvoriti zdravstvenu organizaciju koja može pružiti sveobuhvatnu njegu uz osobni pristup koji pacijenti zaslužuju. Ta vizija vodila je naš rast i nastavlja oblikovati našu budućnost kako širimo usluge i dosežemo sve više pacijenata kojima je potrebna kvalitetna zdravstvena njega.",
-        ],
-      },
-      {
-        name: "Jennifer Martinez",
-        role: "Suosnivačica i potpredsjednica Viva Medicala",
-        paragraphs: [
-          "Jennifer Martinez suosnivačica je i potpredsjednica Viva Medicala te donosi više od 12 godina iskustva u zdravstvenim operacijama i zastupanju prava pacijenata. Njezina predanost poboljšanju ishoda liječenja i pojednostavljenju pružanja njege bila je ključna u oblikovanju pristupa naše organizacije usmjerenog na pacijenta. Jenniferina stručnost u zdravstvenim sustavima i strast prema brižnoj njezi pomogle su da Viva Medical postane pouzdan pružatelj zdravstvenih usluga u našoj regiji.",
-          "Jenniferina vizija za Viva Medical bila je stvoriti zdravstvenu organizaciju koja može pružiti sveobuhvatne usluge uz osobnu povezanost koja je pacijentima potrebna tijekom liječenja. Njezina predanost izvrsnosti i inovacijama pokretala je rast i uspjeh naše organizacije. Vjeruje da svaki pacijent zaslužuje pristup kvalitetnoj zdravstvenoj njezi pruženoj s dostojanstvom, poštovanjem i brižnošću.",
-          "Jenniferina filozofija vodstva ističe važnost izgradnje snažnih odnosa i s pacijentima i sa zdravstvenim stručnjacima. Bila je ključna u razvoju našeg tima vještih zdravstvenih stručnjaka i stvaranju podržavajućeg radnog okruženja koje potiče stalno učenje i profesionalni razvoj. Njezina predanost našoj misiji i dalje nadahnjuje naš tim da svakom pacijentu pruži najvišu kvalitetu njege.",
-        ],
-      },
-    ],
+    approach: {
+      heading: "Naš pristup pacijentima",
+      paragraphs: [
+        "Očuvanje oralnog zdravlja, funkcije i estetike temelj su našeg rada s pacijentima. Svakom pacijentu pristupamo individualno, pratimo napredak tehnologije i u svakom trenutku nastojimo svojim pacijentima omogućiti najbolju moguću uslugu.",
+        "Konstantno ulažemo u novu opremu kao i u stručnu edukaciju našeg tima. Sve naše usluge i tretmane pružamo u moderno opremljenom prostoru, prema profesionalnim pravilima struke, kako bi se naši pacijenti osjećali ugodno i bili zadovoljni uslugom.",
+      ],
+      imageAlt: "Ordinacija Dental Centra Repić",
+    },
+    testimonials: {
+      heading: "Iskustva naših pacijenata",
+      items: [
+        {
+          quote:
+            "Dental centar Repić je jedna od rijetkih zubarskih ordinacija gdje je usluga uvijek na razini. Osoblje je profesionalno i pažljivo, ali također vedro i nasmijano. Osobno sam popravio par zubiju i ugradio implantat prije 3 godine i mogu reći da sam i dalje zadovoljan s učinjenim.",
+          author: "Toni Vešović",
+        },
+        {
+          quote:
+            "Osim saniranja zubnih kvarova, uspješno uklanjaju strah od zubara.",
+          author: "Zorana Barada",
+        },
+        {
+          quote:
+            "Odlični doktori, stručni i profesionalni. Sve pohvale i na rad s djecom.",
+          author: "Joško Herceg",
+        },
+      ],
+    },
     cta: {
-      heading: "Povežite se s našim iskusnim timom",
+      heading: "Obratite nam se s povjerenjem",
       subheading:
-        "Otkrijte kako vam više od 15 godina naše predanosti izvrsnosti može pomoći na vašem zdravstvenom putu. Tu smo da pružimo brižnu, profesionalnu njegu kada vam je najpotrebnija.",
-      primaryButton: "Kontaktirajte naš tim",
+        "Prvi pregled je besplatan. Rezervirajte termin i razgovarajmo o tome kako Vam možemo pomoći.",
+      primaryButton: "Rezervirajte termin",
       secondaryButton: "Pogledajte naše usluge",
     },
   },
 
   services: {
     meta: {
-      title: "Zdravstvene usluge - Profesionalna njega u domu | Viva Medical",
+      title: "Usluge - Kompletna dentalna usluga | Dental Centar Repić",
       description:
-        "Sveobuhvatne zdravstvene usluge uključujući upravljanje kroničnim bolestima, postoperativnu njegu, respiracijsku terapiju i specijaliziranu podršku. Stručna njega u udobnosti vašeg doma.",
+        "Implantologija, ortodoncija, endodoncija, dentalna protetika, estetska dentalna medicina, oralna kirurgija, parodontologija, RTG dijagnostika i dječja dentalna medicina.",
     },
     hero: {
-      title: "ZDRAVSTVENE USLUGE",
+      title: "NAŠE USLUGE",
       description:
-        "Specijalizirani smo za sveobuhvatne zdravstvene usluge koje podržavaju različite metode liječenja i potrebe njege pacijenata. Naše profesionalne zdravstvene usluge temelj su našeg rada. Pružamo specijaliziranu njegu za širok spektar medicinskih stanja i zahtjeva liječenja.",
+        "Sve naše usluge i tretmane pružamo u moderno opremljenom prostoru, prema profesionalnim pravilima struke, kako bi se naši pacijenti osjećali ugodno i bili zadovoljni uslugom.",
     },
-    mission: {
-      heading: "Naša misija",
-      paragraph1:
-        "Općenito je prihvaćeno da su mogućnosti napretka i ozdravljenja pacijenata znatno bolje kada su pacijenti okruženi vlastitim okruženjem. Viva Medical predano se zavjetuje na pružanje kvalitetnih zdravstvenih usluga širokom spektru pacijenata u okviru svoje stručnosti, iskustva i vještina.",
-      paragraph2:
-        "Naše brižne i predane usluge pružaju se s dostojanstvom i poštovanjem te su dostupne osobama svih životnih dobi, neovisno o rasi, boji kože, spolu, nacionalnom podrijetlu, vjeri, dobi ili invaliditetu.",
-    },
-    specialized: {
-      heading: "Specijalizirane zdravstvene usluge",
-      description:
-        "Naši visoko obučeni stručnjaci pružaju stručnu njegu za sveobuhvatan raspon zdravstvenih usluga",
-      cards: [
-        "Primarna zdravstvena njega",
-        "Specijalistička njega",
-        "Upravljanje kroničnim bolestima",
-        "Usluge hitne pomoći",
-        "Preventivna njega",
-        "Rehabilitacijske usluge",
-        "Postoperativna njega",
-        "Respiracijska terapija",
-        "Upravljanje bolovima",
-      ],
-    },
-    approach: {
-      heading: "Naš pristup njezi pacijenata",
+    intro: {
+      heading: "Kompletna dentalna usluga",
       paragraph:
-        "Predanost i služenje u srcu su naše organizacije. Brižnost i empatiju uključujemo u prikupljanje podataka o pacijentu, procjenu, planiranje, intervenciju, evaluaciju i edukaciju.",
-      listHeading: "Naša ustanova upravlja i koordinira:",
-      items: [
-        "Prijem pacijenata i raspored medicinskog osoblja",
-        "Provjeru liječenja i terapije",
-        "Raspored terapija",
-        "Potvrdu plana liječenja koji je odredio liječnik",
-        "Dokumentiranje stanja pacijenta",
-        "Izradu izvještaja o napretku",
-      ],
-      imageAlt: "Profesionalni zdravstveni radnik",
+        "Od implantologije i ortodoncije do estetske dentalne medicine — pružamo rješenje za sve Vaše dentalne potrebe na jednom mjestu, uz stručan pristup i najmodernije materijale.",
     },
-    staff: {
-      heading: "Naše profesionalno osoblje",
-      paragraph1:
-        "Zdravstveni koordinatori mogu se osloniti na našu obitelj kvalificiranih stručnjaka za brigu o svojim pacijentima, uz optimalan i pravovremen odgovor u provedbi planova liječenja.",
+    groups: [
+      {
+        title: "Implantologija i protetika",
+        items: [
+          "Zubni implantati",
+          "Dentalna protetika",
+          "Zubne krunice i mostovi",
+          "Oralno-protetska rehabilitacija",
+        ],
+      },
+      {
+        title: "Ortodoncija",
+        items: [
+          "Aparatići za zube",
+          "Fiksni ortodontski aparati",
+          "Mobilni ortodontski aparati",
+          "Liječenje nejednakih i razmaknutih zubi",
+        ],
+      },
+      {
+        title: "Endodoncija i restaurativna stomatologija",
+        items: [
+          "Liječenje zubnih kanala",
+          "Liječenje upale zuba",
+          "Liječenje karijesa",
+          "Restauracija slomljenih i otkrhnutih zubi",
+        ],
+      },
+      {
+        title: "Estetska dentalna medicina",
+        items: [
+          "Izbjeljivanje zubi",
+          "Keramičke ljuskice",
+          "Smile Design",
+          "Zubni nakit",
+          "Pjeskarenje zuba",
+        ],
+      },
+      {
+        title: "Oralna kirurgija i parodontologija",
+        items: [
+          "Oralna kirurgija",
+          "Parodontologija",
+          "Kirurško vađenje zuba",
+          "Liječenje parodontitisa",
+        ],
+      },
+      {
+        title: "Dijagnostika i dječja stomatologija",
+        items: [
+          "RTG dijagnostika",
+          "Dječja dentalna medicina",
+          "Besplatan prvi pregled",
+          "Preventivni pregledi",
+        ],
+      },
+    ],
+    equipment: {
+      heading: "Oprema i materijali",
+      paragraph:
+        "Koristimo najkvalitetnije materijale renomiranih svjetskih proizvođača i konstantno ulažemo u novu opremu, kako bismo bolesti detektirali u najranijem stadiju i osigurali pravovremeno liječenje.",
       features: [
         {
-          title: "Licencirani stručnjaci",
+          title: "Vrhunski materijali",
           description:
-            "Svi zdravstveni radnici licencirani su za područja u kojima rade",
+            "Materijali renomiranih svjetskih proizvođača u svakom tretmanu",
         },
         {
-          title: "Pokrivenost više područja",
-          description: "Mnogi stručnjaci posjeduju licencije za više područja",
+          title: "RTG dijagnostika",
+          description:
+            "Moderna tehnologija za rano otkrivanje i precizno planiranje terapije",
         },
         {
-          title: "Kontinuirana edukacija",
-          description: "Stalni profesionalni razvoj i mogućnosti usavršavanja",
+          title: "Stalna edukacija",
+          description:
+            "Konstantno ulaganje u stručnu edukaciju cijelog našeg tima",
         },
       ],
-      paragraph2:
-        "Viva Medical radi zajedno s našim zdravstvenim stručnjacima i ugovornim partnerima kako bi se pokrenuo besprijekoran proces za najučinkovitiju i kvalitetnu njegu pacijenata.",
-      imageAlt: "Koordinacija zdravstvenog tima",
-    },
-    capabilities: {
-      heading: "Kliničke mogućnosti",
-      description:
-        "Kliničke mogućnosti i vještine Viva Medicala omogućuju nam pružanje usluga koje odgovaraju širokom spektru zdravstvenih potreba i metoda liječenja",
-      groups: [
-        {
-          title: "Kronična i dugotrajna njega",
-          items: [
-            "Upravljanje kroničnim bolestima: dijabetes, hipertenzija i bolesti srca",
-            "Kardiološka njega i podrška kod kardiovaskularnih bolesti",
-            "Respiracijska njega kod kroničnih stanja",
-            "Upravljanje infektivnim bolestima i složenim infekcijama",
-          ],
-        },
-        {
-          title: "Kirurgija i oporavak",
-          items: [
-            "Postoperativna njega i podrška oporavku",
-            "Fizikalna terapija i rehabilitacijske usluge",
-            "Strategije i podrška u upravljanju bolovima",
-            "Inicijalna konzultacija i procjena",
-          ],
-        },
-        {
-          title: "Specijalizirano liječenje",
-          items: [
-            "Onkološka podrška",
-            "Hormonska terapija i endokrinološka njega",
-            "Potkožna primjena lijekova",
-            "Protuupalna terapija",
-            "Nutritivna podrška i dijetetsko savjetovanje",
-            "Podrška mentalnom zdravlju i dobrobiti",
-          ],
-        },
-      ],
-    },
-    research: {
-      heading: "Istraživanja i klinička ispitivanja",
-      text: "Aktivno sudjelujemo u istraživačkim programima i kliničkim ispitivanjima, ostajući na čelu zdravstvenih inovacija kako bismo pacijentima omogućili najnovija liječenja.",
+      imageAlt: "Moderna dentalna oprema",
     },
     cta: {
-      heading: "Spremni za profesionalne zdravstvene usluge?",
+      heading: "Ne vidite uslugu koju tražite?",
       subheading:
-        "Naš stručni zdravstveni tim pokriva regionalno područje s više gradova i zajednica. Dopustite nam da profesionalnu zdravstvenu njegu donesemo izravno u vaš dom.",
-      primaryButton: "Zakažite konzultaciju",
-      secondaryButton: "Pridružite se našem timu",
+        "Nazovite nas ili rezervirajte termin — dogovorit ćemo pregled i predložiti najbolju terapiju za Vas.",
+      primaryButton: "Rezervirajte termin",
+      secondaryButton: "Dentalni turizam",
     },
   },
 
-  careers: {
+  tourism: {
     meta: {
-      title: "Mogućnosti karijere - Pridružite se timu | Viva Medical",
+      title: "Dentalni turizam u Trogiru | Dental Centar Repić",
       description:
-        "Pridružite se zdravstvenom timu Viva Medicala. Nudimo ispunjavajuće karijere kvalificiranim zdravstvenim stručnjacima uz konkurentnu plaću, fleksibilan raspored i profesionalni razvoj.",
+        "Spojite odmor u Dalmaciji i vrhunsku dentalnu uslugu. Cijene do 5 puta niže od standardnih europskih. Dental Centar Repić, Trogir.",
     },
     hero: {
-      title: "MOGUĆNOSTI KARIJERE",
+      title: "DENTALNI TURIZAM",
       description:
-        "Viva Medical je dinamična zdravstvena ustanova u brzom rastu koja želi proširiti svoju obitelj kvalificiranih zdravstvenih stručnjaka u više regija. Nudimo ispunjavajuće mogućnosti karijere predanim osobama koje su strastvene u pružanju izvanredne njege pacijentima.",
+        "Spojite turistički posjet Dalmaciji i vrhunsku dentalnu uslugu. <br /> Atraktivan položaj u neposrednoj blizini stare gradske jezgre Unescova grada Trogira.",
     },
-    education: {
-      heading: "Obrazovanje i iskustvo",
-      paragraph1:
-        "Svi potencijalni kandidati za rad kao zdravstveni stručnjaci moraju zadovoljiti standarde utvrđene odgovarajućim uvjetima licenciranja i minimalnim zahtjevima ministarstva zdravstva za pružanje njege bilo kojem pacijentu u okviru licencije zdravstvenih usluga Viva Medicala.",
-      paragraph2:
-        "Ustanova se strogo pridržava propisa, pravila i odredbi koji uređuju zahtjeve zdravstvenog modela i iskustvo neophodno za pružanje zdravstvenih usluga. Potpuni opis radnog mjesta nalazi se u Priručniku o politikama i procedurama ustanove. Opis se može zatražiti od odjela za ljudske resurse.",
-      imageAlt: "Suradnja zdravstvenog tima",
+    intro: {
+      heading: "Spojite ugodno i korisno",
+      paragraphs: [
+        "Atraktivni položaj Dental Centra Repić u neposrednoj blizini stare gradske jezgre Unescova grada Trogira idealna je opcija za dolazak inozemnih pacijenata koji bi spojili ugodno i korisno: ugodan odmor i kvalitetnu i povoljnu dentalnu uslugu.",
+        "Dragim gostima, osim ugodnog boravka u srcu Dalmacije, nastojimo omogućiti kvalitetnu i dobro organiziranu stomatološku uslugu. Spremni smo omogućiti Vam potpunu oralno-protetsku rehabilitaciju u skladu s Vašim planiranim boravkom u našem gradu.",
+        "Cijene naših usluga su i do 5 puta niže od standardnih europskih cijena, a naš tim će Vam rado pomoći u organizaciji dolaska i boravka u Trogiru.",
+      ],
     },
-    requirements: {
-      heading: "Uvjeti radnog mjesta",
+    benefits: {
+      heading: "Zašto Trogir",
       items: [
-        "Stručna licencija u trajanju od najmanje 1-2 godine, s važećom registracijom",
-        "Poznavanje zdravstvenih terapija i postupaka njege pacijenata",
-        "Razvijene kliničke vještine",
-        "Dobre vještine fizikalne procjene",
-        "Izvrsne komunikacijske vještine",
-        "Pouzdanost i fleksibilan raspored",
-        "Važeća vozačka dozvola ako se ne koristi javni prijevoz",
-        "Završen akreditirani zdravstveni program, fakultet ili sveučilište",
-        "Najmanje 1-2 godine iskustva u zdravstvu",
-        "Važeći certifikat za oživljavanje (CPR/BLS)",
-        "Obvezno važeće osiguranje od profesionalne odgovornosti",
-        "Poznavanje programa Microsoft Outlook i MS Word",
+        {
+          title: "Do 5 puta niže cijene",
+          description:
+            "Cijene naših usluga i do 5 puta su niže od standardnih europskih cijena",
+        },
+        {
+          title: "UNESCO grad Trogir",
+          description:
+            "Ordinacija se nalazi u neposrednoj blizini stare gradske jezgre Trogira",
+        },
+        {
+          title: "Pomoć u organizaciji",
+          description:
+            "Naš tim rado pomaže u organizaciji Vašeg dolaska i boravka u Trogiru",
+        },
+        {
+          title: "Terapija po Vašoj mjeri",
+          description:
+            "Potpunu rehabilitaciju planiramo u skladu s trajanjem Vašeg boravka",
+        },
       ],
     },
-    whyWorkWithUs: {
-      heading: "Zašto raditi s nama",
-      items: [
-        "Poslodavac koji osigurava jednake mogućnosti",
-        "Konkurentna plaća",
-        "Dostupna radna mjesta na puno i pola radnog vremena te po pozivu",
+    howItWorks: {
+      heading: "Kako to funkcionira",
+      steps: [
+        {
+          title: "1. Kontaktirajte nas",
+          description:
+            "Pošaljite nam upit s opisom stanja i planiranim datumima boravka",
+        },
+        {
+          title: "2. Plan terapije",
+          description:
+            "Predlažemo plan terapije i raspored posjeta prilagođen Vašem boravku",
+        },
+        {
+          title: "3. Dolazak i tretman",
+          description:
+            "Provodimo terapiju u dogovorenim terminima, uz vrijeme za odmor i razgledavanje",
+        },
+        {
+          title: "4. Kontrola i praćenje",
+          description:
+            "Nakon završetka terapije ostajemo Vam na raspolaganju za kontrolu i savjete",
+        },
       ],
-    },
-    application: {
-      heading: "Postupak prijave",
-      paragraph:
-        "Viva Medical zahtijeva od svih kandidata za zdravstvene stručnjake ispunjavanje upitnika o osobnom iskustvu.",
-      links: [
-        "Zatražite upitnik za procjenu",
-        "Zatražite prijavu za zaposlenje",
-        "Zatražite obrazac za preporuku",
-      ],
-    },
-    training: {
-      heading: "Obuka",
-      paragraph1:
-        "Nakon što kandidat zadovolji uvjete prije zaposlenja, ustanova zdravstvenom stručnjaku zakazuje neophodnu obuku prije rada s pacijentima.",
-      paragraph2: "Program obuke ustanove obuhvaća i klinički i teorijski dio.",
-      resources: {
-        heading: "Materijali za obuku",
-        paragraphBefore:
-          "Obuka za rad s određenom opremom i pripadajući postupci dostupni su kroz naše sveobuhvatne materijale za obuku.",
-        requestLink: "Zatražite pristup obuci",
-        paragraphAfter:
-          "Odaberite obuku za opremu za detaljne videomaterijale.",
-        items: [
-          "Obuka za infuzijske pumpe",
-          "Obuka za ambulantne infuzijske sustave",
-          "Obuka za medicinske uređaje",
-          "Obuka za infuzijsku terapiju",
-          "Protokoli njege pacijenata",
-          "Kliničke smjernice",
-        ],
-      },
-      harassment: {
-        heading: "Obuka o sprječavanju seksualnog uznemiravanja",
-        paragraph:
-          "Videomaterijal o sprječavanju seksualnog uznemiravanja pripremilo je nadležno ministarstvo rada. I upravno tijelo i svi zaposlenici Viva Medicala obvezni su proći politiku i obuku o sprječavanju seksualnog uznemiravanja. Kopija dokumenta o politikama i procedurama ustanove dostupna je na zahtjev. Potvrdu o upoznatosti potrebno je potpisati i vratiti ustanovi.",
-        links: [
-          "Zatražite obuku o sprječavanju - 1. dio",
-          "Zatražite obuku o sprječavanju - 2. dio: studije slučaja",
-        ],
-        submitFormsLabel: "Predaja obrazaca:",
-        submitFormsLink: "Kontaktirajte ljudske resurse",
-        questionsLabel: "Imate pitanja?",
-        questionsLink: "Kontaktirajte upravu",
-      },
     },
     cta: {
-      heading: "Započnite ispunjavajuću karijeru u zdravstvu",
+      heading: "Planirate posjet Dalmaciji?",
       subheading:
-        "Pridružite se timu predanih stručnjaka koji stvarno mijenjaju život pacijenata. Nudimo konkurentne uvjete, kontinuiranu obuku i mogućnost razvoja uz regionalnog lidera u zdravstvenim uslugama.",
-      primaryButton: "Prijavite se danas",
-      secondaryButton: "Imate pitanja?",
+        "Pošaljite nam upit s planiranim datumima i pripremit ćemo plan terapije prilagođen Vašem boravku.",
+      primaryButton: "Pošaljite upit",
+      secondaryButton: "Pogledajte usluge",
     },
   },
 
   contact: {
     meta: {
-      title: "Kontakt - Javite nam se | Viva Medical",
+      title: "Kontakt - Rezervirajte termin | Dental Centar Repić",
       description:
-        "Kontaktirajte Viva Medical za profesionalne zdravstvene usluge. Javite se našem timu telefonom ili nas posjetite u uredu. Radimo od ponedjeljka do subote.",
+        "Dental Centar Repić, Put Dragulina 62 F, 21220 Trogir. Telefon +385 21 796 241, e-pošta dentalcenterrepic@gmail.com. Radnim danom 8:00 - 20:00.",
     },
     hero: {
       title: "KONTAKT",
       description:
-        "Tu smo da vam pomognemo lakše se orijentirati u zdravstvenim potrebama. Bez obzira imate li pitanja, potrebnu podršku ili želite razgovarati o našim uslugama, naš tim spreman je saslušati vas i pomoći na svakom koraku.",
+        "Obratite nam se s povjerenjem. Ispunite formu ili nas nazovite i dogovorite termin — prvi pregled je besplatan.",
     },
     intro:
-      "Predani smo pružanju izvanrednih zdravstvenih usluga i podrške. Naš tim tu je da vam pomogne u vašim zdravstvenim potrebama s brižnošću i profesionalnošću. Kontaktirajte nas danas kako biste saznali više o našim uslugama.",
+      "Ispunite formu ispod i kontaktirat ćemo Vas u najkraćem mogućem roku, unutar našeg radnog vremena. Prvi pregled je besplatan.",
     addressHeading: "Naša adresa",
     contactHeading: "Kontakt",
     phoneLabel: "Telefon",
     emailLabel: "E-pošta",
+    urgentNotice:
+      "Ukoliko trebate hitnu intervenciju, molimo nazovite +385 21 796 241.",
     form: {
-      heading: "Spremni za početak?",
-      nameLabel: "Ime",
-      namePlaceholder: "Vaše ime",
-      emailLabel: "Adresa e-pošte",
+      heading: "Rezervirajte termin",
+      description:
+        "Ispunite formu ispod i kontaktirat ćemo Vas unutar našeg radnog vremena.",
+      nameLabel: "Ime i prezime",
+      namePlaceholder: "Vaše ime i prezime",
+      emailLabel: "E-pošta",
       emailPlaceholder: "Vaša adresa e-pošte",
-      messageLabel: "Poruka",
-      messagePlaceholder: "Napišite svoju poruku...",
-      submit: "Pošaljite poruku",
+      phoneLabel: "Broj telefona",
+      phonePlaceholder: "Vaš broj telefona",
+      reasonLabel: "Razlog dolaska",
+      reasonOptions: [
+        "Prvi dolazak - besplatni pregled",
+        "Implantati",
+        "Aparatići",
+        "Krunice i mostovi",
+        "Estetska dentalna medicina",
+        "Upala zuba",
+        "Drugo",
+      ],
+      preferredTimeLabel: "Vrijeme dolaska",
+      preferredTimeOptions: [
+        "Bilo koje vrijeme",
+        "08:00 - 11:00",
+        "11:00 - 14:00",
+        "14:00 - 16:00",
+      ],
+      messageLabel: "Napomena",
+      messagePlaceholder: "Opišite ukratko razlog dolaska...",
+      submit: "Pošalji",
       demoNote:
         "Demo obrazac: prije objave povežite ovaj obrazac s odabranim pružateljem usluge obrazaca.",
       statusMessage:
         "Ovaj demo obrazac radi lokalno. Povežite pružatelja usluge obrazaca za primanje poruka.",
     },
-    mapTitle: "Karta s prikazom demo ureda Viva Medicala",
+    mapTitle: "Karta s lokacijom Dental Centra Repić u Trogiru",
   },
 
   info: {
     meta: {
-      title: "ČPP - Često postavljana pitanja | Viva Medical",
+      title: "ČPP - Često postavljana pitanja | Dental Centar Repić",
       description:
-        "Pronađite jasne odgovore o našim uslugama, uvjetima, dogovaranju termina i onome što možete očekivati od profesionalne njege u domu.",
+        "Odgovori na česta pitanja o besplatnom prvom pregledu, implantatima, aparatićima, strahu od zubara i dentalnom turizmu u Trogiru.",
     },
     hero: {
       title: "ČESTO POSTAVLJANA PITANJA",
       description:
-        "Jasni odgovori o našim uslugama, pokrivenosti i njezi — kako biste mogli donijeti sigurne odluke za sebe ili svoje najbliže.",
+        "Jasni odgovori o našim uslugama, terminima i tretmanima — kako biste mogli donijeti sigurne odluke za sebe ili svoje najbliže.",
     },
     heading: "Često postavljana pitanja",
     cta: {
       heading: "Još imate pitanja?",
       subheading:
-        "Naš zdravstveni tim tu je da odgovori na sva dodatna pitanja o našim uslugama. Kontaktirajte nas danas kako biste saznali više o tome kako možemo podržati vaše zdravstvene potrebe.",
+        "Naš tim rado će odgovoriti na sva dodatna pitanja. Nazovite nas ili nam pošaljite upit.",
       primaryButton: "Kontaktirajte nas",
     },
   },
 
   notFound: {
     meta: {
-      title: "Stranica nije pronađena - Viva Medical",
+      title: "Stranica nije pronađena - Dental Centar Repić",
       description: "Stranicu koju tražite nije bilo moguće pronaći.",
     },
     heading: "Stranica nije pronađena",
@@ -440,34 +528,52 @@ export const hr: Translation = {
 
   faqs: [
     {
-      id: "what-are-services",
-      question: "Što su zdravstvene usluge?",
+      id: "prvi-pregled",
+      question: "Je li prvi pregled besplatan?",
       answer:
-        "<p>Zdravstvene usluge obuhvaćaju medicinsku njegu i podršku koju ljudi primaju kako bi ostali zdravi, liječili bolest i sigurno se oporavili.</p><p>Usredotočeni smo na tri područja:</p><ul><li><strong>Prevencija:</strong> probiri, cijepljenja i edukacija</li><li><strong>Liječenje:</strong> stručna njega akutnih i kroničnih stanja</li><li><strong>Oporavak:</strong> terapije i podrška nakon povrede ili operacije</li></ul><p>Uz njegu u domu, licencirani zdravstveni radnici dolaze k vama. Koordiniramo s vašim liječnikom, izrađujemo osobni plan njege i redovito informiramo vas i vašu obitelj.</p>",
+        "<p>Da. Prvi dolazak i pregled u Dental Centru Repić su besplatni.</p><p>Na pregledu utvrđujemo stanje zubi i desni, po potrebi radimo RTG dijagnostiku i predlažemo plan terapije s procjenom trajanja i troška, kako biste mogli donijeti odluku bez obveze.</p>",
     },
     {
-      id: "what-conditions",
-      question: "Koja stanja liječite?",
+      id: "termin",
+      question: "Kako mogu rezervirati termin?",
       answer:
-        "<p>Brinemo se za širok raspon potreba — od svakodnevnih tegoba do složenih, dugotrajnih stanja.</p><ul><li>Kronična stanja: dijabetes, hipertenzija, bolesti srca i pluća</li><li>Podrška oporavku: postoperativna njega, rehabilitacija, upravljanje bolovima</li><li>Specijalistička njega: onkološka podrška, hormonska terapija, infuzije i upravljanje lijekovima</li></ul><p>Svaki pacijent dobiva osobni plan izrađen zajedno s njegovim liječnikom i našim kliničkim timom.</p>",
+        "<p>Termin možete rezervirati na dva načina:</p><ul><li><strong>Telefonom:</strong> +385 21 796 241, radnim danom od 8:00 do 20:00</li><li><strong>Obrascem:</strong> ispunite formu na stranici Kontakt i kontaktirat ćemo Vas unutar radnog vremena</li></ul><p>Ako trebate hitnu intervenciju, molimo nazovite nas telefonom.</p>",
     },
     {
-      id: "why-home-healthcare",
-      question: "Zašto odabrati zdravstvenu njegu u domu?",
+      id: "usluge",
+      question: "Koje usluge pružate?",
       answer:
-        "<p>Njega u domu donosi kvalitetnu zdravstvenu uslugu na vaša vrata — udobno i praktično.</p><ul><li><strong>Udobnost:</strong> njega u poznatom okruženju</li><li><strong>Praktičnost:</strong> manje putovanja u klinike i bolnice</li><li><strong>Bolji kontinuitet:</strong> jedan tim koordinira vaš plan njege</li><li><strong>Uključenost obitelji:</strong> edukacija i redovite informacije za najbliže</li></ul><p>Mnogi se brže oporavljaju i osjećaju smirenije kada njegu primaju u vlastitom domu.</p>",
+        "<p>Pružamo kompletnu dentalnu uslugu na jednom mjestu:</p><ul><li>Implantologija i dentalna protetika (krunice, mostovi)</li><li>Ortodoncija — fiksni i mobilni aparatići</li><li>Endodoncija — liječenje zubnih kanala i upale zuba</li><li>Estetska dentalna medicina — izbjeljivanje, keramičke ljuskice, Smile Design</li><li>Oralna kirurgija i parodontologija</li><li>RTG dijagnostika i dječja dentalna medicina</li></ul>",
     },
     {
-      id: "what-is-provider",
-      question: "Što je pružatelj zdravstvenih usluga?",
+      id: "strah-od-zubara",
+      question: "Imam strah od zubara. Kako mi možete pomoći?",
       answer:
-        "<p>Pružatelj zdravstvenih usluga je licencirana organizacija koja pruža profesionalnu medicinsku njegu i podršku.</p><p>Što to znači za vas:</p><ul><li>Njega licenciranih stručnjaka koji zadovoljavaju stroge standarde obuke i kvalitete</li><li>Koordinacija s vašim liječnicima, ljekarnom i drugim specijalistima</li><li>Jasna komunikacija, sigurnosne provjere i stalni nadzor kvalitete</li></ul><p>Naš je cilj jednostavan: sigurna, učinkovita i brižna njega prilagođena vašem životu.</p>",
+        "<p>Strah od zubara je česta i potpuno razumljiva pojava, a mi ga uspješno otklanjamo.</p><p>Radimo bez pritiska, objašnjavamo svaki korak unaprijed i prilagođavamo tempo Vama. Poseban naglasak stavljamo na rad s djecom, kako bi se od prvog posjeta osjećala ugodno.</p>",
     },
     {
-      id: "care-settings",
-      question: "U kojim okruženjima pružate usluge?",
+      id: "djeca",
+      question: "Primate li djecu?",
       answer:
-        "<p>Njegu pružamo tamo gdje je za vas najsigurnije i najudobnije.</p><ul><li><strong>U domu:</strong> većina usluga pruža se u vašem prostoru</li><li><strong>Domovi i ustanove za njegu:</strong> koordinirana njega na licu mjesta</li><li><strong>Klinike i partnerske ustanove:</strong> za specijalizirana liječenja kada su potrebna</li></ul><p>Brinemo se za neometane prijelaze između okruženja kako bi vaš plan njege ostao na pravom putu.</p>",
+        "<p>Da, dječja dentalna medicina jedna je od naših usluga.</p><p>Ordinacija je prilagođena obiteljima, a naši doktori i osoblje posebno su posvećeni radu s najmlađim pacijentima — cilj je da dijete od prvog posjeta stekne povjerenje i pozitivno iskustvo.</p>",
+    },
+    {
+      id: "dentalni-turizam",
+      question: "Dolazim iz inozemstva. Možete li organizirati terapiju?",
+      answer:
+        "<p>Da. Naša lokacija u neposrednoj blizini stare gradske jezgre Unescova grada Trogira idealna je za pacijente koji žele spojiti odmor i dentalnu uslugu.</p><ul><li>Cijene su i do 5 puta niže od standardnih europskih</li><li>Plan terapije prilagođavamo trajanju Vašeg boravka</li><li>Naš tim pomaže u organizaciji dolaska i boravka u Trogiru</li></ul><p>Pošaljite nam upit s planiranim datumima i pripremit ćemo predlog terapije.</p>",
+    },
+    {
+      id: "radno-vrijeme",
+      question: "Kada ste otvoreni?",
+      answer:
+        "<p>Radimo od ponedjeljka do petka, od 8:00 do 20:00.</p><p>Subotom i nedjeljom ne radimo. Za termine i upite nazovite +385 21 796 241 ili nam pošaljite poruku putem obrasca.</p>",
+    },
+    {
+      id: "lokacija",
+      question: "Gdje se nalazite i ima li parkinga?",
+      answer:
+        "<p>Nalazimo se na adresi Put Dragulina 62 F, 21220 Trogir, u neposrednoj blizini stare gradske jezgre.</p><p>Lokacija je lako dostupna, a ordinacija je prilagođena i osobama s invaliditetom.</p>",
     },
   ],
 };

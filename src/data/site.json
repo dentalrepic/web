@@ -1,9 +1,16 @@
 {
+  "brandName": "Dental Centar Repić",
   "contact": {
-    "addressLine1": "123 Healthcare Drive, Suite 200",
-    "addressLine2": "Springfield, IL 62701",
-    "phone": "+1 (555) 123-4567",
-    "email": "hello@example.com"
+    "addressLine1": "Put Dragulina 62 F",
+    "addressLine2": "21220 Trogir",
+    "country": "Hrvatska",
+    "phone": "+385 21 796 241",
+    "phoneLocal": "021 796 241",
+    "phoneHref": "tel:+38521796241",
+    "email": "dentalcenterrepic@gmail.com"
   },
-  "mapEmbedUrl": "https://maps.google.com/maps?q=springfield+illinois&t=&z=13&ie=UTF8&iwloc=&output=embed"
+  "social": {
+    "instagram": "https://www.instagram.com/dentalrepic/"
+  },
+  "mapEmbedUrl": "https://maps.google.com/maps?q=Put%20Dragulina%2062F%2C%2021220%20Trogir%2C%20Croatia&t=&z=15&ie=UTF8&iwloc=&output=embed"
 }

@@ -1,10 +1,16 @@
 import type { Translation } from "../types";
 
-/** English translations. */
+/**
+ * English translations.
+ *
+ * Copy follows the clinic's own English pages on dentalrepic.com.hr where those
+ * exist, with light copy-editing for typos in the original.
+ */
 export const en: Translation = {
   brand: {
-    name: "Viva Medical",
-    tagline: "Expert care delivered to your home",
+    name: "Dental Centar Repić",
+    tagline: "We care for your perfect smile",
+    logoAlt: "Dental Centar Repić",
   },
 
   nav: {
@@ -12,463 +18,566 @@ export const en: Translation = {
       { label: "Home", href: "/", icon: "home" },
       { label: "About Us", href: "/about", icon: "info" },
       { label: "Services", href: "/services", icon: "clipboard" },
-      { label: "Careers", href: "/careers", icon: "users" },
+      { label: "Dental Tourism", href: "/dental-tourism", icon: "star" },
       { label: "Info", href: "/info", icon: "book" },
     ],
-    cta: { label: "Contact Us", href: "/contact" },
+    cta: { label: "Book an Appointment", href: "/contact" },
     languageLabel: "Language",
     menuLabel: "Toggle menu",
   },
 
   footer: {
     description:
-      "Professional healthcare services serving communities across the region with compassionate, expert care delivered directly to your home.",
+      "Preserving oral health, function and aesthetics are the foundation of the services we provide to patients. Each patient receives an individual approach, and we keep up with technological advancements to ensure the best possible service. We constantly invest in new equipment and in the professional development of our team.",
+    servicesHeading: "Services",
+    hoursHeading: "Opening Hours",
+    rightsReserved: "All rights reserved",
   },
 
   common: {
-    learnMore: "Learn more",
+    learnMore: "Read more",
     readMore: "Read more",
     readLess: "Read less",
-    workingHours: {
-      heading: "Working hours",
-      weekdays: "Monday - Friday: 08:00 - 18:00",
-      saturday: "Saturday: 09:00 - 15:00",
-      sunday: "Sunday: Emergency services only",
-    },
+    callUsToday: "Call us today!",
+    bookAppointment: "Book your appointment",
+    openingHours: "Opening Hours",
+    openingHoursRows: [
+      { day: "Monday", hours: "8:00 - 20:00" },
+      { day: "Tuesday", hours: "8:00 - 20:00" },
+      { day: "Wednesday", hours: "8:00 - 20:00" },
+      { day: "Thursday", hours: "8:00 - 20:00" },
+      { day: "Friday", hours: "8:00 - 20:00" },
+      { day: "Saturday", hours: "Closed" },
+      { day: "Sunday", hours: "Closed" },
+    ],
   },
 
   home: {
     meta: {
-      title: "Healthcare at Home | Viva Medical",
+      title: "Dental Centar Repić | Dental Clinic in Trogir, Croatia",
       description:
-        "Quality medical care delivered to your home by licensed professionals. Trusted by families since 2010.",
+        "Dental Centar Repić in Trogir: implantology, orthodontics, endodontics, prosthetics and aesthetic dental medicine. Free first examination. Call +385 21 796 241.",
     },
     hero: {
-      title: "Healthcare at Home",
-      subtitleLine1: "Licensed professionals bringing expert medical care",
-      subtitleLine2: "directly to your home.",
-      ctaPrimary: "Get Started",
-      ctaSecondary: "Join Our Team",
-      imageAlt: "Professional healthcare services",
+      title: "Premium Dental Solutions",
+      subtitleLine1: "Solutions for all your dental needs",
+      subtitleLine2: "in one place.",
+      ctaPrimary: "Book an Appointment",
+      ctaSecondary: "Our Services",
+      imageAlt: "Dental Centar Repić clinic",
     },
-    about: {
-      eyebrow: "About Us",
-      heading: "Bringing care to where you are",
+    welcome: {
+      eyebrow: "Welcome to our web site",
+      heading: "We care for your perfect smile",
       intro:
-        "We specialize in delivering comprehensive medical care directly to your home. No waiting rooms, no travel stress—just quality healthcare in your comfort zone.",
-      bullets: [
-        "Expert care tailored to your needs in the comfort of your home",
-        "Specialized support for complex medical conditions",
-        "Round-the-clock care and support when you need it most",
+        "Highly educated staff (dental specialists holding PhDs in their respective fields), an interdisciplinary approach and a pleasant atmosphere make Dental Centar Repić the right choice for you. We guarantee a professional approach, high quality service and the use of the most modern materials. We want you to feel comfortable at our clinic, and our knowledge, expertise and experience ensure that you are in the best hands.",
+      highlights: [
+        {
+          title: "Top quality equipment",
+          description:
+            "We use only the best materials of renowned global manufacturers",
+        },
+        {
+          title: "Spacious and equipped clinic",
+          description:
+            "In addition to first class treatment, we take every step to ensure you feel comfortable at our clinic",
+        },
+        {
+          title: "Friendly and professional staff",
+          description: "Our dentists and medical staff are always at your disposal",
+        },
       ],
-      link: "Learn more about us",
-      imageAlt: "Healthcare provider with patient",
+      link: "Read more about us",
+      imageAlt: "The Dental Centar Repić team",
     },
     servicesIntro: {
-      eyebrow: "What We Do",
-      heading: "Our Services",
+      eyebrow: "Expertise and professionalism",
+      heading: "Complete Dental Service",
+      description:
+        "We provide all our services and treatments in our modernly equipped clinic, in accordance with the rules of the profession, to ensure our patients feel at ease and are satisfied with our service.",
       services: [
         {
-          title: "In-Home Healthcare",
-          summary: "Medical treatments and infusions delivered in your home.",
+          title: "Dental Implants",
+          summary:
+            "A permanent solution to missing teeth that restores oral function.",
         },
         {
-          title: "Care Coordination",
-          summary: "Complete care management from intake to ongoing treatment.",
+          title: "Orthodontics (Braces)",
+          summary:
+            "Achieve the smile you have dreamed of with our expert orthodontists.",
         },
         {
-          title: "Licensed Professionals",
-          summary: "Multi-state licensed nurses delivering quality care.",
+          title: "Aesthetic Dental Medicine",
+          summary:
+            "Get the smile you have always wanted and enjoy your new confidence.",
         },
       ],
     },
-    stats: {
-      heading: "Over 15 Years of Excellence",
-      subheading: "Trusted healthcare since 2010",
-      monthlyVisitsLabel: "Monthly visits",
-      professionalsLabel: "Professionals",
-      paragraph1Lead: "Founded in 2010,",
-      paragraph1:
-        "Viva Medical has established itself as a trusted provider of comprehensive healthcare services. Our commitment to excellence and patient-centered care has made us a leader in the healthcare industry.",
-      paragraph2:
-        "Today, as a regional healthcare agency, we proudly serve communities across the region with over 500 monthly visits and a dedicated team of more than 75 skilled healthcare professionals who bring compassionate care directly to patients' homes.",
-      link: "Learn more about our journey",
-      imageAlt: "Professional healthcare provider",
+    whyUs: {
+      heading: "Why choose Dental Centar Repić",
+      subheading:
+        "From a free first examination to top quality equipment — all in one place, in the heart of Dalmatia.",
+      reasons: [
+        "Free first examination",
+        "Friendly staff",
+        "Spacious clinic",
+        "Expert dentists",
+        "Family friendly",
+        "Accessible location",
+        "No waiting",
+        "Quality guarantee",
+        "Wheelchair accessible",
+        "Modern equipment",
+        "Premium materials",
+        "X-ray diagnostics",
+      ],
+      imageAlt: "Modern equipment at the clinic",
+    },
+    problems: {
+      heading: "We have the solution to your dental problems",
+      items: [
+        {
+          title: "Missing teeth",
+          description:
+            "Smile with pride again with our prosthetic and implant solutions that will return the smile to your face and restore proper tooth function.",
+        },
+        {
+          title: "Toothache",
+          description:
+            "Toothache can be caused by a number of factors. Following a detailed dental exam, we will propose the appropriate course of therapy and treatment.",
+        },
+        {
+          title: "Fear of the dentist",
+          description:
+            "We successfully treat fear of the dentist. We place special emphasis on working with children, to ensure they feel comfortable from their very first visit.",
+        },
+        {
+          title: "Broken / chipped teeth",
+          description:
+            "We treat broken and chipped teeth using crowns and other procedures.",
+        },
+        {
+          title: "Periodontitis",
+          description:
+            "We provide complete periodontic services, individually tailored to each patient.",
+        },
+        {
+          title: "Uneven / spaced teeth",
+          description:
+            "We are specialised in a wide range of orthodontic services to bring you the perfect smile you have always dreamed of.",
+        },
+        {
+          title: "Caries and tooth decay",
+          description:
+            "We use modern technology to detect problems in the earliest stage, to ensure timely treatment and to preserve your teeth.",
+        },
+        {
+          title: "Stains / discolouration",
+          description:
+            "Our tooth whitening services will give you the white teeth you have always wanted.",
+        },
+      ],
     },
     faq: {
       eyebrow: "FAQ",
-      heading: "Common Questions",
-      viewAll: "View all FAQs",
+      heading: "Frequently Asked Questions",
+      viewAll: "View all questions",
     },
     cta: {
-      heading: "Ready to get started?",
-      text: "Contact us to discuss how we can support your healthcare needs at home.",
-      button: "Contact Us",
+      heading: "Book your appointment or arrange a free examination",
+      text: "Fill in the form or give us a call — we will contact you within our working hours.",
+      button: "Book now",
     },
   },
 
   about: {
     meta: {
-      title: "About Us - Our Story & Leadership | Viva Medical",
+      title: "About Us - Our Team | Dental Centar Repić",
       description:
-        "Learn about Viva Medical's 15+ years of healthcare excellence. Meet our leadership team dedicated to providing compassionate, professional care since 2010.",
+        "Meet the team at Dental Centar Repić in Trogir: specialists in orthodontics, endodontics and restorative dental medicine, holding PhDs in their fields.",
     },
     hero: {
       title: "ABOUT US",
       description:
-        "Viva Medical was founded in 2010 with a vision to provide exceptional healthcare services. Our mission is to deliver compassionate, professional care that meets the diverse needs of our community. <br /> Today, as a regional healthcare agency, we serve communities across the region with over 500 monthly visits and a dedicated team of 75+ healthcare professionals who bring expertise and compassion directly to patients' homes.",
+        "Highly educated staff, an interdisciplinary approach and a pleasant atmosphere make Dental Centar Repić the right choice for you. <br /> We guarantee a professional approach, high quality service and the use of the most modern materials.",
     },
-    leadership: {
-      heading: "Meet Our Leadership",
+    team: {
+      heading: "Meet our team",
       subheading:
-        "Dedicated professionals committed to delivering exceptional healthcare services",
+        "Expert, award winning dentists and professional, courteous medical staff",
+      members: [
+        {
+          name: "Slavica Pejda Repić, DDM, PhD",
+          role: "Doctor of dental medicine, specialist in orthodontics",
+        },
+        {
+          name: "Dario Repić, DDM, PhD",
+          role: "Doctor of dental medicine, specialist in endodontics and restorative dental medicine",
+        },
+      ],
     },
-    people: [
-      {
-        name: "David Thompson",
-        role: "Co-Founder, Administrator, President and CEO",
-        paragraphs: [
-          "Founded in 2010, David Thompson established Viva Medical with a vision to revolutionize healthcare delivery. His extensive background in healthcare administration and patient care has been instrumental in building our organization's foundation. With over 15 years of experience in healthcare management, David brings a unique perspective on delivering compassionate, professional care that truly makes a difference in patients' lives.",
-          "David's leadership philosophy centers on putting patients first while maintaining the highest standards of care. His commitment to innovation and continuous improvement has helped Viva Medical grow from a small local practice to a regional healthcare leader. Under his guidance, we've expanded our services to meet the evolving needs of our community while maintaining our core values of compassion, integrity, and excellence.",
-          "At the age of 35, David recognized the need for more personalized healthcare services in our region. His vision was to create a healthcare organization that could provide comprehensive care while maintaining the personal touch that patients deserve. This vision has guided our growth and continues to shape our future as we expand our services and reach more patients in need of quality healthcare.",
-        ],
-      },
-      {
-        name: "Jennifer Martinez",
-        role: "Co-Founder and Vice President of Viva Medical",
-        paragraphs: [
-          "Jennifer Martinez is Co-founder and Vice President of Viva Medical, bringing over 12 years of experience in healthcare operations and patient advocacy. Her dedication to improving patient outcomes and streamlining healthcare delivery has been instrumental in shaping our organization's patient-centered approach. Jennifer's expertise in healthcare systems and her passion for compassionate care have helped establish Viva Medical as a trusted healthcare provider in our region.",
-          "Jennifer's vision for Viva Medical was to create a healthcare organization that could provide comprehensive services while maintaining the personal connection that patients need during their healthcare journey. Her commitment to excellence and innovation has driven our organization's growth and success. She believes that every patient deserves access to quality healthcare delivered with dignity, respect, and compassion.",
-          "Jennifer's leadership philosophy emphasizes the importance of building strong relationships with both patients and healthcare professionals. She has been instrumental in developing our team of skilled healthcare professionals and creating a supportive work environment that encourages continuous learning and professional development. Her dedication to our mission continues to inspire our team to deliver the highest quality of care to every patient we serve.",
-        ],
-      },
-    ],
+    approach: {
+      heading: "Our approach to patients",
+      paragraphs: [
+        "Preserving oral health, function and aesthetics are the foundation of the services we provide to patients. Each patient receives an individual approach, and we keep up with technological advancements to ensure the best possible service.",
+        "We constantly invest in new equipment and in the professional development of our team. We provide all our services and treatments in our modernly equipped clinic, in accordance with the rules of the profession, to ensure our patients feel at ease and are satisfied with our service.",
+      ],
+      imageAlt: "The Dental Centar Repić clinic",
+    },
+    testimonials: {
+      heading: "What our patients say",
+      items: [
+        {
+          quote:
+            "Dental Centar Repić is one of the few dental practices where the service is always excellent. The staff are professional and attentive, but also cheerful and welcoming. I had a few teeth repaired and an implant fitted three years ago, and I am still happy with the result.",
+          author: "Toni Vešović",
+        },
+        {
+          quote:
+            "Besides treating dental problems, they successfully cure the fear of the dentist.",
+          author: "Zorana Barada",
+        },
+        {
+          quote:
+            "Excellent dentists, expert and professional. Great with children too.",
+          author: "Joško Herceg",
+        },
+        {
+          quote: "Top professional and fair pricing.",
+          author: "Gunther Braus",
+        },
+      ],
+    },
     cta: {
-      heading: "Partner With Our Experienced Team",
+      heading: "Get in touch with confidence",
       subheading:
-        "Discover how our 15+ years of dedication to excellence can benefit your healthcare journey. We're here to provide compassionate, professional care when you need it most.",
-      primaryButton: "Contact Our Team",
-      secondaryButton: "View Our Services",
+        "Your first examination is free. Book an appointment and let's talk about how we can help.",
+      primaryButton: "Book an Appointment",
+      secondaryButton: "See our services",
     },
   },
 
   services: {
     meta: {
-      title: "Healthcare Services - Professional Home Care | Viva Medical",
+      title: "Services - Complete Dental Service | Dental Centar Repić",
       description:
-        "Comprehensive healthcare services including chronic care management, post-surgical care, respiratory therapy, and specialized support. Expert care in the comfort of your home.",
+        "Implantology, orthodontics, endodontics, dental prosthetics, aesthetic dental medicine, oral surgery, periodontology, X-ray diagnostics and pediatric dentistry.",
     },
     hero: {
-      title: "HEALTHCARE SERVICES",
+      title: "OUR SERVICES",
       description:
-        "We specialize in comprehensive healthcare services supporting multiple treatment modalities and patient care needs. Our professional healthcare services are the cornerstone of our business. We provide specialized care for a broad spectrum of medical conditions and treatment requirements.",
+        "We provide all our services and treatments in our modernly equipped clinic, in accordance with the rules of the profession, to ensure our patients feel at ease and are satisfied with our service.",
     },
-    mission: {
-      heading: "Our Mission",
-      paragraph1:
-        "It is commonly accepted that the potential for patient progress and recovery are substantially improved when patients are surrounded by their native environment. Viva Medical passionately vows to provide quality healthcare services to a broad spectrum of patients within our expertise, experience and service skills.",
-      paragraph2:
-        "Our compassionate, dedicated services are provided with dignity and respect, available to individuals of all ages regardless of race, color, sex, national origin, religion, age or disability.",
-    },
-    specialized: {
-      heading: "Specialized Healthcare Services",
-      description:
-        "Our highly trained professionals provide expert care for a comprehensive range of healthcare services",
-      cards: [
-        "Primary Care",
-        "Specialty Care",
-        "Chronic Care Management",
-        "Emergency Care Services",
-        "Preventive Care",
-        "Rehabilitation Services",
-        "Post-Surgical Care",
-        "Respiratory Therapy",
-        "Pain Management",
-      ],
-    },
-    approach: {
-      heading: "Our Patient Care Approach",
+    intro: {
+      heading: "Complete Dental Service",
       paragraph:
-        "Dedication and service are at the core of our organization. We incorporate compassion and empathy in conducting patient information gathering, assessment, planning, intervention, evaluation and education.",
-      listHeading: "Our agency manages and coordinates:",
-      items: [
-        "Patient intake and nursing assignments",
-        "Treatment and therapy verification",
-        "Therapy scheduling",
-        "Confirming the physician's plan of treatment (POT)",
-        "Documenting patient status",
-        "Providing progress reports",
-      ],
-      imageAlt: "Professional healthcare provider",
+        "From implantology and orthodontics to aesthetic dental medicine — we provide a solution for all your dental needs in one place, with a professional approach and the most modern materials.",
     },
-    staff: {
-      heading: "Our Professional Staff",
-      paragraph1:
-        "Healthcare coordinators can rely upon our family of qualified professionals to service their patient base, ensuring an optimal and timely response to implementing medical treatment regimes.",
+    groups: [
+      {
+        title: "Implantology and prosthetics",
+        items: [
+          "Dental implants",
+          "Dental prosthetics",
+          "Crowns and bridges",
+          "Full oral and prosthetic rehabilitation",
+        ],
+      },
+      {
+        title: "Orthodontics",
+        items: [
+          "Braces",
+          "Fixed orthodontic appliances",
+          "Removable orthodontic appliances",
+          "Treatment of uneven and spaced teeth",
+        ],
+      },
+      {
+        title: "Endodontics and restorative dentistry",
+        items: [
+          "Root canal treatment",
+          "Treatment of tooth inflammation",
+          "Caries treatment",
+          "Restoration of broken and chipped teeth",
+        ],
+      },
+      {
+        title: "Aesthetic dental medicine",
+        items: [
+          "Tooth whitening",
+          "Ceramic veneers",
+          "Smile Design",
+          "Tooth jewellery",
+          "Tooth sanding",
+        ],
+      },
+      {
+        title: "Oral surgery and periodontology",
+        items: [
+          "Oral surgery",
+          "Periodontology",
+          "Surgical tooth extraction",
+          "Treatment of periodontitis",
+        ],
+      },
+      {
+        title: "Diagnostics and pediatric dentistry",
+        items: [
+          "X-ray diagnostics",
+          "Pediatric dentistry",
+          "Free first examination",
+          "Preventive check-ups",
+        ],
+      },
+    ],
+    equipment: {
+      heading: "Equipment and materials",
+      paragraph:
+        "We use the best materials from renowned global manufacturers and constantly invest in new equipment, so we can detect problems at the earliest stage and ensure timely treatment.",
       features: [
         {
-          title: "Licensed Professionals",
+          title: "Premium materials",
           description:
-            "All healthcare providers are licensed in the states they service",
+            "Materials from renowned global manufacturers in every treatment",
         },
         {
-          title: "Multi-State Coverage",
-          description: "Many professionals possess licensure in multiple states",
+          title: "X-ray diagnostics",
+          description:
+            "Modern technology for early detection and precise treatment planning",
         },
         {
-          title: "Ongoing Education",
+          title: "Ongoing education",
           description:
-            "Continuous professional development and training opportunities",
+            "Continuous investment in the professional development of our whole team",
         },
       ],
-      paragraph2:
-        "Viva Medical works in tandem with our healthcare professionals and contracted partners to initiate a seamless process for the most effective quality patient care.",
-      imageAlt: "Healthcare team coordination",
-    },
-    capabilities: {
-      heading: "Clinical Capabilities",
-      description:
-        "Viva Medical clinical capabilities and skills enable us to provide services addressing a broad spectrum of healthcare needs and treatment modalities",
-      groups: [
-        {
-          title: "Chronic & Long-Term Care",
-          items: [
-            "Chronic disease management for diabetes, hypertension, and heart disease",
-            "Cardiac care and cardiovascular disease support",
-            "Respiratory care for chronic conditions",
-            "Infectious disease management and complex infections",
-          ],
-        },
-        {
-          title: "Surgical & Recovery",
-          items: [
-            "Post-surgical care and recovery support",
-            "Physical therapy and rehabilitation services",
-            "Pain management strategies and support",
-            "Initial consultation and assessment",
-          ],
-        },
-        {
-          title: "Specialized Treatment",
-          items: [
-            "Oncology support services",
-            "Hormone therapy and endocrine care",
-            "Subcutaneous medication administration",
-            "Anti-inflammatory therapy",
-            "Nutritional support and dietary counseling",
-            "Mental health and wellness support",
-          ],
-        },
-      ],
-    },
-    research: {
-      heading: "Research & Clinical Trials",
-      text: "We actively participate in research and clinical trial programs, staying at the forefront of healthcare innovation to bring the latest treatments to our patients.",
+      imageAlt: "Modern dental equipment",
     },
     cta: {
-      heading: "Ready for Professional Healthcare Services?",
+      heading: "Don't see the service you are looking for?",
       subheading:
-        "Our expert healthcare team serves the regional area including multiple states and communities. Let us bring professional healthcare directly to your home.",
-      primaryButton: "Schedule a Consultation",
-      secondaryButton: "Join Our Healthcare Team",
+        "Call us or book an appointment — we will arrange an examination and propose the best treatment for you.",
+      primaryButton: "Book an Appointment",
+      secondaryButton: "Dental Tourism",
     },
   },
 
-  careers: {
+  tourism: {
     meta: {
-      title: "Career Opportunities - Join Our Team | Viva Medical",
+      title: "Dental Tourism in Trogir, Croatia | Dental Centar Repić",
       description:
-        "Join the Viva Medical healthcare team. We offer rewarding careers for qualified healthcare professionals with competitive salary, flexible schedules, and professional development.",
+        "Combine a holiday in Dalmatia with top quality dental care. Prices up to 5 times lower than standard European prices. Dental Centar Repić, Trogir.",
     },
     hero: {
-      title: "CAREER OPPORTUNITIES",
+      title: "DENTAL TOURISM",
       description:
-        "Viva Medical is a dynamic and rapidly growing healthcare services agency looking to grow our family of qualified healthcare professionals across multiple regions. We offer rewarding career opportunities for dedicated individuals who are passionate about providing exceptional patient care.",
+        "Combine a tourist visit to Dalmatia with top quality dental service. <br /> An attractive location in the immediate vicinity of the old town of Trogir, a UNESCO World Heritage site.",
     },
-    education: {
-      heading: "Education & Experience",
-      paragraph1:
-        "All potential candidates for hire as healthcare professionals must meet standards established by the specific state licensing requirements and Department of Health (DOH) minimum requirements to service any patient within the domain of Viva Medical healthcare services licensure.",
-      paragraph2:
-        "This agency strictly adheres to the state codes, rules, and regulations governing the healthcare model requirements and experience essential for healthcare services. A complete job description is located in the agency Manual on Policy and Procedures. A description may be obtained from the agency Human Resources (HR) department.",
-      imageAlt: "Healthcare team collaboration",
+    intro: {
+      heading: "Mix business and pleasure",
+      paragraphs: [
+        "The attractive position of Dental Centar Repić in the vicinity of the Trogir Old Town, inscribed on the UNESCO World Heritage List, is the ideal choice for foreign patients looking to mix business and pleasure: a pleasant vacation with high quality and reasonably priced dental service.",
+        "In addition to a pleasant stay in the heart of Dalmatia, we do all we can to ensure that you receive well organised and top quality dental services. We are ready to provide you with complete oral and prosthetic rehabilitation in accordance with your planned visit to our town.",
+        "The prices of our services are up to 5 times lower than standard European prices, and we will be very happy to help organise your arrival and stay in Trogir.",
+      ],
     },
-    requirements: {
-      heading: "Position Requirements",
+    benefits: {
+      heading: "Why Trogir",
       items: [
-        "Professional license for at least 1-2 years, with current registration",
-        "Knowledge of healthcare therapies and patient care procedures",
-        "Proficient clinical skills",
-        "Good physical assessment skills",
-        "Excellent communication skills",
-        "Reliability, with a flexible schedule",
-        "Valid driver's license if not using public transportation",
-        "Graduate of an Accredited Healthcare Program, College or University",
-        "Minimum 1-2 years healthcare experience",
-        "Current CPR/BLS certification",
-        "Current professional liability insurance required",
-        "Knowledge of the Microsoft Outlook and MS Word",
+        {
+          title: "Up to 5 times lower prices",
+          description:
+            "Our prices are up to five times lower than standard European prices",
+        },
+        {
+          title: "UNESCO town of Trogir",
+          description:
+            "The clinic sits in the immediate vicinity of the Trogir old town",
+        },
+        {
+          title: "Help with arrangements",
+          description:
+            "Our team is happy to help organise your arrival and stay in Trogir",
+        },
+        {
+          title: "Treatment around your trip",
+          description:
+            "We plan full rehabilitation to fit the length of your stay",
+        },
       ],
     },
-    whyWorkWithUs: {
-      heading: "Why Work With Us",
-      items: [
-        "Equal Opportunity Employer",
-        "Competitive Salary",
-        "Full, Part-Time and Per Diem Positions Available",
+    howItWorks: {
+      heading: "How it works",
+      steps: [
+        {
+          title: "1. Get in touch",
+          description:
+            "Send us an enquiry describing your situation and your planned dates",
+        },
+        {
+          title: "2. Treatment plan",
+          description:
+            "We propose a treatment plan and visit schedule that fits your stay",
+        },
+        {
+          title: "3. Arrival and treatment",
+          description:
+            "We carry out the treatment at the agreed times, leaving room to rest and explore",
+        },
+        {
+          title: "4. Follow-up",
+          description:
+            "After treatment we remain available for check-ups and advice",
+        },
       ],
-    },
-    application: {
-      heading: "Application Process",
-      paragraph:
-        "Viva Medical requires all healthcare professional applicants to complete the Personal Experience Screening Questionnaires.",
-      links: [
-        "Request a Screening Questionnaire",
-        "Request an Employment Application",
-        "Request a Reference Form",
-      ],
-    },
-    training: {
-      heading: "Training",
-      paragraph1:
-        "Once a candidate has met the pre-hiring requirements, the agency schedules the healthcare professional for essential training prior to servicing any patient.",
-      paragraph2:
-        "The agency training program incorporates both a clinical and didactic component.",
-      resources: {
-        heading: "Training Resources",
-        paragraphBefore:
-          "Specific equipment operation training and procedures may be viewed through our comprehensive training resources.",
-        requestLink: "Request training access",
-        paragraphAfter: "Click on equipment training for detailed video resources.",
-        items: [
-          "Infusion pump training",
-          "Ambulatory infusion system training",
-          "Medical device training",
-          "Infusion therapy training",
-          "Patient care protocols",
-          "Clinical guidelines",
-        ],
-      },
-      harassment: {
-        heading: "Sexual Harassment Prevention Training",
-        paragraph:
-          "The Sexual Harassment Training video was prepared by the Secretary of Labor for the State. Both the Governing Authority and all employees of Viva Medical are required to review the Sexual Harassment Prevention Policy and Training. A copy of the agency policy and procedure document is available at your request. An acknowledgement form must be signed and returned to the agency.",
-        links: [
-          "Request Prevention Training Part 1",
-          "Request Prevention Training Part 2: Case Studies",
-        ],
-        submitFormsLabel: "Submit forms:",
-        submitFormsLink: "Contact Human Resources",
-        questionsLabel: "Questions?",
-        questionsLink: "Contact the administrator",
-      },
     },
     cta: {
-      heading: "Begin Your Rewarding Healthcare Career",
+      heading: "Planning a visit to Dalmatia?",
       subheading:
-        "Join a team of dedicated professionals making a real difference in patients' lives. We offer competitive benefits, ongoing training, and the opportunity to grow with a regional leader in healthcare services.",
-      primaryButton: "Apply Today",
-      secondaryButton: "Have Questions?",
+        "Send us an enquiry with your planned dates and we will prepare a treatment plan that fits your stay.",
+      primaryButton: "Send an enquiry",
+      secondaryButton: "See our services",
     },
   },
 
   contact: {
     meta: {
-      title: "Contact Us - Get in Touch | Viva Medical",
+      title: "Contact - Book an Appointment | Dental Centar Repić",
       description:
-        "Contact Viva Medical for professional healthcare services. Reach our team by phone or visit our office. Monday-Saturday service.",
+        "Dental Centar Repić, Put Dragulina 62 F, 21220 Trogir, Croatia. Phone +385 21 796 241, email dentalcenterrepic@gmail.com. Weekdays 8:00 - 20:00.",
     },
     hero: {
-      title: "CONTACT US",
+      title: "CONTACT",
       description:
-        "We're here to help you navigate your healthcare needs with ease. Whether you have questions, need support, or want to discuss our services, our team is ready to listen and assist you every step of the way.",
+        "Get in touch with confidence. Fill in the form or give us a call to arrange an appointment — your first examination is free.",
     },
     intro:
-      "We're committed to providing exceptional healthcare services and support. Our team is here to help you navigate your healthcare needs with compassion and professionalism. Contact us today to learn more about our services.",
-    addressHeading: "Our Address",
+      "Fill in the form below and we will contact you as soon as possible, within our working hours. Your first examination is free.",
+    addressHeading: "Our address",
     contactHeading: "Contact",
     phoneLabel: "Phone",
     emailLabel: "Email",
+    urgentNotice:
+      "If you need urgent treatment, please call +385 21 796 241.",
     form: {
-      heading: "Ready to Get Started?",
-      nameLabel: "Name",
-      namePlaceholder: "Your name",
-      emailLabel: "Email address",
+      heading: "Book an appointment",
+      description:
+        "Fill in the form below and we will contact you within our working hours.",
+      nameLabel: "Full name",
+      namePlaceholder: "Your full name",
+      emailLabel: "Email",
       emailPlaceholder: "Your email address",
-      messageLabel: "Message",
-      messagePlaceholder: "Write your message...",
-      submit: "Send Message",
+      phoneLabel: "Phone number",
+      phonePlaceholder: "Your phone number",
+      reasonLabel: "Reason for your visit",
+      reasonOptions: [
+        "First visit - free examination",
+        "Implants",
+        "Braces",
+        "Crowns and bridges",
+        "Aesthetic dental medicine",
+        "Tooth inflammation",
+        "Other",
+      ],
+      preferredTimeLabel: "Preferred time",
+      preferredTimeOptions: [
+        "Any time",
+        "08:00 - 11:00",
+        "11:00 - 14:00",
+        "14:00 - 16:00",
+      ],
+      messageLabel: "Notes",
+      messagePlaceholder: "Briefly describe the reason for your visit...",
+      submit: "Send",
       demoNote:
         "Demo form: connect this form to your preferred form provider before launch.",
       statusMessage:
         "This demo form is working locally. Connect a form provider to receive submissions.",
     },
-    mapTitle: "Map showing the Viva Medical demo office",
+    mapTitle: "Map showing the location of Dental Centar Repić in Trogir",
   },
 
   info: {
     meta: {
-      title: "FAQ - Frequently Asked Questions | Viva Medical",
+      title: "FAQ - Frequently Asked Questions | Dental Centar Repić",
       description:
-        "Find clear answers about our services, eligibility, appointments, and what to expect from professional care at home.",
+        "Answers to common questions about the free first examination, implants, braces, fear of the dentist and dental tourism in Trogir.",
     },
     hero: {
       title: "FREQUENTLY ASKED QUESTIONS",
       description:
-        "Clear answers about our services, coverage, and care—so you can make confident decisions for yourself or a loved one.",
+        "Clear answers about our services, appointments and treatments — so you can make confident decisions for yourself or a loved one.",
     },
     heading: "Frequently Asked Questions",
     cta: {
-      heading: "Still Have Questions?",
+      heading: "Still have questions?",
       subheading:
-        "Our healthcare team is here to help answer any additional questions you may have about our services. Contact us today to learn more about how we can support your healthcare needs.",
-      primaryButton: "Contact Us",
+        "Our team is happy to answer any further questions. Give us a call or send us an enquiry.",
+      primaryButton: "Contact us",
     },
   },
 
   notFound: {
     meta: {
-      title: "Page Not Found - Viva Medical",
+      title: "Page Not Found - Dental Centar Repić",
       description: "The page you're looking for could not be found.",
     },
     heading: "Page Not Found",
     description:
       "Sorry, we couldn't find the page you're looking for. The page may have been moved or doesn't exist.",
     backHome: "Back to Home",
-    contactUs: "Contact Us",
+    contactUs: "Contact us",
     lookingForLabel: "You might be looking for:",
   },
 
   faqs: [
     {
-      id: "what-are-services",
-      question: "What are healthcare services?",
+      id: "prvi-pregled",
+      question: "Is the first examination free?",
       answer:
-        "<p>Healthcare services are the medical care and support people receive to stay well, treat illness, and recover safely.</p><p>We focus on three areas:</p><ul><li><strong>Prevention:</strong> screenings, vaccinations, and education</li><li><strong>Treatment:</strong> expert care for acute and chronic conditions</li><li><strong>Recovery:</strong> therapies and support after injury or surgery</li></ul><p>With home care, licensed clinicians come to you. We coordinate with your physician, create a personalized care plan, and keep you and your family informed every step of the way.</p>",
+        "<p>Yes. Your first visit and examination at Dental Centar Repić are free of charge.</p><p>During the examination we assess the condition of your teeth and gums, take X-rays if needed, and propose a treatment plan with an estimate of the time and cost involved, so you can decide without obligation.</p>",
     },
     {
-      id: "what-conditions",
-      question: "What conditions do you treat?",
+      id: "termin",
+      question: "How do I book an appointment?",
       answer:
-        "<p>We care for a broad range of needs—from everyday concerns to complex, ongoing conditions.</p><ul><li>Chronic conditions: diabetes, hypertension, heart and lung disease</li><li>Recovery support: post-surgical care, rehabilitation, pain management</li><li>Specialty care: oncology support, hormone therapy, infusion and medication management</li></ul><p>Every patient receives a personalized plan developed with their physician and our clinical team.</p>",
+        "<p>You can book an appointment in two ways:</p><ul><li><strong>By phone:</strong> +385 21 796 241, weekdays from 8:00 to 20:00</li><li><strong>By form:</strong> fill in the form on the Contact page and we will get back to you within working hours</li></ul><p>If you need urgent treatment, please call us by phone.</p>",
     },
     {
-      id: "why-home-healthcare",
-      question: "Why choose home healthcare services?",
+      id: "usluge",
+      question: "What services do you provide?",
       answer:
-        "<p>Home care brings quality healthcare to your door—comfortably and conveniently.</p><ul><li><strong>Comfort:</strong> receive care in familiar surroundings</li><li><strong>Convenience:</strong> fewer trips to clinics and hospitals</li><li><strong>Better continuity:</strong> one team coordinating your care plan</li><li><strong>Family involvement:</strong> education and regular updates for loved ones</li></ul><p>Many people find they recover faster and feel more at ease when cared for at home.</p>",
+        "<p>We provide a complete dental service in one place:</p><ul><li>Implantology and dental prosthetics (crowns, bridges)</li><li>Orthodontics — fixed and removable braces</li><li>Endodontics — root canal treatment and treatment of tooth inflammation</li><li>Aesthetic dental medicine — whitening, ceramic veneers, Smile Design</li><li>Oral surgery and periodontology</li><li>X-ray diagnostics and pediatric dentistry</li></ul>",
     },
     {
-      id: "what-is-provider",
-      question: "What is a healthcare service provider?",
+      id: "strah-od-zubara",
+      question: "I'm afraid of the dentist. How can you help?",
       answer:
-        "<p>A healthcare service provider is a licensed organization that delivers professional medical care and support.</p><p>What that means for you:</p><ul><li>Care from licensed clinicians who meet strict training and quality standards</li><li>Coordination with your doctors, pharmacy, and other specialists</li><li>Clear communication, safety checks, and ongoing quality review</li></ul><p>Our goal is simple: safe, effective, compassionate care that fits your life.</p>",
+        "<p>Fear of the dentist is common and entirely understandable, and we treat it successfully.</p><p>We work without pressure, explain every step in advance and adjust the pace to you. We place special emphasis on working with children, so they feel comfortable from their very first visit.</p>",
     },
     {
-      id: "care-settings",
-      question: "What care settings do you provide services in?",
+      id: "djeca",
+      question: "Do you treat children?",
       answer:
-        "<p>We deliver care wherever it's safest and most comfortable for you.</p><ul><li><strong>At home:</strong> most services provided in your own space</li><li><strong>Assisted living or skilled nursing:</strong> coordinated onsite care</li><li><strong>Clinics and partner facilities:</strong> for specialized treatments when needed</li></ul><p>We handle smooth transitions between settings so your care plan stays on track.</p>",
+        "<p>Yes, pediatric dentistry is one of our services.</p><p>The clinic is family friendly, and our dentists and staff are particularly dedicated to working with our youngest patients — the goal is for a child to build trust and have a positive experience from the first visit.</p>",
+    },
+    {
+      id: "dentalni-turizam",
+      question: "I'm coming from abroad. Can you arrange treatment?",
+      answer:
+        "<p>Yes. Our location in the immediate vicinity of the old town of Trogir, a UNESCO World Heritage site, is ideal for patients who want to combine a holiday with dental care.</p><ul><li>Prices are up to 5 times lower than standard European prices</li><li>We adapt the treatment plan to the length of your stay</li><li>Our team helps organise your arrival and stay in Trogir</li></ul><p>Send us an enquiry with your planned dates and we will prepare a proposed treatment plan.</p>",
+    },
+    {
+      id: "radno-vrijeme",
+      question: "When are you open?",
+      answer:
+        "<p>We are open Monday to Friday, from 8:00 to 20:00.</p><p>We are closed on Saturdays and Sundays. For appointments and enquiries call +385 21 796 241 or send us a message using the form.</p>",
+    },
+    {
+      id: "lokacija",
+      question: "Where are you located?",
+      answer:
+        "<p>We are at Put Dragulina 62 F, 21220 Trogir, in the immediate vicinity of the old town.</p><p>The location is easy to reach, and the clinic is wheelchair accessible.</p>",
     },
   ],
 };

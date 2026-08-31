@@ -34,12 +34,16 @@
 	--breakpoint-xxl: 1366px;
 
 	/* Theme Colors - Auto-generates bg-theme-*, text-theme-*, border-theme-* utilities */
-	/* Primary Brand Colors - "Modern Sky" palette */
-	--color-theme-primary: #0369a1; /* sky-700 */
-	--color-theme-primary-dark: #075985; /* sky-800 */
-	--color-theme-primary-darker: #0c4a6e; /* sky-900 */
-	--color-theme-primary-light: #0284c7; /* sky-600 */
-	--color-theme-primary-lighter: #38bdf8; /* sky-400 */
+	/* Primary Brand Colors - turquoise, matched to the clinic logo (#2dccd2).
+	   The raw logo colour only reaches 1.97:1 against white, so the text/UI
+	   shades below are darkened to the same hue to meet WCAG AA. */
+	--color-theme-primary: #1c7f82; /* 4.76:1 on white */
+	--color-theme-primary-dark: #166669; /* 6.69:1 on white */
+	--color-theme-primary-darker: #104a4c; /* 9.97:1 on white */
+	--color-theme-primary-light: #24a3a8;
+	--color-theme-primary-lighter: #5fd8dd;
+	/* Logo colour itself, for decorative fills only - not for text */
+	--color-theme-brand: #2dccd2;
 
 	/* Surface Colors */
 	--color-theme-surface: #ffffff;
@@ -58,11 +62,11 @@
 	--color-theme-border: #e5e7eb; /* gray-200 */
 	--color-theme-border-medium: #d1d5db; /* gray-300 */
 
-	/* Accent Colors - "Modern Sky" palette */
-	--color-theme-accent-sky: #8b5cf6; /* violet-500 */
-	--color-theme-accent-sky-light: #8b5cf6cc; /* violet-500/80 */
-	--color-theme-accent-orange: #f97316; /* orange-500 */
-	--color-theme-accent-orange-light: #f97316cc; /* orange-500/80 */
+	/* Accent Colors */
+	--color-theme-accent-sky: #0e7490; /* cyan-700 */
+	--color-theme-accent-sky-light: #0e7490cc;
+	--color-theme-accent-orange: #ea7317;
+	--color-theme-accent-orange-light: #ea7317cc;
 
 	/* Semantic Colors */
 	--color-theme-success: #10b981; /* green-500 */
@@ -73,7 +77,7 @@
 	/* Overlay/Gradient Colors */
 	--color-theme-overlay-dark: #00000080; /* black/50 */
 	--color-theme-overlay-darker: #0000004d; /* black/30 */
-	--color-theme-gradient-primary: linear-gradient(to right, #0369a1, #075985);
+	--color-theme-gradient-primary: linear-gradient(to right, #1c7f82, #166669);
 
 	/* Button Design Tokens */
 	--button-radius: 9999px; /* rounded-full */

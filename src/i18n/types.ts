@@ -28,22 +28,32 @@ export interface FeatureItem {
   description: string;
 }
 
-export interface CapabilityGroup {
+export interface ServiceGroup {
   title: string;
   items: string[];
 }
 
-export interface LeadershipPerson {
+export interface TeamMember {
   name: string;
+  /** Professional title and specialisation. */
   role: string;
-  /** Biography split into paragraphs. */
-  paragraphs: string[];
+}
+
+export interface Testimonial {
+  quote: string;
+  author: string;
+}
+
+export interface OpeningHoursRow {
+  day: string;
+  hours: string;
 }
 
 export interface Translation {
   brand: {
     name: string;
     tagline: string;
+    logoAlt: string;
   };
 
   nav: {
@@ -55,18 +65,20 @@ export interface Translation {
 
   footer: {
     description: string;
+    servicesHeading: string;
+    hoursHeading: string;
+    rightsReserved: string;
   };
 
   common: {
     learnMore: string;
     readMore: string;
     readLess: string;
-    workingHours: {
-      heading: string;
-      weekdays: string;
-      saturday: string;
-      sunday: string;
-    };
+    callUsToday: string;
+    bookAppointment: string;
+    openingHours: string;
+    /** One row per day, including any closed days. */
+    openingHoursRows: OpeningHoursRow[];
   };
 
   home: {
@@ -79,29 +91,30 @@ export interface Translation {
       ctaSecondary: string;
       imageAlt: string;
     };
-    about: {
+    welcome: {
       eyebrow: string;
       heading: string;
       intro: string;
-      bullets: string[];
+      highlights: FeatureItem[];
       link: string;
       imageAlt: string;
     };
     servicesIntro: {
       eyebrow: string;
       heading: string;
+      description: string;
       services: ServiceSummary[];
     };
-    stats: {
+    whyUs: {
       heading: string;
       subheading: string;
-      monthlyVisitsLabel: string;
-      professionalsLabel: string;
-      paragraph1Lead: string;
-      paragraph1: string;
-      paragraph2: string;
-      link: string;
+      /** Short reasons to choose the clinic, rendered as a badge grid. */
+      reasons: string[];
       imageAlt: string;
+    };
+    problems: {
+      heading: string;
+      items: FeatureItem[];
     };
     faq: {
       eyebrow: string;
@@ -118,8 +131,9 @@ export interface Translation {
   about: {
     meta: { title: string; description: string };
     hero: { title: string; description: string };
-    leadership: { heading: string; subheading: string };
-    people: LeadershipPerson[];
+    team: { heading: string; subheading: string; members: TeamMember[] };
+    approach: { heading: string; paragraphs: string[]; imageAlt: string };
+    testimonials: { heading: string; items: Testimonial[] };
     cta: {
       heading: string;
       subheading: string;
@@ -131,28 +145,15 @@ export interface Translation {
   services: {
     meta: { title: string; description: string };
     hero: { title: string; description: string };
-    mission: { heading: string; paragraph1: string; paragraph2: string };
-    specialized: { heading: string; description: string; cards: string[] };
-    approach: {
+    intro: { heading: string; paragraph: string };
+    /** Full treatment catalogue, grouped by area. */
+    groups: ServiceGroup[];
+    equipment: {
       heading: string;
       paragraph: string;
-      listHeading: string;
-      items: string[];
-      imageAlt: string;
-    };
-    staff: {
-      heading: string;
-      paragraph1: string;
       features: FeatureItem[];
-      paragraph2: string;
       imageAlt: string;
     };
-    capabilities: {
-      heading: string;
-      description: string;
-      groups: CapabilityGroup[];
-    };
-    research: { heading: string; text: string };
     cta: {
       heading: string;
       subheading: string;
@@ -161,43 +162,12 @@ export interface Translation {
     };
   };
 
-  careers: {
+  tourism: {
     meta: { title: string; description: string };
     hero: { title: string; description: string };
-    education: {
-      heading: string;
-      paragraph1: string;
-      paragraph2: string;
-      imageAlt: string;
-    };
-    requirements: { heading: string; items: string[] };
-    whyWorkWithUs: { heading: string; items: string[] };
-    application: {
-      heading: string;
-      paragraph: string;
-      links: string[];
-    };
-    training: {
-      heading: string;
-      paragraph1: string;
-      paragraph2: string;
-      resources: {
-        heading: string;
-        paragraphBefore: string;
-        requestLink: string;
-        paragraphAfter: string;
-        items: string[];
-      };
-      harassment: {
-        heading: string;
-        paragraph: string;
-        links: string[];
-        submitFormsLabel: string;
-        submitFormsLink: string;
-        questionsLabel: string;
-        questionsLink: string;
-      };
-    };
+    intro: { heading: string; paragraphs: string[] };
+    benefits: { heading: string; items: FeatureItem[] };
+    howItWorks: { heading: string; steps: FeatureItem[] };
     cta: {
       heading: string;
       subheading: string;
@@ -214,12 +184,21 @@ export interface Translation {
     contactHeading: string;
     phoneLabel: string;
     emailLabel: string;
+    /** Notice pointing urgent cases to the phone rather than the form. */
+    urgentNotice: string;
     form: {
       heading: string;
+      description: string;
       nameLabel: string;
       namePlaceholder: string;
       emailLabel: string;
       emailPlaceholder: string;
+      phoneLabel: string;
+      phonePlaceholder: string;
+      reasonLabel: string;
+      reasonOptions: string[];
+      preferredTimeLabel: string;
+      preferredTimeOptions: string[];
       messageLabel: string;
       messagePlaceholder: string;
       submit: string;

@@ -4,16 +4,16 @@
  */
 import Layout from "../../layouts/Layout.astro";
 import { Image } from "astro:assets";
-import seniorCareImage from "../../assets/hero-main.jpg";
-import professionalCareImage from "../../assets/professional-care.jpg";
-import teamMemberImage from "../../assets/team-member.jpg";
-import heroServicesImage from "../../assets/hero-services.jpg";
+import heroImage from "../../assets/hero-main.jpg";
+import welcomeImage from "../../assets/team-professionals.jpg";
+import whyUsImage from "../../assets/professional-staff.jpg";
+import ctaImage from "../../assets/hero-services.jpg";
 import ServicesIntroSection from "../ServicesIntroSection.astro";
 import FaqAccordion from "../FaqAccordion.astro";
-import NumberCounter from "../NumberCounter.astro";
 import Button from "../Button.astro";
 import Icon from "../Icon.astro";
 import Link from "../Link.astro";
+import site from "../../data/site.json";
 import type { Locale } from "../../i18n/config";
 import { localizePath, useTranslations } from "../../i18n/utils";
 
@@ -29,13 +29,12 @@ const home = t.home;
 <Layout locale={locale} title={home.meta.title} description={home.meta.description}>
 	<!-- Hero Section -->
 	<section
-		class="relative min-h-[70vh] md:min-h-screen lg:min-h-[50vh] flex items-center py-16 md:py-0"
-		role="banner"
+		class="relative min-h-[70vh] md:min-h-screen lg:min-h-[60vh] flex items-center py-16 md:py-0"
 		aria-label={home.hero.title}
 	>
 		<div class="absolute inset-0 z-0">
 			<Image
-				src={seniorCareImage}
+				src={heroImage}
 				alt={home.hero.imageAlt}
 				class="w-full h-full object-cover object-top"
 				loading="eager"
@@ -43,8 +42,7 @@ const home = t.home;
 				width={1920}
 				height={1080}
 			/>
-			<div class="absolute inset-0 bg-gradient-to-r from-black/60 to-black/35">
-			</div>
+			<div class="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40"></div>
 		</div>
 
 		<div class="container relative z-10">
@@ -70,66 +68,79 @@ const home = t.home;
 						{home.hero.ctaPrimary}
 					</Button>
 					<Button
-						variant="primary"
+						variant="white-outline"
 						size="lg"
-						href={localizePath("/careers", locale)}
-						class="ring-2 ring-white/20 hover:shadow-xl hover:scale-105"
+						href={localizePath("/services", locale)}
+						class="hover:shadow-xl"
 					>
 						{home.hero.ctaSecondary}
 					</Button>
 				</div>
+				<p class="mt-6 text-white/90 text-sm md:text-base">
+					<a
+						href={site.contact.phoneHref}
+						class="inline-flex items-center gap-2 font-semibold hover:text-white"
+					>
+						<Icon name="phone" size="sm" />
+						<span>{site.contact.phone}</span>
+					</a>
+					<span class="mx-2 text-white/50">&middot;</span>
+					<span>{t.common.callUsToday}</span>
+				</p>
 			</div>
 		</div>
 	</section>
 
-	<!-- About Section - Asymmetric editorial layout -->
+	<!-- Welcome / About Section -->
 	<section class="section bg-theme-surface">
 		<div class="container">
 			<div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 				<div class="order-2 lg:order-1">
 					<p class="text-sm font-medium tracking-widest uppercase text-theme-primary mb-4">
-						{home.about.eyebrow}
+						{home.welcome.eyebrow}
 					</p>
-					<h2 class="mb-6">
-						{home.about.heading}
-					</h2>
-					<p class="text-theme-text-secondary text-lg leading-relaxed mb-6">
-						{home.about.intro}
+					<h2 class="mb-6">{home.welcome.heading}</h2>
+					<p class="text-theme-text-secondary text-lg leading-relaxed mb-8">
+						{home.welcome.intro}
 					</p>
 					<ul class="space-y-5 mb-6">
 						{
-							home.about.bullets.map((bullet) => (
+							home.welcome.highlights.map((highlight) => (
 								<li class="flex items-start group">
-									<div class="flex-shrink-0 w-7 h-7 rounded-full bg-theme-primary-lighter/20 flex items-center justify-center mr-4 mt-0.5 group-hover:bg-theme-primary transition-colors duration-300">
+									<div class="flex-shrink-0 w-8 h-8 rounded-full bg-theme-primary-lighter/20 flex items-center justify-center mr-4 mt-0.5 group-hover:bg-theme-primary transition-colors duration-300">
 										<Icon
 											name="check"
 											size="sm"
 											class="text-theme-primary group-hover:text-white transition-colors duration-300"
 										/>
 									</div>
-									<span class="text-theme-text-secondary text-lg">
-										{bullet}
-									</span>
+									<div>
+										<h3 class="text-base lg:text-lg font-semibold text-theme-text-primary mb-1">
+											{highlight.title}
+										</h3>
+										<p class="text-theme-text-secondary">{highlight.description}</p>
+									</div>
 								</li>
 							))
 						}
 					</ul>
 					<div class="text-center md:text-left">
-						<Link href={localizePath("/about", locale)}>{home.about.link}</Link>
+						<Link href={localizePath("/about", locale)}>{home.welcome.link}</Link>
 					</div>
 				</div>
 				<div class="order-1 lg:order-2">
 					<div class="relative">
 						<div class="rounded-2xl overflow-hidden shadow-xl">
 							<Image
-								src={professionalCareImage}
-								alt={home.about.imageAlt}
+								src={welcomeImage}
+								alt={home.welcome.imageAlt}
 								class="w-full h-auto"
 								loading="lazy"
 							/>
 						</div>
-						<!-- Decorative accent -->
-						<div class="absolute -bottom-4 -left-4 w-24 h-24 bg-theme-primary-lighter/30 rounded-2xl -z-10"></div>
+						<div
+							class="absolute -bottom-4 -left-4 w-24 h-24 bg-theme-primary-lighter/30 rounded-2xl -z-10"
+						></div>
 					</div>
 				</div>
 			</div>
@@ -137,84 +148,78 @@ const home = t.home;
 	</section>
 
 	<!-- Services Section -->
-	<section class="section bg-gradient-to-b from-theme-primary-lighter/10 via-theme-primary-lighter/5 to-theme-surface">
+	<section
+		class="section bg-gradient-to-b from-theme-primary-lighter/10 via-theme-primary-lighter/5 to-theme-surface"
+	>
 		<ServicesIntroSection locale={locale} />
 	</section>
 
-	<!-- Statistics Section with Oval Design -->
-	<section class="bg-theme-surface pt-4 pb-12 md:pt-8 md:pb-16">
+	<!-- Why Us Section -->
+	<section class="section bg-theme-surface">
 		<div class="container">
-			<div class="text-center mb-16">
-				<h2 class="text-3xl lg:text-4xl font-bold text-theme-text-primary mb-4">
-					{home.stats.heading}
-				</h2>
-				<p class="text-lg text-theme-text-secondary">
-					{home.stats.subheading}
-				</p>
-			</div>
-
-			<div class="mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
-				<!-- Oval Image Container -->
-				<div class="lg:w-1/2">
-					<div class="relative">
-						<!-- Oval mask for the image -->
-						<div class="aspect-[16/9] rounded-[50%] overflow-hidden shadow-2xl ring-1 ring-black/5">
-							<Image
-								src={teamMemberImage}
-								alt={home.stats.imageAlt}
-								class="w-full h-full object-cover"
-								loading="lazy"
-							/>
-
-							<!-- Stats Overlay -->
-							<div class="absolute inset-0 flex justify-between items-center px-4 stats-container">
-								<!-- Left Stat -->
-								<div class="stats-circle w-28 h-28 md:w-36 md:h-36 bg-sky-600/95 rounded-full flex flex-col items-center justify-center text-white transform hover:scale-110 transition-all duration-300 shadow-2xl ring-4 ring-white/30">
-									<NumberCounter
-										number="500+"
-										class="text-xl md:text-2xl font-bold"
-									/>
-									<span class="text-xs mt-1 font-medium text-center px-2">
-										{home.stats.monthlyVisitsLabel}
-									</span>
-								</div>
-
-								<!-- Right Stat -->
-								<div class="stats-circle w-28 h-28 md:w-36 md:h-36 bg-orange-500/95 rounded-full flex flex-col items-center justify-center text-white transform hover:scale-110 transition-all duration-300 shadow-2xl ring-4 ring-white/30">
-									<NumberCounter
-										number="75+"
-										class="text-xl md:text-2xl font-bold"
-									/>
-									<span class="text-xs mt-1 font-medium text-center px-2">
-										{home.stats.professionalsLabel}
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
+			<div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+				<div>
+					<h2 class="mb-4">{home.whyUs.heading}</h2>
+					<p class="text-lg text-theme-text-secondary mb-8">
+						{home.whyUs.subheading}
+					</p>
+					<ul class="flex flex-wrap gap-2.5">
+						{
+							home.whyUs.reasons.map((reason) => (
+								<li
+									class="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-theme-primary-lighter/15 border border-theme-primary-lighter/40 text-sm font-medium text-theme-primary-darker"
+								>
+									<Icon name="check" size="sm" class="text-theme-primary flex-shrink-0" />
+									<span>{reason}</span>
+								</li>
+							))
+						}
+					</ul>
 				</div>
-
-				<!-- Content -->
-				<div class="lg:w-1/2 space-y-6">
-					<div class="prose prose-lg max-w-none text-theme-text-secondary">
-						<p class="text-lg leading-relaxed">
-							<strong class="text-theme-text-primary">{home.stats.paragraph1Lead}</strong>
-							{" "}{home.stats.paragraph1}
-						</p>
-						<p class="text-lg leading-relaxed">
-							{home.stats.paragraph2}
-						</p>
-					</div>
-					<div class="pt-6">
-						<Link href={localizePath("/about", locale)}>{home.stats.link}</Link>
-					</div>
+				<div class="w-full">
+					<Image
+						src={whyUsImage}
+						alt={home.whyUs.imageAlt}
+						class="w-full object-cover rounded-2xl shadow-xl"
+						loading="lazy"
+					/>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<!-- FAQ Section -->
+	<!-- Problems We Solve -->
 	<section class="section bg-gradient-to-b from-theme-surface-muted to-theme-surface">
+		<div class="container">
+			<div class="narrow mx-auto text-center mb-12">
+				<h2>{home.problems.heading}</h2>
+			</div>
+			<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+				{
+					home.problems.items.map((item) => (
+						<div
+							class="bg-theme-surface rounded-xl p-6 shadow-md border border-theme-border hover:shadow-lg transition-shadow duration-300"
+						>
+							<div
+								class="w-11 h-11 rounded-lg bg-theme-primary/10 flex items-center justify-center mb-4"
+							>
+								<Icon name="medical" size="md" class="text-theme-primary" />
+							</div>
+							<h3 class="text-lg font-semibold text-theme-text-primary mb-2">
+								{item.title}
+							</h3>
+							<p class="text-sm text-theme-text-secondary leading-relaxed">
+								{item.description}
+							</p>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- FAQ Section -->
+	<section class="section bg-theme-surface">
 		<div class="container">
 			<div class="narrow mx-auto">
 				<div class="text-center mb-12">
@@ -235,7 +240,7 @@ const home = t.home;
 	<section class="relative py-20 lg:py-28 overflow-hidden">
 		<div class="absolute inset-0">
 			<Image
-				src={heroServicesImage}
+				src={ctaImage}
 				alt={home.hero.imageAlt}
 				class="w-full h-full object-cover"
 				loading="lazy"
@@ -245,66 +250,16 @@ const home = t.home;
 		<div class="relative container">
 			<div class="max-w-2xl mx-auto text-center text-white">
 				<h2 class="mb-6">{home.cta.heading}</h2>
-				<p class="text-lg mb-10 text-white/80 font-primary">
-					{home.cta.text}
-				</p>
-				<Button variant="white" href={localizePath("/contact", locale)}>
-					{home.cta.button}
-				</Button>
+				<p class="text-lg mb-10 text-white/85">{home.cta.text}</p>
+				<div class="flex flex-col sm:flex-row justify-center gap-4">
+					<Button variant="white" href={localizePath("/contact", locale)} showIcon={true}>
+						{home.cta.button}
+					</Button>
+					<Button variant="white-outline" href={site.contact.phoneHref}>
+						{site.contact.phone}
+					</Button>
+				</div>
 			</div>
 		</div>
 	</section>
 </Layout>
-
-<style>
-	.stats-circle {
-		opacity: 0;
-		animation: fadeInScale 0.8s ease-out forwards;
-		animation-play-state: paused;
-	}
-
-	@keyframes fadeInScale {
-		from {
-			opacity: 0;
-			transform: scale(0.8);
-		}
-		to {
-			opacity: 1;
-			transform: scale(1);
-		}
-	}
-</style>
-
-<script>
-	// Single IntersectionObserver for stats animation (memory efficient)
-	const statsObserver = new IntersectionObserver(
-		(entries) => {
-			entries.forEach((entry) => {
-				if (entry.isIntersecting) {
-					const circles = entry.target.querySelectorAll(".stats-circle");
-					circles.forEach((circle) => {
-						(circle as HTMLElement).style.animationPlayState = "running";
-					});
-					statsObserver.unobserve(entry.target);
-				}
-			});
-		},
-		{ threshold: 0.2 }
-	);
-
-	function initStatsAnimation() {
-		const section = document.querySelector(".stats-container");
-		if (section) {
-			// Reset animation state for view transitions
-			const circles = section.querySelectorAll(".stats-circle");
-			circles.forEach((circle) => {
-				(circle as HTMLElement).style.animationPlayState = "paused";
-			});
-			statsObserver.observe(section);
-		}
-	}
-
-	// Run on initial load and after view transitions
-	initStatsAnimation();
-	document.addEventListener("astro:page-load", initStatsAnimation);
-</script>

@@ -1,6 +1,6 @@
 ---
-// Careers page for the locale-prefixed routes (/en, /de, /it).
-import CareersPage from "../../components/pages/CareersPage.astro";
+// Dental tourism page for the locale-prefixed routes (/en, /de, /it).
+import DentalTourismPage from "../../components/pages/DentalTourismPage.astro";
 import { getLocalePaths } from "../../i18n/paths";
 import type { Locale } from "../../i18n/config";
 
@@ -9,4 +9,4 @@ export const getStaticPaths = getLocalePaths;
 const { locale } = Astro.params as { locale: Locale };
 ---
 
-<CareersPage locale={locale} />
+<DentalTourismPage locale={locale} />

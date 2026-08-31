@@ -1,6 +1,6 @@
 # Customization Guide
 
-This guide will help you customize the Healthcare Astro Theme to match your brand and requirements.
+This guide covers the design system and components behind the Dental Centar Repić site.
 
 ## Table of Contents
 - [Quick Customization](#quick-customization)
@@ -15,7 +15,7 @@ This guide will help you customize the Healthcare Astro Theme to match your bran
 ### 1. Update Branding
 
 **Logo:**
-Replace `/src/assets/logo.png` with your own logo file. Update the shared contact details in `/src/data/site.json`.
+The clinic logo is `/src/assets/logo-repic.jpg`, shown in the header and footer. Shared contact details live in `/src/data/site.json`.
 
 **Favicon:**
 Replace `/public/favicon.svg` with your own favicon.
@@ -25,7 +25,7 @@ Change `brand.name` in each `src/i18n/locales/<code>.ts` file. The navigation an
 
 ## Languages
 
-The theme ships in Croatian (default, at `/`), English (`/en/`), German (`/de/`), and Italian (`/it/`).
+The site ships in Croatian (default, at `/`), English (`/en/`), German (`/de/`), and Italian (`/it/`).
 
 All translatable text lives in `src/i18n/locales/<code>.ts`. Every locale file must satisfy the `Translation` interface in `src/i18n/types.ts`, so a missing key fails `npm run check` instead of silently rendering an empty string.
 
@@ -43,12 +43,18 @@ Edit `/src/styles/tailwind.css` to change the primary color:
 
 ```css
 @theme {
-  /* Change these values */
-  --color-theme-primary: #0d9488;       /* Your primary color */
-  --color-theme-primary-dark: #0f766e;  /* Darker shade */
-  --color-theme-primary-light: #14b8a6; /* Lighter shade */
+  /* Turquoise, matched to the clinic logo (#2dccd2). The raw logo colour only
+     reaches 1.97:1 against white, so these text/UI shades are darkened to the
+     same hue to meet WCAG AA. */
+  --color-theme-primary: #1c7f82;        /* 4.76:1 on white */
+  --color-theme-primary-dark: #166669;   /* 6.69:1 on white */
+  --color-theme-primary-darker: #104a4c; /* 9.97:1 on white */
+  --color-theme-brand: #2dccd2;          /* decorative fills only, not text */
 }
 ```
+
+If you change the primary colour, re-check the contrast against white before using it for
+text. Keep `--color-theme-brand` for decorative fills only.
 
 ### 3. Content
 
@@ -57,13 +63,14 @@ shared body component and passes the active locale, so all copy lives in
 `/src/i18n/locales/<code>.ts` under a key named after the page:
 
 - `home` - Homepage
-- `about` - About page
-- `services` - Services page
-- `contact` - Contact information
-- `careers` - Career opportunities
+- `about` - Team, approach and patient testimonials
+- `services` - Treatment catalogue, grouped by area
+- `tourism` - Dental tourism page
+- `contact` - Contact details and booking form
 - `info` - FAQ page
 - `notFound` - 404 page
 - `faqs` - FAQ question and answer list
+- `common.openingHoursRows` - Opening hours, shown in the footer and on Contact
 
 Edit the string in each language file you support. To change layout or structure rather
 than wording, edit the matching body component in `/src/components/pages/`.
@@ -78,12 +85,13 @@ All colors are defined in `/src/styles/tailwind.css` using CSS custom properties
 
 ```css
 @theme {
-  /* Primary Brand Colors */
-  --color-theme-primary: #0d9488;
-  --color-theme-primary-dark: #0f766e;
-  --color-theme-primary-darker: #115e59;
-  --color-theme-primary-light: #14b8a6;
-  --color-theme-primary-lighter: #5eead4;
+  /* Primary Brand Colors - turquoise, matched to the logo */
+  --color-theme-primary: #1c7f82;
+  --color-theme-primary-dark: #166669;
+  --color-theme-primary-darker: #104a4c;
+  --color-theme-primary-light: #24a3a8;
+  --color-theme-primary-lighter: #5fd8dd;
+  --color-theme-brand: #2dccd2; /* raw logo colour, decorative use only */
 
   /* Surface Colors */
   --color-theme-surface: #ffffff;
@@ -97,8 +105,8 @@ All colors are defined in `/src/styles/tailwind.css` using CSS custom properties
   --color-theme-text-on-primary: #ffffff;
 
   /* Accent Colors */
-  --color-theme-accent-sky: #0ea5e9;
-  --color-theme-accent-orange: #fb923c;
+  --color-theme-accent-sky: #0e7490;
+  --color-theme-accent-orange: #ea7317;
 }
 ```
 

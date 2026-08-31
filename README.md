@@ -1,99 +1,30 @@
-# Healthcare Astro Theme
+# Dental Centar Repić
 
-A free, open-source Astro theme for healthcare and medical service websites. It includes a clean multi-page layout, reusable UI components, Tailwind CSS v4 styling, and a simple structure that is easy to customize for clinics, home care agencies, private practices, and related service businesses.
+Multilingual website for [Dental Centar Repić](https://dentalrepic.com.hr), a dental clinic in
+Trogir, Croatia. Built with Astro 7, Tailwind CSS v4 and TypeScript, and deployed as a fully
+static site.
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
+This is a rebuild of the clinic's existing WordPress site. Copy, contact details, opening hours
+and the logo are taken from `dentalrepic.com.hr`.
+
 ![Astro](https://img.shields.io/badge/Astro-7%2B-FF5D01?logo=astro)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-v4-38B2AC?logo=tailwind-css)
 
-## Overview
+## Pages
 
-- Built with Astro 7, Tailwind CSS v4, and TypeScript
-- Includes 7 ready-to-use pages
-- Uses reusable components for heroes, cards, CTAs, icons, and FAQ sections
-- Designed to be easy to adapt for real client work or personal portfolio projects
-- Fully static by default, so it deploys easily to most hosting platforms
+| Page | Route (Croatian) |
+| --- | --- |
+| Home | `/` |
+| About / team | `/about` |
+| Services | `/services` |
+| Dental tourism | `/dental-tourism` |
+| Contact and booking | `/contact` |
+| FAQ | `/info` |
+| 404 | any unknown path |
 
-## Best For
-
-- Clinics and private practices
-- Home healthcare and care agencies
-- Medical service providers
-- Developers looking for a clean Astro starter theme
-- Portfolio or template marketplace submissions
-
-## Included Pages
-
-- Home
-- About
-- Services
-- Contact
-- Careers
-- Info / FAQ
-- Custom 404 page
-
-## Highlights
-
-- Healthcare-focused visual style
-- Responsive layout across mobile and desktop
-- SEO-friendly page structure and metadata
-- Accessible semantic markup and ARIA usage
-- Reusable design tokens and utility classes
-- Image optimization through Astro assets
-- Smooth client-side navigation with `ClientRouter`
-- Straightforward file structure for quick editing
-
-## Tech Stack
-
-- [Astro](https://astro.build/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [astro-navbar](https://www.npmjs.com/package/astro-navbar)
-
-## Getting Started
-
-### Requirements
-
-- Node.js `22.12.0` or later
-- npm, pnpm, or yarn
-
-### Local Development
-
-```bash
-git clone https://github.com/web-stacked/healthcare-astro-theme.git
-cd healthcare-astro-theme
-npm install
-npm run dev
-```
-
-Open [http://localhost:4321](http://localhost:4321).
-
-### Production Build
-
-```bash
-npm run check
-npm run build
-```
-
-The production output is generated in `dist/`.
-
-## What To Customize First
-
-If you are adapting this theme for a real site, these are the highest-impact changes:
-
-1. Replace the demo brand name and copy in `src/i18n/locales/` (one file per language)
-2. Edit shared contact details and the map embed in `src/data/site.json`
-3. Swap the bundled images in `src/assets/`
-4. Set your real domain as `site` in `astro.config.mjs` so `hreflang` URLs are correct
-5. Adjust colors and spacing tokens in `src/styles/tailwind.css`
-
-The color scheme is the "Modern Sky" palette, set directly in the design tokens in
-`src/styles/tailwind.css`. Change `--color-theme-primary` and its variants there to
-restyle the whole site.
+Every page exists in four languages, so the build produces 28 pages.
 
 ## Languages
-
-The site ships in four languages:
 
 | Language | Code | URL prefix |
 | --- | --- | --- |
@@ -102,16 +33,16 @@ The site ships in four languages:
 | German | `de` | `/de/` |
 | Italian | `it` | `/it/` |
 
+Croatian and English copy comes from the clinic's own site. German and Italian were translated
+from those two and **should be reviewed by a native speaker before launch**, particularly the
+clinical terminology.
+
 All translatable copy lives in `src/i18n/locales/<code>.ts`. Each file satisfies the
-`Translation` interface in `src/i18n/types.ts`, so a missing or misspelled key is a
-compile-time error rather than a silent gap on the page — run `npm run check` to catch it.
+`Translation` interface in `src/i18n/types.ts`, so a missing or misspelled key is a compile-time
+error rather than a silent gap on the page — run `npm run check` to catch it.
 
-Content that does not change per language (contact details, map embed) lives in
+Content that does not change per language (address, phone, email, map embed) lives in
 `src/data/site.json`.
-
-### Editing copy
-
-Change a string in the relevant locale file and it updates everywhere it is used.
 
 ### Adding a language
 
@@ -121,38 +52,61 @@ Change a string in the relevant locale file and it updates everywhere it is used
 3. Register it in `src/i18n/translations.ts`
 4. Run `npm run check`
 
-Routing and the language switcher pick the new language up automatically.
+Routing, `hreflang` tags and the language switcher pick the new language up automatically.
 
-### Changing the default language
+## Getting Started
 
-Set `defaultLocale` in `src/i18n/config.ts`. The default is served from the site root
-without a prefix; every other language keeps its prefix.
-
-## Available Scripts
+Requires Node.js `22.12.0` or later (see `.nvmrc`).
 
 ```bash
+npm install
 npm run dev
-npm run check
-npm run build
-npm run preview
 ```
 
-## Customization
+Open [http://localhost:4321](http://localhost:4321).
 
-For a full walkthrough, see [CUSTOMIZATION.md](CUSTOMIZATION.md).
+### Production build
 
-Common edits you will likely make first:
+```bash
+npm run check
+npm run build
+```
 
-1. Update the brand name, navigation labels, and page copy in `src/i18n/locales/`
-2. Replace the images in `src/assets/`
-3. Update contact details in `src/data/site.json`
-4. Set `site` in `astro.config.mjs` to your production domain
-5. Adjust colors, spacing, and design tokens in `src/styles/tailwind.css`
-6. Replace `public/favicon.svg` and `src/assets/logo.png`
+Output is written to `dist/`.
 
-The theme is intentionally simple to edit without needing a CMS, adapter, or backend setup.
+## Before Going Live
 
-The included contact form is a front-end demo. Connect it to your preferred form provider before deploying a production site. You should also confirm that every bundled image is suitable for your intended use or replace the images with your own licensed assets.
+- [ ] **Connect the booking form.** `src/components/pages/ContactPage.astro` contains a
+      front-end demo only — submissions go nowhere. Wire it to a form provider or a backend
+      endpoint.
+- [ ] **Set the real domain.** `site` in `astro.config.mjs` is currently
+      `https://example.com`; `hreflang` URLs and structured data are built from it.
+- [ ] **Have a native speaker review the German and Italian copy.**
+- [ ] **Replace the stock photography** in `src/assets/`. The images ship with the original
+      theme and do not show the actual clinic; confirm licensing or swap in the clinic's own
+      photos.
+- [ ] **Confirm the opening hours** in `src/i18n/locales/*.ts` (`common.openingHoursRows`).
+
+## Branding
+
+The logo is `src/assets/logo-repic.jpg`, taken from the clinic's site.
+
+The colour palette is turquoise, matched to the logo. Note that the raw logo colour
+(`#2dccd2`) only reaches 1.97:1 contrast against white, which fails WCAG AA for text, so
+the text and UI shades in `src/styles/tailwind.css` are darkened versions of the same hue:
+
+| Token | Value | Contrast on white |
+| --- | --- | --- |
+| `--color-theme-primary` | `#1c7f82` | 4.76:1 |
+| `--color-theme-primary-dark` | `#166669` | 6.69:1 |
+| `--color-theme-primary-darker` | `#104a4c` | 9.97:1 |
+| `--color-theme-brand` | `#2dccd2` | decorative fills only |
+
+## SEO
+
+- Per-locale `<html lang>`, `hreflang` alternates and `og:locale`
+- `Dentist` structured data (address, phone, opening hours) in `src/layouts/Layout.astro`
+- Localized `FAQPage` structured data on the FAQ page
 
 ## Project Structure
 
@@ -167,57 +121,22 @@ The included contact form is a front-end demo. Connect it to your preferred form
 │   ├── i18n/             # locale config, types, translations
 │   │   └── locales/      # one file per language
 │   ├── layouts/
-│   ├── lib/
 │   ├── pages/            # routes: default locale at root, others under [locale]/
 │   ├── styles/
 │   └── types/
 ├── astro.config.mjs
-├── package.json
-├── tsconfig.json
-└── CUSTOMIZATION.md
+└── package.json
 ```
 
-## Main Components
+Routes are thin wrappers: each one renders a body component from
+`src/components/pages/` and passes the active locale.
 
-- `PageHero.astro`
-- `Button.astro`
-- `Card.astro`
-- `ServiceCard.astro`
-- `CallToActionSection.astro`
-- `FaqAccordion.astro`
-- `Heading.astro`
-- `Icon.astro`
-- `NumberCounter.astro`
-- `LanguageSwitcher.astro`
+## Customization
 
-## Deployment
+See [CUSTOMIZATION.md](CUSTOMIZATION.md) for a fuller walkthrough of the design system
+and components.
 
-This theme is static by default and can be deployed to platforms such as:
+## Credits
 
-- Netlify
-- Vercel
-- Cloudflare Pages
-- GitHub Pages
-- Any static hosting provider
-
-## Submission Notes
-
-This project is currently upgraded to Astro 7 and validated with:
-
-- `npm run check`
-- `npm run build`
-
-It is intended to be a lightweight open-source theme rather than a full application starter.
-
-## Contributing
-
-Contributions, fixes, and improvements are welcome. Please see [CONTRIBUTING.md](CONTRIBUTING.md).
-
-## License
-
-This project is licensed under the MIT License. See [LICENSE](LICENSE).
-
-## Author
-
-TechStacked  
-[techstacked.dev](https://techstacked.dev)
+Built on the [healthcare-astro-theme](https://github.com/web-stacked/healthcare-astro-theme)
+by TechStacked (MIT). See [LICENSE](LICENSE).

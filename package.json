@@ -1,51 +1,38 @@
 {
-  "name": "healthcare-astro-theme",
+  "name": "dental-centar-repic",
   "type": "module",
   "version": "1.0.0",
   "packageManager": "npm@10.9.2",
-  "description": "A modern, professional Astro theme for healthcare and medical service providers. Built with Tailwind CSS v4, TypeScript, and optimized for performance.",
+  "description": "Multilingual website for Dental Centar Repi\u0107, a dental clinic in Trogir, Croatia. Built with Astro, Tailwind CSS v4 and TypeScript.",
+  "private": true,
   "keywords": [
     "astro",
-    "astro-theme",
-    "healthcare",
-    "medical",
-    "responsive",
-    "tailwind",
+    "dental",
+    "dentist",
+    "clinic",
+    "trogir",
+    "croatia",
+    "multilingual",
+    "i18n",
     "tailwindcss-v4",
     "typescript",
-    "static-site",
-    "medical-website",
-    "healthcare-template"
+    "static-site"
   ],
-  "author": {
-    "name": "TechStacked",
-    "url": "https://techstacked.dev"
-  },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/web-stacked/healthcare-astro-theme.git"
+    "url": "https://github.com/dentalrepic/web.git"
   },
-  "bugs": {
-    "url": "https://github.com/web-stacked/healthcare-astro-theme/issues"
-  },
-  "homepage": "https://github.com/web-stacked/healthcare-astro-theme#readme",
+  "homepage": "https://dentalrepic.com.hr",
   "engines": {
     "node": ">=22.12.0"
   },
-  "files": [
-    "src",
-    "public",
-    "astro.config.mjs",
-    "tsconfig.json"
-  ],
   "scripts": {
     "dev": "astro dev",
     "check": "astro check",
     "build": "astro build",
     "test": "npm run check && npm run build",
     "preview": "astro preview",
-    "prepublishOnly": "npm test",
     "astro": "astro"
   },
   "dependencies": {

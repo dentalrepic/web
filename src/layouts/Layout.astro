@@ -6,6 +6,7 @@ import Footer from "../components/Footer.astro";
 import "../styles/tailwind.css";
 import { localeHtmlLang, type Locale } from "../i18n/config";
 import { getAlternateLinks, useTranslations } from "../i18n/utils";
+import site from "../data/site.json";
 
 interface Props {
 	locale: Locale;
@@ -21,6 +22,52 @@ const defaultDescription = `${t.brand.name} - ${t.brand.tagline}`;
 
 // Equivalent URLs in every language, for search engines and the switcher.
 const alternates = getAlternateLinks(Astro.url.pathname);
+
+const siteOrigin = (Astro.site ?? new URL(Astro.url.origin)).href.replace(/\/$/, "");
+
+// Map the localized opening hours onto schema.org day names by position, so the
+// structured data stays in English regardless of the page language.
+const schemaDays = [
+	"Monday",
+	"Tuesday",
+	"Wednesday",
+	"Thursday",
+	"Friday",
+	"Saturday",
+	"Sunday",
+];
+const openingHoursSpecification = t.common.openingHoursRows
+	.map((row, index) => {
+		const match = row.hours.match(/^(\d{1,2}:\d{2})\s*-\s*(\d{1,2}:\d{2})$/);
+		if (!match) return null; // closed days carry no time range
+		return {
+			"@type": "OpeningHoursSpecification",
+			dayOfWeek: schemaDays[index],
+			opens: match[1],
+			closes: match[2],
+		};
+	})
+	.filter((entry) => entry !== null);
+
+const businessLd = {
+	"@context": "https://schema.org",
+	"@type": "Dentist",
+	name: site.brandName,
+	description: defaultDescription,
+	url: siteOrigin,
+	telephone: site.contact.phone,
+	email: site.contact.email,
+	image: `${siteOrigin}/favicon.svg`,
+	address: {
+		"@type": "PostalAddress",
+		streetAddress: site.contact.addressLine1,
+		addressLocality: "Trogir",
+		postalCode: "21220",
+		addressCountry: "HR",
+	},
+	openingHoursSpecification,
+	sameAs: [site.social.instagram],
+};
 ---
 
 <!doctype html>
@@ -51,13 +98,20 @@ const alternates = getAlternateLinks(Astro.url.pathname);
 		}
 
 		<!-- Theme Color - keep in sync with --color-theme-primary in tailwind.css -->
-		<meta name="theme-color" content="#0369a1" />
+		<meta name="theme-color" content="#1c7f82" />
 
 		<!-- Favicon placeholder - replace with your own -->
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
 		<!-- Client Router for smooth SPA-like navigation (Astro 7+) -->
 		<ClientRouter />
+
+		<!-- Clinic details for search engines -->
+		<script
+			is:inline
+			type="application/ld+json"
+			set:html={JSON.stringify(businessLd)}
+		/>
 	</head>
 	<body
 		class="bg-theme-surface-muted font-sans text-theme-text-primary antialiased selection:bg-theme-primary-lighter/50 selection:text-theme-primary-darker"
