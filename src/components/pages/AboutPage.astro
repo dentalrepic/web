@@ -1,0 +1,158 @@
+---
+/**
+ * About page body. Rendered by the localized route files.
+ */
+import Layout from "../../layouts/Layout.astro";
+import aboutHeroImage from "../../assets/about-main.jpg";
+import PageHero from "../PageHero.astro";
+import CallToActionSection from "../CallToActionSection.astro";
+import jenniferImage from "../../assets/jennifer-martinez-new.jpg";
+import davidImage from "../../assets/david-thompson.jpg";
+import { Image } from "astro:assets";
+import Icon from "../Icon.astro";
+import type { Locale } from "../../i18n/config";
+import { localizePath, useTranslations } from "../../i18n/utils";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const about = t.about;
+
+// Portraits pair positionally with the translated biographies.
+const portraits = [davidImage, jenniferImage];
+const people = about.people.map((person, index) => ({
+  ...person,
+  image: portraits[index],
+  textId: `person-text-${index}`,
+}));
+---
+
+<Layout locale={locale} title={about.meta.title} description={about.meta.description}>
+  <PageHero
+    title={about.hero.title}
+    description={about.hero.description}
+    image={aboutHeroImage}
+  />
+
+  <section
+    class="section bg-gradient-to-b from-theme-primary-lighter/20 via-theme-primary-lighter/10 to-theme-surface"
+  >
+    <div class="container">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl lg:text-4xl font-bold text-theme-text-primary mb-4">
+          {about.leadership.heading}
+        </h2>
+        <p class="text-lg text-theme-text-secondary max-w-3xl mx-auto">
+          {about.leadership.subheading}
+        </p>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mx-auto">
+        {
+          people.map((person) => (
+            <div class="w-full">
+              <div class="bg-theme-surface rounded-2xl overflow-hidden transition-all duration-300">
+                <div class="relative h-80 lg:h-96 overflow-hidden">
+                  <Image
+                    src={person.image}
+                    alt={person.name}
+                    class="w-full h-full object-cover"
+                    width={800}
+                    height={600}
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                </div>
+                <div class="p-8 lg:p-10">
+                  <h3 class="text-2xl lg:text-3xl font-bold mb-2 text-theme-text-primary">
+                    {person.name}
+                  </h3>
+                  <p class="text-base text-theme-primary font-semibold mb-6">
+                    {person.role}
+                  </p>
+                  <div
+                    id={person.textId}
+                    class="text-theme-text-secondary text-base lg:text-lg leading-relaxed overflow-hidden transition-all duration-300 max-h-[200px] space-y-4"
+                  >
+                    {person.paragraphs.map((paragraph) => (
+                      <p>{paragraph}</p>
+                    ))}
+                  </div>
+                  <button
+                    class="toggle-btn mt-4 inline-flex items-center text-theme-primary hover:text-theme-primary-dark font-semibold transition-colors group"
+                    data-target={person.textId}
+                    data-more-label={t.common.readMore}
+                    data-less-label={t.common.readLess}
+                    aria-expanded="false"
+                    aria-controls={person.textId}
+                  >
+                    <span>{t.common.readMore}</span>
+                    <Icon
+                      name="chevron-down"
+                      size="sm"
+                      class="ml-2 group-hover:translate-y-0.5 transition-transform duration-300"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CallToActionSection
+    heading={about.cta.heading}
+    subheading={about.cta.subheading}
+    primaryButtonText={about.cta.primaryButton}
+    primaryButtonLink={localizePath("/contact", locale)}
+    secondaryButtonText={about.cta.secondaryButton}
+    secondaryButtonLink={localizePath("/services", locale)}
+  />
+</Layout>
+
+<script>
+  function initToggleButtons() {
+    document.querySelectorAll(".toggle-btn").forEach((button) => {
+      const btn = button as HTMLButtonElement;
+
+      // Prevent duplicate event listeners
+      if (btn.dataset.bound === "true") return;
+      btn.dataset.bound = "true";
+
+      btn.addEventListener("click", () => {
+        const targetId = btn.getAttribute("data-target");
+        if (!targetId) return;
+        const textContainer = document.getElementById(targetId);
+        if (!textContainer) return;
+
+        const buttonText = btn.querySelector("span");
+        const buttonIcon = btn.querySelector("svg");
+        const isExpanded = btn.getAttribute("aria-expanded") === "true";
+        // Labels are injected per locale via data attributes.
+        const moreLabel = btn.dataset.moreLabel ?? "Read more";
+        const lessLabel = btn.dataset.lessLabel ?? "Read less";
+
+        if (isExpanded) {
+          textContainer.classList.remove("max-h-full");
+          textContainer.classList.add("max-h-[200px]");
+          if (buttonText) buttonText.textContent = moreLabel;
+          if (buttonIcon) buttonIcon.style.transform = "rotate(0deg)";
+          btn.setAttribute("aria-expanded", "false");
+        } else {
+          textContainer.classList.remove("max-h-[200px]");
+          textContainer.classList.add("max-h-full");
+          if (buttonText) buttonText.textContent = lessLabel;
+          if (buttonIcon) buttonIcon.style.transform = "rotate(180deg)";
+          btn.setAttribute("aria-expanded", "true");
+        }
+      });
+    });
+  }
+
+  // Astro best practice with ClientRouter: re-run on astro:page-load
+  initToggleButtons();
+  document.addEventListener("astro:page-load", initToggleButtons);
+</script>

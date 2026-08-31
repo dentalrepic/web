@@ -1,0 +1,67 @@
+---
+/**
+ * FAQ / Info page body. Rendered by the localized route files.
+ */
+import Layout from "../../layouts/Layout.astro";
+import PageHero from "../PageHero.astro";
+import CallToActionSection from "../CallToActionSection.astro";
+import faqHeroImage from "../../assets/service-detail.jpg";
+import Heading from "../Heading.astro";
+import FaqAccordion from "../FaqAccordion.astro";
+import type { Locale } from "../../i18n/config";
+import { localizePath, useTranslations } from "../../i18n/utils";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const info = t.info;
+
+// Structured data so search engines can surface the localized answers.
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  inLanguage: locale,
+  mainEntity: t.faqs.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer.replace(/<[^>]*>/g, ""),
+    },
+  })),
+};
+---
+
+<Layout locale={locale} title={info.meta.title} description={info.meta.description}>
+  <PageHero
+    title={info.hero.title}
+    description={info.hero.description}
+    image={faqHeroImage}
+  />
+
+  <section class="section bg-gradient-to-b from-theme-surface-muted to-theme-surface">
+    <div class="container">
+      <div class="narrow mx-auto text-center mb-8">
+        <Heading level="h2" align="center">{info.heading}</Heading>
+      </div>
+      <div class="max-w-5xl mx-auto">
+        <FaqAccordion items={t.faqs} />
+      </div>
+    </div>
+  </section>
+
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify(faqLd)}></script>
+
+  <CallToActionSection
+    heading={info.cta.heading}
+    subheading={info.cta.subheading}
+    primaryButtonText={info.cta.primaryButton}
+    primaryButtonLink={localizePath("/contact", locale)}
+  />
+</Layout>

@@ -1,0 +1,314 @@
+---
+/**
+ * Careers page body. Rendered by the localized route files.
+ */
+import Layout from "../../layouts/Layout.astro";
+import teamProfessionalsImage from "../../assets/team-professionals.jpg";
+import PageHero from "../PageHero.astro";
+import CallToActionSection from "../CallToActionSection.astro";
+import Icon from "../Icon.astro";
+import CheckListItem from "../CheckListItem.astro";
+import professionalStaffImage from "../../assets/professional-staff.jpg";
+import { Image } from "astro:assets";
+import type { Locale } from "../../i18n/config";
+import { localizePath, useTranslations } from "../../i18n/utils";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const careers = t.careers;
+const contactHref = localizePath("/contact", locale);
+---
+
+<Layout locale={locale} title={careers.meta.title} description={careers.meta.description}>
+  <PageHero
+    title={careers.hero.title}
+    description={careers.hero.description}
+    image={teamProfessionalsImage}
+  />
+
+  <section
+    class="section bg-gradient-to-b from-theme-surface-muted to-theme-surface"
+  >
+    <div class="container">
+      <!-- Education & Experience Section -->
+      <div class="flex flex-wrap items-center gap-12 lg:gap-16 justify-center">
+        <!-- Text Content -->
+        <div class="w-full lg:w-5/12 mx-auto">
+          <div class="flex items-center mb-6">
+            <div
+              class="p-4 text-center inline-flex items-center justify-center w-14 h-14 bg-theme-primary-lighter/20 rounded-xl mr-4"
+            >
+              <Icon name="users" size="lg" class="text-theme-primary w-7 h-7" />
+            </div>
+            <h2
+              class="text-2xl lg:text-3xl font-bold text-theme-text-primary leading-tight"
+            >
+              {careers.education.heading}
+            </h2>
+          </div>
+          <p
+            class="text-base lg:text-lg font-light leading-relaxed mb-6 text-theme-text-secondary"
+          >
+            {careers.education.paragraph1}
+          </p>
+          <p
+            class="text-base lg:text-lg font-light leading-relaxed text-theme-text-secondary"
+          >
+            {careers.education.paragraph2}
+          </p>
+        </div>
+
+        <!-- Image Block -->
+        <div class="w-full lg:w-5/12 mx-auto">
+          <div
+            class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300"
+          >
+            <Image
+              alt={careers.education.imageAlt}
+              src={professionalStaffImage}
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="section-sm bg-gradient-to-b from-theme-primary-lighter/10 via-theme-primary-lighter/5 to-theme-surface"
+  >
+    <div class="container">
+      <div class="flex flex-wrap items-start gap-12 lg:gap-16">
+        <!-- Position Requirements -->
+        <div class="w-full lg:w-5/12 mx-auto">
+          <div class="flex items-center mb-8">
+            <div class="p-4 bg-theme-primary-lighter/20 rounded-xl mr-4">
+              <Icon name="clipboard" size="lg" class="text-theme-primary w-7 h-7" />
+            </div>
+            <h2
+              class="text-2xl lg:text-3xl font-bold text-theme-text-primary leading-tight"
+            >
+              {careers.requirements.heading}
+            </h2>
+          </div>
+          <ul class="space-y-4">
+            {careers.requirements.items.map((item) => <CheckListItem>{item}</CheckListItem>)}
+          </ul>
+        </div>
+
+        <!-- Why Work With Us & Application Process -->
+        <div class="w-full lg:w-5/12 mx-auto">
+          <div
+            class="relative bg-gradient-to-br from-theme-primary to-theme-primary-dark rounded-2xl p-8 lg:p-10 shadow-xl mb-8 overflow-hidden"
+          >
+            <!-- Decorative elements -->
+            <div
+              class="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full -mr-20 -mt-20"
+            >
+            </div>
+            <div
+              class="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full -ml-16 -mb-16"
+            >
+            </div>
+
+            <div class="relative z-10">
+              <div class="flex items-center mb-8">
+                <div class="p-3 bg-white/20 rounded-xl mr-4">
+                  <Icon name="star" size="lg" class="text-white w-8 h-8" />
+                </div>
+                <h3 class="text-2xl lg:text-3xl font-bold text-white">
+                  {careers.whyWorkWithUs.heading}
+                </h3>
+              </div>
+              <ul class="space-y-5">
+                {
+                  careers.whyWorkWithUs.items.map((item) => (
+                    <li class="flex items-start group">
+                      <div class="flex-shrink-0 w-8 h-8 rounded-full bg-white/20 flex items-center justify-center mr-4 mt-0.5 group-hover:bg-white/30 transition-colors duration-300">
+                        <Icon name="check" size="md" class="text-white" />
+                      </div>
+                      <span class="text-lg text-white font-medium">{item}</span>
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+          </div>
+
+          <!-- Application Process -->
+          <div
+            class="bg-theme-surface rounded-2xl p-6 lg:p-8 shadow-xl border border-theme-border hover:shadow-2xl transition-shadow duration-300"
+          >
+            <div class="flex items-center mb-4">
+              <div class="p-2.5 bg-theme-primary-lighter/20 rounded-lg mr-3">
+                <Icon name="document" size="lg" class="text-theme-primary" />
+              </div>
+              <h3 class="text-xl lg:text-2xl font-bold text-theme-text-primary">
+                {careers.application.heading}
+              </h3>
+            </div>
+            <p
+              class="mb-5 text-base font-light leading-relaxed text-theme-text-secondary"
+            >
+              {careers.application.paragraph}
+            </p>
+            <div class="space-y-3">
+              {
+                careers.application.links.map((label) => (
+                  <a
+                    href={contactHref}
+                    class="flex items-center justify-between p-3 bg-theme-surface-hover hover:bg-theme-primary-lighter/10 rounded-lg text-theme-primary hover:text-theme-primary-dark font-semibold transition-all duration-300 group border border-theme-border hover:border-theme-primary-lighter"
+                  >
+                    <div class="flex items-center">
+                      <Icon name="document" size="md" class="mr-3 flex-shrink-0" />
+                      <span class="text-base lg:text-lg">{label}</span>
+                    </div>
+                    <Icon
+                      name="chevron-right"
+                      size="md"
+                      class="group-hover:translate-x-1 transition-transform duration-300 flex-shrink-0"
+                    />
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Training Section -->
+  <section class="section-sm bg-theme-surface">
+    <div class="container">
+      <div class="mb-12">
+        <div class="flex items-center mb-6">
+          <div class="p-4 bg-theme-primary-lighter/20 rounded-xl mr-4">
+            <Icon name="book" size="lg" class="text-theme-primary w-7 h-7" />
+          </div>
+          <h2
+            class="text-2xl lg:text-3xl font-bold text-theme-text-primary leading-tight"
+          >
+            {careers.training.heading}
+          </h2>
+        </div>
+
+        <p
+          class="text-base font-light leading-relaxed text-theme-text-secondary mb-4"
+        >
+          {careers.training.paragraph1}
+        </p>
+        <p class="text-base font-light leading-relaxed text-theme-text-secondary">
+          {careers.training.paragraph2}
+        </p>
+      </div>
+
+      <!-- Training Cards -->
+      <div class="flex flex-wrap items-stretch gap-8 lg:gap-12">
+        <!-- Training Resources Card -->
+        <div class="w-full lg:w-[48%]">
+          <div
+            class="bg-gradient-to-br from-theme-surface-muted to-theme-surface-hover rounded-2xl p-8 border border-theme-border h-full"
+          >
+            <h3 class="text-xl font-bold text-theme-text-primary mb-4">
+              {careers.training.resources.heading}
+            </h3>
+            <p
+              class="text-base font-light leading-relaxed text-theme-text-secondary mb-6"
+            >
+              {careers.training.resources.paragraphBefore}
+              <a
+                href={contactHref}
+                class="text-theme-primary hover:text-theme-primary-dark font-semibold transition-colors"
+                >{careers.training.resources.requestLink}</a
+              >
+              {careers.training.resources.paragraphAfter}
+            </p>
+            <ul class="space-y-3">
+              {
+                careers.training.resources.items.map((item, index) => (
+                  <li class="flex items-start">
+                    <Icon
+                      name={index < 4 ? "video" : "document"}
+                      size="md"
+                      class="text-theme-primary mr-3 mt-1 flex-shrink-0"
+                    />
+                    <span class="text-base text-theme-text-secondary">{item}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+
+        <!-- Harassment Prevention Training Card -->
+        <div class="w-full lg:w-[48%]">
+          <div
+            class="bg-gradient-to-br from-theme-accent-sky/10 to-theme-accent-sky/5 rounded-2xl p-8 border border-theme-accent-sky/20 h-full"
+          >
+            <h3 class="text-xl font-bold text-theme-text-primary mb-4">
+              {careers.training.harassment.heading}
+            </h3>
+            <p
+              class="text-base font-light leading-relaxed text-theme-text-secondary mb-6"
+            >
+              {careers.training.harassment.paragraph}
+            </p>
+            <div class="space-y-3 mb-6">
+              {
+                careers.training.harassment.links.map((label) => (
+                  <a
+                    href={contactHref}
+                    class="flex items-center text-theme-primary hover:text-theme-primary-dark font-semibold text-base transition-colors group"
+                  >
+                    <Icon
+                      name="video"
+                      size="md"
+                      class="mr-2 group-hover:translate-x-1 transition-transform duration-300 flex-shrink-0"
+                    />
+                    <span>{label}</span>
+                  </a>
+                ))
+              }
+            </div>
+            <div class="bg-theme-surface rounded-xl p-6 border border-theme-border">
+              <p class="text-theme-text-secondary mb-2 text-sm">
+                <strong class="text-theme-text-primary"
+                  >{careers.training.harassment.submitFormsLabel}</strong
+                >
+                <a
+                  href={contactHref}
+                  class="text-theme-primary hover:text-theme-primary-dark font-semibold transition-colors ml-2"
+                  >{careers.training.harassment.submitFormsLink}</a
+                >
+              </p>
+              <p class="text-theme-text-secondary text-sm">
+                <strong class="text-theme-text-primary"
+                  >{careers.training.harassment.questionsLabel}</strong
+                >
+                <a
+                  href={contactHref}
+                  class="ml-2 text-theme-primary hover:text-theme-primary-dark font-semibold transition-colors"
+                  >{careers.training.harassment.questionsLink}</a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CallToActionSection
+    heading={careers.cta.heading}
+    subheading={careers.cta.subheading}
+    primaryButtonText={careers.cta.primaryButton}
+    primaryButtonLink={contactHref}
+    secondaryButtonText={careers.cta.secondaryButton}
+    secondaryButtonLink={contactHref}
+  />
+</Layout>

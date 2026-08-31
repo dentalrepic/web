@@ -5,22 +5,27 @@ import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import ThemeSwitcher from "../components/ThemeSwitcher.astro";
 import "../styles/tailwind.css";
-import nav from "../data/navigation.json";
+import { localeHtmlLang, type Locale } from "../i18n/config";
+import { getAlternateLinks, useTranslations } from "../i18n/utils";
 
 interface Props {
+	locale: Locale;
 	title?: string;
 	description?: string;
 }
 
-const { title, description } = Astro.props;
+const { locale, title, description } = Astro.props;
+const t = useTranslations(locale);
 
-const defaultTitle = nav.brand.name;
-const defaultDescription =
-	"Professional Healthcare Services - Expert care delivered to your home";
+const defaultTitle = t.brand.name;
+const defaultDescription = `${t.brand.name} - ${t.brand.tagline}`;
+
+// Equivalent URLs in every language, for search engines and the switcher.
+const alternates = getAlternateLinks(Astro.url.pathname);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={localeHtmlLang[locale]}>
 	<head>
 		<!-- Required meta tags -->
 		<meta charset="UTF-8" />
@@ -33,6 +38,18 @@ const defaultDescription =
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content={title ?? defaultTitle} />
 		<meta property="og:description" content={description ?? defaultDescription} />
+		<meta property="og:locale" content={localeHtmlLang[locale].replace("-", "_")} />
+
+		<!-- Language alternates -->
+		{
+			alternates.map((alternate) => (
+				<link
+					rel="alternate"
+					hreflang={alternate.locale}
+					href={new URL(alternate.path, Astro.site ?? Astro.url.origin).href}
+				/>
+			))
+		}
 
 		<!-- Theme Color -->
 		<meta name="theme-color" content="#1a4d3e" />
@@ -46,12 +63,12 @@ const defaultDescription =
 	<body
 		class="bg-theme-surface-muted font-sans text-theme-text-primary antialiased selection:bg-theme-primary-lighter/50 selection:text-theme-primary-darker"
 	>
-		<Nav />
+		<Nav locale={locale} />
 		<main>
 			<!-- The page-specific content will be injected here -->
 			<slot />
 		</main>
-		<Footer />
+		<Footer locale={locale} />
 
 		<!-- Navigation Progress Bar -->
 		<div
@@ -61,7 +78,7 @@ const defaultDescription =
 		></div>
 
 		<!-- Theme Switcher -->
-		<ThemeSwitcher />
+		<ThemeSwitcher locale={locale} />
 	</body>
 
 	<script>

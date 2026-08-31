@@ -81,15 +81,52 @@ The production output is generated in `dist/`.
 
 If you are adapting this theme for a real site, these are the highest-impact changes:
 
-1. Replace the demo brand content in `src/data/navigation.json`
-2. Update page text in `src/pages/`
+1. Replace the demo brand name and copy in `src/i18n/locales/` (one file per language)
+2. Edit shared contact details and the map embed in `src/data/site.json`
 3. Swap the bundled images in `src/assets/`
-4. Edit brand and contact details in `src/data/navigation.json`
+4. Set your real domain as `site` in `astro.config.mjs` so `hreflang` URLs are correct
 5. Adjust colors and spacing tokens in `src/styles/tailwind.css`
 
 Theme switcher preview for the token-driven design system:
 
 ![Healthcare theme switcher demo](./README-assets/demo-images/healthcare-theme-switcher.gif)
+
+## Languages
+
+The site ships in four languages:
+
+| Language | Code | URL prefix |
+| --- | --- | --- |
+| Croatian (default) | `hr` | none, served from `/` |
+| English | `en` | `/en/` |
+| German | `de` | `/de/` |
+| Italian | `it` | `/it/` |
+
+All translatable copy lives in `src/i18n/locales/<code>.ts`. Each file satisfies the
+`Translation` interface in `src/i18n/types.ts`, so a missing or misspelled key is a
+compile-time error rather than a silent gap on the page — run `npm run check` to catch it.
+
+Content that does not change per language (contact details, map embed) lives in
+`src/data/site.json`.
+
+### Editing copy
+
+Change a string in the relevant locale file and it updates everywhere it is used.
+
+### Adding a language
+
+1. Add the code to `locales` in `src/i18n/config.ts`, plus entries in `localeNames`,
+   `localeShortNames`, and `localeHtmlLang`
+2. Create `src/i18n/locales/<code>.ts` and satisfy the `Translation` interface
+3. Register it in `src/i18n/translations.ts`
+4. Run `npm run check`
+
+Routing and the language switcher pick the new language up automatically.
+
+### Changing the default language
+
+Set `defaultLocale` in `src/i18n/config.ts`. The default is served from the site root
+without a prefix; every other language keeps its prefix.
 
 ## Available Scripts
 
@@ -106,10 +143,10 @@ For a full walkthrough, see [CUSTOMIZATION.md](CUSTOMIZATION.md).
 
 Common edits you will likely make first:
 
-1. Update the branding and navigation in `src/data/navigation.json`
+1. Update the brand name, navigation labels, and page copy in `src/i18n/locales/`
 2. Replace the images in `src/assets/`
-3. Edit the page copy in `src/pages/`
-4. Update brand and contact details in `src/data/navigation.json`
+3. Update contact details in `src/data/site.json`
+4. Set `site` in `astro.config.mjs` to your production domain
 5. Adjust colors, spacing, and design tokens in `src/styles/tailwind.css`
 6. Replace `public/favicon.svg` and `src/assets/logo.png`
 
@@ -125,10 +162,13 @@ The included contact form is a front-end demo. Connect it to your preferred form
 ├── src/
 │   ├── assets/
 │   ├── components/
-│   ├── data/
+│   │   └── pages/        # locale-driven page bodies
+│   ├── data/             # locale-independent data (contact, map)
+│   ├── i18n/             # locale config, types, translations
+│   │   └── locales/      # one file per language
 │   ├── layouts/
 │   ├── lib/
-│   ├── pages/
+│   ├── pages/            # routes: default locale at root, others under [locale]/
 │   ├── styles/
 │   └── types/
 ├── astro.config.mjs

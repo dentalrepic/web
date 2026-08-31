@@ -1,6 +1,15 @@
 ---
 import Icon from "./Icon.astro";
-import nav from "../data/navigation.json";
+import site from "../data/site.json";
+import type { Locale } from "../i18n/config";
+import { localizePath, useTranslations } from "../i18n/utils";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
 ---
 
 <footer class="bg-theme-primary-darker text-white py-8">
@@ -10,20 +19,24 @@ import nav from "../data/navigation.json";
     <!-- First Column - Logo and Navigation -->
     <div class="flex flex-col items-center lg:items-start w-full lg:w-1/4">
       <div class="text-2xl lg:text-3xl font-bold text-white mb-4">
-        {nav.brand.name}
+        {t.brand.name}
       </div>
       <nav
         class="flex flex-wrap justify-center lg:justify-start gap-x-4 gap-y-2"
       >
         {
-          nav.links.map((link) => (
-            <a href={link.href} class="text-sm text-white hover:text-gray-300">
+          t.nav.links.map((link) => (
+            <a
+              href={localizePath(link.href, locale)}
+              class="text-sm text-white hover:text-gray-300"
+            >
               {link.label}
             </a>
           ))
         }
-        <a href={nav.cta.href} class="text-sm text-white hover:text-gray-300"
-          >{nav.cta.label}</a
+        <a
+          href={localizePath(t.nav.cta.href, locale)}
+          class="text-sm text-white hover:text-gray-300">{t.nav.cta.label}</a
         >
       </nav>
     </div>
@@ -35,33 +48,32 @@ import nav from "../data/navigation.json";
           <Icon name="location" size="sm" class="text-gray-400 mx-auto" />
         </div>
         <p class="ml-3 text-sm">
-          {nav.contact.addressLine1}<br />{nav.contact.addressLine2}
+          {site.contact.addressLine1}<br />{site.contact.addressLine2}
         </p>
       </div>
       <div class="flex items-start w-full my-3">
         <div class="w-8 text-center mt-1">
           <Icon name="phone" size="sm" class="text-gray-400 mx-auto" />
         </div>
-        <p class="ml-3 text-sm">{nav.contact.phone}</p>
+        <p class="ml-3 text-sm">{site.contact.phone}</p>
       </div>
       <div class="flex items-start w-full my-3">
         <div class="w-8 text-center mt-1">
           <Icon name="email" size="sm" class="text-gray-400 mx-auto" />
         </div>
-        <p class="ml-3 text-sm">{nav.contact.email}</p>
+        <p class="ml-3 text-sm">{site.contact.email}</p>
       </div>
     </div>
 
     <!-- Third Column - Description -->
     <div class="flex flex-col items-center lg:items-start w-full lg:w-2/5">
       <h3 class="text-lg font-semibold mb-3 text-center lg:text-left">
-        {nav.brand.name}
+        {t.brand.name}
       </h3>
       <p
         class="text-sm text-center lg:text-left leading-relaxed max-w-md lg:max-w-none"
       >
-        Professional Healthcare Services serving communities across the region
-        with compassionate, expert care delivered directly to your home.
+        {t.footer.description}
       </p>
     </div>
   </div>

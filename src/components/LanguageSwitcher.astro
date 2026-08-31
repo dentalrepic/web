@@ -1,0 +1,167 @@
+---
+/**
+ * LanguageSwitcher - Links to the current page in every available language.
+ *
+ * Rendered as plain anchors so language switching works without JavaScript and
+ * remains crawlable by search engines.
+ */
+import { locales, localeNames, localeShortNames, type Locale } from "../i18n/config";
+import { getAlternateLinks, useTranslations } from "../i18n/utils";
+
+interface Props {
+  locale: Locale;
+  /** `desktop` renders a dropdown, `mobile` renders an inline row of links. */
+  variant?: "desktop" | "mobile";
+}
+
+const { locale, variant = "desktop" } = Astro.props;
+const t = useTranslations(locale);
+
+const alternates = getAlternateLinks(Astro.url.pathname);
+const hrefFor = (target: Locale) =>
+  alternates.find((alternate) => alternate.locale === target)?.path ?? "/";
+---
+
+{
+  variant === "desktop" ? (
+    <div class="relative" id="language-switcher">
+      <button
+        id="language-toggle"
+        class="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-theme-text-secondary hover:text-theme-primary hover:bg-theme-surface-hover transition-colors duration-200"
+        aria-label={t.nav.languageLabel}
+        aria-expanded="false"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c2.5-2.5 2.5-15.5 0-18m0 18c-2.5-2.5-2.5-15.5 0-18m-9 9a9 9 0 019-9"
+          />
+        </svg>
+        <span>{localeShortNames[locale]}</span>
+        <svg
+          class="w-3 h-3 transition-transform duration-200"
+          id="language-chevron"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+
+      <div
+        id="language-dropdown"
+        class="absolute top-full right-0 mt-2 w-44 bg-theme-surface rounded-xl shadow-lg border border-theme-border overflow-hidden transform scale-95 opacity-0 pointer-events-none transition-all duration-200 origin-top-right z-50"
+      >
+        <ul class="p-2">
+          {locales.map((option) => (
+            <li>
+              <a
+                href={hrefFor(option)}
+                hreflang={option}
+                lang={option}
+                aria-current={option === locale ? "true" : undefined}
+                class:list={[
+                  "flex items-center justify-between gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200",
+                  option === locale
+                    ? "bg-theme-primary/10 text-theme-primary"
+                    : "text-theme-text-primary hover:bg-theme-surface-hover hover:text-theme-primary",
+                ]}
+              >
+                <span>{localeNames[option]}</span>
+                <span class="text-xs text-theme-text-muted">{localeShortNames[option]}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  ) : (
+    <nav aria-label={t.nav.languageLabel} class="pt-4 border-t border-theme-border">
+      <p class="px-4 pb-2 text-xs font-semibold uppercase tracking-wider text-theme-text-muted">
+        {t.nav.languageLabel}
+      </p>
+      <ul class="flex flex-wrap gap-2 px-4">
+        {locales.map((option) => (
+          <li>
+            <a
+              href={hrefFor(option)}
+              hreflang={option}
+              lang={option}
+              aria-current={option === locale ? "true" : undefined}
+              class:list={[
+                "inline-flex items-center px-3 py-2 rounded-lg text-sm font-medium border transition-colors duration-200",
+                option === locale
+                  ? "bg-theme-primary/10 text-theme-primary border-theme-primary-lighter"
+                  : "text-theme-text-secondary border-theme-border hover:text-theme-primary hover:bg-theme-surface-hover",
+              ]}
+            >
+              {localeNames[option]}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}
+
+<style>
+  #language-chevron.rotate {
+    transform: rotate(180deg);
+  }
+</style>
+
+<script>
+  function setupLanguageSwitcher() {
+    const toggle = document.getElementById("language-toggle");
+    const dropdown = document.getElementById("language-dropdown");
+    const chevron = document.getElementById("language-chevron");
+
+    if (!toggle || !dropdown) return;
+    const toggleEl = toggle as HTMLButtonElement;
+    const dropdownEl = dropdown as HTMLDivElement;
+
+    if (toggleEl.dataset.bound === "true") return;
+    toggleEl.dataset.bound = "true";
+
+    let isOpen = false;
+
+    function open() {
+      isOpen = true;
+      toggleEl.setAttribute("aria-expanded", "true");
+      dropdownEl.classList.remove("scale-95", "opacity-0", "pointer-events-none");
+      dropdownEl.classList.add("scale-100", "opacity-100", "pointer-events-auto");
+      chevron?.classList.add("rotate");
+    }
+
+    function close() {
+      isOpen = false;
+      toggleEl.setAttribute("aria-expanded", "false");
+      dropdownEl.classList.add("scale-95", "opacity-0", "pointer-events-none");
+      dropdownEl.classList.remove("scale-100", "opacity-100", "pointer-events-auto");
+      chevron?.classList.remove("rotate");
+    }
+
+    toggleEl.addEventListener("click", (event) => {
+      event.stopPropagation();
+      isOpen ? close() : open();
+    });
+
+    document.addEventListener("click", (event) => {
+      const switcher = document.getElementById("language-switcher");
+      if (isOpen && switcher && !switcher.contains(event.target as Node)) {
+        close();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (isOpen && event.key === "Escape") close();
+    });
+  }
+
+  setupLanguageSwitcher();
+  document.addEventListener("astro:page-load", setupLanguageSwitcher);
+</script>

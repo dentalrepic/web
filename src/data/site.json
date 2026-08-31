@@ -1,0 +1,9 @@
+{
+  "contact": {
+    "addressLine1": "123 Healthcare Drive, Suite 200",
+    "addressLine2": "Springfield, IL 62701",
+    "phone": "+1 (555) 123-4567",
+    "email": "hello@example.com"
+  },
+  "mapEmbedUrl": "https://maps.google.com/maps?q=springfield+illinois&t=&z=13&ie=UTF8&iwloc=&output=embed"
+}

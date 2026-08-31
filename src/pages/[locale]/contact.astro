@@ -1,0 +1,12 @@
+---
+// Contact page for the locale-prefixed routes (/en, /de, /it).
+import ContactPage from "../../components/pages/ContactPage.astro";
+import { getLocalePaths } from "../../i18n/paths";
+import type { Locale } from "../../i18n/config";
+
+export const getStaticPaths = getLocalePaths;
+
+const { locale } = Astro.params as { locale: Locale };
+---
+
+<ContactPage locale={locale} />

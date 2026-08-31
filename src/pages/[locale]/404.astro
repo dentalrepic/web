@@ -1,0 +1,12 @@
+---
+// 404 page for the locale-prefixed routes (/en, /de, /it).
+import NotFoundPage from "../../components/pages/NotFoundPage.astro";
+import { getLocalePaths } from "../../i18n/paths";
+import type { Locale } from "../../i18n/config";
+
+export const getStaticPaths = getLocalePaths;
+
+const { locale } = Astro.params as { locale: Locale };
+---
+
+<NotFoundPage locale={locale} />

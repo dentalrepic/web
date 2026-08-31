@@ -6,9 +6,11 @@ interface Props {
   title: string;
   summary: string;
   link: string;
+  /** Localized "learn more" call to action. */
+  ctaLabel: string;
 }
 
-const { image, title, summary, link } = Astro.props;
+const { image, title, summary, link, ctaLabel } = Astro.props;
 ---
 
 <a href={link} class="group block card overflow-hidden">
@@ -27,8 +29,8 @@ const { image, title, summary, link } = Astro.props;
       {summary}
     </p>
     <span class="inline-flex items-center mt-4 text-base font-medium text-theme-primary group-hover:gap-2 transition-all">
-      Learn more
-      <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      {ctaLabel}
+      <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
       </svg>
     </span>

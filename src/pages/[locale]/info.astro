@@ -1,0 +1,12 @@
+---
+// FAQ page for the locale-prefixed routes (/en, /de, /it).
+import InfoPage from "../../components/pages/InfoPage.astro";
+import { getLocalePaths } from "../../i18n/paths";
+import type { Locale } from "../../i18n/config";
+
+export const getStaticPaths = getLocalePaths;
+
+const { locale } = Astro.params as { locale: Locale };
+---
+
+<InfoPage locale={locale} />

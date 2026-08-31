@@ -1,0 +1,70 @@
+---
+/**
+ * 404 page body. Rendered by the localized route files.
+ */
+import Layout from "../../layouts/Layout.astro";
+import Button from "../Button.astro";
+import Heading from "../Heading.astro";
+import type { Locale } from "../../i18n/config";
+import { localizePath, useTranslations } from "../../i18n/utils";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const notFound = t.notFound;
+
+// Reuse the navigation labels so suggested links stay translated.
+const suggestions = t.nav.links.filter((link) => link.href !== "/");
+---
+
+<Layout locale={locale} title={notFound.meta.title} description={notFound.meta.description}>
+  <section class="min-h-[70vh] flex items-center justify-center px-4 section">
+    <div class="max-w-2xl mx-auto text-center">
+      <!-- 404 Number -->
+      <div class="mb-8">
+        <p class="text-9xl font-bold text-theme-primary/20 select-none">404</p>
+      </div>
+
+      <Heading level="h1" size="section" class="mb-4">{notFound.heading}</Heading>
+
+      <p class="text-lg text-theme-text-secondary mb-8 max-w-md mx-auto">
+        {notFound.description}
+      </p>
+
+      <!-- Actions -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <Button variant="primary" href={localizePath("/", locale)} showIcon={true}>
+          {notFound.backHome}
+        </Button>
+        <Button variant="white-outline" href={localizePath("/contact", locale)}>
+          {notFound.contactUs}
+        </Button>
+      </div>
+
+      <!-- Helpful Links -->
+      <div class="mt-12 pt-8 border-t border-theme-border">
+        <p class="text-sm text-theme-text-muted mb-4">
+          {notFound.lookingForLabel}
+        </p>
+        <div class="flex flex-wrap gap-4 justify-center text-sm">
+          {
+            suggestions.map((link, index) => (
+              <>
+                {index > 0 && <span class="text-theme-border">•</span>}
+                <a
+                  href={localizePath(link.href, locale)}
+                  class="text-theme-primary hover:text-theme-primary-dark font-medium"
+                >
+                  {link.label}
+                </a>
+              </>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

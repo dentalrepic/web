@@ -1,12 +1,23 @@
 ---
 // Import the components from the astro-navbar npm package
-import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
+import { Astronav, MenuItems } from "astro-navbar";
 import Icon from "./Icon.astro";
-import nav from "../data/navigation.json";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+import type { Locale } from "../i18n/config";
+import { localizePath, stripLocaleFromPath, useTranslations } from "../i18n/utils";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
 
 const normalizePath = (path: string) =>
   path === "/" ? "/" : path.replace(/\/$/, "");
-const currentPath = normalizePath(Astro.url.pathname || "/");
+
+// Compare against the locale-stripped route so highlighting works in every language.
+const currentPath = normalizePath(stripLocaleFromPath(Astro.url.pathname || "/"));
 const isCurrentPage = (href: string) => {
   const target = normalizePath(href);
   if (target === "/") return currentPath === "/";
@@ -21,11 +32,11 @@ const isCurrentPage = (href: string) => {
     <Astronav>
       <div class="flex items-center justify-between w-full py-4 lg:py-5">
         <!-- Logo -->
-        <a href="/" class="shrink-0 flex items-center group relative z-10">
+        <a href={localizePath("/", locale)} class="shrink-0 flex items-center group relative z-10">
           <div
             class="text-2xl lg:text-3xl font-display font-bold text-theme-primary transition-transform duration-300 group-hover:scale-[1.02] whitespace-nowrap"
           >
-            {nav.brand.name}
+            {t.brand.name}
           </div>
         </a>
 
@@ -33,11 +44,11 @@ const isCurrentPage = (href: string) => {
         <nav class="hidden lg:flex items-center gap-1">
           <ul class="flex items-center gap-0.5">
             {
-              nav.links.map((link) => (
+              t.nav.links.map((link) => (
                 <li>
                   <a
                     class="nav-link"
-                    href={link.href}
+                    href={localizePath(link.href, locale)}
                     aria-current={isCurrentPage(link.href) ? "page" : undefined}
                   >
                     {link.label}
@@ -47,18 +58,21 @@ const isCurrentPage = (href: string) => {
             }
           </ul>
 
+          <!-- Language Switcher -->
+          <LanguageSwitcher locale={locale} variant="desktop" />
+
           <!-- Theme Switcher -->
           <div class="relative" id="nav-theme-switcher">
             <button
               id="nav-theme-toggle"
               class="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-theme-text-secondary hover:text-theme-primary hover:bg-theme-surface-hover transition-colors duration-200"
-              aria-label="Switch theme"
+              aria-label={t.nav.themeLabel}
               aria-expanded="false"
             >
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
               </svg>
-              <span>Theme</span>
+              <span>{t.nav.themeLabel}</span>
               <svg class="w-3 h-3 transition-transform duration-200" id="nav-theme-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
               </svg>
@@ -77,16 +91,45 @@ const isCurrentPage = (href: string) => {
           <div class="ml-4 pl-4 border-l border-theme-border">
             <a
               class="button button-primary text-sm"
-              href={nav.cta.href}
+              href={localizePath(t.nav.cta.href, locale)}
             >
-              {nav.cta.label}
+              {t.nav.cta.label}
             </a>
           </div>
         </nav>
 
-        <!-- Mobile Menu Button -->
+        <!--
+          Mobile Menu Button
+
+          Hand-rolled instead of astro-navbar's <MenuIcon />, whose aria-label and
+          SVG title are hardcoded English. The `astronav-menu` id and
+          `astronav-toggle` classes are what Astronav's script binds to, so the
+          toggle behaviour is unchanged.
+        -->
         <div class="lg:hidden flex items-center">
-          <MenuIcon class="w-6 h-6 text-theme-text-secondary" />
+          <button id="astronav-menu" aria-label={t.nav.menuLabel} aria-expanded="false">
+            <svg
+              fill="currentColor"
+              class="w-6 h-6 text-theme-text-secondary"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                class="astronav-close-icon astronav-toggle hidden"
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M18.278 16.864a1 1 0 01-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 01-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 011.414-1.414l4.829 4.828 4.828-4.828a1 1 0 111.414 1.414l-4.828 4.829 4.828 4.828z"
+              ></path>
+              <path
+                class="astronav-open-icon astronav-toggle"
+                fill-rule="evenodd"
+                d="M4 5h16a1 1 0 010 2H4a1 1 0 110-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2z"
+              ></path>
+            </svg>
+          </button>
         </div>
       </div>
 
@@ -96,11 +139,11 @@ const isCurrentPage = (href: string) => {
           <div class="max-w-md mx-auto px-4 py-6">
             <ul class="space-y-1 mb-6">
               {
-                nav.links.map((link) => (
+                t.nav.links.map((link) => (
                   <li>
                     <a
                       class="mobile-nav-link group flex items-center px-4 py-3 text-base font-medium text-theme-text-secondary hover:text-theme-primary hover:bg-theme-surface-hover transition-colors duration-200 rounded-xl"
-                      href={link.href}
+                      href={localizePath(link.href, locale)}
                       aria-current={isCurrentPage(link.href) ? "page" : undefined}
                     >
                       <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-theme-surface-muted group-hover:bg-theme-surface-hover transition-colors mr-3 flex items-center justify-center">
@@ -121,10 +164,15 @@ const isCurrentPage = (href: string) => {
             <div class="pt-4 border-t border-theme-border">
               <a
                 class="button button-primary w-full justify-center text-base"
-                href={nav.cta.href}
+                href={localizePath(t.nav.cta.href, locale)}
               >
-                {nav.cta.label}
+                {t.nav.cta.label}
               </a>
+            </div>
+
+            <!-- Language Switcher -->
+            <div class="mt-4">
+              <LanguageSwitcher locale={locale} variant="mobile" />
             </div>
           </div>
         </nav>

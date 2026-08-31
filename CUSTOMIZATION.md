@@ -4,6 +4,7 @@ This guide will help you customize the Healthcare Astro Theme to match your bran
 
 ## Table of Contents
 - [Quick Customization](#quick-customization)
+- [Languages](#languages)
 - [Design System](#design-system)
 - [Components](#components)
 - [Pages](#pages)
@@ -14,13 +15,27 @@ This guide will help you customize the Healthcare Astro Theme to match your bran
 ### 1. Update Branding
 
 **Logo:**
-Replace `/src/assets/logo.png` with your own logo file. Update the demo brand and contact details in `/src/data/navigation.json`.
+Replace `/src/assets/logo.png` with your own logo file. Update the shared contact details in `/src/data/site.json`.
 
 **Favicon:**
 Replace `/public/favicon.svg` with your own favicon.
 
 **Site Name:**
-Update `src/components/Nav.astro` and `src/components/Footer.astro` to change "MedCare Solutions" to your organization name.
+Change `brand.name` in each `src/i18n/locales/<code>.ts` file. The navigation and footer read it from there, so one edit per language covers the whole site.
+
+## Languages
+
+The theme ships in Croatian (default, at `/`), English (`/en/`), German (`/de/`), and Italian (`/it/`).
+
+All translatable text lives in `src/i18n/locales/<code>.ts`. Every locale file must satisfy the `Translation` interface in `src/i18n/types.ts`, so a missing key fails `npm run check` instead of silently rendering an empty string.
+
+Locale-independent content — contact details and the map embed — lives in `src/data/site.json`.
+
+To add a language: register the code in `src/i18n/config.ts` (including `localeNames`, `localeShortNames`, and `localeHtmlLang`), create the matching locale file, register it in `src/i18n/translations.ts`, then run `npm run check`. Routing, `hreflang` tags, and the language switcher update automatically.
+
+To change the default language, set `defaultLocale` in `src/i18n/config.ts`. The default locale is served without a URL prefix.
+
+Set `site` in `astro.config.mjs` to your production domain so the generated `hreflang` URLs are absolute and correct.
 
 ### 2. Color Scheme
 
@@ -37,13 +52,21 @@ Edit `/src/styles/tailwind.css` to change the primary color:
 
 ### 3. Content
 
-Update page content in `/src/pages/`:
-- `index.astro` - Homepage
-- `about.astro` - About page
-- `services.astro` - Services page
-- `contact.astro` - Contact information
-- `careers.astro` - Career opportunities
-- `info.astro` - FAQ page
+Page text is not stored in the route files. Each route is a thin wrapper that renders a
+shared body component and passes the active locale, so all copy lives in
+`/src/i18n/locales/<code>.ts` under a key named after the page:
+
+- `home` - Homepage
+- `about` - About page
+- `services` - Services page
+- `contact` - Contact information
+- `careers` - Career opportunities
+- `info` - FAQ page
+- `notFound` - 404 page
+- `faqs` - FAQ question and answer list
+
+Edit the string in each language file you support. To change layout or structure rather
+than wording, edit the matching body component in `/src/components/pages/`.
 
 ---
 
@@ -500,7 +523,8 @@ The theme is mobile-first. Test on multiple screen sizes and use responsive clas
 ## Need Help?
 
 - Check the main [README.md](README.md) for general information
-- Review existing pages in `/src/pages/` for examples
+- Review the page bodies in `/src/components/pages/` for examples
 - Examine component files in `/src/components/` for implementation details
+- Look at `/src/i18n/` to understand how translations and routing fit together
 - Consult [Astro documentation](https://docs.astro.build) for framework-specific questions
 - Check [Tailwind CSS v4 documentation](https://tailwindcss.com/docs) for styling help

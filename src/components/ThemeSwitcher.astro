@@ -5,6 +5,15 @@
  * Showcases design system flexibility by allowing instant color scheme switching.
  * Persists selection in localStorage for consistent experience across sessions.
  */
+import type { Locale } from "../i18n/config";
+import { useTranslations } from "../i18n/utils";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
 ---
 
 <div
@@ -15,7 +24,7 @@
   <button
     id="theme-toggle"
     class="w-10 h-10 rounded-full bg-theme-primary/90 text-white shadow-md hover:shadow-lg hover:bg-theme-primary transition-all duration-300 flex items-center justify-center"
-    aria-label="Toggle theme switcher"
+    aria-label={t.themeSwitcher.toggleLabel}
     aria-expanded="false"
   >
     <svg
@@ -39,12 +48,12 @@
     id="theme-panel"
     class="absolute bottom-16 right-0 w-72 bg-theme-surface rounded-xl shadow-2xl border border-theme-border overflow-hidden transform scale-95 opacity-0 pointer-events-none transition-all duration-200 origin-bottom-right"
     role="dialog"
-    aria-label="Theme selector"
+    aria-label={t.themeSwitcher.dialogLabel}
   >
     <!-- Header -->
     <div class="px-4 py-3 bg-theme-surface-muted border-b border-theme-border">
-      <h3 class="text-sm font-semibold text-theme-text-primary">Design System</h3>
-      <p class="text-xs text-theme-text-muted">Switch color themes</p>
+      <h3 class="text-sm font-semibold text-theme-text-primary">{t.themeSwitcher.heading}</h3>
+      <p class="text-xs text-theme-text-muted">{t.themeSwitcher.subheading}</p>
     </div>
 
     <!-- Theme Options -->
@@ -55,7 +64,7 @@
     <!-- Footer -->
     <div class="px-4 py-2 bg-theme-surface-muted border-t border-theme-border">
       <p class="text-xs text-theme-text-muted text-center">
-        Preference saved locally
+        {t.themeSwitcher.footer}
       </p>
     </div>
   </div>
