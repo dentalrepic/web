@@ -1,25 +1,23 @@
 ---
 /**
- * LanguageSwitcher - Links to the current page in every available language.
+ * LanguageSwitcher - Dropdown listing the current page in every language.
  *
- * Rendered as a row of flags on every breakpoint: one click or tap to switch,
- * with no dropdown to open. Plain anchors, so it works without JavaScript and
- * stays crawlable by search engines.
+ * Built on native <details>/<summary>, the same pattern as FaqAccordion, so
+ * opening and closing works with no JavaScript and is keyboard accessible for
+ * free. The small script below only adds the niceties the element lacks:
+ * closing on outside click, on Escape, and after a view transition.
  *
- * Flags carry no visible text label: the header is tight at the lg breakpoint
- * with five nav links and a booking button, and language codes cost roughly
- * 100px. Each link still exposes the language name to assistive tech via
- * sr-only text, and as a title tooltip on hover.
+ * The links themselves are plain anchors, so they stay crawlable.
  */
-import { locales, localeNames, type Locale } from "../i18n/config";
+import { locales, localeNames, localeShortNames, type Locale } from "../i18n/config";
 import { getAlternateLinks, useTranslations } from "../i18n/utils";
 import FlagIcon from "./FlagIcon.astro";
 
 interface Props {
   locale: Locale;
   /**
-   * - `default`: sizing for the wide header
-   * - `compact`: tightened for the mobile header bar
+   * - `default`: flag plus language code, for the wide header
+   * - `compact`: flag plus chevron only, for the mobile header bar
    */
   variant?: "default" | "compact";
   class?: string;
@@ -35,41 +33,135 @@ const hrefFor = (target: Locale) =>
 const isCompact = variant === "compact";
 ---
 
-<nav aria-label={t.nav.languageLabel} class={className}>
-  <ul class:list={["flex items-center", isCompact ? "gap-0.5 xs:gap-1" : "gap-0.5"]}>
-    {
-      locales.map((option) => {
-        const isActive = option === locale;
-        return (
-          <li>
-            <a
-              href={hrefFor(option)}
-              hreflang={option}
-              lang={option}
-              aria-current={isActive ? "true" : undefined}
-              title={localeNames[option]}
-              class:list={[
-                "flex items-center justify-center rounded-lg transition-colors duration-200",
-                // 40px tall on mobile, comfortably above the WCAG 2.5.8 minimum.
-                isCompact ? "h-10 w-9 xs:w-10" : "h-9 w-9",
-                isActive
-                  ? "bg-theme-primary/10 ring-1 ring-theme-primary-lighter"
-                  : "hover:bg-theme-surface-hover",
-              ]}
-            >
-              <FlagIcon
-                locale={option}
+<details class:list={["language-switcher relative", className]}>
+  <summary
+    class:list={[
+      "language-summary flex items-center justify-center gap-1 rounded-lg cursor-pointer list-none text-theme-text-secondary transition-colors duration-200 hover:bg-theme-surface-hover hover:text-theme-primary",
+      // 40px tall on mobile, comfortably above the WCAG 2.5.8 minimum.
+      isCompact ? "h-10 px-1.5" : "h-9 px-2",
+    ]}
+    aria-label={t.nav.languageLabel}
+  >
+    <FlagIcon
+      locale={locale}
+      class:list={[
+        "h-auto rounded-sm ring-1 ring-black/10 flex-shrink-0",
+        isCompact ? "w-6" : "w-5",
+      ]}
+    />
+    {!isCompact && <span class="text-sm font-medium">{localeShortNames[locale]}</span>}
+    <svg
+      class="language-chevron w-3 h-3 flex-shrink-0 transition-transform duration-200"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    </svg>
+  </summary>
+
+  <div
+    class="absolute top-full right-0 mt-2 w-48 bg-theme-surface rounded-xl shadow-lg border border-theme-border overflow-hidden z-50"
+  >
+    <ul class="p-2">
+      {
+        locales.map((option) => {
+          const isActive = option === locale;
+          return (
+            <li>
+              <a
+                href={hrefFor(option)}
+                hreflang={option}
+                lang={option}
+                aria-current={isActive ? "true" : undefined}
                 class:list={[
-                  "h-auto rounded-sm ring-1 ring-black/10 transition-opacity duration-200 flex-shrink-0",
-                  isCompact ? "w-6" : "w-5",
-                  isActive ? "opacity-100" : "opacity-55 hover:opacity-100",
+                  "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-200",
+                  isActive
+                    ? "bg-theme-primary/10 text-theme-primary"
+                    : "text-theme-text-primary hover:bg-theme-surface-hover hover:text-theme-primary",
                 ]}
-              />
-              <span class="sr-only">{localeNames[option]}</span>
-            </a>
-          </li>
-        );
-      })
-    }
-  </ul>
-</nav>
+              >
+                <FlagIcon
+                  locale={option}
+                  class="w-5 h-auto rounded-sm ring-1 ring-black/10 flex-shrink-0"
+                />
+                <span class="flex-1">{localeNames[option]}</span>
+                {isActive && (
+                  <svg
+                    class="w-4 h-4 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                )}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</details>
+
+<style>
+  /* Hide the default disclosure triangle across browsers */
+  .language-summary::-webkit-details-marker {
+    display: none;
+  }
+  .language-summary::marker {
+    content: "";
+  }
+
+  .language-switcher[open] .language-chevron {
+    transform: rotate(180deg);
+  }
+
+  .language-switcher[open] .language-summary {
+    background-color: var(--color-theme-surface-hover);
+    color: var(--color-theme-primary);
+  }
+</style>
+
+<script>
+  // Native <details> already toggles on click and via the keyboard. These
+  // handlers add what it does not do on its own.
+  function setupLanguageDropdowns() {
+    if (document.body.dataset.languageDropdownBound === "true") return;
+    document.body.dataset.languageDropdownBound = "true";
+
+    const closeAll = (except?: Element) => {
+      document.querySelectorAll<HTMLDetailsElement>(".language-switcher[open]").forEach((el) => {
+        if (el !== except) el.open = false;
+      });
+    };
+
+    // Close when clicking anywhere outside an open dropdown.
+    document.addEventListener("click", (event) => {
+      const target = event.target as Node;
+      const inside = (target as Element)?.closest?.(".language-switcher");
+      closeAll(inside ?? undefined);
+    });
+
+    // Close on Escape, returning focus to the trigger that was open.
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape") return;
+      const open = document.querySelector<HTMLDetailsElement>(".language-switcher[open]");
+      if (!open) return;
+      open.open = false;
+      open.querySelector<HTMLElement>(".language-summary")?.focus();
+    });
+
+    // Leave no dropdown open behind after a view transition.
+    document.addEventListener("astro:before-swap", () => closeAll());
+  }
+
+  setupLanguageDropdowns();
+  document.addEventListener("astro:page-load", setupLanguageDropdowns);
+</script>
