@@ -82,13 +82,30 @@ Output is written to `dist/`.
 - [ ] **Set the real domain.** `site` in `astro.config.mjs` is currently
       `https://example.com`; `hreflang` URLs and structured data are built from it.
 - [ ] **Have a native speaker review the German and Italian copy.**
-- [ ] **Replace the stock photography** in `src/assets/`. The images ship with the original
-      theme and do not show the actual clinic; confirm licensing or swap in the clinic's own
-      photos.
+
 - [ ] **Confirm the opening hours** in `src/i18n/locales/*.ts` (`common.openingHoursRows`).
 - [ ] **Confirm the DCR monogram** is acceptable as the clinic's mark. It was drawn for this
-      rebuild and is not the clinic's existing tooth logo; if the clinic has brand artwork,
-      swap it into `src/assets/logo-dcr.svg` and regenerate the PNG icons.
+      rebuild and is *not* the clinic's existing logo — the album photos show the real mark
+      on the reception wall: heavy overlapping letters with a tooth inside the C. If the
+      clinic has that artwork as a vector, swap it into `src/assets/logo-dcr.svg` and
+      regenerate the PNG icons.
+- [ ] **Confirm the photos may be published on the website.** They came from the clinic's
+      own album, but a few frames were deliberately left out (see Photography below).
+
+## Photography
+
+The images in `src/assets/clinic/` are real photographs of the practice, taken from the
+clinic's own shared album. EXIF metadata is stripped and the long edge is capped at 2000px.
+
+Four frames from the album were **deliberately excluded**:
+
+- One photo of an identifiable child at the colouring table. Publishing a recognisable
+  image of a minor needs explicit parental consent.
+- Three waiting-room photos in which patients' faces are recognisable.
+
+The `kids-corner.jpg` image shows the colouring table with no child in frame, so the
+children's area is still represented. If the clinic has consent for the excluded frames,
+they can be added back to `about.gallery.images` in the locale files.
 
 ## Branding
 

@@ -63,7 +63,7 @@ export const hr: Translation = {
       subtitleLine2: "na jednom mjestu.",
       ctaPrimary: "Rezervirajte termin",
       ctaSecondary: "Naše usluge",
-      imageAlt: "Ordinacija Dental Centra Repić",
+      imageAlt: "Ordinacija Dental Centra Repić s modernim stomatološkim stolom",
     },
     welcome: {
       eyebrow: "Dobrodošli na naše web stranice",
@@ -88,7 +88,7 @@ export const hr: Translation = {
         },
       ],
       link: "Saznajte više o nama",
-      imageAlt: "Tim Dental Centra Repić",
+      imageAlt: "Recepcija Dental Centra Repić",
     },
     servicesIntro: {
       eyebrow: "Stručnost i profesionalnost",
@@ -131,7 +131,7 @@ export const hr: Translation = {
         "Vrhunski materijali",
         "RTG dijagnostika",
       ],
-      imageAlt: "Moderna oprema u ordinaciji",
+      imageAlt: "Prostrana ordinacija s panoramskim pogledom",
     },
     problems: {
       heading: "Imamo rješenja za Vaše dentalne probleme",
@@ -222,7 +222,23 @@ export const hr: Translation = {
         "Očuvanje oralnog zdravlja, funkcije i estetike temelj su našeg rada s pacijentima. Svakom pacijentu pristupamo individualno, pratimo napredak tehnologije i u svakom trenutku nastojimo svojim pacijentima omogućiti najbolju moguću uslugu.",
         "Konstantno ulažemo u novu opremu kao i u stručnu edukaciju našeg tima. Sve naše usluge i tretmane pružamo u moderno opremljenom prostoru, prema profesionalnim pravilima struke, kako bi se naši pacijenti osjećali ugodno i bili zadovoljni uslugom.",
       ],
-      imageAlt: "Ordinacija Dental Centra Repić",
+      imageAlt: "Interijer Dental Centra Repić",
+    },
+    gallery: {
+      heading: "Naše ordinacije",
+      subheading:
+        "Moderno opremljen prostor u kojem se naši pacijenti osjećaju ugodno — od recepcije do ordinacija s panoramskim pogledom.",
+      images: [
+        { file: "reception.jpg", alt: "Recepcija s logotipom Dental Centra Repić" },
+        { file: "waiting-lounge.jpg", alt: "Čekaonica s udobnim sjedećim garniturama" },
+        { file: "treatment-panorama.jpg", alt: "Ordinacija s panoramskim pogledom" },
+        { file: "treatment-room.jpg", alt: "Stomatološki stol i oprema u ordinaciji" },
+        { file: "treatment-window.jpg", alt: "Ordinacija s velikim prozorima" },
+        { file: "glass-partition.jpg", alt: "Stakleni ulaz s motivom logotipa" },
+        { file: "interior-corridor.jpg", alt: "Hodnik prema čekaonici" },
+        { file: "kids-corner.jpg", alt: "Kutak za najmlađe pacijente" },
+        { file: "entrance.jpg", alt: "Ulaz u Dental Centar Repić" },
+      ],
     },
     testimonials: {
       heading: "Iskustva naših pacijenata",
@@ -347,7 +363,7 @@ export const hr: Translation = {
             "Konstantno ulaganje u stručnu edukaciju cijelog našeg tima",
         },
       ],
-      imageAlt: "Moderna dentalna oprema",
+      imageAlt: "Stomatološki stol i oprema u ordinaciji",
     },
     cta: {
       heading: "Ne vidite uslugu koju tražite?",

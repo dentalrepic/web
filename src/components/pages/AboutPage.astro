@@ -3,13 +3,14 @@
  * About page body. Rendered by the localized route files.
  */
 import Layout from "../../layouts/Layout.astro";
-import aboutHeroImage from "../../assets/about-main.jpg";
+import aboutHeroImage from "../../assets/clinic/interior-wide.jpg";
 import PageHero from "../PageHero.astro";
 import CallToActionSection from "../CallToActionSection.astro";
-import approachImage from "../../assets/professional-care.jpg";
+import approachImage from "../../assets/clinic/interior-corridor.jpg";
 import { Image } from "astro:assets";
 import Icon from "../Icon.astro";
 import Heading from "../Heading.astro";
+import ClinicGallery from "../ClinicGallery.astro";
 import type { Locale } from "../../i18n/config";
 import { localizePath, useTranslations } from "../../i18n/utils";
 
@@ -82,6 +83,19 @@ const about = t.about;
             ))
           }
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clinic gallery -->
+  <section class="section bg-theme-surface-muted">
+    <div class="container">
+      <div class="narrow mx-auto text-center mb-10">
+        <Heading level="h2" align="center" class="mb-4">{about.gallery.heading}</Heading>
+        <p class="text-lg text-theme-text-secondary">{about.gallery.subheading}</p>
+      </div>
+      <div class="max-w-6xl mx-auto">
+        <ClinicGallery items={about.gallery.images} />
       </div>
     </div>
   </section>

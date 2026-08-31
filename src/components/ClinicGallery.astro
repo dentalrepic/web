@@ -1,0 +1,74 @@
+---
+/**
+ * ClinicGallery - Photo grid of the clinic interior.
+ *
+ * Photos are real images of the practice, taken from the clinic's own album.
+ * Astro's <Image> needs statically analysable imports to optimise assets, so the
+ * files are imported up front and looked up by name rather than built from a
+ * runtime path.
+ */
+import { Image } from "astro:assets";
+import type { GalleryImage } from "../i18n/types";
+
+import reception from "../assets/clinic/reception.jpg";
+import waitingLounge from "../assets/clinic/waiting-lounge.jpg";
+import kidsCorner from "../assets/clinic/kids-corner.jpg";
+import treatmentPanorama from "../assets/clinic/treatment-panorama.jpg";
+import treatmentRoom from "../assets/clinic/treatment-room.jpg";
+import treatmentWindow from "../assets/clinic/treatment-window.jpg";
+import glassPartition from "../assets/clinic/glass-partition.jpg";
+import interiorCorridor from "../assets/clinic/interior-corridor.jpg";
+import entrance from "../assets/clinic/entrance.jpg";
+import interiorWide from "../assets/clinic/interior-wide.jpg";
+import treatmentEquipment from "../assets/clinic/treatment-equipment.jpg";
+import hero from "../assets/clinic/hero.jpg";
+
+const images: Record<string, ImageMetadata> = {
+  "reception.jpg": reception,
+  "waiting-lounge.jpg": waitingLounge,
+  "kids-corner.jpg": kidsCorner,
+  "treatment-panorama.jpg": treatmentPanorama,
+  "treatment-room.jpg": treatmentRoom,
+  "treatment-window.jpg": treatmentWindow,
+  "glass-partition.jpg": glassPartition,
+  "interior-corridor.jpg": interiorCorridor,
+  "treatment-equipment.jpg": treatmentEquipment,
+  "entrance.jpg": entrance,
+  "interior-wide.jpg": interiorWide,
+  "hero.jpg": hero,
+};
+
+interface Props {
+  items: GalleryImage[];
+}
+
+const { items } = Astro.props;
+
+// Skip any entry whose file is missing rather than failing the whole build.
+const resolved = items
+  .map((item) => ({ ...item, image: images[item.file] }))
+  .filter((item): item is GalleryImage & { image: ImageMetadata } => Boolean(item.image));
+---
+
+<ul class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+  {
+    resolved.map((item, index) => (
+      <li
+        class:list={[
+          "overflow-hidden rounded-xl shadow-md ring-1 ring-theme-border",
+          // Give the first photo extra prominence on wider screens.
+          index === 0 ? "col-span-2 md:col-span-2 md:row-span-2" : "",
+        ]}
+      >
+        <Image
+          src={item.image}
+          alt={item.alt}
+          class="w-full h-full object-cover transition-transform duration-500 hover:scale-[1.03]"
+          widths={[400, 800, 1200]}
+          sizes="(min-width: 768px) 33vw, 50vw"
+          loading="lazy"
+        />
+      </li>
+    ))
+  }
+</ul>
