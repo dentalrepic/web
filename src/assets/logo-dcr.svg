@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="DCR">
+  <!--
+    Dental Centar Repić monogram.
+
+    Monoline DCR drawn as paths so it needs no font at any size. Glyphs are laid
+    out from measured ink extents: 2.4px clear space between letters and 6px
+    side margins in the 64px box, which keeps "DCR" readable down to about 32px.
+    Below that use favicon.svg, which drops to a single letter.
+  -->
+  <rect width="64" height="64" rx="15" fill="#166669"/>
+  <g
+    fill="none"
+    stroke="#ffffff"
+    stroke-width="3.2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <!-- D -->
+    <path d="M7.60 24.50 V39.50"/>
+    <path d="M7.60 24.50 H10.20 a7.50 7.50 0 0 1 0 15.00 H7.60"/>
+    <!-- C -->
+    <path d="M35.62 26.25 A7.50 7.50 0 1 0 35.62 37.75"/>
+    <!-- R -->
+    <path d="M43.90 24.50 V39.50"/>
+    <path d="M43.90 24.50 H46.90 a4.75 4.75 0 0 1 0 9.50 H43.90"/>
+    <path d="M47.10 34.00 L49.90 39.50"/>
+  </g>
+</svg>

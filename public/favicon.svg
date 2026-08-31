@@ -1,11 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-  <!-- Matches the clinic logo: turquoise disc with a white tooth -->
-  <circle cx="64" cy="64" r="62" fill="#2dccd2"/>
-  <path
-    d="M64 30c-9 0-13-5-22-5-11 0-18 8-18 21 0 11 4 17 7 27 3 9 4 25 11 25 6 0 6-16 8-24 1-6 8-6 9 0 2 8 2 24 8 24 7 0 8-16 11-25 3-10 7-16 7-27 0-13-7-21-18-21-9 0-13 5-22 5z"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!--
+    Favicon for Dental Centar Repić.
+
+    A single D rather than the full DCR monogram: at 16px, three letters merge
+    into an unreadable smudge, while one bold letter stays legible. Shares the
+    rounded-square shape and colours of src/assets/logo-dcr.svg so the two read
+    as the same mark.
+  -->
+  <rect width="64" height="64" rx="15" fill="#166669"/>
+  <g
     fill="none"
     stroke="#ffffff"
     stroke-width="7"
+    stroke-linecap="round"
     stroke-linejoin="round"
-  />
+  >
+    <path d="M20.5 16 V48"/>
+    <path d="M20.5 16 H23.5 a16 16 0 0 1 0 32 H20.5"/>
+  </g>
 </svg>

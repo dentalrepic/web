@@ -1,7 +1,6 @@
 ---
 import Icon from "./Icon.astro";
-import { Image } from "astro:assets";
-import logo from "../assets/logo-repic.jpg";
+import logo from "../assets/logo-dcr.svg";
 import site from "../data/site.json";
 import type { Locale } from "../i18n/config";
 import { localizePath, useTranslations } from "../i18n/utils";
@@ -25,12 +24,14 @@ const footerServices = t.services.groups.map((group) => group.title);
       <!-- Brand and contact -->
       <div class="lg:col-span-2">
         <div class="flex items-center gap-3 mb-4">
-          <Image
-            src={logo}
+          <!-- White tile behind the mark: the logo's own teal ground would
+               disappear against the dark footer -->
+          <img
+            src={logo.src}
             alt={t.brand.logoAlt}
-            width={48}
-            height={48}
-            class="w-12 h-12 rounded-full bg-white"
+            width="48"
+            height="48"
+            class="w-12 h-12 rounded-xl bg-white p-1"
             loading="lazy"
           />
           <span class="text-xl lg:text-2xl font-bold text-white">

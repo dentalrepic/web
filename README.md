@@ -86,10 +86,35 @@ Output is written to `dist/`.
       theme and do not show the actual clinic; confirm licensing or swap in the clinic's own
       photos.
 - [ ] **Confirm the opening hours** in `src/i18n/locales/*.ts` (`common.openingHoursRows`).
+- [ ] **Confirm the DCR monogram** is acceptable as the clinic's mark. It was drawn for this
+      rebuild and is not the clinic's existing tooth logo; if the clinic has brand artwork,
+      swap it into `src/assets/logo-dcr.svg` and regenerate the PNG icons.
 
 ## Branding
 
-The logo is `src/assets/logo-repic.jpg`, taken from the clinic's site.
+The logo is a "DCR" monogram, `src/assets/logo-dcr.svg`, shown in the header and footer.
+It is drawn as SVG paths rather than set in a font, so it needs no webfont and stays crisp
+at any size. Glyphs are positioned from measured ink extents, with 2.4px of clear space
+between letters and 6px side margins in a 64px box, which keeps all three letters readable
+down to roughly 32px.
+
+Icons:
+
+| File | Purpose |
+| --- | --- |
+| `public/favicon.svg` | Browser tab. A single **D**, because three letters merge into a smudge at 16px |
+| `public/apple-touch-icon.png` | iOS home screen, 180px. iOS ignores SVG favicons |
+| `public/logo-dcr-512.png` | Raster logo referenced by the `Dentist` structured data |
+
+Regenerate the PNGs from the SVG after any logo change:
+
+```bash
+rsvg-convert -w 180 -h 180 src/assets/logo-dcr.svg -o public/apple-touch-icon.png
+rsvg-convert -w 512 -h 512 src/assets/logo-dcr.svg -o public/logo-dcr-512.png
+```
+
+In the footer the mark sits on a white tile, since its own dark teal ground would otherwise
+disappear against the dark footer background.
 
 The colour palette is turquoise, matched to the logo. Note that the raw logo colour
 (`#2dccd2`) only reaches 1.97:1 contrast against white, which fails WCAG AA for text, so

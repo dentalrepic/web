@@ -15,10 +15,15 @@ This guide covers the design system and components behind the Dental Centar Repi
 ### 1. Update Branding
 
 **Logo:**
-The clinic logo is `/src/assets/logo-repic.jpg`, shown in the header and footer. Shared contact details live in `/src/data/site.json`.
+The clinic logo is a "DCR" monogram at `/src/assets/logo-dcr.svg`, shown in the header and footer. It is drawn as SVG paths, so it needs no webfont and scales cleanly. Shared contact details live in `/src/data/site.json`.
 
 **Favicon:**
-Replace `/public/favicon.svg` with your own favicon.
+`/public/favicon.svg` is a single **D** rather than the full monogram: at 16px three letters merge into an unreadable smudge. `/public/apple-touch-icon.png` (180px) covers iOS home screens, which ignore SVG favicons, and `/public/logo-dcr-512.png` is the raster logo used by the structured data. Regenerate both PNGs from the SVG after changing the logo:
+
+```bash
+rsvg-convert -w 180 -h 180 src/assets/logo-dcr.svg -o public/apple-touch-icon.png
+rsvg-convert -w 512 -h 512 src/assets/logo-dcr.svg -o public/logo-dcr-512.png
+```
 
 **Site Name:**
 Change `brand.name` in each `src/i18n/locales/<code>.ts` file. The navigation and footer read it from there, so one edit per language covers the whole site.

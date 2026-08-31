@@ -57,7 +57,9 @@ const businessLd = {
 	url: siteOrigin,
 	telephone: site.contact.phone,
 	email: site.contact.email,
-	image: `${siteOrigin}/favicon.svg`,
+	// Raster logo rather than the SVG favicon: Google's structured data
+	// guidelines ask for a raster image here.
+	image: `${siteOrigin}/logo-dcr-512.png`,
 	address: {
 		"@type": "PostalAddress",
 		streetAddress: site.contact.addressLine1,
@@ -100,8 +102,9 @@ const businessLd = {
 		<!-- Theme Color - keep in sync with --color-theme-primary in tailwind.css -->
 		<meta name="theme-color" content="#1c7f82" />
 
-		<!-- Favicon placeholder - replace with your own -->
+		<!-- Favicon: SVG for modern browsers, PNG for iOS home screens -->
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
 		<!-- Client Router for smooth SPA-like navigation (Astro 7+) -->
 		<ClientRouter />
