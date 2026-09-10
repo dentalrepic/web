@@ -1,5 +1,5 @@
 {
-  "//": "Scoped to Cloudflare Pages Functions. Worker globals are kept out of the site's own tsconfig so they cannot clash with browser DOM types in src/.",
+  "//": "Scoped to Cloudflare Pages Functions. Worker globals are kept out of the site's own tsconfig so they cannot clash with browser DOM types in src/. Tests are excluded because they run on Node, not in a Worker, and get their own config in tsconfig.test.json.",
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "types": ["@cloudflare/workers-types"],
@@ -10,5 +10,5 @@
     "noEmit": true
   },
   "include": ["**/*.ts"],
-  "exclude": []
+  "exclude": ["**/*.test.ts"]
 }

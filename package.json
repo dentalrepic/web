@@ -31,10 +31,11 @@
     "dev": "astro dev",
     "check": "astro check",
     "build": "astro build",
-    "test": "npm run check && npm run check:functions && npm run build",
+    "test": "npm run check && npm run check:functions && npm run test:functions && npm run build",
     "preview": "astro preview",
     "astro": "astro",
-    "check:functions": "tsc -p functions/tsconfig.json"
+    "check:functions": "tsc -p functions/tsconfig.json && tsc -p functions/tsconfig.test.json",
+    "test:functions": "node --test --experimental-strip-types \"functions/**/*.test.ts\""
   },
   "dependencies": {
     "astro": "^7.0.6",
