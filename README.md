@@ -82,8 +82,9 @@ For hosting, see [DEPLOYMENT.md](DEPLOYMENT.md) (Cloudflare Pages).
       Function in `functions/api/contact.ts`. It needs `RESEND_API_KEY`, `MAIL_TO` and
       `MAIL_FROM` set in the Pages dashboard — until then submissions return an error.
       See [DEPLOYMENT.md](DEPLOYMENT.md).
-- [ ] **Set the real domain.** `site` in `astro.config.mjs` is currently
-      `https://example.com`; `hreflang` URLs and structured data are built from it.
+- [x] **Set the real domain.** `site` in `astro.config.mjs` is `https://dentalrepic.com`.
+      Note the clinic's old WordPress site is still on `dentalrepic.com.hr`; decide whether
+      that should redirect here.
 - [ ] **Have a native speaker review the German and Italian copy.**
 - [ ] **Replace the stock photography** in `src/assets/`. The images ship with the original
       theme and do not show the actual clinic; confirm licensing or swap in the clinic's own

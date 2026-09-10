@@ -5,8 +5,8 @@ import { defaultLocale, locales } from './src/i18n/config.ts';
 
 // https://astro.build/config
 export default defineConfig({
-  // Absolute URLs are needed for hreflang alternates. Update before deploying.
-  site: 'https://example.com',
+  // Absolute URLs are needed for hreflang alternates and structured data.
+  site: 'https://dentalrepic.com',
   i18n: {
     locales: [...locales],
     defaultLocale,
