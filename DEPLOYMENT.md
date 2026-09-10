@@ -20,15 +20,11 @@ older release.
 
 ## 2. Point the site at its real domain
 
-`site` in `astro.config.mjs` is currently `https://example.com`. Every `hreflang`
-URL and the `Dentist` structured data is built from it, so set it to the
-production domain before the first real deploy:
+`site` in `astro.config.mjs` is `https://dentalrepic.com`. Every `hreflang` URL
+and the `Dentist` structured data is built from it, so it must match the domain
+the site is actually served from.
 
-```js
-site: 'https://dentalrepic.com.hr',
-```
-
-Then add the custom domain under **Pages > your project > Custom domains**.
+Add the custom domain under **Pages > your project > Custom domains**.
 
 ## 3. Configure the booking form
 
@@ -37,9 +33,9 @@ these variables under **Pages > Settings > Variables and secrets**:
 
 | Variable | Type | Purpose |
 | --- | --- | --- |
-| `RESEND_API_KEY` | Secret | API key from [resend.com](https://resend.com) |
-| `MAIL_TO` | Plaintext | Where enquiries are delivered, e.g. the clinic inbox |
-| `MAIL_FROM` | Plaintext | Verified sender on your domain, e.g. `web@dentalrepic.com.hr` |
+| `RESEND_API_KEY` | Secret | Send-only API key from [resend.com](https://resend.com) |
+| `MAIL_TO` | Plaintext | Where enquiries are delivered, e.g. `info@dentalrepic.com` |
+| `MAIL_FROM` | Plaintext | Verified sender on your domain, e.g. `web@dentalrepic.com` |
 | `TURNSTILE_SECRET` | Secret | Optional. Enables spam checking when set |
 
 ### Verify the sending domain first
@@ -48,12 +44,18 @@ these variables under **Pages > Settings > Variables and secrets**:
 Resend gives you DKIM and SPF records to add to DNS; until they resolve, sending
 returns **403 "domain is not verified"** and no mail goes out.
 
-To check from a terminal:
+`dentalrepic.com` is verified. The records now live in Cloudflare DNS and resolve:
 
 ```bash
-# Should return a DKIM record once verification has propagated
+# DKIM public key
 host -t TXT resend._domainkey.dentalrepic.com
+# SPF for the sending subdomain, plus its bounce-handling MX
+host -t TXT send.dentalrepic.com
+host -t MX  send.dentalrepic.com
 ```
+
+A negative answer can be a stale NXDOMAIN cache rather than a missing record —
+retry, or query a different resolver, before concluding anything is wrong.
 
 While DNS is still propagating you can set `MAIL_FROM=onboarding@resend.dev`,
 Resend's sandbox sender, to prove the wiring end to end. It only delivers to the
@@ -83,6 +85,36 @@ A Content-Security-Policy is intentionally not set: the contact page embeds a
 Google Maps iframe that redirects across several Google hosts, so an untested
 policy risks silently breaking the map. See the comment in `_headers` for a
 report-only starting point.
+
+## 5. Confirm the deploy serves the Function
+
+Setting the variables is not enough on its own: the Function only exists in
+deployments built from a commit that contains `functions/api/contact.ts`. If the
+Pages project is not connected to the repository, or its last build predates that
+commit, the endpoint is simply absent.
+
+```bash
+curl -i -X POST https://dentalrepic.com/api/contact \
+  -F name=Test -F email=test@example.com -F message=smoke -F locale=hr
+```
+
+Read the status code as follows:
+
+| Status | Meaning |
+| --- | --- |
+| `404`, empty body | No Function in this deployment. Check that Pages is connected to Git and has built the current `main`. |
+| `500 not_configured` | Function is live but `RESEND_API_KEY`, `MAIL_TO` or `MAIL_FROM` is unset. |
+| `502 send_failed` | Function reached Resend and was refused. Check the real reason in the Pages logs. |
+| `200 {"ok":true}` | Mail accepted by Resend. |
+
+A quick way to tell which build is live is to view source on `/contact/` and look
+at the `<form>` tag: it must carry `action="/api/contact"`. If the tag has no
+`action`, the deployment predates the Function.
+
+Function logs are under **Pages > your project > deployment > Functions**, or
+`npx wrangler pages deployment tail`. The endpoint deliberately returns generic
+errors to the browser and logs the provider's reason server-side, so the logs are
+the only place the real cause appears.
 
 ## Local development
 

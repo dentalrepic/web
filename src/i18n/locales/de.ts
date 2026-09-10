@@ -445,7 +445,7 @@ export const de: Translation = {
     meta: {
       title: "Kontakt - Termin buchen | Dental Centar Repić",
       description:
-        "Dental Centar Repić, Put Dragulina 62 F, 21220 Trogir, Kroatien. Telefon +385 21 796 241, E-Mail dentalcenterrepic@gmail.com. Werktags 8:00 - 20:00.",
+        "Dental Centar Repić, Put Dragulina 62 F, 21220 Trogir, Kroatien. Telefon +385 21 796 241, E-Mail info@dentalrepic.com. Werktags 8:00 - 20:00.",
     },
     hero: {
       title: "KONTAKT",
