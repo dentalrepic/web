@@ -46,6 +46,7 @@
     "@cloudflare/workers-types": "4.20241218.0",
     "@tailwindcss/typography": "^0.5.20",
     "@tailwindcss/vite": "^4.3.2",
+    "@types/node": "22.20.2",
     "tailwindcss": "^4.3.2",
     "typescript": "^6.0.3"
   }
