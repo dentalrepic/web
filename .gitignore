@@ -29,3 +29,7 @@ pnpm-debug.log*
 
 # MCP config
 .mcp.json
+
+# Cloudflare
+.dev.vars
+.wrangler/

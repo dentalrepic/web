@@ -202,8 +202,12 @@ export interface Translation {
       messageLabel: string;
       messagePlaceholder: string;
       submit: string;
-      demoNote: string;
-      statusMessage: string;
+      /** Shown on the button while the request is in flight. */
+      submitting: string;
+      /** Confirmation once the enquiry has been delivered. */
+      successMessage: string;
+      /** Shown when the request fails, pointing the patient at the phone. */
+      errorMessage: string;
     };
     mapTitle: string;
   };

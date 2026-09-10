@@ -74,11 +74,14 @@ npm run build
 
 Output is written to `dist/`.
 
+For hosting, see [DEPLOYMENT.md](DEPLOYMENT.md) (Cloudflare Pages).
+
 ## Before Going Live
 
-- [ ] **Connect the booking form.** `src/components/pages/ContactPage.astro` contains a
-      front-end demo only — submissions go nowhere. Wire it to a form provider or a backend
-      endpoint.
+- [ ] **Configure the booking form.** The form posts to `/api/contact`, a Cloudflare Pages
+      Function in `functions/api/contact.ts`. It needs `RESEND_API_KEY`, `MAIL_TO` and
+      `MAIL_FROM` set in the Pages dashboard — until then submissions return an error.
+      See [DEPLOYMENT.md](DEPLOYMENT.md).
 - [ ] **Set the real domain.** `site` in `astro.config.mjs` is currently
       `https://example.com`; `hreflang` URLs and structured data are built from it.
 - [ ] **Have a native speaker review the German and Italian copy.**

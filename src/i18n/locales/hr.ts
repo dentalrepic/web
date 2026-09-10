@@ -485,10 +485,11 @@ export const hr: Translation = {
       messageLabel: "Napomena",
       messagePlaceholder: "Opišite ukratko razlog dolaska...",
       submit: "Pošalji",
-      demoNote:
-        "Demo obrazac: prije objave povežite ovaj obrazac s odabranim pružateljem usluge obrazaca.",
-      statusMessage:
-        "Ovaj demo obrazac radi lokalno. Povežite pružatelja usluge obrazaca za primanje poruka.",
+      submitting: "Šaljem...",
+      successMessage:
+        "Hvala Vam! Zaprimili smo Vaš upit i kontaktirat ćemo Vas unutar radnog vremena.",
+      errorMessage:
+        "Slanje nije uspjelo. Molimo pokušajte ponovno ili nas nazovite na +385 21 796 241.",
     },
     mapTitle: "Karta s lokacijom Dental Centra Repić u Trogiru",
   },

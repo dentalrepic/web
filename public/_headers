@@ -1,0 +1,26 @@
+/*
+  # Security headers for all routes.
+  # Cloudflare Pages applies these automatically from this file.
+
+  # Stop the site being framed by another origin (clickjacking).
+  X-Frame-Options: SAMEORIGIN
+  # Do not let browsers guess content types.
+  X-Content-Type-Options: nosniff
+  # Send only the origin when navigating away, and nothing on downgrade.
+  Referrer-Policy: strict-origin-when-cross-origin
+  # This is a brochure site: no camera, microphone or geolocation needed.
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  # Force HTTPS for two years, including subdomains.
+  Strict-Transport-Security: max-age=63072000; includeSubDomains
+
+/_astro/*
+  # Astro fingerprints these filenames, so they can be cached indefinitely.
+  Cache-Control: public, max-age=31536000, immutable
+
+# A Content-Security-Policy is deliberately not set here. The contact page
+# embeds a Google Maps iframe that redirects across several Google hosts
+# (maps.google.com, *.gstatic.com, *.googleapis.com), so a policy written
+# without testing against the live embed risks silently breaking the map.
+# If you want one, add it in report-only mode first and watch the reports:
+#
+#   Content-Security-Policy-Report-Only: default-src 'self'; frame-src https://maps.google.com https://*.google.com; img-src 'self' data: https://*.gstatic.com https://*.googleapis.com; style-src 'self' 'unsafe-inline'; script-src 'self'

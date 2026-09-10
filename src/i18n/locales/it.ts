@@ -489,10 +489,11 @@ export const it: Translation = {
       messageLabel: "Note",
       messagePlaceholder: "Descrivi brevemente il motivo della visita...",
       submit: "Invia",
-      demoNote:
-        "Modulo dimostrativo: collega questo modulo al tuo fornitore preferito prima della pubblicazione.",
-      statusMessage:
-        "Questo modulo dimostrativo funziona in locale. Collega un fornitore di moduli per ricevere i messaggi.",
+      submitting: "Invio in corso...",
+      successMessage:
+        "Grazie! Abbiamo ricevuto la tua richiesta e ti contatteremo durante i nostri orari di apertura.",
+      errorMessage:
+        "Invio non riuscito. Riprova o chiamaci al +385 21 796 241.",
     },
     mapTitle: "Mappa con la posizione di Dental Centar Repić a Trogir",
   },
