@@ -63,7 +63,7 @@ export const it: Translation = {
       subtitleLine2: "in un unico luogo.",
       ctaPrimary: "Prenota un appuntamento",
       ctaSecondary: "I nostri servizi",
-      imageAlt: "Sala di trattamento di Dental Centar Repić con poltrona moderna",
+      imageAlt: "Studio Dental Centar Repić",
     },
     welcome: {
       eyebrow: "Benvenuti sul nostro sito",
@@ -88,7 +88,7 @@ export const it: Translation = {
         },
       ],
       link: "Scopri di più su di noi",
-      imageAlt: "Reception di Dental Centar Repić",
+      imageAlt: "Il team di Dental Centar Repić",
     },
     servicesIntro: {
       eyebrow: "Competenza e professionalità",
@@ -131,7 +131,7 @@ export const it: Translation = {
         "Materiali di alta qualità",
         "Diagnostica radiologica",
       ],
-      imageAlt: "Ampia sala di trattamento con vista panoramica",
+      imageAlt: "Attrezzature moderne nello studio",
     },
     problems: {
       heading: "Abbiamo la soluzione ai tuoi problemi dentali",
@@ -222,23 +222,7 @@ export const it: Translation = {
         "La tutela della salute orale, della funzione e dell'estetica è il fondamento del nostro lavoro con i pazienti. Trattiamo ogni paziente in modo individuale, seguiamo il progresso tecnologico e ci impegniamo a offrire il miglior servizio possibile.",
         "Investiamo costantemente in nuove attrezzature e nella formazione professionale del nostro team. Offriamo tutti i servizi in ambienti modernamente attrezzati, secondo le regole della professione, affinché i pazienti si sentano a proprio agio e soddisfatti.",
       ],
-      imageAlt: "Interni di Dental Centar Repić",
-    },
-    gallery: {
-      heading: "Il nostro studio",
-      subheading:
-        "Uno spazio moderno e ben attrezzato in cui i nostri pazienti si sentono a proprio agio — dalla reception alle sale con vista panoramica.",
-      images: [
-        { file: "reception.jpg", alt: "Reception con il logo di Dental Centar Repić" },
-        { file: "waiting-lounge.jpg", alt: "Sala d'attesa con sedute comode" },
-        { file: "treatment-panorama.jpg", alt: "Sala di trattamento con vista panoramica" },
-        { file: "treatment-room.jpg", alt: "Poltrona e attrezzature nella sala di trattamento" },
-        { file: "treatment-window.jpg", alt: "Sala di trattamento con grandi finestre" },
-        { file: "glass-partition.jpg", alt: "Ingresso in vetro con il motivo del logo" },
-        { file: "interior-corridor.jpg", alt: "Corridoio verso la sala d'attesa" },
-        { file: "kids-corner.jpg", alt: "Angolo per i pazienti più piccoli" },
-        { file: "entrance.jpg", alt: "Ingresso di Dental Centar Repić" },
-      ],
+      imageAlt: "Lo studio Dental Centar Repić",
     },
     testimonials: {
       heading: "Cosa dicono i nostri pazienti",
@@ -367,7 +351,7 @@ export const it: Translation = {
             "Investimento costante nella formazione professionale di tutto il team",
         },
       ],
-      imageAlt: "Poltrona e attrezzature nella sala di trattamento",
+      imageAlt: "Attrezzature dentali moderne",
     },
     cta: {
       heading: "Non trovi il servizio che cerchi?",

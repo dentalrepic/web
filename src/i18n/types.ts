@@ -49,13 +49,6 @@ export interface OpeningHoursRow {
   hours: string;
 }
 
-export interface GalleryImage {
-  /** Filename in src/assets/clinic, without the directory. */
-  file: string;
-  /** Alt text describing what the photo shows. */
-  alt: string;
-}
-
 export interface Translation {
   brand: {
     name: string;
@@ -140,11 +133,6 @@ export interface Translation {
     hero: { title: string; description: string };
     team: { heading: string; subheading: string; members: TeamMember[] };
     approach: { heading: string; paragraphs: string[]; imageAlt: string };
-    gallery: {
-      heading: string;
-      subheading: string;
-      images: GalleryImage[];
-    };
     testimonials: { heading: string; items: Testimonial[] };
     cta: {
       heading: string;
