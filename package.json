@@ -38,7 +38,7 @@
     "test:functions": "node --test --experimental-strip-types \"functions/**/*.test.ts\""
   },
   "dependencies": {
-    "astro": "^7.0.6",
+    "astro": "^7.3.1",
     "astro-navbar": "^2.4.0"
   },
   "devDependencies": {
