@@ -107,6 +107,15 @@ describe("configuration", () => {
       assert.equal(calls.length, 0, "must not call the provider unconfigured");
     }
   });
+
+  it("returns the same response whether one variable is missing or all three", async () => {
+    stubFetch();
+    const one = await post(validFields(), { ...VALID_ENV, MAIL_TO: undefined });
+    const all = await post(validFields(), {});
+
+    // A caller must not be able to infer how much is configured.
+    assert.deepEqual(one, all);
+  });
 });
 
 describe("validation", () => {

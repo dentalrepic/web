@@ -132,8 +132,19 @@ async function sendEmail(env: Env, data: Submission): Promise<Response> {
 export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   // Fail loudly in logs if the deployment is missing its configuration, but do
   // not leak which variable is absent to the caller.
-  if (!env.RESEND_API_KEY || !env.MAIL_TO || !env.MAIL_FROM) {
-    console.error("contact: missing RESEND_API_KEY, MAIL_TO or MAIL_FROM");
+  const required = ["RESEND_API_KEY", "MAIL_TO", "MAIL_FROM"] as const;
+  const missing = required.filter((name) => !env[name]);
+  if (missing.length > 0) {
+    // Name the absent variables in the logs only. Which ones are missing is
+    // what makes this diagnosable: "all three" means they were never added to
+    // this project or environment, while one missing usually means a typo in
+    // the name. The caller still sees the same generic error either way.
+    const present = required.filter((name) => env[name]);
+    console.error(
+      `contact: missing ${missing.join(", ")}; present: ${
+        present.join(", ") || "none"
+      }`
+    );
     return json({ ok: false, error: "not_configured" }, 500);
   }
 
