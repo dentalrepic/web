@@ -3,6 +3,38 @@
 The site is fully static, and the booking form is handled by a Cloudflare Pages
 Function, so no adapter or server runtime is needed.
 
+## It must be a Pages project, not a Worker
+
+Cloudflare offers two products here and they are not interchangeable for this
+repository. **Pages** is required.
+
+`functions/api/contact.ts` uses the Pages Functions convention: Pages compiles a
+`functions/` directory into routes automatically, so that file becomes
+`POST /api/contact` with no configuration. Workers has no equivalent — a Worker
+built with `wrangler deploy` ignores `functions/` entirely, so the booking form
+would return 404 no matter how the variables are set.
+
+This bit us once. The repository was originally connected to a Worker whose
+deploy command was `npx wrangler deploy`. With no wrangler config present,
+wrangler ran its interactive auto-config, answered its own prompts in a
+non-interactive shell, added `@astrojs/cloudflare`, and rebuilt — discarding the
+build that had just succeeded. The rebuild then failed:
+
+```
+[MISSING_EXPORT] "renderForPrerender" is not exported by "astro/dist/core/app/entrypoints/index.js"
+```
+
+That symbol does not exist in Astro 7.2.9, but `@astrojs/cloudflare@14.3.1`
+imports it while declaring `astro: ^7.2.0` as a compatible peer, so the failure
+looks like a project misconfiguration rather than the upstream version mismatch
+it is. Every deploy failed this way for hours while the live site silently served
+a months-old build.
+
+If a build log mentions `@astrojs/cloudflare`, `astro add cloudflare` or an
+adapter, it is building as a Worker and is the wrong target. A correct Pages
+build logs `output: "static"` with no adapter line, and does not run a second
+build.
+
 ## 1. Create the Pages project
 
 In the Cloudflare dashboard: **Workers & Pages > Create > Pages > Connect to Git**,
@@ -17,6 +49,10 @@ then pick the `dentalrepic/web` repository and set:
 
 `NODE_VERSION` matters: Astro 7 requires Node ≥ 22.12 and Pages defaults to an
 older release.
+
+Leave the deploy command empty. Pages publishes `dist/` and compiles
+`functions/` itself; there is nothing to add, and adding `wrangler deploy` is
+what caused the failure described above.
 
 ## 2. Point the site at its real domain
 
@@ -115,6 +151,26 @@ Function logs are under **Pages > your project > deployment > Functions**, or
 `npx wrangler pages deployment tail`. The endpoint deliberately returns generic
 errors to the browser and logs the provider's reason server-side, so the logs are
 the only place the real cause appears.
+
+## Migrating from the old Worker project
+
+The repository was connected to a Worker named `web` before it was connected to
+Pages. To move across without downtime, create the Pages project first and only
+then move the domain: the custom domain can only point at one project at a time,
+so releasing it before the replacement is ready takes the site offline.
+
+1. Create the Pages project as in step 1, connected to the same repository, and
+   let it build `main`. It gets a `*.pages.dev` URL.
+2. Add the variables from step 3. They do not carry over from the Worker.
+3. Verify on the `pages.dev` URL, using the curl in step 5, before touching DNS.
+   The form must return `200` there first.
+4. Remove the custom domain from the Worker, then add it to the Pages project.
+   This is the only step with visible impact, and it is brief.
+5. Delete the Worker once the domain resolves to Pages, so nothing rebuilds from
+   the same repository and no stale deployment can be reached.
+
+Point 3 matters most: everything before it is invisible to patients, so there is
+no reason to rush into the one step that is not.
 
 ## Local development
 

@@ -80,10 +80,9 @@ For hosting, see [DEPLOYMENT.md](DEPLOYMENT.md) (Cloudflare Pages).
 
 - [ ] **Confirm the booking form is live.** The form posts to `/api/contact`, a Cloudflare
       Pages Function in `functions/api/contact.ts`. `RESEND_API_KEY`, `MAIL_TO` and
-      `MAIL_FROM` are set in the Pages dashboard and the sending domain is verified in
-      Resend, but the endpoint only exists in a deployment built from a commit that
-      contains `functions/`. Verify with the curl in [DEPLOYMENT.md](DEPLOYMENT.md); a
-      `404` means Pages has not built the current `main`.
+      `MAIL_FROM` are set and the sending domain is verified in Resend, but the hosting
+      must be a **Pages** project: a Worker ignores `functions/` and the endpoint 404s.
+      See [DEPLOYMENT.md](DEPLOYMENT.md) and verify with the curl there.
 - [x] **Set the real domain.** `site` in `astro.config.mjs` is `https://dentalrepic.com`.
       Note the clinic's old WordPress site is still on `dentalrepic.com.hr`; decide whether
       that should redirect here.
