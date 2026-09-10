@@ -119,13 +119,17 @@ the only place the real cause appears.
 ## Local development
 
 ```bash
-npm run dev      # site only; /api/contact is not served
-npm test         # astro check + functions typecheck + build
+npm run dev            # site only; /api/contact is not served
+npm test               # check + functions typecheck + function tests + build
+npm run test:functions  # just the endpoint tests, for a fast loop
 ```
 
 `wrangler pages dev`, which would serve the Function locally, requires GLIBC
-≥ 2.29 and does not run on RHEL 8 (GLIBC 2.28). The Function's logic is covered
-by the checks in `npm test` plus manual testing against a deployed preview.
+≥ 2.29 and does not run on RHEL 8 (GLIBC 2.28). Instead the endpoint's logic is
+exercised directly by `functions/api/contact.test.ts` on Node's test runner,
+with Resend stubbed, so no test sends mail or touches the network. What that
+cannot cover is Pages' own routing and variable injection, which is what the
+curl in step 5 is for.
 
 Every push to `main` produces a production deploy; pull requests get preview
 URLs with their own environment variables.
