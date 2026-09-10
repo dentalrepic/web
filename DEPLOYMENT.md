@@ -42,8 +42,22 @@ these variables under **Pages > Settings > Variables and secrets**:
 | `MAIL_FROM` | Plaintext | Verified sender on your domain, e.g. `web@dentalrepic.com.hr` |
 | `TURNSTILE_SECRET` | Secret | Optional. Enables spam checking when set |
 
-The sending domain has to be verified with the email provider (SPF/DKIM records),
-otherwise messages will be rejected or land in spam.
+### Verify the sending domain first
+
+`MAIL_FROM` must use a domain verified at [resend.com/domains](https://resend.com/domains).
+Resend gives you DKIM and SPF records to add to DNS; until they resolve, sending
+returns **403 "domain is not verified"** and no mail goes out.
+
+To check from a terminal:
+
+```bash
+# Should return a DKIM record once verification has propagated
+host -t TXT resend._domainkey.dentalrepic.com
+```
+
+While DNS is still propagating you can set `MAIL_FROM=onboarding@resend.dev`,
+Resend's sandbox sender, to prove the wiring end to end. It only delivers to the
+account owner's own address, so swap it for the real domain before launch.
 
 **Why not MailChannels?** It was the standard free option for Cloudflare Workers
 until the free tier was withdrawn in 2024. Any provider with an HTTP API works —

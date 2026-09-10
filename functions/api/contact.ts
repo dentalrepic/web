@@ -188,7 +188,16 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     const res = await sendEmail(env, data);
     if (!res.ok) {
       // Log the provider's reason; return a generic failure to the browser.
-      console.error("contact: provider error", res.status, await res.text());
+      const detail = await res.text();
+      console.error("contact: provider error", res.status, detail);
+      // 403 from Resend almost always means MAIL_FROM's domain is not verified.
+      // Call it out explicitly, since it is the most common setup mistake and
+      // otherwise looks like a generic send failure in the logs.
+      if (res.status === 403) {
+        console.error(
+          "contact: check that MAIL_FROM uses a domain verified at resend.com/domains"
+        );
+      }
       return json({ ok: false, error: "send_failed" }, 502);
     }
   } catch (error) {
