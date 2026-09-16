@@ -7,7 +7,7 @@
  * Required environment variables (Pages > Settings > Variables and Secrets):
  *   RESEND_API_KEY   Secret. API key from https://resend.com
  *   MAIL_TO          Where enquiries are delivered, e.g. the clinic inbox
- *   MAIL_FROM        Verified sender on your domain, e.g. web@dentalrepic.com.hr
+ *   MAIL_FROM        Verified sender on your domain, e.g. web@dentalrepic.com
  *   TURNSTILE_SECRET Optional. Enables Turnstile spam checking when set.
  *
  * MailChannels is deliberately not used: its free tier for Cloudflare Workers

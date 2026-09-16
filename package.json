@@ -23,7 +23,7 @@
     "type": "git",
     "url": "https://github.com/dentalrepic/web.git"
   },
-  "homepage": "https://dentalrepic.com.hr",
+  "homepage": "https://dentalrepic.com",
   "engines": {
     "node": ">=22.12.0"
   },
