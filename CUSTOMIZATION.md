@@ -48,13 +48,13 @@ Edit `/src/styles/tailwind.css` to change the primary color:
 
 ```css
 @theme {
-  /* Turquoise, matched to the clinic logo (#2dccd2). The raw logo colour only
-     reaches 1.97:1 against white, so these text/UI shades are darkened to the
-     same hue to meet WCAG AA. */
-  --color-theme-primary: #1c7f82;        /* 4.76:1 on white */
+  /* PANTONE 319 C, the clinic's brand colour (#2dccd3). 319 C itself only
+     reaches 1.96:1 against white, so these text/UI shades hold its hue and
+     saturation and vary only lightness, to meet WCAG AA. */
+  --color-theme-primary: #1b7f83;        /* 4.76:1 on white */
   --color-theme-primary-dark: #166669;   /* 6.69:1 on white */
   --color-theme-primary-darker: #104a4c; /* 9.97:1 on white */
-  --color-theme-brand: #2dccd2;          /* decorative fills only, not text */
+  --color-theme-brand: #2dccd3;          /* decorative fills only, not text */
 }
 ```
 
@@ -89,13 +89,13 @@ All colors are defined in `/src/styles/tailwind.css` using CSS custom properties
 
 ```css
 @theme {
-  /* Primary Brand Colors - turquoise, matched to the logo */
-  --color-theme-primary: #1c7f82;
+  /* Primary Brand Colors - PANTONE 319 C, hue held, lightness varied */
+  --color-theme-primary: #1b7f83;
   --color-theme-primary-dark: #166669;
   --color-theme-primary-darker: #104a4c;
-  --color-theme-primary-light: #24a3a8;
+  --color-theme-primary-light: #23a3a9;
   --color-theme-primary-lighter: #5fd8dd;
-  --color-theme-brand: #2dccd2; /* raw logo colour, decorative use only */
+  --color-theme-brand: #2dccd3; /* PANTONE 319 C, decorative use only */
 
   /* Surface Colors */
   --color-theme-surface: #ffffff;

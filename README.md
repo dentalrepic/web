@@ -125,16 +125,19 @@ rsvg-convert -w 512 -h 512 src/assets/logo-dcr.svg -o public/logo-dcr-512.png
 In the footer the mark sits on a white tile, since its own dark teal ground would otherwise
 disappear against the dark footer background.
 
-The colour palette is turquoise, matched to the logo. Note that the raw logo colour
-(`#2dccd2`) only reaches 1.97:1 contrast against white, which fails WCAG AA for text, so
-the text and UI shades in `src/styles/tailwind.css` are darkened versions of the same hue:
+The colour palette is built on **PANTONE 319 C**, the clinic's brand colour, which converts
+to `#2dccd3` in sRGB. That value only reaches 1.96:1 contrast against white, which fails
+WCAG AA for text, so the text and UI shades in `src/styles/tailwind.css` hold its hue
+(182.5°) and saturation (65%) and vary only lightness:
 
 | Token | Value | Contrast on white |
 | --- | --- | --- |
-| `--color-theme-primary` | `#1c7f82` | 4.76:1 |
+| `--color-theme-primary` | `#1b7f83` | 4.76:1 |
 | `--color-theme-primary-dark` | `#166669` | 6.69:1 |
 | `--color-theme-primary-darker` | `#104a4c` | 9.97:1 |
-| `--color-theme-brand` | `#2dccd2` | decorative fills only |
+| `--color-theme-primary-light` | `#23a3a9` | 3.05:1, large text and UI only |
+| `--color-theme-primary-lighter` | `#5fd8dd` | 1.70:1, decorative only |
+| `--color-theme-brand` | `#2dccd3` | PANTONE 319 C, decorative fills only |
 
 ## SEO
 
