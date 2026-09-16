@@ -38,14 +38,14 @@ const isCurrentPage = (href: string) => {
           href={localizePath("/", locale)}
           class="shrink-0 flex items-center gap-2.5 group relative z-10"
         >
-          <!-- SVG monogram: served as a plain <img> so it stays crisp at any
+          <!-- SVG mark: served as a plain <img> so it stays crisp at any
                density, with no raster processing needed -->
           <img
             src={logo.src}
             alt={t.brand.logoAlt}
             width="44"
             height="44"
-            class="w-10 h-10 xl:w-11 xl:h-11 rounded-xl transition-transform duration-300 group-hover:scale-[1.04]"
+            class="w-10 h-10 xl:w-11 xl:h-11 transition-transform duration-300 group-hover:scale-[1.04]"
             loading="eager"
             fetchpriority="high"
           />

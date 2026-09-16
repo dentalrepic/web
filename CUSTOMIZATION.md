@@ -15,14 +15,14 @@ This guide covers the design system and components behind the Dental Centar Repi
 ### 1. Update Branding
 
 **Logo:**
-The clinic logo is a "DCR" monogram at `/src/assets/logo-dcr.svg`, shown in the header and footer. It is drawn as SVG paths, so it needs no webfont and scales cleanly. Shared contact details live in `/src/data/site.json`.
+The clinic logo is the mark from its brand manual: a tooth knocked out of a PANTONE 319 C disc, at `/src/assets/logo-dcr.svg`. The tooth is a cutout, so `fill-rule="evenodd"` on the path must stay. The header uses this positive version; the footer uses `/src/assets/logo-dcr-negative.svg` (white disc, tooth cut out), because the positive mark is 319 C itself and would disappear against the 319 C footer. Shared contact details live in `/src/data/site.json`.
 
 **Favicon:**
-`/public/favicon.svg` is a single **D** rather than the full monogram: at 16px three letters merge into an unreadable smudge. `/public/apple-touch-icon.png` (180px) covers iOS home screens, which ignore SVG favicons, and `/public/logo-dcr-512.png` is the raster logo used by the structured data. Regenerate both PNGs from the SVG after changing the logo:
+`/public/favicon.svg` is a solid tooth silhouette rather than the manual's thin outline: at 16px the outline closes up and the icon reads as a smudge. `/public/apple-touch-icon.png` (180px) covers iOS home screens, which ignore SVG favicons, and `/public/logo-dcr-512.png` is the raster logo used by the structured data. Both PNGs come from opaque sources in `/src/assets/brand/`, since iOS composites transparency onto black:
 
 ```bash
-rsvg-convert -w 180 -h 180 src/assets/logo-dcr.svg -o public/apple-touch-icon.png
-rsvg-convert -w 512 -h 512 src/assets/logo-dcr.svg -o public/logo-dcr-512.png
+rsvg-convert -w 180 -h 180 src/assets/brand/apple-touch-icon-src.svg -o public/apple-touch-icon.png
+rsvg-convert -w 512 -h 512 src/assets/brand/logo-512-src.svg -o public/logo-dcr-512.png
 ```
 
 **Site Name:**

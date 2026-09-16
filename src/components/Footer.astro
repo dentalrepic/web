@@ -1,6 +1,6 @@
 ---
 import Icon from "./Icon.astro";
-import logo from "../assets/logo-dcr.svg";
+import logo from "../assets/logo-dcr-negative.svg";
 import site from "../data/site.json";
 import type { Locale } from "../i18n/config";
 import { localizePath, useTranslations } from "../i18n/utils";
@@ -24,14 +24,15 @@ const footerServices = t.services.groups.map((group) => group.title);
       <!-- Brand and contact -->
       <div class="lg:col-span-2">
         <div class="flex items-center gap-3 mb-4">
-          <!-- White tile behind the mark: the logo's own dark teal ground sits
-               too close to the PANTONE 319 C footer to read as a separate shape -->
+          <!-- Negative mark: the positive one is PANTONE 319 C itself and would
+               vanish on this ground. The brand manual sanctions the negative
+               for use on colour. -->
           <img
             src={logo.src}
             alt={t.brand.logoAlt}
             width="48"
             height="48"
-            class="w-12 h-12 rounded-xl bg-white p-1"
+            class="w-12 h-12"
             loading="lazy"
           />
           <span class="text-xl lg:text-2xl font-bold">

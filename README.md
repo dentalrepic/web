@@ -95,35 +95,41 @@ For hosting, see [DEPLOYMENT.md](DEPLOYMENT.md) (Cloudflare Pages).
       photos.
 - [ ] **Confirm the opening hours** in `src/data/site.json` (`openingHours`). They are no
       longer shown on the page, but they are published as `Dentist` structured data.
-- [ ] **Confirm the DCR monogram** is acceptable as the clinic's mark. It was drawn for this
-      rebuild and is not the clinic's existing tooth logo; if the clinic has brand artwork,
-      swap it into `src/assets/logo-dcr.svg` and regenerate the PNG icons.
+- [x] **Use the clinic's own mark.** The logo is now the tooth-in-a-disc mark from the
+      clinic's brand manual (`DCR_ShadesOfWhite_2025-02`), traced from its vector artwork.
+      The DCR monogram drawn for this rebuild is gone.
+- [ ] **Consider the full DCR lockup.** The manual's primary logo is a grey "DCR" wordmark
+      whose C is the tooth mark, with "DENTAL CENTAR REPIĆ" beneath. The site uses the mark
+      on its own next to live text instead, which suits a header better; adopting the lockup
+      would need the manual's typeface and a wider header slot.
 
 ## Branding
 
-The logo is a "DCR" monogram, `src/assets/logo-dcr.svg`, shown in the header and footer.
-It is drawn as SVG paths rather than set in a font, so it needs no webfont and stays crisp
-at any size. Glyphs are positioned from measured ink extents, with 2.4px of clear space
-between letters and 6px side margins in a 64px box, which keeps all three letters readable
-down to roughly 32px.
+The logo is the clinic's own mark, `src/assets/logo-dcr.svg`: a tooth knocked out of a
+PANTONE 319 C disc, traced from the vector artwork in the clinic's brand manual
+(`DCR_ShadesOfWhite_2025-02`, CorelDRAW). The tooth is a cutout, so the path's
+`fill-rule="evenodd"` must stay.
 
-Icons:
+The manual's own colour page specifies PANTONE 319 C as R45 G204 B211, so the disc uses
+`#2dccd3`. The source artwork carried a slightly bluer `#3dcbeb`; the specified value wins.
+
+Variants:
 
 | File | Purpose |
 | --- | --- |
-| `public/favicon.svg` | Browser tab. A single **D**, because three letters merge into a smudge at 16px |
-| `public/apple-touch-icon.png` | iOS home screen, 180px. iOS ignores SVG favicons |
-| `public/logo-dcr-512.png` | Raster logo referenced by the `Dentist` structured data |
+| `src/assets/logo-dcr.svg` | Positive mark, 319 C disc. Header |
+| `src/assets/logo-dcr-negative.svg` | White disc, tooth cut out. Footer, where the positive mark would vanish into the 319 C ground. The manual sanctions this for use on colour |
+| `public/favicon.svg` | Browser tab. A solid tooth silhouette, because the manual's thin outline closes up at 16px |
+| `public/apple-touch-icon.png` | iOS home screen, 180px. iOS ignores SVG favicons and composites transparency onto black, so this one is full-bleed 319 C |
+| `public/logo-dcr-512.png` | Raster logo for the `Dentist` structured data |
 
-Regenerate the PNGs from the SVG after any logo change:
+The two PNGs are generated from opaque SVG sources kept in `src/assets/brand/`, not from
+the header logo, which is transparent. Regenerate them after any logo change:
 
 ```bash
-rsvg-convert -w 180 -h 180 src/assets/logo-dcr.svg -o public/apple-touch-icon.png
-rsvg-convert -w 512 -h 512 src/assets/logo-dcr.svg -o public/logo-dcr-512.png
+rsvg-convert -w 180 -h 180 src/assets/brand/apple-touch-icon-src.svg -o public/apple-touch-icon.png
+rsvg-convert -w 512 -h 512 src/assets/brand/logo-512-src.svg -o public/logo-dcr-512.png
 ```
-
-In the footer the mark sits on a white tile, since its own dark teal ground sits too close to
-the PANTONE 319 C footer background to read as a separate shape.
 
 The colour palette is built on **PANTONE 319 C**, the clinic's brand colour, which converts
 to `#2dccd3` in sRGB. That value only reaches 1.96:1 contrast against white, which fails
