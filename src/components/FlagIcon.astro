@@ -7,6 +7,10 @@
  *
  * All flags share a 3:2 viewBox so a row of them lines up at the same size.
  * They are decorative: the surrounding link carries the accessible name.
+ *
+ * The Croatian and British flags are the two fiddly ones, and both are built
+ * from geometry measured off the public-domain reference drawings rather than
+ * eyeballed. See the comments on each.
  */
 import type { Locale } from "../i18n/config";
 
@@ -18,26 +22,72 @@ interface Props {
 const { locale, class: className = "" } = Astro.props;
 
 // Repeated <clipPath> ids would collide when this renders more than once on a
-// page, so the Union Jack clip gets a per-instance suffix.
+// page, so every clip id gets a per-instance suffix.
 const uid = Math.random().toString(36).slice(2, 9);
 
-// Croatian chequy: five columns starting with red in the top-left corner.
-const shieldX = 23;
-const shieldY = 9;
-const cellW = 2.8;
-const cellH = 3.75;
-const columns = 5;
-const rows = 6;
-const checks: Array<{ x: number; y: number }> = [];
-for (let row = 0; row < rows; row += 1) {
-  for (let column = 0; column < columns; column += 1) {
-    // Red where row and column parity match, giving the alternating pattern.
+/*
+ * Croatian coat of arms.
+ *
+ * Proportions are taken from the official flag drawing, as fractions of the
+ * flag's width and height, then expressed in the 60x40 viewBox:
+ *
+ *   escutcheon   x 0.390 .. 0.610, y 0.262 .. 0.762   (white, red outline)
+ *   chequy field x 0.397 .. 0.602, y 0.290 .. 0.750   (inset, so a white
+ *                                                      border shows around it)
+ *   crown        x 0.385 .. 0.615, five shields in a shallow arc
+ *
+ * Two details that are easy to get wrong and that the previous drawing did get
+ * wrong: the chequy is 5x5 with a RED cell at the top left, and the escutcheon
+ * is outlined in red, not blue.
+ */
+const shieldPath = (x0: number, x1: number, yTop: number, yTip: number, curve: number) => {
+  const w = x1 - x0;
+  const straight = yTop + (yTip - yTop) * 0.52;
+  return (
+    `M${x0} ${yTop} H${x1} V${straight} ` +
+    `C${x1} ${yTip - curve} ${x0 + w * 0.8} ${yTip} ${(x0 + x1) / 2} ${yTip} ` +
+    `C${x0 + w * 0.2} ${yTip} ${x0} ${yTip - curve} ${x0} ${straight} Z`
+  );
+};
+
+// Outer escutcheon: its top edge overlaps the crown bases, which is what makes
+// the crown read as sitting behind the shield.
+const hrOuter = shieldPath(23.4, 36.6, 10.48, 30.48, 1.8);
+// Inner chequy field.
+const hrInner = shieldPath(23.8, 36.1, 11.6, 30, 1.68);
+
+const hrCellW = 2.46;
+const hrCellH = 3.16;
+const hrChecks: Array<{ x: number; y: number }> = [];
+// Six rows of cells are laid down although the field is five deep: the extra
+// row keeps the pointed base chequered instead of leaving a white wedge. The
+// clip path trims it.
+for (let row = 0; row < 6; row += 1) {
+  for (let column = 0; column < 5; column += 1) {
     if ((row + column) % 2 === 0) {
-      checks.push({ x: shieldX + column * cellW, y: shieldY + row * cellH });
+      hrChecks.push({ x: 23.8 + column * hrCellW, y: 11.6 + row * hrCellH });
     }
   }
 }
-const shieldPath = `M${shieldX} ${shieldY} h${columns * cellW} v11 c0 6 -${(columns * cellW) / 2} 11 -${(columns * cellW) / 2} 11 s-${(columns * cellW) / 2} -5 -${(columns * cellW) / 2} -11 z`;
+
+// Crown: five shields, alternating light and dark blue, centre one highest.
+const hrCrownLight = "#0093dd";
+const hrCrownDark = "#171796";
+const hrCrownTops = [6.4, 5.76, 5.47, 5.76, 6.4];
+const hrCrownFills = [hrCrownLight, hrCrownDark, hrCrownLight, hrCrownDark, hrCrownLight];
+const hrCrownStepX = 2.76;
+const hrCrownBase = 11;
+const hrCrown = hrCrownTops.map((top, index) => {
+  const x = 23.1 + index * hrCrownStepX;
+  const w = hrCrownStepX;
+  const h = hrCrownBase - top;
+  return {
+    fill: hrCrownFills[index],
+    d:
+      `M${x + w * 0.04} ${top + h * 0.36} L${x + w / 2} ${top} L${x + w * 0.96} ${top + h * 0.36} ` +
+      `L${x + w * 0.96} ${top + h} L${x + w * 0.04} ${top + h} Z`,
+  };
+});
 ---
 
 <svg
@@ -51,17 +101,20 @@ const shieldPath = `M${shieldX} ${shieldY} h${columns * cellW} v11 c0 6 -${(colu
     locale === "hr" && (
       <g>
         {/* Red, white and blue bands */}
-        <rect width="60" height="13.34" fill="#ff0000" />
-        <rect y="13.34" width="60" height="13.33" fill="#ffffff" />
-        <rect y="26.67" width="60" height="13.33" fill="#171796" />
-        {/* Chequy shield */}
-        <path d={shieldPath} fill="#ffffff" stroke="#171796" stroke-width="1" />
-        <clipPath id={`shield-${uid}`}>
-          <path d={shieldPath} />
+        <rect width="60" height="13.334" fill="#ff0000" />
+        <rect y="13.334" width="60" height="13.333" fill="#ffffff" />
+        <rect y="26.667" width="60" height="13.333" fill="#171796" />
+        {/* Crown first, so the escutcheon overlaps its bases */}
+        {hrCrown.map((piece) => (
+          <path d={piece.d} fill={piece.fill} stroke="#ffffff" stroke-width="0.4" />
+        ))}
+        <path d={hrOuter} fill="#ffffff" stroke="#ff0000" stroke-width="0.55" />
+        <clipPath id={`hr-shield-${uid}`}>
+          <path d={hrInner} />
         </clipPath>
-        <g clip-path={`url(#shield-${uid})`}>
-          {checks.map((cell) => (
-            <rect x={cell.x} y={cell.y} width={cellW} height={cellH} fill="#ff0000" />
+        <g clip-path={`url(#hr-shield-${uid})`}>
+          {hrChecks.map((cell) => (
+            <rect x={cell.x} y={cell.y} width={hrCellW} height={hrCellH} fill="#ff0000" />
           ))}
         </g>
       </g>
@@ -70,26 +123,31 @@ const shieldPath = `M${shieldX} ${shieldY} h${columns * cellW} v11 c0 6 -${(colu
 
   {
     locale === "en" && (
-      <g>
-        {/*
-          Union Jack. The red diagonals are counterchanged: offset to one side of
-          each white saltire arm rather than centred on it. The clip path selects
-          the alternating half-quadrants that produces the offset.
-        */}
-        <clipPath id={`quarters-${uid}`}>
-          <path d="M30,20 h30 v20 z v-20 h-30 z h-30 v-20 z v20 h30 z" />
+      /*
+       * Union Flag, drawn on the official 60x30 construction and stretched to
+       * this component's 60x40 box by the nested svg, so the path data and
+       * stroke widths are the reference ones rather than rescaled guesses.
+       *
+       * The clip path is what counterchanges the red diagonals: it selects the
+       * half of each quadrant that puts red on the clockwise side of the white
+       * saltire arm. Getting one of its four subpaths backwards produces a flag
+       * that looks plausible but is mirrored, which is the bug this replaces.
+       */
+      <svg viewBox="0 0 60 30" width="60" height="40" preserveAspectRatio="none">
+        <clipPath id={`uk-counterchange-${uid}`}>
+          <path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z" />
         </clipPath>
-        <rect width="60" height="40" fill="#012169" />
-        <path d="M0,0 L60,40 M60,0 L0,40" stroke="#ffffff" stroke-width="8" />
+        <path d="M0,0 v30 h60 v-30 z" fill="#012169" />
+        <path d="M0,0 L60,30 M60,0 L0,30" stroke="#ffffff" stroke-width="6" />
         <path
-          d="M0,0 L60,40 M60,0 L0,40"
-          clip-path={`url(#quarters-${uid})`}
+          d="M0,0 L60,30 M60,0 L0,30"
+          clip-path={`url(#uk-counterchange-${uid})`}
           stroke="#c8102e"
-          stroke-width="5"
+          stroke-width="4"
         />
-        <path d="M30,0 v40 M0,20 h60" stroke="#ffffff" stroke-width="13" />
-        <path d="M30,0 v40 M0,20 h60" stroke="#c8102e" stroke-width="8" />
-      </g>
+        <path d="M30,0 v30 M0,15 h60" stroke="#ffffff" stroke-width="10" />
+        <path d="M30,0 v30 M0,15 h60" stroke="#c8102e" stroke-width="6" />
+      </svg>
     )
   }
 
@@ -97,9 +155,9 @@ const shieldPath = `M${shieldX} ${shieldY} h${columns * cellW} v11 c0 6 -${(colu
     locale === "de" && (
       <g>
         {/* Black, red and gold bands */}
-        <rect width="60" height="13.34" fill="#000000" />
-        <rect y="13.34" width="60" height="13.33" fill="#dd0000" />
-        <rect y="26.67" width="60" height="13.33" fill="#ffce00" />
+        <rect width="60" height="13.334" fill="#000000" />
+        <rect y="13.334" width="60" height="13.333" fill="#dd0000" />
+        <rect y="26.667" width="60" height="13.333" fill="#ffce00" />
       </g>
     )
   }
