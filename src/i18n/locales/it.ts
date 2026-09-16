@@ -29,7 +29,6 @@ export const it: Translation = {
     description:
       "La tutela della salute orale, della funzione e dell'estetica è il fondamento del nostro lavoro con i pazienti. Trattiamo ogni paziente in modo individuale, seguiamo il progresso tecnologico e ci impegniamo in ogni momento a offrire il miglior servizio possibile. Investiamo costantemente in nuove attrezzature e nella formazione professionale del nostro team.",
     servicesHeading: "Servizi",
-    hoursHeading: "Orari di apertura",
     rightsReserved: "Tutti i diritti riservati",
   },
 
@@ -39,16 +38,6 @@ export const it: Translation = {
     readLess: "Mostra meno",
     callUsToday: "Chiamaci oggi stesso!",
     bookAppointment: "Prenota un appuntamento",
-    openingHours: "Orari di apertura",
-    openingHoursRows: [
-      { day: "Lunedì", hours: "8:00 - 20:00" },
-      { day: "Martedì", hours: "8:00 - 20:00" },
-      { day: "Mercoledì", hours: "8:00 - 20:00" },
-      { day: "Giovedì", hours: "8:00 - 20:00" },
-      { day: "Venerdì", hours: "8:00 - 20:00" },
-      { day: "Sabato", hours: "Chiuso" },
-      { day: "Domenica", hours: "Chiuso" },
-    ],
   },
 
   home: {

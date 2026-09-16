@@ -25,29 +25,15 @@ const alternates = getAlternateLinks(Astro.url.pathname);
 
 const siteOrigin = (Astro.site ?? new URL(Astro.url.origin)).href.replace(/\/$/, "");
 
-// Map the localized opening hours onto schema.org day names by position, so the
-// structured data stays in English regardless of the page language.
-const schemaDays = [
-	"Monday",
-	"Tuesday",
-	"Wednesday",
-	"Thursday",
-	"Friday",
-	"Saturday",
-	"Sunday",
-];
-const openingHoursSpecification = t.common.openingHoursRows
-	.map((row, index) => {
-		const match = row.hours.match(/^(\d{1,2}:\d{2})\s*-\s*(\d{1,2}:\d{2})$/);
-		if (!match) return null; // closed days carry no time range
-		return {
-			"@type": "OpeningHoursSpecification",
-			dayOfWeek: schemaDays[index],
-			opens: match[1],
-			closes: match[2],
-		};
-	})
-	.filter((entry) => entry !== null);
+// Opening hours are no longer shown on the page, but search engines still want
+// them. They live in site.json with schema.org day names, so they need no
+// translation and no parsing back out of display strings.
+const openingHoursSpecification = site.openingHours.map((entry) => ({
+	"@type": "OpeningHoursSpecification",
+	dayOfWeek: entry.days,
+	opens: entry.opens,
+	closes: entry.closes,
+}));
 
 const businessLd = {
 	"@context": "https://schema.org",

@@ -29,7 +29,6 @@ export const de: Translation = {
     description:
       "Die Erhaltung der Mundgesundheit, der Funktion und der Ästhetik ist die Grundlage unserer Arbeit mit Patienten. Jeden Patienten behandeln wir individuell, wir verfolgen den technologischen Fortschritt und bemühen uns jederzeit, unseren Patienten die bestmögliche Versorgung zu bieten. Wir investieren fortlaufend in neue Geräte sowie in die fachliche Weiterbildung unseres Teams.",
     servicesHeading: "Leistungen",
-    hoursHeading: "Öffnungszeiten",
     rightsReserved: "Alle Rechte vorbehalten",
   },
 
@@ -39,16 +38,6 @@ export const de: Translation = {
     readLess: "Weniger anzeigen",
     callUsToday: "Rufen Sie uns noch heute an!",
     bookAppointment: "Termin buchen",
-    openingHours: "Öffnungszeiten",
-    openingHoursRows: [
-      { day: "Montag", hours: "8:00 - 20:00" },
-      { day: "Dienstag", hours: "8:00 - 20:00" },
-      { day: "Mittwoch", hours: "8:00 - 20:00" },
-      { day: "Donnerstag", hours: "8:00 - 20:00" },
-      { day: "Freitag", hours: "8:00 - 20:00" },
-      { day: "Samstag", hours: "Geschlossen" },
-      { day: "Sonntag", hours: "Geschlossen" },
-    ],
   },
 
   home: {

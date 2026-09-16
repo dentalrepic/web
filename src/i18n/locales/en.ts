@@ -30,7 +30,6 @@ export const en: Translation = {
     description:
       "Preserving oral health, function and aesthetics are the foundation of the services we provide to patients. Each patient receives an individual approach, and we keep up with technological advancements to ensure the best possible service. We constantly invest in new equipment and in the professional development of our team.",
     servicesHeading: "Services",
-    hoursHeading: "Opening Hours",
     rightsReserved: "All rights reserved",
   },
 
@@ -40,16 +39,6 @@ export const en: Translation = {
     readLess: "Read less",
     callUsToday: "Call us today!",
     bookAppointment: "Book your appointment",
-    openingHours: "Opening Hours",
-    openingHoursRows: [
-      { day: "Monday", hours: "8:00 - 20:00" },
-      { day: "Tuesday", hours: "8:00 - 20:00" },
-      { day: "Wednesday", hours: "8:00 - 20:00" },
-      { day: "Thursday", hours: "8:00 - 20:00" },
-      { day: "Friday", hours: "8:00 - 20:00" },
-      { day: "Saturday", hours: "Closed" },
-      { day: "Sunday", hours: "Closed" },
-    ],
   },
 
   home: {

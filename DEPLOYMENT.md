@@ -60,7 +60,11 @@ what caused the failure described above.
 and the `Dentist` structured data is built from it, so it must match the domain
 the site is actually served from.
 
-Add the custom domain under **Pages > your project > Custom domains**.
+Add the custom domain under **Pages > your project > Custom domains**. This is
+done: the site is live on `https://dentalrepic.com`.
+
+The clinic's old WordPress site is still up on `dentalrepic.com.hr`. It should be
+301-redirected to `dentalrepic.com` so the two do not compete in search results.
 
 ## 3. Configure the booking form
 
@@ -139,9 +143,13 @@ Read the status code as follows:
 | Status | Meaning |
 | --- | --- |
 | `404`, empty body | No Function in this deployment. Check that Pages is connected to Git and has built the current `main`. |
+| `400 bad_request` | Function is live and rejected the payload as invalid. Any non-404 answer proves the deployment is a Pages project. |
 | `500 not_configured` | Function is live but `RESEND_API_KEY`, `MAIL_TO` or `MAIL_FROM` is unset. |
 | `502 send_failed` | Function reached Resend and was refused. Check the real reason in the Pages logs. |
 | `200 {"ok":true}` | Mail accepted by Resend. |
+
+The live site currently answers `400 bad_request` to an empty POST, so the
+Function is deployed and configured.
 
 A quick way to tell which build is live is to view source on `/contact/` and look
 at the `<form>` tag: it must carry `action="/api/contact"`. If the tag has no

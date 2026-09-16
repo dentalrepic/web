@@ -20,7 +20,7 @@ const footerServices = t.services.groups.map((group) => group.title);
 
 <footer class="bg-theme-primary-darker text-white">
   <div class="container section-sm">
-    <div class="grid gap-10 lg:grid-cols-4">
+    <div class="grid gap-10 lg:grid-cols-3">
       <!-- Brand and contact -->
       <div class="lg:col-span-2">
         <div class="flex items-center gap-3 mb-4">
@@ -89,23 +89,6 @@ const footerServices = t.services.groups.map((group) => group.title);
             ))
           }
         </ul>
-      </div>
-
-      <!-- Opening hours -->
-      <div>
-        <h2 class="text-base font-semibold mb-4 text-white">
-          {t.footer.hoursHeading}
-        </h2>
-        <dl class="space-y-1.5">
-          {
-            t.common.openingHoursRows.map((row) => (
-              <div class="flex justify-between gap-4 text-sm">
-                <dt class="text-white/80">{row.day}</dt>
-                <dd class="text-white/90 whitespace-nowrap">{row.hours}</dd>
-              </div>
-            ))
-          }
-        </dl>
       </div>
     </div>
 

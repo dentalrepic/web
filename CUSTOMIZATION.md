@@ -75,7 +75,6 @@ shared body component and passes the active locale, so all copy lives in
 - `info` - FAQ page
 - `notFound` - 404 page
 - `faqs` - FAQ question and answer list
-- `common.openingHoursRows` - Opening hours, shown in the footer and on Contact
 
 Edit the string in each language file you support. To change layout or structure rather
 than wording, edit the matching body component in `/src/components/pages/`.

@@ -29,7 +29,6 @@ export const hr: Translation = {
     description:
       "Očuvanje oralnog zdravlja, funkcije i estetike temelj su našeg rada s pacijentima. Svakom pacijentu pristupamo individualno, pratimo napredak tehnologije i u svakom trenutku nastojimo svojim pacijentima omogućiti najbolju moguću uslugu. Konstantno ulažemo u novu opremu kao i u stručnu edukaciju našeg tima.",
     servicesHeading: "Usluge",
-    hoursHeading: "Radno vrijeme",
     rightsReserved: "Sva prava pridržana",
   },
 
@@ -39,16 +38,6 @@ export const hr: Translation = {
     readLess: "Prikaži manje",
     callUsToday: "Nazovite nas već danas!",
     bookAppointment: "Rezervirajte termin",
-    openingHours: "Radno vrijeme",
-    openingHoursRows: [
-      { day: "Ponedjeljak", hours: "8:00 - 20:00" },
-      { day: "Utorak", hours: "8:00 - 20:00" },
-      { day: "Srijeda", hours: "8:00 - 20:00" },
-      { day: "Četvrtak", hours: "8:00 - 20:00" },
-      { day: "Petak", hours: "8:00 - 20:00" },
-      { day: "Subota", hours: "Ne radimo" },
-      { day: "Nedjelja", hours: "Ne radimo" },
-    ],
   },
 
   home: {

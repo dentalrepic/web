@@ -1,11 +1,11 @@
 # Dental Centar Repić
 
-Multilingual website for [Dental Centar Repić](https://dentalrepic.com.hr), a dental clinic in
+Multilingual website for [Dental Centar Repić](https://dentalrepic.com), a dental clinic in
 Trogir, Croatia. Built with Astro 7, Tailwind CSS v4 and TypeScript, and deployed as a fully
 static site.
 
-This is a rebuild of the clinic's existing WordPress site. Copy, contact details, opening hours
-and the logo are taken from `dentalrepic.com.hr`.
+This is a rebuild of the clinic's earlier WordPress site, which ran on `dentalrepic.com.hr`.
+Copy, contact details, opening hours and the logo are taken from that site.
 
 ![Astro](https://img.shields.io/badge/Astro-7%2B-FF5D01?logo=astro)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-v4-38B2AC?logo=tailwind-css)
@@ -78,19 +78,23 @@ For hosting, see [DEPLOYMENT.md](DEPLOYMENT.md) (Cloudflare Pages).
 
 ## Before Going Live
 
-- [ ] **Confirm the booking form is live.** The form posts to `/api/contact`, a Cloudflare
-      Pages Function in `functions/api/contact.ts`. `RESEND_API_KEY`, `MAIL_TO` and
-      `MAIL_FROM` are set and the sending domain is verified in Resend, but the hosting
-      must be a **Pages** project: a Worker ignores `functions/` and the endpoint 404s.
-      See [DEPLOYMENT.md](DEPLOYMENT.md) and verify with the curl there.
-- [x] **Set the real domain.** `site` in `astro.config.mjs` is `https://dentalrepic.com`.
-      Note the clinic's old WordPress site is still on `dentalrepic.com.hr`; decide whether
-      that should redirect here.
+- [x] **Confirm the booking form is live.** The form posts to `/api/contact`, a Cloudflare
+      Pages Function in `functions/api/contact.ts`. It answers on the live site (an empty
+      POST returns `400 bad_request` rather than a 404), which confirms the hosting is a
+      **Pages** project and not a Worker. `RESEND_API_KEY`, `MAIL_TO` and `MAIL_FROM` are
+      set and the sending domain is verified in Resend. Send one real enquiry through the
+      form to confirm delivery.
+- [x] **Set the real domain.** `site` in `astro.config.mjs` is `https://dentalrepic.com`,
+      and the site is live there with matching `hreflang` URLs.
+- [ ] **Retire the old WordPress site.** `dentalrepic.com.hr` still serves the old
+      WordPress 4.9 site, so the clinic has two live sites competing for the same
+      searches. Redirect it to `dentalrepic.com` with a 301.
 - [ ] **Have a native speaker review the German and Italian copy.**
 - [ ] **Replace the stock photography** in `src/assets/`. The images ship with the original
       theme and do not show the actual clinic; confirm licensing or swap in the clinic's own
       photos.
-- [ ] **Confirm the opening hours** in `src/i18n/locales/*.ts` (`common.openingHoursRows`).
+- [ ] **Confirm the opening hours** in `src/data/site.json` (`openingHours`). They are no
+      longer shown on the page, but they are published as `Dentist` structured data.
 - [ ] **Confirm the DCR monogram** is acceptable as the clinic's mark. It was drawn for this
       rebuild and is not the clinic's existing tooth logo; if the clinic has brand artwork,
       swap it into `src/assets/logo-dcr.svg` and regenerate the PNG icons.

@@ -12,5 +12,12 @@
   "social": {
     "instagram": "https://www.instagram.com/dentalrepic/"
   },
+  "openingHours": [
+    {
+      "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "08:00",
+      "closes": "20:00"
+    }
+  ],
   "mapEmbedUrl": "https://maps.google.com/maps?q=Put%20Dragulina%2062F%2C%2021220%20Trogir%2C%20Croatia&t=&z=15&ie=UTF8&iwloc=&output=embed"
 }

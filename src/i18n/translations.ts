@@ -17,5 +17,4 @@ export type {
   ServiceGroup,
   TeamMember,
   Testimonial,
-  OpeningHoursRow,
 } from "./types";

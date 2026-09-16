@@ -44,11 +44,6 @@ export interface Testimonial {
   author: string;
 }
 
-export interface OpeningHoursRow {
-  day: string;
-  hours: string;
-}
-
 export interface Translation {
   brand: {
     name: string;
@@ -66,7 +61,6 @@ export interface Translation {
   footer: {
     description: string;
     servicesHeading: string;
-    hoursHeading: string;
     rightsReserved: string;
   };
 
@@ -76,9 +70,6 @@ export interface Translation {
     readLess: string;
     callUsToday: string;
     bookAppointment: string;
-    openingHours: string;
-    /** One row per day, including any closed days. */
-    openingHoursRows: OpeningHoursRow[];
   };
 
   home: {
