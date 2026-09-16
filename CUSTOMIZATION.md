@@ -54,12 +54,14 @@ Edit `/src/styles/tailwind.css` to change the primary color:
   --color-theme-primary: #1b7f83;        /* 4.76:1 on white */
   --color-theme-primary-dark: #166669;   /* 6.69:1 on white */
   --color-theme-primary-darker: #104a4c; /* 9.97:1 on white */
-  --color-theme-brand: #2dccd3;          /* decorative fills only, not text */
+  --color-theme-brand: #2dccd3;          /* the footer ground; never text */
 }
 ```
 
 If you change the primary colour, re-check the contrast against white before using it for
-text. Keep `--color-theme-brand` for decorative fills only.
+text. `--color-theme-brand` is 319 C at full strength and is used as a background, not a
+text colour: anything sitting on it needs `--color-theme-text-on-brand`, because white only
+reaches 1.96:1 there.
 
 ### 3. Content
 
@@ -95,7 +97,7 @@ All colors are defined in `/src/styles/tailwind.css` using CSS custom properties
   --color-theme-primary-darker: #104a4c;
   --color-theme-primary-light: #23a3a9;
   --color-theme-primary-lighter: #5fd8dd;
-  --color-theme-brand: #2dccd3; /* PANTONE 319 C, decorative use only */
+  --color-theme-brand: #2dccd3; /* PANTONE 319 C, the footer ground */
 
   /* Surface Colors */
   --color-theme-surface: #ffffff;
@@ -107,6 +109,7 @@ All colors are defined in `/src/styles/tailwind.css` using CSS custom properties
   --color-theme-text-secondary: #374151;
   --color-theme-text-muted: #6b7280;
   --color-theme-text-on-primary: #ffffff;
+  --color-theme-text-on-brand: #0b3335; /* dark ink for the bright 319 C ground */
 
   /* Accent Colors */
   --color-theme-accent-sky: #0e7490;

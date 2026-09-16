@@ -57,6 +57,9 @@
 	--color-theme-text-muted: #6b7280; /* gray-500 */
 	--color-theme-text-on-primary: #ffffff;
 	--color-theme-text-on-dark: #ffffff;
+	/* Ink for use on the bright PANTONE 319 C ground, where white would only
+	   reach 1.96:1. Same hue and saturation as 319 C, lightness 12.5%. */
+	--color-theme-text-on-brand: #0b3335;
 
 	/* Border Colors */
 	--color-theme-border-light: #f3f4f6; /* gray-100 */

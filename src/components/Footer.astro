@@ -18,14 +18,14 @@ const year = new Date().getFullYear();
 const footerServices = t.services.groups.map((group) => group.title);
 ---
 
-<footer class="bg-theme-primary-darker text-white">
+<footer class="bg-theme-brand text-theme-text-on-brand">
   <div class="container section-sm">
     <div class="grid gap-10 lg:grid-cols-3">
       <!-- Brand and contact -->
       <div class="lg:col-span-2">
         <div class="flex items-center gap-3 mb-4">
-          <!-- White tile behind the mark: the logo's own teal ground would
-               disappear against the dark footer -->
+          <!-- White tile behind the mark: the logo's own dark teal ground sits
+               too close to the PANTONE 319 C footer to read as a separate shape -->
           <img
             src={logo.src}
             alt={t.brand.logoAlt}
@@ -34,45 +34,45 @@ const footerServices = t.services.groups.map((group) => group.title);
             class="w-12 h-12 rounded-xl bg-white p-1"
             loading="lazy"
           />
-          <span class="text-xl lg:text-2xl font-bold text-white">
+          <span class="text-xl lg:text-2xl font-bold">
             {t.brand.name}
           </span>
         </div>
 
         <ul class="space-y-3 mb-6">
           <li class="flex items-start">
-            <Icon name="location" size="sm" class="text-theme-primary-lighter mt-1 mr-3 flex-shrink-0" />
-            <p class="text-sm text-white/90">
+            <Icon name="location" size="sm" class="mt-1 mr-3 flex-shrink-0" />
+            <p class="text-sm">
               {site.contact.addressLine1}<br />{site.contact.addressLine2}
             </p>
           </li>
           <li class="flex items-start">
-            <Icon name="phone" size="sm" class="text-theme-primary-lighter mt-1 mr-3 flex-shrink-0" />
-            <p class="text-sm text-white/90">
-              <a href={site.contact.phoneHref} class="hover:text-white">
+            <Icon name="phone" size="sm" class="mt-1 mr-3 flex-shrink-0" />
+            <p class="text-sm">
+              <a href={site.contact.phoneHref} class="hover:underline">
                 {site.contact.phone}
               </a>
-              <span class="block text-white/70">{t.common.callUsToday}</span>
+              <span class="block">{t.common.callUsToday}</span>
             </p>
           </li>
           <li class="flex items-start">
-            <Icon name="email" size="sm" class="text-theme-primary-lighter mt-1 mr-3 flex-shrink-0" />
-            <p class="text-sm text-white/90">
-              <a href={`mailto:${site.contact.email}`} class="hover:text-white">
+            <Icon name="email" size="sm" class="mt-1 mr-3 flex-shrink-0" />
+            <p class="text-sm">
+              <a href={`mailto:${site.contact.email}`} class="hover:underline">
                 {site.contact.email}
               </a>
             </p>
           </li>
         </ul>
 
-        <p class="text-sm leading-relaxed text-white/80 max-w-xl">
+        <p class="text-sm leading-relaxed max-w-xl">
           {t.footer.description}
         </p>
       </div>
 
       <!-- Services -->
       <div>
-        <h2 class="text-base font-semibold mb-4 text-white">
+        <h2 class="text-base font-semibold mb-4">
           {t.footer.servicesHeading}
         </h2>
         <ul class="space-y-2">
@@ -81,7 +81,7 @@ const footerServices = t.services.groups.map((group) => group.title);
               <li>
                 <a
                   href={localizePath("/services", locale)}
-                  class="text-sm text-white/80 hover:text-white"
+                  class="text-sm hover:underline"
                 >
                   {service}
                 </a>
@@ -94,9 +94,9 @@ const footerServices = t.services.groups.map((group) => group.title);
 
     <!-- Bottom bar -->
     <div
-      class="mt-10 pt-6 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between gap-4"
+      class="mt-10 pt-6 border-t border-theme-text-on-brand/25 flex flex-col sm:flex-row items-center justify-between gap-4"
     >
-      <p class="text-sm text-white/70">
+      <p class="text-sm">
         &copy; {year} {t.brand.name}. {t.footer.rightsReserved}.
       </p>
       <nav class="flex flex-wrap justify-center gap-x-4 gap-y-2">
@@ -104,7 +104,7 @@ const footerServices = t.services.groups.map((group) => group.title);
           t.nav.links.map((link) => (
             <a
               href={localizePath(link.href, locale)}
-              class="text-sm text-white/80 hover:text-white"
+              class="text-sm hover:underline"
             >
               {link.label}
             </a>

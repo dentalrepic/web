@@ -122,8 +122,8 @@ rsvg-convert -w 180 -h 180 src/assets/logo-dcr.svg -o public/apple-touch-icon.pn
 rsvg-convert -w 512 -h 512 src/assets/logo-dcr.svg -o public/logo-dcr-512.png
 ```
 
-In the footer the mark sits on a white tile, since its own dark teal ground would otherwise
-disappear against the dark footer background.
+In the footer the mark sits on a white tile, since its own dark teal ground sits too close to
+the PANTONE 319 C footer background to read as a separate shape.
 
 The colour palette is built on **PANTONE 319 C**, the clinic's brand colour, which converts
 to `#2dccd3` in sRGB. That value only reaches 1.96:1 contrast against white, which fails
@@ -137,7 +137,12 @@ WCAG AA for text, so the text and UI shades in `src/styles/tailwind.css` hold it
 | `--color-theme-primary-darker` | `#104a4c` | 9.97:1 |
 | `--color-theme-primary-light` | `#23a3a9` | 3.05:1, large text and UI only |
 | `--color-theme-primary-lighter` | `#5fd8dd` | 1.70:1, decorative only |
-| `--color-theme-brand` | `#2dccd3` | PANTONE 319 C, decorative fills only |
+| `--color-theme-brand` | `#2dccd3` | PANTONE 319 C, used as the footer ground |
+
+The footer is 319 C at full strength. Because white text on it would only reach 1.96:1, the
+footer sets its text to `--color-theme-text-on-brand` (`#0b3335`, the same hue and saturation
+at 12.5% lightness), which gives 6.94:1. Any element placed on the brand colour should use
+that ink rather than white.
 
 ## SEO
 
