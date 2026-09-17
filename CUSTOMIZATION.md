@@ -77,6 +77,12 @@ shared body component and passes the active locale, so all copy lives in
 - `info` - FAQ page
 - `notFound` - 404 page
 - `faqs` - FAQ question and answer list
+- `serviceDetails` - The six individual treatment pages under `/services/`, keyed by slug.
+  Deliberately partial: only Croatian and English have them, because the copy is the clinic's
+  own and was written in those two languages only. Adding a slug to `de.ts` or `it.ts` is all
+  that is needed to publish it in that language — the route, the language switcher and the
+  `hreflang` alternates all derive from this record via `src/i18n/services.ts`.
+- `serviceDetailChrome` - Labels shared by those pages (back link, FAQ heading, CTA)
 
 Edit the string in each language file you support. To change layout or structure rather
 than wording, edit the matching body component in `/src/components/pages/`.

@@ -11,6 +11,8 @@
  */
 import { locales, localeNames, localeShortNames, type Locale } from "../i18n/config";
 import { getAlternateLinks, useTranslations } from "../i18n/utils";
+import { getServiceDetailLocales, isServiceDetailSlug } from "../i18n/services";
+import { stripLocaleFromPath } from "../i18n/utils";
 import FlagIcon from "./FlagIcon.astro";
 
 interface Props {
@@ -29,6 +31,22 @@ const t = useTranslations(locale);
 const alternates = getAlternateLinks(Astro.url.pathname);
 const hrefFor = (target: Locale) =>
   alternates.find((alternate) => alternate.locale === target)?.path ?? "/";
+
+/*
+ * On a service detail page, only offer the languages that page exists in.
+ *
+ * These pages are the one part of the site that is not in every language: their
+ * copy is the clinic's own clinical prose, written in Croatian and English only.
+ * Offering German here would link to a page that was never built, so the
+ * switcher lists just the available languages instead.
+ */
+const route = stripLocaleFromPath(Astro.url.pathname);
+const serviceMatch = route.match(/^\/services\/([^/]+)\/?$/);
+const serviceSlug = serviceMatch?.[1];
+const availableLocales =
+  serviceSlug && isServiceDetailSlug(serviceSlug)
+    ? getServiceDetailLocales(serviceSlug)
+    : locales;
 
 const isCompact = variant === "compact";
 ---
@@ -66,7 +84,7 @@ const isCompact = variant === "compact";
   >
     <ul class="p-2">
       {
-        locales.map((option) => {
+        availableLocales.map((option) => {
           const isActive = option === locale;
           return (
             <li>

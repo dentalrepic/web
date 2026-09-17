@@ -319,6 +319,7 @@ export const it: Translation = {
         ],
       },
     ],
+    detailsHeading: "Singoli trattamenti",
     equipment: {
       heading: "Attrezzature e materiali",
       paragraph:
@@ -518,6 +519,27 @@ export const it: Translation = {
     backHome: "Torna alla home",
     contactUs: "Contattaci",
     lookingForLabel: "Forse stai cercando:",
+  },
+
+  // Nessuna pagina di dettaglio dei servizi: il testo è quello clinico della
+  // clinica stessa ed esiste solo in croato e in inglese. Invece di tradurre
+  // automaticamente migliaia di parole di terminologia dentale, queste pagine
+  // sono assenti in italiano e l'elenco dei servizi rimanda alle lingue
+  // disponibili. Aggiungendo le voci qui, le rotte, il selettore di lingua e la
+  // sitemap si aggiornano da soli.
+  serviceDetails: {},
+
+  serviceDetailChrome: {
+    backToServices: "Tutti i servizi",
+    faqHeading: "Domande frequenti",
+    relatedHeading: "Altri servizi",
+    cta: {
+      heading: "Hai una domanda su questo trattamento?",
+      subheading:
+        "Chiamaci o prenota un appuntamento — la prima visita è gratuita e il piano di terapia lo concordiamo insieme a te.",
+      primaryButton: "Prenota un appuntamento",
+    },
+    availableInLabel: "Disponibile in croato e inglese",
   },
 
   faqs: [

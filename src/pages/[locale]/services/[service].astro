@@ -1,0 +1,19 @@
+---
+// Service detail pages for the locale-prefixed routes (/en, /de, /it).
+//
+// Only (locale, slug) pairs that actually have copy are generated, so a
+// language without these pages simply has no routes here rather than empty ones.
+import ServiceDetailPage from "../../../components/pages/ServiceDetailPage.astro";
+import { getPrefixedServiceDetailPaths } from "../../../i18n/services";
+import type { Locale } from "../../../i18n/config";
+import type { ServiceDetailSlug } from "../../../i18n/types";
+
+export const getStaticPaths = getPrefixedServiceDetailPaths;
+
+const { locale, service } = Astro.params as {
+  locale: Locale;
+  service: ServiceDetailSlug;
+};
+---
+
+<ServiceDetailPage locale={locale} slug={service} />

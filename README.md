@@ -17,12 +17,51 @@ Copy, contact details, opening hours and the logo are taken from that site.
 | Home | `/` |
 | About / team | `/about` |
 | Services | `/services` |
+| Service detail | `/services/<slug>` (6 pages) |
 | Dental tourism | `/dental-tourism` |
 | Contact and booking | `/contact` |
 | FAQ | `/info` |
 | 404 | any unknown path |
 
-Every page exists in four languages, so the build produces 28 pages.
+Every page exists in four languages except the six service detail pages, which are Croatian
+and English only — see [Service detail pages](#service-detail-pages). The build produces 40
+pages.
+
+### Service detail pages
+
+Six treatments have their own page under `/services/`:
+
+| Slug | Croatian | English |
+| --- | --- | --- |
+| `implantologija` | Implantologija | Implantology |
+| `ortodoncija` | Ortodoncija | Orthodontics |
+| `protetika` | Protetika | Dental prosthetics |
+| `estetska-dentalna-medicina` | Estetska dentalna medicina | Aesthetic dental medicine |
+| `endodoncija` | Endodoncija | Endodontics |
+| `parodontologija` | Parodontologija | Periodontology |
+
+The copy is the clinic's own clinical prose, transferred from the old WordPress site, which
+wrote it in Croatian and English only. Rather than machine-translate roughly 15,000 words of
+dental terminology, these pages are **absent in German and Italian** rather than
+auto-translated. That is a deliberate gap, and the code models it:
+
+- `serviceDetails` in each locale file is a `Partial<Record<ServiceDetailSlug, ServiceDetail>>`,
+  so a locale simply omits what it does not have.
+- `src/i18n/services.ts` derives the routes from that record, so no empty pages are built.
+- The language switcher and the `hreflang` alternates on these pages list only the languages
+  that actually have them, so neither offers a link to a page that was never generated.
+- The services index only shows its "individual treatments" list where the locale has pages.
+
+To add German or Italian, put the translations in `serviceDetails` in `de.ts` or `it.ts`.
+Routes, the switcher and the alternates follow automatically; nothing else needs touching.
+
+The transferred copy was corrected rather than mirrored. The old site had run-together words
+("metodomPRF", "isan", "RepićDental"), missing Croatian diacritics in the post-operative
+instructions, two paragraphs about prosthetics stranded on the periodontology page (one
+duplicated verbatim from the prosthetics page), a paragraph about periodontal disease on the
+orthodontics page, and FAQ answers ending in bare `americanortho.com` URLs, two of which are
+dead. The English pages also had a Croatian heading left on the endodontics page and a typo in
+"FOR YOUR BEAUTIFUL NAD HEALTHY SMILE".
 
 ## Languages
 

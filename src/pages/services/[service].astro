@@ -1,0 +1,13 @@
+---
+// Croatian service detail pages (default locale, served from the site root).
+import ServiceDetailPage from "../../components/pages/ServiceDetailPage.astro";
+import { defaultLocale } from "../../i18n/config";
+import { getRootServiceDetailPaths } from "../../i18n/services";
+import type { ServiceDetailSlug } from "../../i18n/types";
+
+export const getStaticPaths = getRootServiceDetailPaths;
+
+const { service } = Astro.params as { service: ServiceDetailSlug };
+---
+
+<ServiceDetailPage locale={defaultLocale} slug={service} />

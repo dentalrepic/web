@@ -33,6 +33,52 @@ export interface ServiceGroup {
   items: string[];
 }
 
+/**
+ * Slugs of the individual service detail pages, in the order they appear on the
+ * services index.
+ */
+export const serviceDetailSlugs = [
+  "implantologija",
+  "ortodoncija",
+  "protetika",
+  "estetska-dentalna-medicina",
+  "endodoncija",
+  "parodontologija",
+] as const;
+
+export type ServiceDetailSlug = (typeof serviceDetailSlugs)[number];
+
+/** A heading followed by its body paragraphs, the unit these pages are built from. */
+export interface ServiceSection {
+  heading?: string;
+  /** Paragraphs of plain text. Rendered one <p> each. */
+  paragraphs?: string[];
+  /** Optional bulleted list rendered after the paragraphs. */
+  bullets?: string[];
+}
+
+/**
+ * One service detail page.
+ *
+ * The copy comes from the clinic's own pages on the old WordPress site, so it
+ * only exists in the languages the clinic actually wrote. `serviceDetails` is
+ * therefore a partial record: a locale that has no translation simply omits the
+ * slug, and the route for that locale is not generated. See
+ * `getServiceDetail()` and `getServiceDetailLocales()` in i18n/services.ts.
+ */
+export interface ServiceDetail {
+  /** Path segment under /services/. Shared across locales so URLs stay stable. */
+  slug: ServiceDetailSlug;
+  meta: { title: string; description: string };
+  /** Small label above the page title, e.g. "ŠTO SU ZUBNI IMPLANTATI". */
+  eyebrow: string;
+  title: string;
+  /** One-sentence summary, used as the hero lead and on the services index. */
+  lead: string;
+  sections: ServiceSection[];
+  faqs?: FaqItem[];
+}
+
 export interface TeamMember {
   name: string;
   /** Professional title and specialisation. */
@@ -139,6 +185,8 @@ export interface Translation {
     intro: { heading: string; paragraph: string };
     /** Full treatment catalogue, grouped by area. */
     groups: ServiceGroup[];
+    /** Heading above the list of individual treatment pages. */
+    detailsHeading: string;
     equipment: {
       heading: string;
       paragraph: string;
@@ -220,4 +268,26 @@ export interface Translation {
   };
 
   faqs: FaqItem[];
+
+  /**
+   * Individual service pages, keyed by slug.
+   *
+   * Deliberately partial: see the note on `ServiceDetail`. Croatian and English
+   * are complete because the clinic wrote both; German and Italian are absent
+   * until a native speaker supplies them, rather than being machine-translated.
+   */
+  serviceDetails: Partial<Record<ServiceDetailSlug, ServiceDetail>>;
+
+  /** Chrome shared by every service detail page. */
+  serviceDetailChrome: {
+    /** Label of the link back to the services index. */
+    backToServices: string;
+    /** Heading above the FAQ accordion on pages that have one. */
+    faqHeading: string;
+    /** Heading of the "other treatments" list at the foot of the page. */
+    relatedHeading: string;
+    cta: { heading: string; subheading: string; primaryButton: string };
+    /** Shown on the services index for pages not yet available in this language. */
+    availableInLabel: string;
+  };
 }

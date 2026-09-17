@@ -9,6 +9,7 @@ import { it } from "./locales/it";
 export const translations: Record<Locale, Translation> = { hr, en, de, it };
 
 export type { Translation } from "./types";
+export { serviceDetailSlugs } from "./types";
 export type {
   NavLink,
   FaqItem,
@@ -17,4 +18,7 @@ export type {
   ServiceGroup,
   TeamMember,
   Testimonial,
+  ServiceDetail,
+  ServiceDetailSlug,
+  ServiceSection,
 } from "./types";

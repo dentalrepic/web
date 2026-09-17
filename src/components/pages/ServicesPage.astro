@@ -14,6 +14,7 @@ import Heading from "../Heading.astro";
 import type { IconName } from "../../types/icons";
 import type { Locale } from "../../i18n/config";
 import { localizePath, useTranslations } from "../../i18n/utils";
+import { getServiceDetails } from "../../i18n/services";
 
 interface Props {
   locale: Locale;
@@ -37,6 +38,10 @@ const groups = services.groups.map((group, index) => ({
   ...group,
   ...groupStyles[index % groupStyles.length],
 }));
+
+// Detail pages available in this language. Empty for locales that have none, in
+// which case this section does not render at all.
+const details = getServiceDetails(locale);
 ---
 
 <Layout locale={locale} title={services.meta.title} description={services.meta.description}>
@@ -89,6 +94,40 @@ const groups = services.groups.map((group, index) => ({
       </div>
     </div>
   </section>
+
+  <!-- Detail pages, where the language has them -->
+  {
+    details.length > 0 && (
+      <section class="section bg-theme-surface">
+        <div class="container">
+          <div class="narrow mx-auto text-center mb-10">
+            <Heading level="h2" align="center">{services.detailsHeading}</Heading>
+          </div>
+          <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {details.map((detail) => (
+              <li>
+                <a
+                  href={localizePath(`/services/${detail.slug}`, locale)}
+                  class="group flex h-full flex-col rounded-xl border border-theme-border bg-theme-surface p-6 shadow-md transition-colors hover:border-theme-primary"
+                >
+                  <h3 class="mb-2 text-lg font-bold text-theme-text-primary group-hover:text-theme-primary">
+                    {detail.title}
+                  </h3>
+                  <p class="mb-4 flex-1 text-sm leading-relaxed text-theme-text-secondary">
+                    {detail.lead}
+                  </p>
+                  <span class="inline-flex items-center gap-2 text-sm font-semibold text-theme-primary">
+                    {t.common.learnMore}
+                    <Icon name="arrow-right" size="sm" />
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )
+  }
 
   <!-- Equipment -->
   <section class="section bg-theme-surface">

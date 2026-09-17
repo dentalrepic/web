@@ -320,6 +320,7 @@ export const de: Translation = {
         ],
       },
     ],
+    detailsHeading: "Einzelne Leistungen",
     equipment: {
       heading: "Geräte und Materialien",
       paragraph:
@@ -519,6 +520,27 @@ export const de: Translation = {
     backHome: "Zurück zur Startseite",
     contactUs: "Kontakt aufnehmen",
     lookingForLabel: "Vielleicht suchen Sie:",
+  },
+
+  // No service detail pages yet: the copy is the clinic's own clinical prose and
+  // exists only in Croatian and English. Rather than machine-translate several
+  // thousand words of dental terminology, these pages are absent in German and
+  // the services index links to the languages that have them. Add entries here
+  // once a native speaker supplies the translations; the routes, the language
+  // switcher and the sitemap follow automatically.
+  serviceDetails: {},
+
+  serviceDetailChrome: {
+    backToServices: "Alle Leistungen",
+    faqHeading: "Häufige Fragen",
+    relatedHeading: "Weitere Leistungen",
+    cta: {
+      heading: "Haben Sie eine Frage zu dieser Behandlung?",
+      subheading:
+        "Rufen Sie uns an oder buchen Sie einen Termin — die erste Untersuchung ist kostenlos, und den Behandlungsplan stimmen wir gemeinsam mit Ihnen ab.",
+      primaryButton: "Termin buchen",
+    },
+    availableInLabel: "Auf Kroatisch und Englisch verfügbar",
   },
 
   faqs: [

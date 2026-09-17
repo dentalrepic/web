@@ -1,6 +1,7 @@
 export type IconName =
   | "check"
   | "arrow-right"
+  | "arrow-left"
   | "chevron-right"
   | "chevron-down"
   | "phone"
