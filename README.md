@@ -137,26 +137,32 @@ For hosting, see [DEPLOYMENT.md](DEPLOYMENT.md) (Cloudflare Pages).
 - [x] **Use the clinic's own mark.** The logo is now the tooth-in-a-disc mark from the
       clinic's brand manual (`DCR_ShadesOfWhite_2025-02`), traced from its vector artwork.
       The DCR monogram drawn for this rebuild is gone.
-- [ ] **Consider the full DCR lockup.** The manual's primary logo is a grey "DCR" wordmark
-      whose C is the tooth mark, with "DENTAL CENTAR REPIĆ" beneath. The site uses the mark
-      on its own next to live text instead, which suits a header better; adopting the lockup
-      would need the manual's typeface and a wider header slot.
+- [x] **Adopt the full DCR lockup.** The header now carries the manual's primary logo from
+      page 11: the DCR wordmark whose C is the tooth mark, traced from the same artwork.
 
 ## Branding
 
-The logo is the clinic's own mark, `src/assets/logo-dcr.svg`: a tooth knocked out of a
-PANTONE 319 C disc, traced from the vector artwork in the clinic's brand manual
-(`DCR_ShadesOfWhite_2025-02`, CorelDRAW). The tooth is a cutout, so the path's
-`fill-rule="evenodd"` must stay.
+The header carries the manual's primary logo, `src/assets/logo-dcr-lockup.svg`: the DCR
+wordmark whose C is the tooth mark ("odnos logotipa i znaka", page 11 of the manual). The
+clinic's full name sits beside it as live text on large viewports, since the lockup already
+spells DCR and repeating it inside the artwork would be redundant.
 
-The manual's own colour page specifies PANTONE 319 C as R45 G204 B211, so the disc uses
-`#2dccd3`. The source artwork carried a slightly bluer `#3dcbeb`; the specified value wins.
+The mark on its own, `src/assets/logo-dcr.svg`, is a tooth knocked out of a PANTONE 319 C
+disc. Both are traced from the vector artwork in the clinic's brand manual
+(`DCR_ShadesOfWhite_2025-02`, CorelDRAW). The tooth is a cutout, so `fill-rule="evenodd"`
+must stay on those paths.
+
+The manual's colour page specifies PANTONE 319 C as R45 G204 B211, so the disc uses
+`#2dccd3`, and PANTONE Cool Gray 9 C as R117 G120 B123, so the wordmark uses `#75787b`
+(4.44:1 on white). The source artwork carried a slightly bluer `#3dcbeb` and a violet-leaning
+`#868595`; the specified values win.
 
 Variants:
 
 | File | Purpose |
 | --- | --- |
-| `src/assets/logo-dcr.svg` | Positive mark, 319 C disc. Header |
+| `src/assets/logo-dcr-lockup.svg` | Full DCR lockup, wordmark plus tooth. Header |
+| `src/assets/logo-dcr.svg` | Positive mark alone, 319 C disc |
 | `src/assets/logo-dcr-negative.svg` | White disc, tooth cut out. Footer, where the positive mark would vanish into the 319 C ground. The manual sanctions this for use on colour |
 | `public/favicon.svg` | Browser tab. A solid tooth silhouette, because the manual's thin outline closes up at 16px |
 | `public/apple-touch-icon.png` | iOS home screen, 180px. iOS ignores SVG favicons and composites transparency onto black, so this one is full-bleed 319 C |

@@ -15,7 +15,7 @@ This guide covers the design system and components behind the Dental Centar Repi
 ### 1. Update Branding
 
 **Logo:**
-The clinic logo is the mark from its brand manual: a tooth knocked out of a PANTONE 319 C disc, at `/src/assets/logo-dcr.svg`. The tooth is a cutout, so `fill-rule="evenodd"` on the path must stay. The header uses this positive version; the footer uses `/src/assets/logo-dcr-negative.svg` (white disc, tooth cut out), because the positive mark is 319 C itself and would disappear against the 319 C footer. Shared contact details live in `/src/data/site.json`.
+The header carries the brand manual's primary logo at `/src/assets/logo-dcr-lockup.svg`: the DCR wordmark whose C is the tooth mark (page 11 of the manual). The clinic's full name sits beside it as live text on large viewports. The mark on its own is `/src/assets/logo-dcr.svg`, a tooth knocked out of a PANTONE 319 C disc. The tooth is a cutout, so `fill-rule="evenodd"` on those paths must stay. The footer uses `/src/assets/logo-dcr-negative.svg` (white disc, tooth cut out), because the positive mark is 319 C itself and would disappear against the 319 C footer. Shared contact details live in `/src/data/site.json`.
 
 **Favicon:**
 `/public/favicon.svg` is a solid tooth silhouette rather than the manual's thin outline: at 16px the outline closes up and the icon reads as a smudge. `/public/apple-touch-icon.png` (180px) covers iOS home screens, which ignore SVG favicons, and `/public/logo-dcr-512.png` is the raster logo used by the structured data. Both PNGs come from opaque sources in `/src/assets/brand/`, since iOS composites transparency onto black:

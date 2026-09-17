@@ -2,7 +2,7 @@
 // Import the components from the astro-navbar npm package
 import { Astronav, MenuItems } from "astro-navbar";
 import Icon from "./Icon.astro";
-import logo from "../assets/logo-dcr.svg";
+import logo from "../assets/logo-dcr-lockup.svg";
 import site from "../data/site.json";
 import LanguageSwitcher from "./LanguageSwitcher.astro";
 import type { Locale } from "../i18n/config";
@@ -36,26 +36,34 @@ const isCurrentPage = (href: string) => {
         <!-- Logo -->
         <a
           href={localizePath("/", locale)}
-          class="shrink-0 flex items-center gap-2.5 group relative z-10"
+          class="shrink-0 flex items-center gap-3 group relative z-10"
         >
-          <!-- SVG mark: served as a plain <img> so it stays crisp at any
-               density, with no raster processing needed -->
+          <!--
+            The manual's primary logo ("odnos logotipa i znaka", page 11): the DCR
+            wordmark whose C is the tooth mark. Served as a plain <img> so it
+            stays crisp at any density, with no raster processing needed.
+
+            The lockup already spells DCR, so the clinic's full name sits beside
+            it as live text rather than being repeated inside the artwork. Below
+            the sm breakpoint the name is dropped to keep the header one line;
+            the accessible name survives in the sr-only span.
+          -->
           <img
             src={logo.src}
             alt={t.brand.logoAlt}
-            width="44"
-            height="44"
-            class="w-10 h-10 xl:w-11 xl:h-11 transition-transform duration-300 group-hover:scale-[1.04]"
+            width="112"
+            height="46"
+            class="h-9 xl:h-10 w-auto transition-transform duration-300 group-hover:scale-[1.04]"
             loading="eager"
             fetchpriority="high"
           />
           <span
-            class="hidden sm:inline text-lg xl:text-2xl font-display font-bold text-theme-primary whitespace-nowrap"
+            class="hidden lg:inline text-base xl:text-lg font-display font-semibold text-theme-primary whitespace-nowrap"
           >
             {t.brand.name}
           </span>
-          <!-- Narrow phones: the logo alone stands in for the name -->
-          <span class="sm:hidden sr-only">{t.brand.name}</span>
+          <!-- Narrow viewports: the lockup alone stands in for the name -->
+          <span class="lg:hidden sr-only">{t.brand.name}</span>
         </a>
 
         <!-- Desktop Navigation -->
