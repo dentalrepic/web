@@ -30,7 +30,6 @@ export const en: Translation = {
     description:
       "Preserving oral health, function and aesthetics are the foundation of the services we provide to patients. Each patient receives an individual approach, and we keep up with technological advancements to ensure the best possible service. We constantly invest in new equipment and in the professional development of our team.",
     servicesHeading: "Services",
-    rightsReserved: "All rights reserved",
   },
 
   common: {

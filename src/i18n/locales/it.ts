@@ -29,7 +29,6 @@ export const it: Translation = {
     description:
       "La tutela della salute orale, della funzione e dell'estetica è il fondamento del nostro lavoro con i pazienti. Trattiamo ogni paziente in modo individuale, seguiamo il progresso tecnologico e ci impegniamo in ogni momento a offrire il miglior servizio possibile. Investiamo costantemente in nuove attrezzature e nella formazione professionale del nostro team.",
     servicesHeading: "Servizi",
-    rightsReserved: "Tutti i diritti riservati",
   },
 
   common: {

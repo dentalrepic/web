@@ -107,7 +107,6 @@ export interface Translation {
   footer: {
     description: string;
     servicesHeading: string;
-    rightsReserved: string;
   };
 
   common: {

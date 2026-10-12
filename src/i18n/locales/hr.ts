@@ -29,7 +29,6 @@ export const hr: Translation = {
     description:
       "Očuvanje oralnog zdravlja, funkcije i estetike temelj su našeg rada s pacijentima. Svakom pacijentu pristupamo individualno, pratimo napredak tehnologije i u svakom trenutku nastojimo svojim pacijentima omogućiti najbolju moguću uslugu. Konstantno ulažemo u novu opremu kao i u stručnu edukaciju našeg tima.",
     servicesHeading: "Usluge",
-    rightsReserved: "Sva prava pridržana",
   },
 
   common: {

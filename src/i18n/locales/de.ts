@@ -29,7 +29,6 @@ export const de: Translation = {
     description:
       "Die Erhaltung der Mundgesundheit, der Funktion und der Ästhetik ist die Grundlage unserer Arbeit mit Patienten. Jeden Patienten behandeln wir individuell, wir verfolgen den technologischen Fortschritt und bemühen uns jederzeit, unseren Patienten die bestmögliche Versorgung zu bieten. Wir investieren fortlaufend in neue Geräte sowie in die fachliche Weiterbildung unseres Teams.",
     servicesHeading: "Leistungen",
-    rightsReserved: "Alle Rechte vorbehalten",
   },
 
   common: {
