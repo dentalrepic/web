@@ -5,6 +5,10 @@
  * The booking form posts to /api/contact, a Cloudflare Pages Function in
  * functions/api/contact.ts. The form carries a real method and action, so it
  * still submits if JavaScript is unavailable.
+ *
+ * Spam protection: a honeypot field, plus a Cloudflare Turnstile "verify you
+ * are human" check when PUBLIC_TURNSTILE_SITE_KEY is set at build time. The
+ * Function enforces the token only when TURNSTILE_SECRET is set, so set both.
  */
 import Layout from "../../layouts/Layout.astro";
 import PageHero from "../PageHero.astro";
@@ -21,6 +25,7 @@ interface Props {
 const { locale } = Astro.props;
 const t = useTranslations(locale);
 const contact = t.contact;
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 ---
 
 <Layout locale={locale} title={contact.meta.title} description={contact.meta.description}>
@@ -113,6 +118,7 @@ const contact = t.contact;
             data-submitting={contact.form.submitting}
             data-success={contact.form.successMessage}
             data-error={contact.form.errorMessage}
+            data-captcha={contact.form.captchaMessage}
           >
             <!-- Tells the endpoint which language the enquiry came from -->
             <input type="hidden" name="locale" value={locale} />
@@ -217,6 +223,17 @@ const contact = t.contact;
               </div>
             </div>
 
+            {
+              turnstileSiteKey && (
+                <div
+                  id="turnstileWidget"
+                  class="mt-6 min-h-[65px]"
+                  data-sitekey={turnstileSiteKey}
+                  data-language={locale}
+                />
+              )
+            }
+
             <button
               type="submit"
               class="button button-primary w-full justify-center mt-6"
@@ -261,6 +278,35 @@ const contact = t.contact;
    * runs: the browser posts normally and the Function responds. This only
    * improves the experience when JavaScript is available.
    */
+  type Turnstile = {
+    render: (el: HTMLElement, options: Record<string, unknown>) => string;
+    getResponse: (id: string) => string | undefined;
+    reset: (id: string) => void;
+    remove: (id: string) => void;
+  };
+
+  let turnstileScript: Promise<Turnstile> | undefined;
+
+  /**
+   * Load the Turnstile API once. Explicit rendering is used because the site's
+   * client-side router swaps pages without a reload, which the implicit
+   * auto-render would miss.
+   */
+  function loadTurnstile(): Promise<Turnstile> {
+    turnstileScript ??= new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+      script.async = true;
+      script.onload = () => resolve((window as unknown as { turnstile: Turnstile }).turnstile);
+      script.onerror = () => {
+        turnstileScript = undefined;
+        reject(new Error("Turnstile failed to load"));
+      };
+      document.head.appendChild(script);
+    });
+    return turnstileScript;
+  }
+
   function setupContactForm() {
     const form = document.getElementById("contactForm") as HTMLFormElement | null;
     const status = document.getElementById("contactFormStatus");
@@ -269,6 +315,32 @@ const contact = t.contact;
     form.dataset.bound = "true";
     const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
     const idleLabel = button?.textContent ?? "";
+
+    // Turnstile widget, present only when a site key was configured at build.
+    const widget = document.getElementById("turnstileWidget");
+    let turnstile: Turnstile | undefined;
+    let widgetId: string | undefined;
+    if (widget) {
+      loadTurnstile()
+        .then((api) => {
+          // The page may have been navigated away from while the script loaded.
+          if (!widget.isConnected) return;
+          turnstile = api;
+          widgetId = api.render(widget, {
+            sitekey: widget.dataset.sitekey,
+            language: widget.dataset.language,
+          });
+          // Drop the widget on navigation so a revisit renders a fresh one.
+          document.addEventListener(
+            "astro:before-swap",
+            () => widgetId && api.remove(widgetId),
+            { once: true }
+          );
+        })
+        .catch(() => {
+          // Leave the form usable; the Function will reject a missing token.
+        });
+    }
 
     const setStatus = (message: string, ok: boolean) => {
       status.textContent = message;
@@ -280,6 +352,10 @@ const contact = t.contact;
       event.preventDefault();
       // novalidate is set so we control when native messages appear.
       if (!form.reportValidity()) return;
+      if (widget && !(turnstile && widgetId && turnstile.getResponse(widgetId))) {
+        setStatus(form.dataset.captcha ?? "", false);
+        return;
+      }
 
       if (button) {
         button.disabled = true;
@@ -300,6 +376,8 @@ const contact = t.contact;
       } catch {
         setStatus(form.dataset.error ?? "", false);
       } finally {
+        // Tokens are single use, so issue a fresh one for the next attempt.
+        if (turnstile && widgetId) turnstile.reset(widgetId);
         if (button) {
           button.disabled = false;
           button.textContent = idleLabel;

@@ -77,6 +77,7 @@ these variables under **Pages > Settings > Variables and secrets**:
 | `MAIL_TO` | Plaintext | Where enquiries are delivered, e.g. `info@dentalrepic.com` |
 | `MAIL_FROM` | Plaintext | Verified sender on your domain, e.g. `web@dentalrepic.com` |
 | `TURNSTILE_SECRET` | Secret | Optional. Enables spam checking when set |
+| `PUBLIC_TURNSTILE_SITE_KEY` | Plaintext | Optional. Shows the Turnstile check on the form; pair with `TURNSTILE_SECRET` |
 
 ### Verify the sending domain first
 
@@ -110,10 +111,18 @@ to switch, change the `sendEmail()` body in `functions/api/contact.ts`.
 Two layers are in place:
 
 - A honeypot field, which needs no configuration.
-- Optional [Turnstile](https://developers.cloudflare.com/turnstile/): create a
-  widget, set `TURNSTILE_SECRET`, and add the widget markup to the form. The
-  Function enforces the token only when the secret is present, so setting it up
-  in the dashboard is the switch that turns it on.
+- Optional [Turnstile](https://developers.cloudflare.com/turnstile/), the
+  "verify you are human" check. Create a widget in the Cloudflare dashboard for
+  your domain, then set both of its keys in the Pages project:
+  - `PUBLIC_TURNSTILE_SITE_KEY` (plain variable): read at build time, it adds
+    the widget to the contact form. Redeploy after setting it.
+  - `TURNSTILE_SECRET` (secret): makes the Function reject submissions without
+    a valid token.
+
+  Set both or neither: a secret without the site key rejects every enquiry,
+  and a site key without the secret shows the check but never enforces it.
+  For local development, put Cloudflare's always-pass test key
+  `PUBLIC_TURNSTILE_SITE_KEY=1x00000000000000000000AA` in `.env`.
 
 ## 4. Headers
 

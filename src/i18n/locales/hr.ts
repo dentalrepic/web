@@ -480,6 +480,7 @@ export const hr: Translation = {
         "Hvala Vam! Zaprimili smo Vaš upit i kontaktirat ćemo Vas unutar radnog vremena.",
       errorMessage:
         "Slanje nije uspjelo. Molimo pokušajte ponovno ili nas nazovite na +385 21 796 241.",
+      captchaMessage: "Molimo potvrdite da niste robot.",
     },
     mapTitle: "Karta s lokacijom Dental Centra Repić u Trogiru",
   },

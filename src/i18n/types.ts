@@ -247,6 +247,8 @@ export interface Translation {
       successMessage: string;
       /** Shown when the request fails, pointing the patient at the phone. */
       errorMessage: string;
+      /** Shown when the patient submits without completing the human check. */
+      captchaMessage: string;
     };
     mapTitle: string;
   };
