@@ -144,9 +144,6 @@ const isCurrentPage = (href: string) => {
                       href={localizePath(link.href, locale)}
                       aria-current={isCurrentPage(link.href) ? "page" : undefined}
                     >
-                      <div class="flex-shrink-0 w-10 h-10 rounded bg-theme-surface-warm mr-3 flex items-center justify-center">
-                        <Icon name={link.icon as any} size="md" class="text-theme-ink" />
-                      </div>
                       <span>{link.label}</span>
                     </a>
                   </li>

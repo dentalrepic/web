@@ -8,7 +8,6 @@
 export interface NavLink {
   label: string;
   href: string;
-  icon: string;
 }
 
 export interface FaqItem {

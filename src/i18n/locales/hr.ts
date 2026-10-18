@@ -14,10 +14,10 @@ export const hr: Translation = {
 
   nav: {
     links: [
-      { label: "Početna", href: "/", icon: "home" },
-      { label: "O nama", href: "/about", icon: "info" },
-      { label: "Usluge", href: "/services", icon: "clipboard" },
-      { label: "Kontakt", href: "/contact", icon: "phone" },
+      { label: "Početna", href: "/" },
+      { label: "O nama", href: "/about" },
+      { label: "Usluge", href: "/services" },
+      { label: "Kontakt", href: "/contact" },
     ],
     cta: { label: "Rezervirajte termin", href: "/contact#form" },
     languageLabel: "Jezik",

@@ -14,10 +14,10 @@ export const it: Translation = {
 
   nav: {
     links: [
-      { label: "Home", href: "/", icon: "home" },
-      { label: "Chi siamo", href: "/about", icon: "info" },
-      { label: "Servizi", href: "/services", icon: "clipboard" },
-      { label: "Contatti", href: "/contact", icon: "phone" },
+      { label: "Home", href: "/" },
+      { label: "Chi siamo", href: "/about" },
+      { label: "Servizi", href: "/services" },
+      { label: "Contatti", href: "/contact" },
     ],
     cta: { label: "Prenota un appuntamento", href: "/contact#form" },
     languageLabel: "Lingua",

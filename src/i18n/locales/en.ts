@@ -15,10 +15,10 @@ export const en: Translation = {
 
   nav: {
     links: [
-      { label: "Home", href: "/", icon: "home" },
-      { label: "About Us", href: "/about", icon: "info" },
-      { label: "Services", href: "/services", icon: "clipboard" },
-      { label: "Contact", href: "/contact", icon: "phone" },
+      { label: "Home", href: "/" },
+      { label: "About Us", href: "/about" },
+      { label: "Services", href: "/services" },
+      { label: "Contact", href: "/contact" },
     ],
     cta: { label: "Book an Appointment", href: "/contact#form" },
     languageLabel: "Language",
