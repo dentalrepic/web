@@ -190,7 +190,7 @@ const gallery = [clinic1, clinic2, clinic3, clinic4, clinic5, clinic6, clinic7].
 				-->
 				<div class="gallery-carousel relative lg:w-[612px] lg:shrink-0">
 					<ul
-						class="gallery -mx-4 flex snap-x snap-mandatory gap-8 overflow-x-auto px-4 md:-mx-8 md:px-8 lg:mx-0 lg:px-0"
+						class="gallery flex snap-x snap-mandatory gap-4 overflow-x-auto rounded sm:gap-8"
 						tabindex="0"
 						aria-label={home.space.galleryLabel}
 					>
@@ -324,6 +324,16 @@ const gallery = [clinic1, clinic2, clinic3, clinic4, clinic5, clinic6, clinic7].
 	.gallery-button:disabled {
 		opacity: 0;
 		pointer-events: none;
+	}
+
+	/* On phones the photos fill the screen, so the arrows step back: smaller and see-through */
+	@media (max-width: 767px) {
+		.gallery-button {
+			width: 2.25rem;
+			height: 2.25rem;
+			background-color: rgb(255 255 255 / 0.55);
+			box-shadow: none;
+		}
 	}
 </style>
 
