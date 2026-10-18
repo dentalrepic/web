@@ -17,19 +17,19 @@ Copy, contact details, opening hours and the logo are taken from that site.
 | Home | `/` |
 | About / team | `/about` |
 | Services | `/services` |
-| Service detail | `/services/<slug>` (6 pages) |
+| Service detail | `/services/<slug>` (9 pages) |
 | Dental tourism | `/dental-tourism` |
 | Contact and booking | `/contact` |
 | FAQ | `/info` |
 | 404 | any unknown path |
 
-Every page exists in four languages except the six service detail pages, which are Croatian
-and English only — see [Service detail pages](#service-detail-pages). The build produces 40
+Every page exists in four languages except the nine service detail pages, which are Croatian
+and English only — see [Service detail pages](#service-detail-pages). The build produces 46
 pages.
 
 ### Service detail pages
 
-Six treatments have their own page under `/services/`:
+Nine treatments have their own page under `/services/`:
 
 | Slug | Croatian | English |
 | --- | --- | --- |
@@ -39,6 +39,9 @@ Six treatments have their own page under `/services/`:
 | `estetska-dentalna-medicina` | Estetska dentalna medicina | Aesthetic dental medicine |
 | `endodoncija` | Endodoncija | Endodontics |
 | `parodontologija` | Parodontologija | Periodontology |
+| `oralna-kirurgija` | Oralna kirurgija | Oral surgery |
+| `rtg-dijagnostika` | RTG dijagnostika | X-ray diagnostics |
+| `djecja-dentalna-medicina` | Dječja dentalna medicina | Pediatric dentistry |
 
 The copy is the clinic's own clinical prose, transferred from the old WordPress site, which
 wrote it in Croatian and English only. Rather than machine-translate roughly 15,000 words of
@@ -132,8 +135,9 @@ For hosting, see [DEPLOYMENT.md](DEPLOYMENT.md) (Cloudflare Pages).
 - [ ] **Replace the stock photography** in `src/assets/`. The images ship with the original
       theme and do not show the actual clinic; confirm licensing or swap in the clinic's own
       photos.
-- [ ] **Confirm the opening hours** in `src/data/site.json` (`openingHours`). They are no
-      longer shown on the page, but they are published as `Dentist` structured data.
+- [ ] **Confirm the opening hours** in `src/data/site.json` (`openingHours`). The footer
+      lists them (Monday to Saturday, a missing day shown as closed) and the `Dentist`
+      structured data publishes them.
 - [x] **Use the clinic's own mark.** The logo is now the tooth-in-a-disc mark from the
       clinic's brand manual (`DCR_ShadesOfWhite_2025-02`), traced from its vector artwork.
       The DCR monogram drawn for this rebuild is gone.
@@ -142,10 +146,10 @@ For hosting, see [DEPLOYMENT.md](DEPLOYMENT.md) (Cloudflare Pages).
 
 ## Branding
 
-The header carries the manual's primary logo, `src/assets/logo-dcr-lockup.svg`: the DCR
-wordmark whose C is the tooth mark ("odnos logotipa i znaka", page 11 of the manual). The
-clinic's full name sits beside it as live text on large viewports, since the lockup already
-spells DCR and repeating it inside the artwork would be redundant.
+The header carries the manual's primary logo, the DCR wordmark whose C is the tooth mark
+("odnos logotipa i znaka", page 11 of the manual), in white
+(`src/assets/logo-dcr-lockup-white.svg`), since the header always sits on a photo or on the
+brown ground. `src/assets/logo-dcr-lockup.svg` is the same lockup in the brand colours.
 
 The mark on its own, `src/assets/logo-dcr.svg`, is a tooth knocked out of a PANTONE 319 C
 disc. Both are traced from the vector artwork in the clinic's brand manual
@@ -161,9 +165,10 @@ Variants:
 
 | File | Purpose |
 | --- | --- |
-| `src/assets/logo-dcr-lockup.svg` | Full DCR lockup, wordmark plus tooth. Header |
+| `src/assets/logo-dcr-lockup-white.svg` | Full DCR lockup in white. Header |
+| `src/assets/logo-dcr-lockup.svg` | Full DCR lockup, wordmark plus tooth, in the brand colours |
 | `src/assets/logo-dcr.svg` | Positive mark alone, 319 C disc |
-| `src/assets/logo-dcr-negative.svg` | White disc, tooth cut out. Footer, where the positive mark would vanish into the 319 C ground. The manual sanctions this for use on colour |
+| `src/assets/logo-dcr-negative.svg` | White disc, tooth cut out, for use on colour. Not currently placed |
 | `public/favicon.svg` | Browser tab. A solid tooth silhouette, because the manual's thin outline closes up at 16px |
 | `public/apple-touch-icon.png` | iOS home screen, 180px. iOS ignores SVG favicons and composites transparency onto black, so this one is full-bleed 319 C |
 | `public/logo-dcr-512.png` | Raster logo for the `Dentist` structured data |
@@ -188,12 +193,21 @@ WCAG AA for text, so the text and UI shades in `src/styles/tailwind.css` hold it
 | `--color-theme-primary-darker` | `#104a4c` | 9.97:1 |
 | `--color-theme-primary-light` | `#23a3a9` | 3.05:1, large text and UI only |
 | `--color-theme-primary-lighter` | `#5fd8dd` | 1.70:1, decorative only |
-| `--color-theme-brand` | `#2dccd3` | PANTONE 319 C, used as the footer ground |
+| `--color-theme-brand` | `#2dccd3` | PANTONE 319 C, decorative fills only |
 
-The footer is 319 C at full strength. Because white text on it would only reach 1.96:1, the
-footer sets its text to `--color-theme-text-on-brand` (`#0b3335`, the same hue and saturation
-at 12.5% lightness), which gives 6.94:1. Any element placed on the brand colour should use
-that ink rather than white.
+Any element placed on 319 C at full strength should use `--color-theme-text-on-brand`
+(`#0b3335`, the same hue and saturation at 12.5% lightness, 6.94:1) rather than white.
+
+The 2026 web design (home, services and contact pages) sets the page chrome in warm neutrals
+alongside it:
+
+| Token | Value | Use |
+| --- | --- | --- |
+| `--color-theme-ink` | `#474442` | "Tamno smeđa": the header, buttons, the booking band, small labels. 9.9:1 with white |
+| `--color-theme-sand` | `#ece8e3` | Footer ground |
+| `--color-theme-surface-warm` | `#f8f7f6` | "White Sand" band behind section intros |
+
+Text is set in Roboto and headings in Playfair Display, both self-hosted through Fontsource.
 
 ## SEO
 

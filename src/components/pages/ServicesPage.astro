@@ -1,20 +1,29 @@
 ---
 /**
  * Services page body. Rendered by the localized route files.
+ *
+ * Layout follows the "Usluge" design: a full-width photo, a short
+ * introduction, a card per service, then the booking band.
  */
 import Layout from "../../layouts/Layout.astro";
 import { Image } from "astro:assets";
-import heroImage from "../../assets/hero-services.jpg";
-import equipmentImage from "../../assets/service-detail.jpg";
-import PageHero from "../PageHero.astro";
-import CallToActionSection from "../CallToActionSection.astro";
-import Icon from "../Icon.astro";
-import CheckListItem from "../CheckListItem.astro";
-import Heading from "../Heading.astro";
-import type { IconName } from "../../types/icons";
+import PhotoHero from "../PhotoHero.astro";
+import SectionIntro from "../SectionIntro.astro";
+import BookingBand from "../BookingBand.astro";
+import heroImage from "../../assets/services/services-hero.jpg";
+import implantsImage from "../../assets/services/implantologija.jpg";
+import orthodonticsImage from "../../assets/services/ortodoncija.jpg";
+import endodonticsImage from "../../assets/services/endodoncija.jpg";
+import prostheticsImage from "../../assets/services/protetika.jpg";
+import aestheticImage from "../../assets/services/estetska-dentalna-medicina.jpg";
+import oralSurgeryImage from "../../assets/services/oralna-kirurgija.jpg";
+import periodontologyImage from "../../assets/services/parodontologija.jpg";
+import xrayImage from "../../assets/services/rtg-dijagnostika.jpg";
+import paediatricImage from "../../assets/services/djecja-dentalna-medicina.jpg";
 import type { Locale } from "../../i18n/config";
+import type { ServiceDetailSlug } from "../../i18n/types";
 import { localizePath, useTranslations } from "../../i18n/utils";
-import { getServiceDetails } from "../../i18n/services";
+import { getServiceDetail } from "../../i18n/services";
 
 interface Props {
   locale: Locale;
@@ -24,162 +33,108 @@ const { locale } = Astro.props;
 const t = useTranslations(locale);
 const services = t.services;
 
-// Icon and accent per service group, paired positionally with the translations.
-const groupStyles: Array<{ icon: IconName; iconWrapperClass: string }> = [
-  { icon: "medical", iconWrapperClass: "bg-theme-primary" },
-  { icon: "star", iconWrapperClass: "bg-[color:var(--color-theme-accent-sky)]" },
-  { icon: "heart", iconWrapperClass: "bg-theme-primary-light" },
-  { icon: "star", iconWrapperClass: "bg-[color:var(--color-theme-accent-orange)]" },
-  { icon: "clipboard", iconWrapperClass: "bg-theme-primary-dark" },
-  { icon: "users", iconWrapperClass: "bg-theme-primary" },
+// Image and detail page per card, paired positionally with services.cards.
+// Services without a detail page have no slug.
+const cardStyles: Array<{ image: ImageMetadata; slug?: ServiceDetailSlug }> = [
+  { image: implantsImage, slug: "implantologija" },
+  { image: orthodonticsImage, slug: "ortodoncija" },
+  { image: endodonticsImage, slug: "endodoncija" },
+  { image: prostheticsImage, slug: "protetika" },
+  { image: aestheticImage, slug: "estetska-dentalna-medicina" },
+  { image: oralSurgeryImage, slug: "oralna-kirurgija" },
+  { image: periodontologyImage, slug: "parodontologija" },
+  { image: xrayImage, slug: "rtg-dijagnostika" },
+  { image: paediatricImage, slug: "djecja-dentalna-medicina" },
 ];
 
-const groups = services.groups.map((group, index) => ({
-  ...group,
-  ...groupStyles[index % groupStyles.length],
-}));
-
-// Detail pages available in this language. Empty for locales that have none, in
-// which case this section does not render at all.
-const details = getServiceDetails(locale);
+const cards = services.cards.map((card, index) => {
+  const { image, slug } = cardStyles[index] ?? {};
+  // Link only where this language has the page; see i18n/services.ts.
+  const href =
+    slug && getServiceDetail(slug, locale)
+      ? localizePath(`/services/${slug}`, locale)
+      : undefined;
+  return { ...card, image, href };
+});
 ---
 
-<Layout locale={locale} title={services.meta.title} description={services.meta.description}>
-  <PageHero
+<Layout
+  locale={locale}
+  title={services.meta.title}
+  description={services.meta.description}
+  overlayNav
+>
+  <PhotoHero
+    eyebrow={services.hero.eyebrow}
     title={services.hero.title}
-    description={services.hero.description}
     image={heroImage}
+    focus="70% center"
+    eyebrowTone="ink"
   />
 
-  <!-- Intro -->
-  <section class="section-sm bg-gradient-to-b from-theme-surface to-theme-surface-muted">
-    <div class="container">
-      <div class="narrow mx-auto text-center space-y-5">
-        <Heading level="h2" align="center">{services.intro.heading}</Heading>
-        <p class="text-lg lg:text-xl text-theme-text-secondary leading-relaxed">
-          {services.intro.paragraph}
-        </p>
-      </div>
-    </div>
-  </section>
+  <SectionIntro
+    eyebrow={services.intro.eyebrow}
+    heading={services.intro.heading}
+    paragraph={services.intro.paragraph}
+    measure="wide"
+  />
 
-  <!-- Treatment catalogue -->
-  <section class="section bg-theme-surface-muted">
+  <!-- Service cards -->
+  <section class="bg-theme-surface py-12">
     <div class="container">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+      <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
         {
-          groups.map((group) => (
-            <div
-              class="bg-theme-surface rounded-xl p-6 lg:p-8 border border-theme-border shadow-md"
-            >
-              <div class="flex items-center gap-3 mb-6">
-                <div
+          cards.map((card) => {
+            const Tag = card.href ? "a" : "div";
+            return (
+              <li>
+                <Tag
+                  href={card.href}
                   class:list={[
-                    "w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0",
-                    group.iconWrapperClass,
+                    "group flex h-full flex-col overflow-hidden rounded border border-black/10 bg-theme-surface",
+                    card.href && "transition-shadow hover:shadow-lg",
                   ]}
                 >
-                  <Icon name={group.icon} size="lg" class="text-white" />
-                </div>
-                <h2 class="text-xl font-bold text-theme-text-primary">{group.title}</h2>
-              </div>
-              <ul class="space-y-3">
-                {group.items.map((item) => (
-                  <CheckListItem>{item}</CheckListItem>
-                ))}
-              </ul>
-            </div>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <!-- Detail pages, where the language has them -->
-  {
-    details.length > 0 && (
-      <section class="section bg-theme-surface">
-        <div class="container">
-          <div class="narrow mx-auto text-center mb-10">
-            <Heading level="h2" align="center">{services.detailsHeading}</Heading>
-          </div>
-          <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {details.map((detail) => (
-              <li>
-                <a
-                  href={localizePath(`/services/${detail.slug}`, locale)}
-                  class="group flex h-full flex-col rounded-xl border border-theme-border bg-theme-surface p-6 shadow-md transition-colors hover:border-theme-primary"
-                >
-                  <h3 class="mb-2 text-lg font-bold text-theme-text-primary group-hover:text-theme-primary">
-                    {detail.title}
-                  </h3>
-                  <p class="mb-4 flex-1 text-sm leading-relaxed text-theme-text-secondary">
-                    {detail.lead}
-                  </p>
-                  <span class="inline-flex items-center gap-2 text-sm font-semibold text-theme-primary">
-                    {t.common.learnMore}
-                    <Icon name="arrow-right" size="sm" />
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-    )
-  }
-
-  <!-- Equipment -->
-  <section class="section bg-theme-surface">
-    <div class="container">
-      <div class="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-16">
-        <div class="space-y-6">
-          <Heading level="h2">{services.equipment.heading}</Heading>
-          <p class="text-base lg:text-lg text-theme-text-secondary leading-relaxed">
-            {services.equipment.paragraph}
-          </p>
-          <div
-            class="bg-theme-surface-muted rounded-xl p-6 lg:p-8 border border-theme-border"
-          >
-            <div class="space-y-4">
-              {
-                services.equipment.features.map((feature) => (
-                  <div class="flex items-start gap-3">
-                    <Icon
-                      name="check"
-                      size="md"
-                      class="text-theme-primary flex-shrink-0 mt-1"
-                    />
-                    <div>
-                      <h3 class="font-semibold text-theme-text-primary mb-1">
-                        {feature.title}
-                      </h3>
-                      <p class="text-theme-text-secondary">{feature.description}</p>
+                  {card.image && (
+                    <div class="h-60 overflow-hidden">
+                      <Image
+                        src={card.image}
+                        alt=""
+                        widths={[400, 600, 800]}
+                        sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw"
+                        class:list={[
+                          "h-full w-full object-cover",
+                          card.href && "transition-transform duration-500 group-hover:scale-105",
+                        ]}
+                        loading="lazy"
+                      />
                     </div>
+                  )}
+                  <div class="flex flex-1 flex-col p-6">
+                    <h2 class="mb-2 text-lg font-medium leading-7 tracking-[0.02em] text-black">
+                      {card.title}
+                    </h2>
+                    <p class="text-base leading-7 tracking-[0.02em] text-black/55">
+                      {card.summary}
+                    </p>
+                    {card.href && (
+                      <span class="mt-auto pt-8 text-base leading-7 tracking-[0.02em] text-black">
+                        {t.common.learnMore}{" "}
+                        <span
+                          class="inline-block transition-transform group-hover:translate-x-1"
+                          aria-hidden="true">&rarr;</span
+                        >
+                      </span>
+                    )}
                   </div>
-                ))
-              }
-            </div>
-          </div>
-        </div>
-        <div class="w-full">
-          <Image
-            src={equipmentImage}
-            alt={services.equipment.imageAlt}
-            class="w-full object-cover rounded-2xl shadow-xl"
-            loading="lazy"
-          />
-        </div>
-      </div>
+                </Tag>
+              </li>
+            );
+          })
+        }
+      </ul>
     </div>
   </section>
 
-  <CallToActionSection
-    heading={services.cta.heading}
-    subheading={services.cta.subheading}
-    primaryButtonText={services.cta.primaryButton}
-    primaryButtonLink={localizePath("/contact", locale)}
-    secondaryButtonText={services.cta.secondaryButton}
-    secondaryButtonLink={localizePath("/dental-tourism", locale)}
-  />
+  <BookingBand locale={locale} />
 </Layout>

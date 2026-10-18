@@ -1,9 +1,8 @@
 ---
-import Icon from "./Icon.astro";
-import logo from "../assets/logo-dcr-negative.svg";
+import designerLogo from "../assets/lidija-jankovic-logo.svg";
 import site from "../data/site.json";
-import type { Locale } from "../i18n/config";
-import { localizePath, useTranslations } from "../i18n/utils";
+import { localeHtmlLang, type Locale } from "../i18n/config";
+import { useTranslations } from "../i18n/utils";
 
 interface Props {
   locale: Locale;
@@ -14,104 +13,98 @@ const t = useTranslations(locale);
 
 const year = new Date().getFullYear();
 
-// A representative slice of the treatment catalogue for the footer.
-const footerServices = t.services.groups.map((group) => group.title);
+/*
+ * Opening hours, Monday to Saturday, from site.openingHours: the same data the
+ * Dentist structured data publishes, so the two cannot drift apart. Day names
+ * come from Intl in the page's language, and a day missing from the data is
+ * shown as closed.
+ */
+const weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const dayName = new Intl.DateTimeFormat(localeHtmlLang[locale], { weekday: "long" });
+// 2024-01-01 was a Monday.
+const labelFor = (index: number) => {
+  const name = dayName.format(new Date(Date.UTC(2024, 0, 1 + index, 12)));
+  return name.charAt(0).toLocaleUpperCase(localeHtmlLang[locale]) + name.slice(1);
+};
+const time = (value: string) => value.replace(/^0/, "");
+const hours = weekdays.map((day, index) => {
+  const entry = site.openingHours.find((hoursEntry) => hoursEntry.days.includes(day));
+  return {
+    label: labelFor(index),
+    value: entry ? `${time(entry.opens)} - ${time(entry.closes)}` : t.footer.closed,
+    closed: !entry,
+  };
+});
 ---
 
-<footer class="bg-theme-brand text-theme-text-on-brand">
-  <div class="container section-sm">
-    <div class="grid gap-10 lg:grid-cols-3">
-      <!-- Brand and contact -->
-      <div class="lg:col-span-2">
-        <div class="flex items-center gap-3 mb-4">
-          <!-- Negative mark: the positive one is PANTONE 319 C itself and would
-               vanish on this ground. The brand manual sanctions the negative
-               for use on colour. -->
-          <img
-            src={logo.src}
-            alt={t.brand.logoAlt}
-            width="48"
-            height="48"
-            class="w-12 h-12"
-            loading="lazy"
-          />
-          <span class="text-xl lg:text-2xl font-bold">
-            {t.brand.name}
-          </span>
+<footer class="bg-theme-sand text-black">
+  <div class="container py-14 lg:py-20">
+    <div class="flex flex-col gap-12 lg:flex-row lg:justify-between lg:gap-24">
+      <!-- About the clinic -->
+      <div class="flex max-w-[562px] flex-col gap-10 lg:gap-14">
+        <div class="space-y-2">
+          <p class="text-base leading-7 tracking-[0.02em]">{t.brand.name}</p>
+          <p class="text-sm leading-6 text-black/55">{t.footer.description}</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-3 text-xs leading-[18px] tracking-[0.02em]">
+          <p>&copy; {year} {t.brand.name}</p>
+          <!-- Designer credit: her monogram, dimmed to the footer's secondary grey -->
+          <p class="flex items-center gap-2 text-black/55">
+            {t.footer.designCredit}:
+            <a
+              href="https://lidijajankovic.com"
+              target="_blank"
+              rel="noopener"
+              class="opacity-55 transition-opacity hover:opacity-100"
+            >
+              <img src={designerLogo.src} alt="Lidija Jankovic" width="15" height="19" class="h-[19px] w-auto" />
+            </a>
+          </p>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-10 sm:flex-row sm:gap-10">
+        <!-- Opening hours -->
+        <div>
+          <h2 class="pb-4 text-sm font-normal leading-6 tracking-normal">
+            {t.footer.hoursHeading}
+          </h2>
+          <dl class="space-y-1 text-sm leading-6">
+            {
+              hours.map((row) => (
+                <div class:list={["flex gap-2", row.closed ? "font-semibold" : "text-black/55"]}>
+                  <dt class="w-[5.5rem] shrink-0">{row.label}</dt>
+                  <dd>{row.value}</dd>
+                </div>
+              ))
+            }
+          </dl>
         </div>
 
-        <ul class="space-y-3 mb-6">
-          <li class="flex items-start">
-            <Icon name="location" size="sm" class="mt-1 mr-3 flex-shrink-0" />
-            <p class="text-sm">
-              {site.contact.addressLine1}<br />{site.contact.addressLine2}
+        <!-- Contact -->
+        <div>
+          <h2 class="pb-4 text-sm font-normal leading-6 tracking-normal">
+            {t.footer.contactHeading}
+          </h2>
+          <div class="space-y-4 text-sm leading-6 text-black/55">
+            <p class="text-sm leading-6">
+              {site.contact.addressLine1}<br />
+              {site.contact.addressLine2}, {site.contact.country}
             </p>
-          </li>
-          <li class="flex items-start">
-            <Icon name="phone" size="sm" class="mt-1 mr-3 flex-shrink-0" />
-            <p class="text-sm">
-              <a href={site.contact.phoneHref} class="hover:underline">
+            <p class="text-sm leading-6">
+              {t.contact.phoneLabel}:{" "}
+              <a href={site.contact.phoneHref} class="hover:text-black hover:underline">
                 {site.contact.phone}
               </a>
-              <span class="block">{t.common.callUsToday}</span>
-            </p>
-          </li>
-          <li class="flex items-start">
-            <Icon name="email" size="sm" class="mt-1 mr-3 flex-shrink-0" />
-            <p class="text-sm">
-              <a href={`mailto:${site.contact.email}`} class="hover:underline">
+              <br />
+              {t.contact.emailLabel}:{" "}
+              <a href={`mailto:${site.contact.email}`} class="hover:text-black hover:underline">
                 {site.contact.email}
               </a>
             </p>
-          </li>
-        </ul>
-
-        <p class="text-sm leading-relaxed max-w-xl">
-          {t.footer.description}
-        </p>
+          </div>
+        </div>
       </div>
-
-      <!-- Services -->
-      <div>
-        <h2 class="text-base font-semibold mb-4">
-          {t.footer.servicesHeading}
-        </h2>
-        <ul class="space-y-2">
-          {
-            footerServices.map((service) => (
-              <li>
-                <a
-                  href={localizePath("/services", locale)}
-                  class="text-sm hover:underline"
-                >
-                  {service}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-    </div>
-
-    <!-- Bottom bar -->
-    <div
-      class="mt-10 pt-6 border-t border-theme-text-on-brand/25 flex flex-col sm:flex-row items-center justify-between gap-4"
-    >
-      <p class="text-sm">
-        &copy; {year} {t.brand.name}.
-      </p>
-      <nav class="flex flex-wrap justify-center gap-x-4 gap-y-2">
-        {
-          t.nav.links.map((link) => (
-            <a
-              href={localizePath(link.href, locale)}
-              class="text-sm hover:underline"
-            >
-              {link.label}
-            </a>
-          ))
-        }
-      </nav>
     </div>
   </div>
 </footer>

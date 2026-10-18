@@ -44,6 +44,9 @@ export const serviceDetailSlugs = [
   "estetska-dentalna-medicina",
   "endodoncija",
   "parodontologija",
+  "oralna-kirurgija",
+  "rtg-dijagnostika",
+  "djecja-dentalna-medicina",
 ] as const;
 
 export type ServiceDetailSlug = (typeof serviceDetailSlugs)[number];
@@ -85,9 +88,23 @@ export interface TeamMember {
   role: string;
 }
 
-export interface Testimonial {
-  quote: string;
-  author: string;
+/** Copy for a full-width photo hero: a small label above a large title. */
+export interface PhotoHeroCopy {
+  eyebrow: string;
+  title: string;
+}
+
+/** A centred introduction: small label, heading and one paragraph. */
+export interface IntroCopy {
+  eyebrow: string;
+  heading: string;
+  paragraph: string;
+}
+
+export interface ServiceCardCopy {
+  title: string;
+  /** One or two sentences; the card shows the first two lines. */
+  summary: string;
 }
 
 export interface Translation {
@@ -106,7 +123,12 @@ export interface Translation {
 
   footer: {
     description: string;
-    servicesHeading: string;
+    hoursHeading: string;
+    /** Shown against a day the clinic is closed. */
+    closed: string;
+    contactHeading: string;
+    /** Label before the designer's name in the footer credit. */
+    designCredit: string;
   };
 
   common: {
@@ -115,89 +137,65 @@ export interface Translation {
     readLess: string;
     callUsToday: string;
     bookAppointment: string;
+    /** The brown booking band above the footer on the home and services pages. */
+    booking: { eyebrow: string; heading: string; text: string };
   };
 
   home: {
     meta: { title: string; description: string };
-    hero: {
-      title: string;
-      subtitleLine1: string;
-      subtitleLine2: string;
+    hero: PhotoHeroCopy & {
+      lead: string;
       ctaPrimary: string;
       ctaSecondary: string;
-      imageAlt: string;
     };
-    welcome: {
+    services: IntroCopy & {
+      /** Four headline treatments, in the order of their pictograms. */
+      items: ServiceSummary[];
+      cta: string;
+    };
+    /** The two specialists are listed from about.team, so they are not repeated here. */
+    team: {
       eyebrow: string;
       heading: string;
-      intro: string;
-      highlights: FeatureItem[];
-      link: string;
+      paragraphs: string[];
+      cta: string;
       imageAlt: string;
     };
-    servicesIntro: {
+    visit: IntroCopy;
+    space: {
       eyebrow: string;
       heading: string;
-      description: string;
-      services: ServiceSummary[];
-    };
-    whyUs: {
-      heading: string;
-      subheading: string;
-      /** Short reasons to choose the clinic, rendered as a badge grid. */
-      reasons: string[];
-      imageAlt: string;
-    };
-    problems: {
-      heading: string;
-      items: FeatureItem[];
-    };
-    faq: {
-      eyebrow: string;
-      heading: string;
-      viewAll: string;
-    };
-    cta: {
-      heading: string;
-      text: string;
-      button: string;
+      paragraph: string;
+      /** Accessible name of the photo carousel. */
+      galleryLabel: string;
+      /** Accessible names of the carousel's arrow buttons. */
+      previousLabel: string;
+      nextLabel: string;
+      /** One per gallery photo, in order. */
+      photoAlts: string[];
+      /** Title of the Vimeo player, for screen readers. */
+      videoTitle: string;
+      /** Accessible name of the poster's play button. */
+      playLabel: string;
     };
   };
 
   about: {
     meta: { title: string; description: string };
-    hero: { title: string; description: string };
-    team: { heading: string; subheading: string; members: TeamMember[] };
-    approach: { heading: string; paragraphs: string[]; imageAlt: string };
-    testimonials: { heading: string; items: Testimonial[] };
-    cta: {
-      heading: string;
-      subheading: string;
-      primaryButton: string;
-      secondaryButton: string;
-    };
+    hero: PhotoHeroCopy;
+    intro: IntroCopy;
+    /** Staff, in the same order as the portraits on the page. */
+    team: TeamMember[];
   };
 
   services: {
     meta: { title: string; description: string };
-    hero: { title: string; description: string };
-    intro: { heading: string; paragraph: string };
+    hero: PhotoHeroCopy;
+    intro: IntroCopy;
+    /** Service cards, in the same order as their images on the page. */
+    cards: ServiceCardCopy[];
     /** Full treatment catalogue, grouped by area. */
     groups: ServiceGroup[];
-    /** Heading above the list of individual treatment pages. */
-    detailsHeading: string;
-    equipment: {
-      heading: string;
-      paragraph: string;
-      features: FeatureItem[];
-      imageAlt: string;
-    };
-    cta: {
-      heading: string;
-      subheading: string;
-      primaryButton: string;
-      secondaryButton: string;
-    };
   };
 
   tourism: {
@@ -216,27 +214,20 @@ export interface Translation {
 
   contact: {
     meta: { title: string; description: string };
-    hero: { title: string; description: string };
-    intro: string;
+    hero: PhotoHeroCopy;
+    intro: IntroCopy;
     addressHeading: string;
     contactHeading: string;
+    /** Heading over the phone number for urgent cases. */
+    emergencyHeading: string;
     phoneLabel: string;
     emailLabel: string;
-    /** Notice pointing urgent cases to the phone rather than the form. */
-    urgentNotice: string;
     form: {
       heading: string;
-      description: string;
+      /** Lines of the paragraph under the heading. */
+      description: string[];
       nameLabel: string;
-      namePlaceholder: string;
       emailLabel: string;
-      emailPlaceholder: string;
-      phoneLabel: string;
-      phonePlaceholder: string;
-      reasonLabel: string;
-      reasonOptions: string[];
-      preferredTimeLabel: string;
-      preferredTimeOptions: string[];
       messageLabel: string;
       messagePlaceholder: string;
       submit: string;

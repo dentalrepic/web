@@ -17,10 +17,9 @@ export const de: Translation = {
       { label: "Startseite", href: "/", icon: "home" },
       { label: "Über uns", href: "/about", icon: "info" },
       { label: "Leistungen", href: "/services", icon: "clipboard" },
-      { label: "Dentaltourismus", href: "/dental-tourism", icon: "star" },
-      { label: "Infos", href: "/info", icon: "book" },
+      { label: "Kontakt", href: "/contact", icon: "phone" },
     ],
-    cta: { label: "Termin buchen", href: "/contact" },
+    cta: { label: "Termin buchen", href: "/contact#form" },
     languageLabel: "Sprache",
     menuLabel: "Menü öffnen",
   },
@@ -28,7 +27,10 @@ export const de: Translation = {
   footer: {
     description:
       "Die Erhaltung der Mundgesundheit, der Funktion und der Ästhetik ist die Grundlage unserer Arbeit mit Patienten. Jeden Patienten behandeln wir individuell, wir verfolgen den technologischen Fortschritt und bemühen uns jederzeit, unseren Patienten die bestmögliche Versorgung zu bieten. Wir investieren fortlaufend in neue Geräte sowie in die fachliche Weiterbildung unseres Teams.",
-    servicesHeading: "Leistungen",
+    hoursHeading: "Öffnungszeiten",
+    closed: "Geschlossen",
+    contactHeading: "Kontakt",
+    designCredit: "Design",
   },
 
   common: {
@@ -37,6 +39,11 @@ export const de: Translation = {
     readLess: "Weniger anzeigen",
     callUsToday: "Rufen Sie uns noch heute an!",
     bookAppointment: "Termin buchen",
+    booking: {
+      eyebrow: "Kontaktieren Sie uns",
+      heading: "Buchen Sie Ihren Termin. Die erste Untersuchung ist kostenlos.",
+      text: "Füllen Sie das Formular aus oder rufen Sie uns an — wir melden uns innerhalb unserer Öffnungszeiten.",
+    },
   },
 
   home: {
@@ -46,136 +53,62 @@ export const de: Translation = {
         "Dental Centar Repić in Trogir: Implantologie, Kieferorthopädie, Endodontie, Prothetik und ästhetische Zahnmedizin. Erste Untersuchung kostenlos. Tel. +385 21 796 241.",
     },
     hero: {
-      title: "Erstklassige zahnmedizinische Lösungen",
-      subtitleLine1: "Eine Lösung für alle Ihre zahnmedizinischen Anliegen",
-      subtitleLine2: "an einem Ort.",
+      eyebrow: "Dental Centar Repić - Trogir",
+      title: "Moderner Ansatz. Gesundes Lächeln.",
+      lead: "Umfassende zahnmedizinische Versorgung mit einem erfahrenen Team, moderner Technologie und einem individuellen Ansatz für jeden Patienten.",
       ctaPrimary: "Termin buchen",
       ctaSecondary: "Unsere Leistungen",
-      imageAlt: "Praxis Dental Centar Repić",
     },
-    welcome: {
-      eyebrow: "Willkommen auf unserer Website",
-      heading: "Wir sorgen für Ihr perfektes Lächeln",
-      intro:
-        "Hoch qualifiziertes Personal (Fachärzte der zahnmedizinischen Fachgebiete mit Doktortiteln), ein interdisziplinärer Ansatz und eine angenehme Atmosphäre machen Dental Centar Repić zur richtigen Wahl für Sie. Wir garantieren einen fachkundigen Ansatz, eine hochwertige Versorgung und den Einsatz modernster Materialien. Wir möchten, dass Sie sich in unserem Zentrum wohlfühlen, und werden Ihr Vertrauen mit Wissen, Kompetenz und Erfahrung rechtfertigen.",
-      highlights: [
-        {
-          title: "Geräte höchster Qualität",
-          description:
-            "Wir verwenden ausschließlich hochwertige Materialien renommierter Hersteller",
-        },
-        {
-          title: "Großzügige, gut ausgestattete Praxis",
-          description:
-            "Neben einer erstklassigen Behandlung achten wir darauf, dass Sie sich bei uns wohlfühlen",
-        },
-        {
-          title: "Freundliches und fachkundiges Personal",
-          description:
-            "Unsere Ärzte und das medizinische Personal stehen Ihnen jederzeit zur Verfügung",
-        },
-      ],
-      link: "Mehr über uns erfahren",
-      imageAlt: "Das Team von Dental Centar Repić",
-    },
-    servicesIntro: {
-      eyebrow: "Kompetenz und Professionalität",
+    services: {
+      eyebrow: "Fachwissen und Professionalität",
       heading: "Komplette zahnmedizinische Versorgung",
-      description:
-        "Alle unsere Leistungen und Behandlungen erbringen wir in modern ausgestatteten Räumen und nach den fachlichen Regeln, damit sich unsere Patienten wohlfühlen und mit der Versorgung zufrieden sind.",
-      services: [
-        {
-          title: "Zahnimplantate",
-          summary:
-            "Lösen Sie fehlende Zähne dauerhaft und stellen Sie die Funktion wieder her.",
-        },
-        {
-          title: "Kieferorthopädie (Zahnspangen)",
-          summary:
-            "Verwirklichen Sie Ihren Traum vom schönen Lächeln mit unseren Fachärzten.",
-        },
-        {
-          title: "Ästhetische Zahnmedizin",
-          summary:
-            "Sichern Sie sich das Lächeln, das Sie sich immer gewünscht haben.",
-        },
-      ],
-    },
-    whyUs: {
-      heading: "Warum Dental Centar Repić",
-      subheading:
-        "Von der kostenlosen ersten Untersuchung bis zu erstklassigen Geräten — alles an einem Ort, im Herzen Dalmatiens.",
-      reasons: [
-        "Erste Untersuchung kostenlos",
-        "Freundliches Personal",
-        "Großzügige Praxis",
-        "Erfahrene Ärzte",
-        "Familienfreundlich",
-        "Gut erreichbare Lage",
-        "Keine Wartezeiten",
-        "Qualitätsgarantie",
-        "Barrierefrei",
-        "Moderne Geräte",
-        "Hochwertige Materialien",
-        "Röntgendiagnostik",
-      ],
-      imageAlt: "Moderne Geräte in der Praxis",
-    },
-    problems: {
-      heading: "Wir haben Lösungen für Ihre zahnmedizinischen Probleme",
+      paragraph:
+        "Wir verbinden das Wissen unserer Fachärzte, moderne Technologie und hochwertige Materialien zu einer umfassenden, auf Ihre Bedürfnisse abgestimmten Versorgung.",
+      // Paired in order with the pictograms in HomePage.astro.
       items: [
-        {
-          title: "Fehlende Zähne",
-          description:
-            "Lächeln Sie wieder mit Stolz: Mit unseren prothetischen und implantologischen Lösungen geben wir Ihnen Ihr Lächeln und die richtige Zahnfunktion zurück.",
-        },
-        {
-          title: "Zahnschmerzen",
-          description:
-            "Zahnschmerzen können viele Ursachen haben. Nach einer ausführlichen Untersuchung schlagen wir die passende Therapie und Behandlung vor.",
-        },
-        {
-          title: "Angst vor dem Zahnarzt",
-          description:
-            "Wir bauen Zahnarztangst erfolgreich ab. Besonderen Wert legen wir auf die Arbeit mit Kindern, damit sie sich vom ersten Besuch an wohlfühlen.",
-        },
-        {
-          title: "Gebrochene / abgesplitterte Zähne",
-          description:
-            "Wir behandeln gebrochene und abgesplitterte Zähne mit Kronen oder anderen Verfahren.",
-        },
-        {
-          title: "Parodontitis",
-          description:
-            "Wir bieten eine vollständige parodontologische Versorgung, individuell auf jeden Patienten abgestimmt.",
-        },
-        {
-          title: "Schiefe / weit stehende Zähne",
-          description:
-            "Wir sind auf ein breites Spektrum kieferorthopädischer Leistungen spezialisiert, die Ihnen das perfekte Lächeln bringen.",
-        },
-        {
-          title: "Karies und Zahnverfall",
-          description:
-            "Wir nutzen moderne Technik, um Erkrankungen im frühesten Stadium zu erkennen, rechtzeitig zu behandeln und Ihre Zähne zu erhalten.",
-        },
-        {
-          title: "Flecken / Verfärbungen",
-          description:
-            "Unser Bleaching sorgt für die weißen Zähne, die Sie sich immer gewünscht haben.",
-        },
+        { title: "Allgemeine Zahnmedizin", summary: "Vorsorge und Zahnpflege" },
+        { title: "Implantologie", summary: "Ersatz verlorener Zähne" },
+        { title: "Ästhetische Zahnmedizin", summary: "Ein natürlich schönes Lächeln" },
+        { title: "Kieferorthopädie", summary: "Richtig ausgerichtete Zähne" },
       ],
+      cta: "Alle unsere Leistungen ansehen",
     },
-    faq: {
-      eyebrow: "FAQ",
-      heading: "Häufige Fragen",
-      viewAll: "Alle Fragen ansehen",
+    team: {
+      eyebrow: "Unser Team",
+      heading: "Die Menschen hinter Ihrer Behandlung",
+      paragraphs: [
+        "Wissen, Erfahrung und Zusammenarbeit im Dienste Ihrer Gesundheit.",
+        "Unser Team vereint Fachleute aus verschiedenen Bereichen der Zahnmedizin, die einfache wie komplexe zahnmedizinische Probleme mit Wissen und Erfahrung angehen.",
+      ],
+      cta: "Lernen Sie unser Team kennen",
+      imageAlt: "Dr. Slavica Pejda Repić und Dr. Dario Repić",
     },
-    cta: {
-      heading:
-        "Buchen Sie Ihren Termin oder vereinbaren Sie eine kostenlose Untersuchung",
-      text: "Füllen Sie das Formular aus oder rufen Sie uns an — wir melden uns innerhalb unserer Öffnungszeiten.",
-      button: "Jetzt buchen",
+    visit: {
+      eyebrow: "Ihr Besuch",
+      heading: "Ihr Wohlbefinden ist uns wichtig",
+      paragraph:
+        "Vom ersten Besuch bis zum Abschluss der Behandlung möchten wir, dass Sie sich entspannt, gut informiert und sicher fühlen.",
+    },
+    space: {
+      eyebrow: "Unsere Praxis",
+      heading: "Modern ausgestattete Praxis",
+      paragraph:
+        "Wir investieren in Ausstattung, Technologie und hochwertige Materialien, um die Voraussetzungen für fachkundige Arbeit und eine hochwertige zahnmedizinische Versorgung zu schaffen. Dabei ist uns wichtig, dass Sie sich während Ihres Besuchs wohl und sicher fühlen.",
+      galleryLabel: "Fotos der Praxis",
+      previousLabel: "Vorheriges Foto",
+      nextLabel: "Nächstes Foto",
+      // Paired in order with the gallery photos in HomePage.astro.
+      photoAlts: [
+        "Empfang und Wartebereich",
+        "Sitzecke im Wartezimmer",
+        "Kinderecke im Wartezimmer",
+        "Behandlungsraum mit Meerblick",
+        "Behandlungsstuhl in einem Behandlungsraum",
+        "Behandlungsraum mit runden Spiegeln",
+        "Die Behandlungsräume von außen",
+      ],
+      videoTitle: "Video: Dental Centar Repić",
+      playLabel: "Video über Dental Centar Repić abspielen",
     },
   },
 
@@ -186,64 +119,25 @@ export const de: Translation = {
         "Lernen Sie das Team von Dental Centar Repić in Trogir kennen: Fachärzte für Kieferorthopädie, Endodontie und restaurative Zahnmedizin mit Doktortiteln.",
     },
     hero: {
-      title: "ÜBER UNS",
-      description:
-        "Hoch qualifiziertes Personal, ein interdisziplinärer Ansatz und eine angenehme Atmosphäre machen Dental Centar Repić zur richtigen Wahl für Sie. <br /> Wir garantieren einen fachkundigen Ansatz, eine hochwertige Versorgung und den Einsatz modernster Materialien.",
+      eyebrow: "Fachwissen, das uns verbindet",
+      title: "Menschen, denen Sie vertrauen können.",
     },
-    team: {
-      heading: "Unser Team",
-      subheading:
-        "Erfahrene, ausgezeichnete Ärzte sowie professionelles und freundliches medizinisches Personal",
-      members: [
-        {
-          name: "Dr. Slavica Pejda Repić",
-          role: "Zahnärztin, Fachärztin für Kieferorthopädie",
-        },
-        {
-          name: "Dr. Dario Repić",
-          role: "Zahnarzt, Facharzt für Endodontie und restaurative Zahnmedizin",
-        },
-      ],
+    intro: {
+      eyebrow: "Kompetenz und Professionalität",
+      heading: "Über uns",
+      paragraph:
+        "Hoch qualifiziertes Personal, ein interdisziplinärer Ansatz und eine angenehme Atmosphäre machen Dental Centar Repić zur richtigen Wahl für Sie. Wir garantieren einen fachkundigen Ansatz, eine hochwertige Versorgung und den Einsatz modernster Materialien.",
     },
-    approach: {
-      heading: "Unser Umgang mit Patienten",
-      paragraphs: [
-        "Die Erhaltung der Mundgesundheit, der Funktion und der Ästhetik ist die Grundlage unserer Arbeit mit Patienten. Jeden Patienten behandeln wir individuell, wir verfolgen den technologischen Fortschritt und bemühen uns jederzeit, die bestmögliche Versorgung zu bieten.",
-        "Wir investieren fortlaufend in neue Geräte sowie in die fachliche Weiterbildung unseres Teams. Alle Leistungen erbringen wir in modern ausgestatteten Räumen und nach den fachlichen Regeln, damit sich unsere Patienten wohlfühlen und zufrieden sind.",
-      ],
-      imageAlt: "Die Praxis Dental Centar Repić",
-    },
-    testimonials: {
-      heading: "Was unsere Patienten sagen",
-      items: [
-        {
-          quote:
-            "Dental Centar Repić ist eine der wenigen Zahnarztpraxen, in denen die Versorgung immer auf höchstem Niveau ist. Das Personal ist professionell und aufmerksam, dabei aber auch fröhlich und freundlich. Ich habe vor drei Jahren einige Zähne behandeln und ein Implantat setzen lassen und bin bis heute zufrieden.",
-          author: "Toni Vešović",
-        },
-        {
-          quote:
-            "Sie behandeln nicht nur Zahnprobleme, sondern nehmen einem auch erfolgreich die Angst vor dem Zahnarzt.",
-          author: "Zorana Barada",
-        },
-        {
-          quote:
-            "Ausgezeichnete Ärzte, fachkundig und professionell. Auch im Umgang mit Kindern sehr zu loben.",
-          author: "Joško Herceg",
-        },
-        {
-          quote: "Sehr professionell und faire Preise.",
-          author: "Gunther Braus",
-        },
-      ],
-    },
-    cta: {
-      heading: "Wenden Sie sich vertrauensvoll an uns",
-      subheading:
-        "Die erste Untersuchung ist kostenlos. Buchen Sie einen Termin und wir sprechen darüber, wie wir helfen können.",
-      primaryButton: "Termin buchen",
-      secondaryButton: "Leistungen ansehen",
-    },
+    // Paired in order with the portraits in AboutPage.astro.
+    team: [
+      { name: "Dr. Slavica Pejda Repić", role: "Zahnärztin, Fachärztin für Kieferorthopädie" },
+      { name: "Dr. Dario Repić", role: "Zahnarzt, Facharzt für Endodontie und restaurative Zahnmedizin" },
+      { name: "Danijela Maleta", role: "Zahnärztin" },
+      { name: "Magdalena Županović", role: "Zahnärztin" },
+      { name: "Katja Bažoka", role: "Zahnmedizinische Fachangestellte" },
+      { name: "Manuela Škrobica", role: "Zahnmedizinische Fachangestellte" },
+      { name: "Ana Papić", role: "Zahnmedizinische Fachangestellte" },
+    ],
   },
 
   services: {
@@ -253,15 +147,64 @@ export const de: Translation = {
         "Implantologie, Kieferorthopädie, Endodontie, Zahnprothetik, ästhetische Zahnmedizin, Oralchirurgie, Parodontologie, Röntgendiagnostik und Kinderzahnheilkunde.",
     },
     hero: {
-      title: "UNSERE LEISTUNGEN",
-      description:
-        "Alle unsere Leistungen und Behandlungen erbringen wir in modern ausgestatteten Räumen und nach den fachlichen Regeln, damit sich unsere Patienten wohlfühlen und mit der Versorgung zufrieden sind.",
+      eyebrow: "Dental Centar Repić - Trogir",
+      title: "Von der Vorsorge bis zu komplexen Eingriffen.",
     },
     intro: {
-      heading: "Komplette zahnmedizinische Versorgung",
+      eyebrow: "Ein ganzheitlicher Ansatz",
+      heading: "Ein Zentrum. Viele Möglichkeiten.",
       paragraph:
         "Von der Implantologie und Kieferorthopädie bis zur ästhetischen Zahnmedizin — wir bieten eine Lösung für alle Ihre zahnmedizinischen Anliegen an einem Ort, mit fachkundigem Ansatz und modernsten Materialien.",
     },
+    // Paired in order with the images and detail pages in ServicesPage.astro.
+    cards: [
+      {
+        title: "Zahnimplantate",
+        summary:
+          "Zahnimplantate sind ein bewährter Eingriff, der verlorene Zähne ersetzt, ohne die Nachbarzähne zu behandeln.",
+      },
+      {
+        title: "Kieferorthopädie",
+        summary:
+          "Eine kieferorthopädische Behandlung (Zahnspange) ist bei Fehlstellungen und ungleichmäßiger Anordnung der Zähne angezeigt.",
+      },
+      {
+        title: "Endodontie",
+        summary:
+          "Ein Fachgebiet der Zahnmedizin, eng verbunden mit der restaurativen Zahnmedizin und der Kariologie.",
+      },
+      {
+        title: "Zahnprothetik",
+        summary:
+          "Besonderes Augenmerk legen wir auf den Erhalt der Funktion der Zähne und des gesamten Kausystems.",
+      },
+      {
+        title: "Ästhetische Zahnmedizin",
+        summary:
+          "Ein schönes Lächeln hebt die Stimmung, stärkt das Selbstvertrauen und hinterlässt einen positiven ersten Eindruck.",
+      },
+      {
+        title: "Oralchirurgie",
+        summary:
+          "Chirurgische Zahnentfernungen und weitere oralchirurgische Eingriffe, fachkundig und behutsam durchgeführt.",
+      },
+      {
+        title: "Parodontologie",
+        summary:
+          "Reagieren Sie rechtzeitig und beugen Sie Zahnfleischerkrankungen und Zahnverlust vor.",
+      },
+      {
+        title: "Röntgendiagnostik",
+        summary:
+          "Moderne Röntgendiagnostik zur Früherkennung von Erkrankungen und für eine präzise Behandlungsplanung.",
+      },
+      {
+        title: "Kinderzahnmedizin",
+        summary:
+          "Ein einfühlsamer Umgang mit unseren jüngsten Patienten und Vorsorgeuntersuchungen für gesunde Zähne von Anfang an.",
+      },
+    ],
+    // Treatment catalogue by area, listed in the footer.
     groups: [
       {
         title: "Implantologie und Prothetik",
@@ -319,37 +262,6 @@ export const de: Translation = {
         ],
       },
     ],
-    detailsHeading: "Einzelne Leistungen",
-    equipment: {
-      heading: "Geräte und Materialien",
-      paragraph:
-        "Wir verwenden hochwertige Materialien renommierter Hersteller und investieren fortlaufend in neue Geräte, um Erkrankungen im frühesten Stadium zu erkennen und rechtzeitig zu behandeln.",
-      features: [
-        {
-          title: "Hochwertige Materialien",
-          description:
-            "Materialien renommierter Hersteller bei jeder Behandlung",
-        },
-        {
-          title: "Röntgendiagnostik",
-          description:
-            "Moderne Technik für Früherkennung und präzise Therapieplanung",
-        },
-        {
-          title: "Laufende Weiterbildung",
-          description:
-            "Fortlaufende Investition in die Weiterbildung unseres gesamten Teams",
-        },
-      ],
-      imageAlt: "Moderne zahnmedizinische Geräte",
-    },
-    cta: {
-      heading: "Ihre gesuchte Leistung ist nicht dabei?",
-      subheading:
-        "Rufen Sie uns an oder buchen Sie einen Termin — wir vereinbaren eine Untersuchung und schlagen die beste Behandlung für Sie vor.",
-      primaryButton: "Termin buchen",
-      secondaryButton: "Dentaltourismus",
-    },
   },
 
   tourism: {
@@ -437,47 +349,30 @@ export const de: Translation = {
         "Dental Centar Repić, Rimski put 3J, 21220 Trogir, Kroatien. Telefon +385 21 796 241, E-Mail info@dentalrepic.com. Werktags 8:00 - 20:00.",
     },
     hero: {
-      title: "KONTAKT",
-      description:
-        "Wenden Sie sich vertrauensvoll an uns. Füllen Sie das Formular aus oder rufen Sie an, um einen Termin zu vereinbaren — die erste Untersuchung ist kostenlos.",
+      eyebrow: "Dental Centar Repić - Trogir",
+      title: "Wenden Sie sich vertrauensvoll an uns.",
     },
-    intro:
-      "Füllen Sie das Formular unten aus und wir melden uns so schnell wie möglich innerhalb unserer Öffnungszeiten. Die erste Untersuchung ist kostenlos.",
-    addressHeading: "Unsere Adresse",
+    intro: {
+      eyebrow: "Kontakt",
+      heading: "Termin buchen",
+      paragraph:
+        "Füllen Sie das Formular unten aus und wir melden uns so schnell wie möglich innerhalb unserer Öffnungszeiten. Die erste Untersuchung ist kostenlos.",
+    },
+    addressHeading: "Adresse",
     contactHeading: "Kontakt",
+    emergencyHeading: "Notfälle",
     phoneLabel: "Telefon",
     emailLabel: "E-Mail",
-    urgentNotice:
-      "Wenn Sie eine Notbehandlung benötigen, rufen Sie bitte +385 21 796 241 an.",
     form: {
       heading: "Termin buchen",
-      description:
-        "Füllen Sie das Formular unten aus und wir melden uns innerhalb unserer Öffnungszeiten.",
+      description: [
+        "Wir beantworten gerne alle Ihre Fragen und vereinbaren Ihren nächsten Termin.",
+        "Schreiben Sie uns, rufen Sie an oder kommen Sie vorbei — Ihr neues Lächeln beginnt hier.",
+      ],
       nameLabel: "Vor- und Nachname",
-      namePlaceholder: "Ihr Vor- und Nachname",
       emailLabel: "E-Mail",
-      emailPlaceholder: "Ihre E-Mail-Adresse",
-      phoneLabel: "Telefonnummer",
-      phonePlaceholder: "Ihre Telefonnummer",
-      reasonLabel: "Grund des Besuchs",
-      reasonOptions: [
-        "Erster Besuch - kostenlose Untersuchung",
-        "Implantate",
-        "Zahnspangen",
-        "Kronen und Brücken",
-        "Ästhetische Zahnmedizin",
-        "Zahnentzündung",
-        "Sonstiges",
-      ],
-      preferredTimeLabel: "Gewünschte Uhrzeit",
-      preferredTimeOptions: [
-        "Beliebige Uhrzeit",
-        "08:00 - 11:00",
-        "11:00 - 14:00",
-        "14:00 - 16:00",
-      ],
-      messageLabel: "Anmerkung",
-      messagePlaceholder: "Beschreiben Sie kurz den Grund Ihres Besuchs...",
+      messageLabel: "Nachricht",
+      messagePlaceholder: "Ihre Nachricht...",
       submit: "Senden",
       submitting: "Wird gesendet...",
       successMessage:

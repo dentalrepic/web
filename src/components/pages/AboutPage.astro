@@ -1,17 +1,24 @@
 ---
 /**
  * About page body. Rendered by the localized route files.
+ *
+ * Layout follows the "O nama" design: a full-width team photo, a short
+ * introduction, then a portrait grid of the staff.
  */
 import Layout from "../../layouts/Layout.astro";
-import aboutHeroImage from "../../assets/about-main.jpg";
-import PageHero from "../PageHero.astro";
-import CallToActionSection from "../CallToActionSection.astro";
-import approachImage from "../../assets/professional-care.jpg";
 import { Image } from "astro:assets";
-import Icon from "../Icon.astro";
-import Heading from "../Heading.astro";
+import PhotoHero from "../PhotoHero.astro";
+import SectionIntro from "../SectionIntro.astro";
+import heroImage from "../../assets/team/team-hero.jpg";
+import member1 from "../../assets/team/member-1.jpg";
+import member2 from "../../assets/team/member-2.jpg";
+import member3 from "../../assets/team/member-3.jpg";
+import member4 from "../../assets/team/member-4.jpg";
+import member6 from "../../assets/team/member-6.jpg";
+import member7 from "../../assets/team/member-7.jpg";
+import member8 from "../../assets/team/member-8.jpg";
 import type { Locale } from "../../i18n/config";
-import { localizePath, useTranslations } from "../../i18n/utils";
+import { useTranslations } from "../../i18n/utils";
 
 interface Props {
   locale: Locale;
@@ -20,108 +27,50 @@ interface Props {
 const { locale } = Astro.props;
 const t = useTranslations(locale);
 const about = t.about;
+
+// Portraits pair positionally with about.team in the translations.
+const portraits = [member1, member2, member3, member4, member6, member7, member8];
+
+const team = about.team.map((member, index) => ({
+  ...member,
+  portrait: portraits[index],
+}));
 ---
 
-<Layout locale={locale} title={about.meta.title} description={about.meta.description}>
-  <PageHero
-    title={about.hero.title}
-    description={about.hero.description}
-    image={aboutHeroImage}
+<Layout locale={locale} title={about.meta.title} description={about.meta.description} overlayNav>
+  <PhotoHero eyebrow={about.hero.eyebrow} title={about.hero.title} image={heroImage} />
+
+  <SectionIntro
+    eyebrow={about.intro.eyebrow}
+    heading={about.intro.heading}
+    paragraph={about.intro.paragraph}
   />
 
   <!-- Team -->
-  <section
-    class="section bg-gradient-to-b from-theme-primary-lighter/20 via-theme-primary-lighter/10 to-theme-surface"
-  >
-    <div class="container">
-      <div class="narrow mx-auto text-center mb-12">
-        <Heading level="h2" align="center" class="mb-4">{about.team.heading}</Heading>
-        <p class="text-lg text-theme-text-secondary">{about.team.subheading}</p>
-      </div>
-      <div class="grid gap-8 sm:grid-cols-2 max-w-4xl mx-auto">
-        {
-          about.team.members.map((member) => (
-            <div
-              class="bg-theme-surface rounded-2xl p-8 shadow-md border border-theme-border text-center"
-            >
-              <div
-                class="w-16 h-16 rounded-full bg-theme-primary/10 flex items-center justify-center mx-auto mb-5"
-              >
-                <Icon name="medical" size="lg" class="text-theme-primary" />
-              </div>
-              <h3 class="text-xl lg:text-2xl font-bold text-theme-text-primary mb-2">
-                {member.name}
-              </h3>
-              <p class="text-base text-theme-primary font-semibold">{member.role}</p>
-            </div>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <!-- Approach -->
   <section class="section bg-theme-surface">
     <div class="container">
-      <div class="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-16">
-        <div class="w-full order-2 lg:order-1">
-          <Image
-            src={approachImage}
-            alt={about.approach.imageAlt}
-            class="w-full object-cover rounded-2xl shadow-xl"
-            loading="lazy"
-          />
-        </div>
-        <div class="space-y-6 order-1 lg:order-2">
-          <Heading level="h2">{about.approach.heading}</Heading>
-          {
-            about.approach.paragraphs.map((paragraph) => (
-              <p class="text-base lg:text-lg text-theme-text-secondary leading-relaxed">
-                {paragraph}
-              </p>
-            ))
-          }
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Testimonials -->
-  <section class="section bg-gradient-to-b from-theme-surface-muted to-theme-surface">
-    <div class="container">
-      <div class="text-center mb-12">
-        <Heading level="h2" align="center">{about.testimonials.heading}</Heading>
-      </div>
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto">
+      <ul class="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-14">
         {
-          about.testimonials.items.map((testimonial) => (
-            <figure
-              class="bg-theme-surface rounded-xl p-6 shadow-md border border-theme-border flex flex-col"
-            >
-              <Icon name="star" size="md" class="text-theme-accent-orange mb-4" />
-              <blockquote class="flex-1">
-                <p class="text-sm lg:text-base text-theme-text-secondary leading-relaxed">
-                  {testimonial.quote}
-                </p>
-              </blockquote>
-              <figcaption
-                class="mt-5 pt-4 border-t border-theme-border text-sm font-semibold text-theme-text-primary"
-              >
-                {testimonial.author}
-              </figcaption>
-            </figure>
+          team.map((member) => (
+            <li>
+              {member.portrait && (
+                <Image
+                  src={member.portrait}
+                  alt={member.name}
+                  widths={[400, 600, 800]}
+                  sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw"
+                  class="mb-5 aspect-[7/8] w-full rounded-md object-cover"
+                  loading="lazy"
+                />
+              )}
+              <h2 class="mb-1 text-base font-medium leading-snug tracking-normal text-theme-text-primary">
+                {member.name}
+              </h2>
+              <p class="text-sm leading-relaxed text-theme-text-muted">{member.role}</p>
+            </li>
           ))
         }
-      </div>
+      </ul>
     </div>
   </section>
-
-  <CallToActionSection
-    heading={about.cta.heading}
-    subheading={about.cta.subheading}
-    primaryButtonText={about.cta.primaryButton}
-    primaryButtonLink={localizePath("/contact", locale)}
-    secondaryButtonText={about.cta.secondaryButton}
-    secondaryButtonLink={localizePath("/services", locale)}
-  />
 </Layout>

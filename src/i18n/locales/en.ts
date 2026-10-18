@@ -18,10 +18,9 @@ export const en: Translation = {
       { label: "Home", href: "/", icon: "home" },
       { label: "About Us", href: "/about", icon: "info" },
       { label: "Services", href: "/services", icon: "clipboard" },
-      { label: "Dental Tourism", href: "/dental-tourism", icon: "star" },
-      { label: "Info", href: "/info", icon: "book" },
+      { label: "Contact", href: "/contact", icon: "phone" },
     ],
-    cta: { label: "Book an Appointment", href: "/contact" },
+    cta: { label: "Book an Appointment", href: "/contact#form" },
     languageLabel: "Language",
     menuLabel: "Toggle menu",
   },
@@ -29,7 +28,10 @@ export const en: Translation = {
   footer: {
     description:
       "Preserving oral health, function and aesthetics are the foundation of the services we provide to patients. Each patient receives an individual approach, and we keep up with technological advancements to ensure the best possible service. We constantly invest in new equipment and in the professional development of our team.",
-    servicesHeading: "Services",
+    hoursHeading: "Opening hours",
+    closed: "Closed",
+    contactHeading: "Contact",
+    designCredit: "Design",
   },
 
   common: {
@@ -38,6 +40,11 @@ export const en: Translation = {
     readLess: "Read less",
     callUsToday: "Call us today!",
     bookAppointment: "Book your appointment",
+    booking: {
+      eyebrow: "Contact us",
+      heading: "Book your appointment. The first examination is free.",
+      text: "Fill in the form or give us a call — we will get back to you within our working hours.",
+    },
   },
 
   home: {
@@ -47,134 +54,62 @@ export const en: Translation = {
         "Dental Centar Repić in Trogir: implantology, orthodontics, endodontics, prosthetics and aesthetic dental medicine. Free first examination. Call +385 21 796 241.",
     },
     hero: {
-      title: "Premium Dental Solutions",
-      subtitleLine1: "Solutions for all your dental needs",
-      subtitleLine2: "in one place.",
-      ctaPrimary: "Book an Appointment",
-      ctaSecondary: "Our Services",
-      imageAlt: "Dental Centar Repić clinic",
+      eyebrow: "Dental Centar Repić - Trogir",
+      title: "A modern approach. A healthy smile.",
+      lead: "Complete dental care with an expert team, modern technology and an individual approach to every patient.",
+      ctaPrimary: "Book an appointment",
+      ctaSecondary: "Our services",
     },
-    welcome: {
-      eyebrow: "Welcome to our web site",
-      heading: "We care for your perfect smile",
-      intro:
-        "Highly educated staff (dental specialists holding PhDs in their respective fields), an interdisciplinary approach and a pleasant atmosphere make Dental Centar Repić the right choice for you. We guarantee a professional approach, high quality service and the use of the most modern materials. We want you to feel comfortable at our clinic, and our knowledge, expertise and experience ensure that you are in the best hands.",
-      highlights: [
-        {
-          title: "Top quality equipment",
-          description:
-            "We use only the best materials of renowned global manufacturers",
-        },
-        {
-          title: "Spacious and equipped clinic",
-          description:
-            "In addition to first class treatment, we take every step to ensure you feel comfortable at our clinic",
-        },
-        {
-          title: "Friendly and professional staff",
-          description: "Our dentists and medical staff are always at your disposal",
-        },
-      ],
-      link: "Read more about us",
-      imageAlt: "The Dental Centar Repić team",
-    },
-    servicesIntro: {
+    services: {
       eyebrow: "Expertise and professionalism",
-      heading: "Complete Dental Service",
-      description:
-        "We provide all our services and treatments in our modernly equipped clinic, in accordance with the rules of the profession, to ensure our patients feel at ease and are satisfied with our service.",
-      services: [
-        {
-          title: "Dental Implants",
-          summary:
-            "A permanent solution to missing teeth that restores oral function.",
-        },
-        {
-          title: "Orthodontics (Braces)",
-          summary:
-            "Achieve the smile you have dreamed of with our expert orthodontists.",
-        },
-        {
-          title: "Aesthetic Dental Medicine",
-          summary:
-            "Get the smile you have always wanted and enjoy your new confidence.",
-        },
-      ],
-    },
-    whyUs: {
-      heading: "Why choose Dental Centar Repić",
-      subheading:
-        "From a free first examination to top quality equipment — all in one place, in the heart of Dalmatia.",
-      reasons: [
-        "Free first examination",
-        "Friendly staff",
-        "Spacious clinic",
-        "Expert dentists",
-        "Family friendly",
-        "Accessible location",
-        "No waiting",
-        "Quality guarantee",
-        "Wheelchair accessible",
-        "Modern equipment",
-        "Premium materials",
-        "X-ray diagnostics",
-      ],
-      imageAlt: "Modern equipment at the clinic",
-    },
-    problems: {
-      heading: "We have the solution to your dental problems",
+      heading: "Complete dental service",
+      paragraph:
+        "We bring together the knowledge of our specialists, modern technology and quality materials to provide complete dental care tailored to your needs.",
+      // Paired in order with the pictograms in HomePage.astro.
       items: [
-        {
-          title: "Missing teeth",
-          description:
-            "Smile with pride again with our prosthetic and implant solutions that will return the smile to your face and restore proper tooth function.",
-        },
-        {
-          title: "Toothache",
-          description:
-            "Toothache can be caused by a number of factors. Following a detailed dental exam, we will propose the appropriate course of therapy and treatment.",
-        },
-        {
-          title: "Fear of the dentist",
-          description:
-            "We successfully treat fear of the dentist. We place special emphasis on working with children, to ensure they feel comfortable from their very first visit.",
-        },
-        {
-          title: "Broken / chipped teeth",
-          description:
-            "We treat broken and chipped teeth using crowns and other procedures.",
-        },
-        {
-          title: "Periodontitis",
-          description:
-            "We provide complete periodontic services, individually tailored to each patient.",
-        },
-        {
-          title: "Uneven / spaced teeth",
-          description:
-            "We are specialised in a wide range of orthodontic services to bring you the perfect smile you have always dreamed of.",
-        },
-        {
-          title: "Caries and tooth decay",
-          description:
-            "We use modern technology to detect problems in the earliest stage, to ensure timely treatment and to preserve your teeth.",
-        },
-        {
-          title: "Stains / discolouration",
-          description:
-            "Our tooth whitening services will give you the white teeth you have always wanted.",
-        },
+        { title: "General dentistry", summary: "Prevention and dental care" },
+        { title: "Implantology", summary: "Replacing lost teeth" },
+        { title: "Aesthetic dentistry", summary: "A natural, beautiful smile" },
+        { title: "Orthodontics", summary: "Correctly aligned teeth" },
       ],
+      cta: "Explore all our services",
     },
-    faq: {
-      eyebrow: "FAQ",
-      heading: "Frequently Asked Questions",
-      viewAll: "View all questions",
+    team: {
+      eyebrow: "Our team",
+      heading: "The people behind your care",
+      paragraphs: [
+        "Knowledge, experience and teamwork in the service of your health.",
+        "Our team brings together specialists from different fields of dentistry, who apply their knowledge and experience to simple and complex dental problems alike.",
+      ],
+      cta: "Meet our team",
+      imageAlt: "Dr. Slavica Pejda Repić and Dr. Dario Repić",
     },
-    cta: {
-      heading: "Book your appointment or arrange a free examination",
-      text: "Fill in the form or give us a call — we will contact you within our working hours.",
-      button: "Book now",
+    visit: {
+      eyebrow: "Your visit",
+      heading: "How you feel matters to us",
+      paragraph:
+        "From your first visit to the end of your treatment, we aim to make the experience a pleasant one, in which you feel relaxed, informed and safe.",
+    },
+    space: {
+      eyebrow: "Our clinic",
+      heading: "A modern, well-equipped practice",
+      paragraph:
+        "We invest in equipment, technology and quality materials to ensure the conditions for expert work and high-quality dental care. It also matters to us that you feel comfortable and safe during your visit.",
+      galleryLabel: "Photos of the clinic",
+      previousLabel: "Previous photo",
+      nextLabel: "Next photo",
+      // Paired in order with the gallery photos in HomePage.astro.
+      photoAlts: [
+        "Reception and waiting area",
+        "Seating area in the waiting room",
+        "Children's corner in the waiting room",
+        "Treatment room with a sea view",
+        "Dental chair in a treatment room",
+        "Treatment room with round mirrors",
+        "The treatment rooms seen from outside",
+      ],
+      videoTitle: "Video: Dental Centar Repić",
+      playLabel: "Play the Dental Centar Repić video",
     },
   },
 
@@ -185,64 +120,25 @@ export const en: Translation = {
         "Meet the team at Dental Centar Repić in Trogir: specialists in orthodontics, endodontics and restorative dental medicine, holding PhDs in their fields.",
     },
     hero: {
-      title: "ABOUT US",
-      description:
-        "Highly educated staff, an interdisciplinary approach and a pleasant atmosphere make Dental Centar Repić the right choice for you. <br /> We guarantee a professional approach, high quality service and the use of the most modern materials.",
+      eyebrow: "Expertise that connects us",
+      title: "People you can trust.",
     },
-    team: {
-      heading: "Meet our team",
-      subheading:
-        "Expert, award winning dentists and professional, courteous medical staff",
-      members: [
-        {
-          name: "Slavica Pejda Repić, DDM, PhD",
-          role: "Doctor of dental medicine, specialist in orthodontics",
-        },
-        {
-          name: "Dario Repić, DDM, PhD",
-          role: "Doctor of dental medicine, specialist in endodontics and restorative dental medicine",
-        },
-      ],
+    intro: {
+      eyebrow: "Expertise and professionalism",
+      heading: "About us",
+      paragraph:
+        "Highly educated staff, an interdisciplinary approach and a pleasant atmosphere make Dental Centar Repić the right choice for you. We guarantee a professional approach, high quality service and the use of the most modern materials.",
     },
-    approach: {
-      heading: "Our approach to patients",
-      paragraphs: [
-        "Preserving oral health, function and aesthetics are the foundation of the services we provide to patients. Each patient receives an individual approach, and we keep up with technological advancements to ensure the best possible service.",
-        "We constantly invest in new equipment and in the professional development of our team. We provide all our services and treatments in our modernly equipped clinic, in accordance with the rules of the profession, to ensure our patients feel at ease and are satisfied with our service.",
-      ],
-      imageAlt: "The Dental Centar Repić clinic",
-    },
-    testimonials: {
-      heading: "What our patients say",
-      items: [
-        {
-          quote:
-            "Dental Centar Repić is one of the few dental practices where the service is always excellent. The staff are professional and attentive, but also cheerful and welcoming. I had a few teeth repaired and an implant fitted three years ago, and I am still happy with the result.",
-          author: "Toni Vešović",
-        },
-        {
-          quote:
-            "Besides treating dental problems, they successfully cure the fear of the dentist.",
-          author: "Zorana Barada",
-        },
-        {
-          quote:
-            "Excellent dentists, expert and professional. Great with children too.",
-          author: "Joško Herceg",
-        },
-        {
-          quote: "Top professional and fair pricing.",
-          author: "Gunther Braus",
-        },
-      ],
-    },
-    cta: {
-      heading: "Get in touch with confidence",
-      subheading:
-        "Your first examination is free. Book an appointment and let's talk about how we can help.",
-      primaryButton: "Book an Appointment",
-      secondaryButton: "See our services",
-    },
+    // Paired in order with the portraits in AboutPage.astro.
+    team: [
+      { name: "Slavica Pejda Repić, DDM, PhD", role: "Doctor of dental medicine, specialist in orthodontics" },
+      { name: "Dario Repić, DDM, PhD", role: "Doctor of dental medicine, specialist in endodontics and restorative dental medicine" },
+      { name: "Danijela Maleta", role: "Doctor of dental medicine" },
+      { name: "Magdalena Županović", role: "Doctor of dental medicine" },
+      { name: "Katja Bažoka", role: "Dental assistant" },
+      { name: "Manuela Škrobica", role: "Dental assistant" },
+      { name: "Ana Papić", role: "Dental assistant" },
+    ],
   },
 
   services: {
@@ -252,15 +148,64 @@ export const en: Translation = {
         "Implantology, orthodontics, endodontics, dental prosthetics, aesthetic dental medicine, oral surgery, periodontology, X-ray diagnostics and pediatric dentistry.",
     },
     hero: {
-      title: "OUR SERVICES",
-      description:
-        "We provide all our services and treatments in our modernly equipped clinic, in accordance with the rules of the profession, to ensure our patients feel at ease and are satisfied with our service.",
+      eyebrow: "Dental Centar Repić - Trogir",
+      title: "From prevention to complex treatment.",
     },
     intro: {
-      heading: "Complete Dental Service",
+      eyebrow: "A complete approach",
+      heading: "One centre. Many possibilities.",
       paragraph:
         "From implantology and orthodontics to aesthetic dental medicine — we provide a solution for all your dental needs in one place, with a professional approach and the most modern materials.",
     },
+    // Paired in order with the images and detail pages in ServicesPage.astro.
+    cards: [
+      {
+        title: "Dental implants",
+        summary:
+          "Dental implants are a routine procedure that replaces lost teeth without any work on the neighbouring teeth.",
+      },
+      {
+        title: "Orthodontics",
+        summary:
+          "Orthodontic therapy (braces) is indicated when teeth are improperly positioned or unevenly distributed.",
+      },
+      {
+        title: "Endodontics",
+        summary:
+          "A specialist discipline of dental medicine, closely associated with restorative dentistry and cariology.",
+      },
+      {
+        title: "Dental prosthetics",
+        summary:
+          "We pay special attention to preserving the function of the teeth and the whole chewing system.",
+      },
+      {
+        title: "Aesthetic dental medicine",
+        summary:
+          "A beautiful smile lifts your mood, boosts your confidence and helps you make a great first impression.",
+      },
+      {
+        title: "Oral surgery",
+        summary:
+          "Surgical tooth extraction and other oral surgery procedures, carried out with expertise and care.",
+      },
+      {
+        title: "Periodontology",
+        summary:
+          "Act in time to prevent gum disease and tooth loss.",
+      },
+      {
+        title: "X-ray diagnostics",
+        summary:
+          "Modern X-ray diagnostics for early detection of disease and precise treatment planning.",
+      },
+      {
+        title: "Paediatric dental medicine",
+        summary:
+          "A gentle approach for our youngest patients, with preventive check-ups for healthy teeth from an early age.",
+      },
+    ],
+    // Treatment catalogue by area, listed in the footer.
     groups: [
       {
         title: "Implantology and prosthetics",
@@ -318,37 +263,6 @@ export const en: Translation = {
         ],
       },
     ],
-    detailsHeading: "Individual treatments",
-    equipment: {
-      heading: "Equipment and materials",
-      paragraph:
-        "We use the best materials from renowned global manufacturers and constantly invest in new equipment, so we can detect problems at the earliest stage and ensure timely treatment.",
-      features: [
-        {
-          title: "Premium materials",
-          description:
-            "Materials from renowned global manufacturers in every treatment",
-        },
-        {
-          title: "X-ray diagnostics",
-          description:
-            "Modern technology for early detection and precise treatment planning",
-        },
-        {
-          title: "Ongoing education",
-          description:
-            "Continuous investment in the professional development of our whole team",
-        },
-      ],
-      imageAlt: "Modern dental equipment",
-    },
-    cta: {
-      heading: "Don't see the service you are looking for?",
-      subheading:
-        "Call us or book an appointment — we will arrange an examination and propose the best treatment for you.",
-      primaryButton: "Book an Appointment",
-      secondaryButton: "Dental Tourism",
-    },
   },
 
   tourism: {
@@ -436,47 +350,30 @@ export const en: Translation = {
         "Dental Centar Repić, Rimski put 3J, 21220 Trogir, Croatia. Phone +385 21 796 241, email info@dentalrepic.com. Weekdays 8:00 - 20:00.",
     },
     hero: {
-      title: "CONTACT",
-      description:
-        "Get in touch with confidence. Fill in the form or give us a call to arrange an appointment — your first examination is free.",
+      eyebrow: "Dental Centar Repić - Trogir",
+      title: "Get in touch with confidence.",
     },
-    intro:
-      "Fill in the form below and we will contact you as soon as possible, within our working hours. Your first examination is free.",
-    addressHeading: "Our address",
+    intro: {
+      eyebrow: "Contact",
+      heading: "Book an appointment",
+      paragraph:
+        "Fill in the form below and we will contact you as soon as possible, within our working hours. Your first examination is free.",
+    },
+    addressHeading: "Address",
     contactHeading: "Contact",
+    emergencyHeading: "Emergencies",
     phoneLabel: "Phone",
     emailLabel: "Email",
-    urgentNotice:
-      "If you need urgent treatment, please call +385 21 796 241.",
     form: {
       heading: "Book an appointment",
-      description:
-        "Fill in the form below and we will contact you within our working hours.",
+      description: [
+        "We are here to answer all your questions and schedule your next appointment.",
+        "Write to us, call us, or drop by: your new smile starts here.",
+      ],
       nameLabel: "Full name",
-      namePlaceholder: "Your full name",
       emailLabel: "Email",
-      emailPlaceholder: "Your email address",
-      phoneLabel: "Phone number",
-      phonePlaceholder: "Your phone number",
-      reasonLabel: "Reason for your visit",
-      reasonOptions: [
-        "First visit - free examination",
-        "Implants",
-        "Braces",
-        "Crowns and bridges",
-        "Aesthetic dental medicine",
-        "Tooth inflammation",
-        "Other",
-      ],
-      preferredTimeLabel: "Preferred time",
-      preferredTimeOptions: [
-        "Any time",
-        "08:00 - 11:00",
-        "11:00 - 14:00",
-        "14:00 - 16:00",
-      ],
-      messageLabel: "Notes",
-      messagePlaceholder: "Briefly describe the reason for your visit...",
+      messageLabel: "Message",
+      messagePlaceholder: "Type your message...",
       submit: "Send",
       submitting: "Sending...",
       successMessage:
@@ -961,6 +858,115 @@ export const en: Translation = {
             "Tooth migration and increased spaces between the teeth",
             "Loosening of the teeth",
             "Bad breath",
+          ],
+        },
+      ],
+    },
+    "oralna-kirurgija": {
+      slug: "oralna-kirurgija",
+      meta: {
+        title: "Oral surgery - tooth extraction, alveotomy and apicoectomy | Dental Centar Repić",
+        description:
+          "Tooth extraction, wisdom tooth removal by alveotomy and apicoectomy under local anaesthesia at Dental Centar Repić in Trogir.",
+      },
+      eyebrow: "TOP ORAL SURGERY SERVICE",
+      title: "Oral surgery",
+      lead:
+        "At Dental Centar Repić, oral surgery is performed by award-winning doctors with many years of practice",
+      sections: [
+        {
+          paragraphs: [
+            "Oral surgery is the surgical branch of the dental profession. It includes the extraction of teeth, the extraction of impacted or retained teeth through the alveotomy procedure, operations on bone cysts in the upper and lower jaws, apicoectomy, frenectomy, the placement of dental implants in the jaw and sinus lift in the upper jaw. The most common surgical procedure is extraction (tooth removal). Despite the great efforts of the profession and patients to keep teeth in the mouth for as long as possible, there are cases when a tooth needs to be removed, either due to a deep cavity, breakage of the tooth, or periodontal disease.",
+            "Tooth extraction is a routine surgical procedure that is performed under local anaesthesia. Before any surgical procedure in the oral cavity, the oral surgeon takes a detailed medical history of the patient. It is necessary to list any and all medications the patient is taking, to prevent their impact on bleeding during and after the procedure, and on the healing of the wound. After the surgical procedure, the wound is sutured or left open to heal on its own. The patient receives instructions on recommended procedures to reduce swelling and pain, and a check-up at the dentist is recommended one week later, to check on the healing of the wound and to remove any stitches.",
+          ],
+        },
+        {
+          heading: "What is alveotomy?",
+          paragraphs: [
+            "In addition to the simple extraction of teeth, we also extract impacted and retained teeth using the alveotomy procedure. Any tooth in the jaw can be impacted or retained. An impacted tooth cannot erupt into its position in the jaw due to a mechanical obstacle blocking its path, while a retained tooth does not erupt for reasons that are not mechanical. The most commonly impacted teeth are the third molars, commonly called wisdom teeth. Where the bone above the crown of the impacted tooth is connected with the oral cavity, cleaning the dental arch becomes more difficult, and this may result in inflammation of the surrounding gums, called pericoronitis. If an impacted or retained tooth causes problems for the patient, its extraction by alveotomy is recommended.",
+            "Alveotomy is an oral surgery procedure performed under local anaesthetic, making it completely painless for patients. The patient is conscious the entire time and can communicate with the oral surgeon. Before performing alveotomy, the oral surgeon takes a complete medical history of the patient. It is important to list any and all drugs the patient is taking, in order to prevent any influence on bleeding during and after the procedure, and on the healing of the extraction wound. Alveotomy begins with the injection of a local anaesthetic. Following this, the surgeon makes an incision with a scalpel. The jaw bone is drilled open in order for the oral surgeon to be able to access the surgical area, and the tooth remaining in the jaw is removed from the bone using special surgical instruments (chisel, lever), with minimal trauma to the surrounding tissue. After the procedure, the wound is sutured for easier healing, and the patient receives post-surgical instructions. One week later, the patient comes into the clinic for a check-up and removal of the stitches.",
+          ],
+        },
+        {
+          heading: "What is apicoectomy?",
+          paragraphs: [
+            "Apicoectomy is an oral surgery procedure that involves the removal of the root tip of an endodontically treated tooth. It is performed by an oral surgery specialist. Apicoectomy is performed when the endodontic treatment of a tooth did not end the painful symptoms and inflammation of the tooth, or when even repeated endodontic treatment did not result in the retraction of a granuloma on the tip of the root, as confirmed by X-ray. It is then recommended that the oral surgeon remove the tip of the tooth root (apicoectomy), so that the tooth can remain in the jaw.",
+            "This procedure is performed under local anaesthesia, making it completely painless. Prior to the apicoectomy, the oral surgeon takes a complete medical history of the patient. It is important to list any and all drugs the patient is taking, in order to prevent any influence on bleeding during and after the procedure, and on the healing of the wound. A detailed description of the apicoectomy procedure is as follows: the first step is the administration of the local anaesthetic. During the entire procedure, the patient is conscious and can communicate with the oral surgeon. Once the area is anaesthetised, the oral surgeon makes a horizontal incision at the level of the root tip of the affected tooth, and opens the bone with a drill in order to access the affected area. The tip of the affected root is removed, and any inflamed tissue in the bone is scraped off. If needed, the root can also be filled endodontically from its tip to ensure the canal is sealed, and then the wound is sutured closed. The procedure takes from 30 to 60 minutes, depending on the thickness of the bone in the part of the mouth where it is being performed. Afterwards the scar is barely visible, and the bone defect fills in within several months.",
+            "Apicoectomy is performed when endodontic treatment is not sufficient to repair the inflammatory processes within the bone due to the spread of infection from the root canal, or when there are oral cysts connected to the tooth root. After the apicoectomy, the tooth root is a little shorter, though the tooth remains in the jaw and retains its function and aesthetics.",
+          ],
+        },
+      ],
+      faqs: [
+        {
+          id: "oralna-kirurgija-1",
+          question: "When should impacted or retained teeth be extracted?",
+          answer:
+            "<ul><li>with repeated pericoronitis</li><li>with abscesses</li><li>with disease of the tooth pulp or periodontium</li><li>with extensive destruction of the tooth by caries</li><li>with resorption of the roots of the neighbouring teeth</li></ul>",
+        },
+        {
+          id: "oralna-kirurgija-2",
+          question: "What are the symptoms of pericoronitis?",
+          answer:
+            "<ul><li>pain that spreads into the ear and jaw joint</li><li>difficulty opening the mouth (lockjaw, trismus)</li><li>difficulty swallowing</li><li>swollen lymph nodes under the edge of the jaw and on the neck</li><li>release of pus when the swollen tissue above the tooth is pressed</li></ul>",
+        },
+        {
+          id: "oralna-kirurgija-3",
+          question: "What are the contraindications for alveotomy?",
+          answer:
+            "<ul><li>a tooth that does not cause local or systemic problems</li><li>older age of the patient (the bone has a poorer blood supply)</li><li>a compromised medical history of the patient</li></ul>",
+        },
+        {
+          id: "oralna-kirurgija-4",
+          question: "What can I do to lessen the pain and swelling after tooth extraction?",
+          answer:
+            "<p>Cool the outside of the face over the extraction site, eat only lukewarm and soft foods, and do not consume anything hot or carbonated for the next few days. Smokers should avoid smoking to allow the wound to heal faster and better. If needed, take a painkiller, though avoid products containing acetylsalicylic acid (Andol, Aspirin), as they can prolong bleeding from the wound.</p>",
+        },
+      ],
+    },
+    "rtg-dijagnostika": {
+      slug: "rtg-dijagnostika",
+      meta: {
+        title: "X-ray diagnostics - single-tooth and panoramic X-rays | Dental Centar Repić",
+        description:
+          "Digital single-tooth and panoramic X-rays with up to 90% less radiation, taken just before or after your procedure, at Dental Centar Repić in Trogir.",
+      },
+      eyebrow: "X-RAY DIAGNOSTICS (INTRAORAL AND PANORAMIC X-RAYS)",
+      title: "X-ray diagnostics",
+      lead:
+        "Single-tooth and panoramic X-rays with modern digital imaging and the lowest radiation doses",
+      sections: [
+        {
+          paragraphs: [
+            "X-ray images of the teeth and jaws are an important diagnostic tool in all areas of dental medicine, as they provide insight into all the anatomical and pathological formations in the bone that cannot be seen during the clinical examination. They are essential for the planning of virtually every procedure in dental medicine.",
+            "Earlier conventional X-ray systems gave poor insight into the bone structure, with much higher exposure to radiation for both the patient and the technician. With the development of digital X-ray technology, the radiation dose has been reduced substantially, and image handling is now much simpler. The modern digital technology at Dental Centar Repić guarantees the lowest radiation dose (up to 90% less radiation compared to classical X-ray images). Our patients are also able to have X-rays just before or after the procedure, in order to avoid the need for multiple visits.",
+            "Dental Centar Repić also offers X-rays of a single tooth (intraoral retroalveolar images) and of both jaws (panoramic X-ray or orthopantomogram). Intraoral images show a single tooth in its actual size. One retroalveolar image can show one tooth, or that tooth with its two neighbouring teeth. The orthopantomogram (panoramic X-ray) is the most common image used in dental medicine, as it enables the detection of pathological processes at the tips of the tooth roots, gives an overview of the state of the bone in cases of periodontitis, and shows caries on teeth. The radiation dose of the orthopantomogram can be adjusted for children, since this image is important for planning orthodontic therapy.",
+            "Patients' images are stored on the computer so that they are accessible at any time, and can be sent to the patient by email upon request. Digital storage enables the images to be processed using a range of software tools (to sharpen, enlarge, reduce, colour, measure and perform additional diagnostics), in order to obtain additional insight into the state of the patient's oral health and make it easier for the dentist to reach the right diagnosis.",
+            "In all treatment rooms, the computers are connected to a central database, so all digital radiological data are available at any time, in any room. This system has substantially reduced the time needed for analysis, enabling better quality consultations between specialists and the patient.",
+            "X-rays are not recommended for pregnant women, especially in the first trimester.",
+          ],
+        },
+      ],
+    },
+    "djecja-dentalna-medicina": {
+      slug: "djecja-dentalna-medicina",
+      meta: {
+        title: "Pediatric dentistry - a dentist for children | Dental Centar Repić",
+        description:
+          "A first dental visit around age 1, fluoride treatment, fissure sealing and painless anaesthesia for children at Dental Centar Repić in Trogir.",
+      },
+      eyebrow: "DENTAL CARE FOR CHILDREN",
+      title: "Pediatric dentistry",
+      lead:
+        "We place exceptional importance on preserving the oral health of children",
+      sections: [
+        {
+          paragraphs: [
+            "Visiting the dentist at an early age results in the development of good oral hygiene habits, and it is also important for removing fears, both in childhood and later on in life. The best time for the first visit to the dentist is around the age of 1.",
+            "Through play and communication appropriate for the child's age, we aim to make dental procedures fun and minimally traumatic. We coat the teeth of the youngest children with a fluoride gel to prevent cavities. This method is completely painless for children.",
+            "We educate parents on the importance of repairing milk teeth, in order to prevent later problems with permanent teeth and orthodontic anomalies that can arise from the early loss of milk teeth. We seal young permanent teeth to prevent caries from forming in their fissures over a longer period of time. Fissure sealing does not require any drilling of the teeth.",
+            "Where teeth need to be drilled to remove caries, we use painless methods of administering anaesthetic. We first coat the injection site with an anaesthetic gel to ensure that the injection is painless.",
+            "Through the multidisciplinary approach of our specialists Dr. Dario Repić and Dr. Slavica Pejda Repić, a specialist in orthodontics, we provide you and your child with the best advice and the optimal treatment. We pay particular attention to preventive dentistry as your child grows and develops, in order to prevent certain orthodontic anomalies and unpleasant experiences at the dentist's.",
+            "For a successful tooth repair, young patients are awarded a diploma for bravery or a certificate of praise.",
           ],
         },
       ],

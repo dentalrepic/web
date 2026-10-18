@@ -15,7 +15,9 @@ This guide covers the design system and components behind the Dental Centar Repi
 ### 1. Update Branding
 
 **Logo:**
-The header carries the brand manual's primary logo at `/src/assets/logo-dcr-lockup.svg`: the DCR wordmark whose C is the tooth mark (page 11 of the manual). The clinic's full name sits beside it as live text on large viewports. The mark on its own is `/src/assets/logo-dcr.svg`, a tooth knocked out of a PANTONE 319 C disc. The tooth is a cutout, so `fill-rule="evenodd"` on those paths must stay. The footer uses `/src/assets/logo-dcr-negative.svg` (white disc, tooth cut out), because the positive mark is 319 C itself and would disappear against the 319 C footer. Shared contact details live in `/src/data/site.json`.
+The header carries the brand manual's primary logo, the DCR wordmark whose C is the tooth mark (page 11 of the manual), in white at `/src/assets/logo-dcr-lockup-white.svg`; the colour version is `/src/assets/logo-dcr-lockup.svg`. The mark on its own is `/src/assets/logo-dcr.svg`, a tooth knocked out of a PANTONE 319 C disc. The tooth is a cutout, so `fill-rule="evenodd"` on those paths must stay. Shared contact details and opening hours live in `/src/data/site.json`.
+
+The header floats over the photo hero on pages that pass `overlayNav` to `Layout` (home, about, services, contact) and turns solid brown once the page scrolls; on other pages it is solid from the start.
 
 **Favicon:**
 `/public/favicon.svg` is a solid tooth silhouette rather than the manual's thin outline: at 16px the outline closes up and the icon reads as a smudge. `/public/apple-touch-icon.png` (180px) covers iOS home screens, which ignore SVG favicons, and `/public/logo-dcr-512.png` is the raster logo used by the structured data. Both PNGs come from opaque sources in `/src/assets/brand/`, since iOS composites transparency onto black:
@@ -203,10 +205,10 @@ Buttons use design tokens for consistency:
 
 ```css
 @theme {
-  --button-radius: 9999px;        /* rounded-full */
-  --button-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --button-padding-x: 2rem;       /* 32px */
-  --button-padding-y: 0.75rem;    /* 12px */
+  --button-radius: 4px;
+  --button-shadow: none;
+  --button-padding-x: 1rem;       /* 16px */
+  --button-padding-y: 0.625rem;   /* 10px, 48px tall with the 28px line */
 }
 ```
 
@@ -226,6 +228,10 @@ import Button from '../components/Button.astro';
   Outline Button
 </Button>
 ```
+
+The 2026 design's pages use four classes directly: `button-ink` and `button-ink-outline`
+(brown, on light grounds) and `button-light` and `button-light-outline` (white, on photos
+and the brown booking band).
 
 ---
 

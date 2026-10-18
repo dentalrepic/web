@@ -2,7 +2,7 @@
 // Import the components from the astro-navbar npm package
 import { Astronav, MenuItems } from "astro-navbar";
 import Icon from "./Icon.astro";
-import logo from "../assets/logo-dcr-lockup.svg";
+import logo from "../assets/logo-dcr-lockup-white.svg";
 import site from "../data/site.json";
 import LanguageSwitcher from "./LanguageSwitcher.astro";
 import type { Locale } from "../i18n/config";
@@ -10,9 +10,15 @@ import { localizePath, stripLocaleFromPath, useTranslations } from "../i18n/util
 
 interface Props {
   locale: Locale;
+  /**
+   * Float the header over the page's photo hero with a light tint, turning
+   * solid once the page scrolls. Without it the header is solid from the
+   * start, for pages that do not open with a photo.
+   */
+  overlay?: boolean;
 }
 
-const { locale } = Astro.props;
+const { locale, overlay = false } = Astro.props;
 const t = useTranslations(locale);
 
 const normalizePath = (path: string) =>
@@ -28,47 +34,37 @@ const isCurrentPage = (href: string) => {
 ---
 
 <header
-  class="sticky top-0 z-50 bg-theme-surface/98 backdrop-blur-lg supports-[backdrop-filter]:bg-theme-surface/95 border-b border-theme-border"
+  class:list={["site-header top-0 inset-x-0 z-50", overlay ? "fixed" : "sticky"]}
+  data-overlay={overlay ? "true" : undefined}
+  data-solid={overlay ? undefined : "true"}
 >
   <div class="container">
     <Astronav>
-      <div class="flex items-center justify-between w-full py-4 xl:py-5">
+      <div class="flex h-20 items-center justify-between w-full">
         <!-- Logo -->
         <a
           href={localizePath("/", locale)}
-          class="shrink-0 flex items-center gap-3 group relative z-10"
+          class="shrink-0 flex items-center group relative z-10"
         >
           <!--
-            The manual's primary logo ("odnos logotipa i znaka", page 11): the DCR
-            wordmark whose C is the tooth mark. Served as a plain <img> so it
-            stays crisp at any density, with no raster processing needed.
-
-            The lockup already spells DCR, so the clinic's full name sits beside
-            it as live text rather than being repeated inside the artwork. Below
-            the sm breakpoint the name is dropped to keep the header one line;
-            the accessible name survives in the sr-only span.
+            The manual's primary logo ("odnos logotipa i znaka", page 11) in
+            white, as the header always sits on a photo or on the brown ground.
           -->
           <img
             src={logo.src}
             alt={t.brand.logoAlt}
-            width="112"
-            height="46"
-            class="h-9 xl:h-10 w-auto transition-transform duration-300 group-hover:scale-[1.04]"
+            width="85"
+            height="36"
+            class="h-9 w-auto"
             loading="eager"
             fetchpriority="high"
           />
-          <span
-            class="hidden lg:inline text-base xl:text-lg font-display font-semibold text-theme-primary whitespace-nowrap"
-          >
-            {t.brand.name}
-          </span>
-          <!-- Narrow viewports: the lockup alone stands in for the name -->
-          <span class="lg:hidden sr-only">{t.brand.name}</span>
+          <span class="sr-only">{t.brand.name}</span>
         </a>
 
         <!-- Desktop Navigation -->
-        <nav class="hidden xl:flex items-center gap-1">
-          <ul class="flex items-center gap-0.5">
+        <nav class="hidden lg:flex items-center gap-8">
+          <ul class="flex items-center gap-8">
             {
               t.nav.links.map((link) => (
                 <li>
@@ -84,33 +80,22 @@ const isCurrentPage = (href: string) => {
             }
           </ul>
 
-          <!-- Language Switcher -->
-          <LanguageSwitcher locale={locale} class="ml-1 xxl:ml-2" />
-
-          <!-- Phone and booking CTA -->
-          <div class="ml-2 pl-2 xxl:ml-3 xxl:pl-3 border-l border-theme-border flex items-center gap-3">
-            <a
-              href={site.contact.phoneHref}
-              class="hidden xxl:flex items-center gap-2 text-sm font-semibold text-theme-primary hover:text-theme-primary-dark transition-colors whitespace-nowrap"
-            >
-              <Icon name="phone" size="sm" />
-              <span>{site.contact.phone}</span>
-            </a>
-            <a
-              class="button button-primary text-sm whitespace-nowrap"
-              href={localizePath(t.nav.cta.href, locale)}
-            >
-              {t.nav.cta.label}
-            </a>
-          </div>
+          <LanguageSwitcher locale={locale} tone="dark" />
         </nav>
+
+        <a
+          class="header-cta hidden lg:inline-flex items-center rounded px-3 py-1.5 text-sm leading-6 whitespace-nowrap transition-colors"
+          href={localizePath(t.nav.cta.href, locale)}
+        >
+          {t.nav.cta.label}
+        </a>
 
         <!--
           Mobile header controls: the language dropdown stays in the bar, so it
           is reachable without opening the main menu first.
         -->
-        <div class="xl:hidden flex items-center gap-1">
-          <LanguageSwitcher locale={locale} variant="compact" />
+        <div class="lg:hidden flex items-center gap-1">
+          <LanguageSwitcher locale={locale} variant="compact" tone="dark" />
 
           <!--
             Mobile Menu Button
@@ -123,7 +108,7 @@ const isCurrentPage = (href: string) => {
           <button id="astronav-menu" aria-label={t.nav.menuLabel} aria-expanded="false">
             <svg
               fill="currentColor"
-              class="w-6 h-6 text-theme-text-secondary"
+              class="w-6 h-6 text-white"
               width="24"
               height="24"
               viewBox="0 0 24 24"
@@ -147,24 +132,20 @@ const isCurrentPage = (href: string) => {
       </div>
 
       <!-- Mobile Navigation Menu -->
-      <MenuItems class="hidden xl:hidden mobile-menu">
-        <nav class="bg-theme-surface border-t border-theme-border shadow-md">
+      <MenuItems class="hidden lg:hidden mobile-menu">
+        <nav class="bg-theme-surface rounded shadow-md mb-4">
           <div class="max-w-md mx-auto px-4 py-6">
             <ul class="space-y-1 mb-6">
               {
                 t.nav.links.map((link) => (
                   <li>
                     <a
-                      class="mobile-nav-link group flex items-center px-4 py-3 text-base font-medium text-theme-text-secondary hover:text-theme-primary hover:bg-theme-surface-hover transition-colors duration-200 rounded-xl"
+                      class="mobile-nav-link group flex items-center px-4 py-3 text-base text-theme-ink hover:bg-theme-surface-warm transition-colors duration-200 rounded"
                       href={localizePath(link.href, locale)}
                       aria-current={isCurrentPage(link.href) ? "page" : undefined}
                     >
-                      <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-theme-surface-muted group-hover:bg-theme-surface-hover transition-colors mr-3 flex items-center justify-center">
-                        <Icon
-                          name={link.icon as any}
-                          size="md"
-                          class="text-theme-text-secondary group-hover:text-theme-primary transition-colors"
-                        />
+                      <div class="flex-shrink-0 w-10 h-10 rounded bg-theme-surface-warm mr-3 flex items-center justify-center">
+                        <Icon name={link.icon as any} size="md" class="text-theme-ink" />
                       </div>
                       <span>{link.label}</span>
                     </a>
@@ -176,14 +157,14 @@ const isCurrentPage = (href: string) => {
             <!-- CTA Button -->
             <div class="pt-4 border-t border-theme-border space-y-3">
               <a
-                class="button button-primary w-full justify-center text-base"
+                class="button button-ink w-full justify-center"
                 href={localizePath(t.nav.cta.href, locale)}
               >
                 {t.nav.cta.label}
               </a>
               <a
                 href={site.contact.phoneHref}
-                class="flex items-center justify-center gap-2 py-2 text-base font-semibold text-theme-primary hover:text-theme-primary-dark transition-colors"
+                class="flex items-center justify-center gap-2 py-2 text-base text-theme-ink hover:underline"
               >
                 <Icon name="phone" size="sm" />
                 <span>{site.contact.phone}</span>
@@ -196,7 +177,67 @@ const isCurrentPage = (href: string) => {
   </div>
 </header>
 
+<script>
+  /**
+   * The overlay header turns solid once the page has scrolled, so its white
+   * links stay legible over the light sections below the hero. It is also
+   * solid while the mobile menu is open.
+   */
+  function setupHeader() {
+    const header = document.querySelector<HTMLElement>(".site-header[data-overlay]");
+    if (!header) return;
+
+    const menuButton = document.getElementById("astronav-menu");
+    const update = () => {
+      const scrolled = window.scrollY > 24;
+      const menuOpen = menuButton?.getAttribute("aria-expanded") === "true";
+      header.toggleAttribute("data-solid", scrolled || menuOpen);
+    };
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    menuButton?.addEventListener("click", () => requestAnimationFrame(update));
+    document.addEventListener(
+      "astro:before-swap",
+      () => window.removeEventListener("scroll", update),
+      { once: true }
+    );
+  }
+
+  setupHeader();
+  document.addEventListener("astro:page-load", setupHeader);
+</script>
+
 <style>
+  .site-header {
+    background-color: var(--color-theme-ink);
+    transition: background-color 200ms ease;
+  }
+
+  /* Over the hero photo: the design's 20% brown tint */
+  .site-header[data-overlay]:not([data-solid]) {
+    background-color: rgb(71 68 66 / 0.2);
+  }
+
+  /* Brown button over the photo; white once the header itself is brown */
+  .header-cta {
+    color: #ffffff;
+    background-color: var(--color-theme-ink);
+  }
+
+  .site-header[data-solid] .header-cta {
+    color: var(--color-theme-ink);
+    background-color: #ffffff;
+  }
+
+  .header-cta:hover {
+    background-color: #2f2d2c;
+  }
+
+  .site-header[data-solid] .header-cta:hover {
+    background-color: var(--color-theme-sand);
+  }
+
   .mobile-menu {
     animation: slideDown 0.3s ease-out;
   }
@@ -217,21 +258,20 @@ const isCurrentPage = (href: string) => {
   }
 
   /* Active link highlighting */
-  .nav-link[aria-current="page"],
   .mobile-nav-link[aria-current="page"] {
-    color: var(--color-theme-primary);
-    background-color: var(--color-theme-surface-hover);
+    background-color: var(--color-theme-surface-warm);
+    font-weight: 500;
   }
 
   /* Mobile menu button styling */
   #astronav-menu {
     padding: 0.5rem;
     margin-right: -0.5rem;
-    border-radius: 0.5rem;
+    border-radius: 4px;
     transition: background-color 150ms ease;
   }
 
   #astronav-menu:hover {
-    background-color: var(--color-theme-surface-hover);
+    background-color: rgb(255 255 255 / 0.15);
   }
 </style>

@@ -17,10 +17,9 @@ export const it: Translation = {
       { label: "Home", href: "/", icon: "home" },
       { label: "Chi siamo", href: "/about", icon: "info" },
       { label: "Servizi", href: "/services", icon: "clipboard" },
-      { label: "Turismo dentale", href: "/dental-tourism", icon: "star" },
-      { label: "Informazioni", href: "/info", icon: "book" },
+      { label: "Contatti", href: "/contact", icon: "phone" },
     ],
-    cta: { label: "Prenota un appuntamento", href: "/contact" },
+    cta: { label: "Prenota un appuntamento", href: "/contact#form" },
     languageLabel: "Lingua",
     menuLabel: "Apri il menu",
   },
@@ -28,7 +27,10 @@ export const it: Translation = {
   footer: {
     description:
       "La tutela della salute orale, della funzione e dell'estetica è il fondamento del nostro lavoro con i pazienti. Trattiamo ogni paziente in modo individuale, seguiamo il progresso tecnologico e ci impegniamo in ogni momento a offrire il miglior servizio possibile. Investiamo costantemente in nuove attrezzature e nella formazione professionale del nostro team.",
-    servicesHeading: "Servizi",
+    hoursHeading: "Orari di apertura",
+    closed: "Chiuso",
+    contactHeading: "Contatti",
+    designCredit: "Design",
   },
 
   common: {
@@ -37,6 +39,11 @@ export const it: Translation = {
     readLess: "Mostra meno",
     callUsToday: "Chiamaci oggi stesso!",
     bookAppointment: "Prenota un appuntamento",
+    booking: {
+      eyebrow: "Contattaci",
+      heading: "Prenota il tuo appuntamento. La prima visita è gratuita.",
+      text: "Compila il modulo o chiamaci: ti ricontatteremo durante i nostri orari di apertura.",
+    },
   },
 
   home: {
@@ -46,135 +53,62 @@ export const it: Translation = {
         "Dental Centar Repić a Trogir: implantologia, ortodonzia, endodonzia, protesi e medicina dentale estetica. Prima visita gratuita. Tel. +385 21 796 241.",
     },
     hero: {
-      title: "Soluzioni dentali di alto livello",
-      subtitleLine1: "Una soluzione per tutte le tue esigenze dentali",
-      subtitleLine2: "in un unico luogo.",
+      eyebrow: "Dental Centar Repić - Trogir",
+      title: "Un approccio moderno. Un sorriso sano.",
+      lead: "Cure dentali complete con un team esperto, tecnologia moderna e un approccio individuale a ogni paziente.",
       ctaPrimary: "Prenota un appuntamento",
       ctaSecondary: "I nostri servizi",
-      imageAlt: "Studio Dental Centar Repić",
     },
-    welcome: {
-      eyebrow: "Benvenuti sul nostro sito",
-      heading: "Ci prendiamo cura del tuo sorriso perfetto",
-      intro:
-        "Personale altamente qualificato (specialisti delle discipline odontoiatriche, con dottorato di ricerca), un approccio interdisciplinare e un ambiente accogliente sono ciò che rende Dental Centar Repić la scelta giusta per te. Garantiamo un approccio professionale, un servizio di alta qualità e l'uso di materiali all'avanguardia. Vogliamo che ti senta a tuo agio nel nostro centro, e ripagheremo la tua fiducia con conoscenza, competenza ed esperienza.",
-      highlights: [
-        {
-          title: "Attrezzature della massima qualità",
-          description:
-            "Utilizziamo esclusivamente materiali di alta qualità di produttori di fama internazionale",
-        },
-        {
-          title: "Studio ampio e attrezzato",
-          description:
-            "Oltre a un trattamento di prim'ordine, facciamo in modo che ti senta a tuo agio",
-        },
-        {
-          title: "Personale cordiale e competente",
-          description:
-            "I nostri medici e il personale sanitario sono sempre a tua disposizione",
-        },
-      ],
-      link: "Scopri di più su di noi",
-      imageAlt: "Il team di Dental Centar Repić",
-    },
-    servicesIntro: {
+    services: {
       eyebrow: "Competenza e professionalità",
       heading: "Servizio dentale completo",
-      description:
-        "Offriamo tutti i nostri servizi e trattamenti in ambienti modernamente attrezzati, secondo le regole della professione, affinché i nostri pazienti si sentano a proprio agio e siano soddisfatti del servizio.",
-      services: [
-        {
-          title: "Impianti dentali",
-          summary:
-            "Risolvi in modo definitivo la mancanza di denti e recupera la funzione masticatoria.",
-        },
-        {
-          title: "Ortodonzia (apparecchi)",
-          summary:
-            "Realizza il tuo sogno di un bel sorriso con i nostri ortodontisti specialisti.",
-        },
-        {
-          title: "Medicina dentale estetica",
-          summary:
-            "Ottieni il sorriso che hai sempre desiderato e goditi la nuova sicurezza.",
-        },
-      ],
-    },
-    whyUs: {
-      heading: "Perché scegliere Dental Centar Repić",
-      subheading:
-        "Dalla prima visita gratuita alle attrezzature di alto livello: tutto in un unico luogo, nel cuore della Dalmazia.",
-      reasons: [
-        "Prima visita gratuita",
-        "Personale cordiale",
-        "Studio ampio",
-        "Medici esperti",
-        "Adatto alle famiglie",
-        "Posizione comoda",
-        "Nessuna attesa",
-        "Garanzia di qualità",
-        "Accessibile ai disabili",
-        "Attrezzature moderne",
-        "Materiali di alta qualità",
-        "Diagnostica radiologica",
-      ],
-      imageAlt: "Attrezzature moderne nello studio",
-    },
-    problems: {
-      heading: "Abbiamo la soluzione ai tuoi problemi dentali",
+      paragraph:
+        "Uniamo le conoscenze dei nostri specialisti, la tecnologia moderna e materiali di qualità per offrire cure dentali complete, su misura per le tue esigenze.",
+      // Paired in order with the pictograms in HomePage.astro.
       items: [
-        {
-          title: "Mancanza di denti",
-          description:
-            "Sorridi di nuovo con orgoglio: con le nostre soluzioni protesiche e implantari ti restituiamo il sorriso e la corretta funzione dei denti.",
-        },
-        {
-          title: "Mal di denti",
-          description:
-            "Il mal di denti può avere diverse cause. Dopo una visita dentale approfondita decidiamo la terapia e il trattamento più adeguati.",
-        },
-        {
-          title: "Paura del dentista",
-          description:
-            "Superiamo con successo la paura del dentista. Poniamo particolare attenzione al lavoro con i bambini, perché si sentano a proprio agio dalla prima visita.",
-        },
-        {
-          title: "Denti rotti / scheggiati",
-          description:
-            "Trattiamo i denti rotti e scheggiati con corone o altri interventi.",
-        },
-        {
-          title: "Parodontite",
-          description:
-            "Offriamo un servizio parodontale completo, adattato individualmente alle esigenze di ogni paziente.",
-        },
-        {
-          title: "Denti irregolari / distanziati",
-          description:
-            "Siamo specializzati in un'ampia gamma di servizi ortodontici che ti porteranno il sorriso perfetto che hai sempre sognato.",
-        },
-        {
-          title: "Carie e deterioramento dei denti",
-          description:
-            "Utilizziamo tecnologie moderne per individuare le patologie nella fase più precoce, garantire un trattamento tempestivo e preservare i tuoi denti.",
-        },
-        {
-          title: "Macchie / discromie",
-          description:
-            "Il nostro servizio di sbiancamento ti garantisce i denti bianchi che hai sempre desiderato.",
-        },
+        { title: "Odontoiatria generale", summary: "Prevenzione e cura dei denti" },
+        { title: "Implantologia", summary: "Sostituzione dei denti persi" },
+        { title: "Odontoiatria estetica", summary: "Un sorriso bello e naturale" },
+        { title: "Ortodonzia", summary: "Denti ben allineati" },
       ],
+      cta: "Scopri tutti i nostri servizi",
     },
-    faq: {
-      eyebrow: "FAQ",
-      heading: "Domande frequenti",
-      viewAll: "Vedi tutte le domande",
+    team: {
+      eyebrow: "Il nostro team",
+      heading: "Le persone che si prendono cura di te",
+      paragraphs: [
+        "Conoscenza, esperienza e collaborazione al servizio della tua salute.",
+        "Il nostro team riunisce specialisti di diversi ambiti dell'odontoiatria, che affrontano con competenza ed esperienza problemi dentali semplici e complessi.",
+      ],
+      cta: "Conosci il nostro team",
+      imageAlt: "Dott.ssa Slavica Pejda Repić e Dott. Dario Repić",
     },
-    cta: {
-      heading: "Prenota il tuo appuntamento o una visita gratuita",
-      text: "Compila il modulo o chiamaci: ti contatteremo durante i nostri orari di apertura.",
-      button: "Prenota ora",
+    visit: {
+      eyebrow: "La tua visita",
+      heading: "Per noi conta come ti senti",
+      paragraph:
+        "Dalla prima visita alla fine del trattamento, cerchiamo di offrirti un'esperienza piacevole, in cui ti senta rilassato, informato e al sicuro.",
+    },
+    space: {
+      eyebrow: "Il nostro studio",
+      heading: "Uno studio moderno e attrezzato",
+      paragraph:
+        "Investiamo in attrezzature, tecnologia e materiali di qualità per garantire le condizioni di un lavoro professionale e di cure dentali di alta qualità. Per noi è importante anche che tu ti senta a tuo agio e al sicuro durante la visita.",
+      galleryLabel: "Foto dello studio",
+      previousLabel: "Foto precedente",
+      nextLabel: "Foto successiva",
+      // Paired in order with the gallery photos in HomePage.astro.
+      photoAlts: [
+        "Reception e sala d'attesa",
+        "Angolo relax nella sala d'attesa",
+        "Angolo bambini nella sala d'attesa",
+        "Studio con vista sul mare",
+        "Poltrona odontoiatrica in uno studio",
+        "Studio con specchi rotondi",
+        "Gli studi visti dall'esterno",
+      ],
+      videoTitle: "Video: Dental Centar Repić",
+      playLabel: "Riproduci il video di Dental Centar Repić",
     },
   },
 
@@ -185,64 +119,25 @@ export const it: Translation = {
         "Conosci il team di Dental Centar Repić a Trogir: specialisti in ortodonzia, endodonzia e odontoiatria restaurativa, con dottorato di ricerca.",
     },
     hero: {
-      title: "CHI SIAMO",
-      description:
-        "Personale altamente qualificato, un approccio interdisciplinare e un ambiente accogliente rendono Dental Centar Repić la scelta giusta per te. <br /> Garantiamo un approccio professionale, un servizio di alta qualità e l'uso di materiali all'avanguardia.",
+      eyebrow: "La competenza che ci unisce",
+      title: "Persone di cui puoi fidarti.",
     },
-    team: {
-      heading: "Il nostro team",
-      subheading:
-        "Medici esperti e premiati, personale sanitario professionale e cortese",
-      members: [
-        {
-          name: "Dr.ssa Slavica Pejda Repić",
-          role: "Odontoiatra, specialista in ortodonzia",
-        },
-        {
-          name: "Dr. Dario Repić",
-          role: "Odontoiatra, specialista in endodonzia e odontoiatria restaurativa",
-        },
-      ],
+    intro: {
+      eyebrow: "Competenza e professionalità",
+      heading: "Chi siamo",
+      paragraph:
+        "Personale altamente qualificato, un approccio interdisciplinare e un ambiente accogliente rendono Dental Centar Repić la scelta giusta per te. Garantiamo un approccio professionale, un servizio di alta qualità e l'uso di materiali all'avanguardia.",
     },
-    approach: {
-      heading: "Il nostro approccio ai pazienti",
-      paragraphs: [
-        "La tutela della salute orale, della funzione e dell'estetica è il fondamento del nostro lavoro con i pazienti. Trattiamo ogni paziente in modo individuale, seguiamo il progresso tecnologico e ci impegniamo a offrire il miglior servizio possibile.",
-        "Investiamo costantemente in nuove attrezzature e nella formazione professionale del nostro team. Offriamo tutti i servizi in ambienti modernamente attrezzati, secondo le regole della professione, affinché i pazienti si sentano a proprio agio e soddisfatti.",
-      ],
-      imageAlt: "Lo studio Dental Centar Repić",
-    },
-    testimonials: {
-      heading: "Cosa dicono i nostri pazienti",
-      items: [
-        {
-          quote:
-            "Dental Centar Repić è uno dei pochi studi dentistici dove il servizio è sempre all'altezza. Il personale è professionale e attento, ma anche allegro e sorridente. Personalmente ho fatto sistemare alcuni denti e ho ricevuto un impianto tre anni fa, e posso dire di essere ancora soddisfatto.",
-          author: "Toni Vešović",
-        },
-        {
-          quote:
-            "Oltre a curare i problemi dentali, eliminano con successo la paura del dentista.",
-          author: "Zorana Barada",
-        },
-        {
-          quote:
-            "Medici eccellenti, competenti e professionali. Complimenti anche per il lavoro con i bambini.",
-          author: "Joško Herceg",
-        },
-        {
-          quote: "Molto professionali e prezzi corretti.",
-          author: "Gunther Braus",
-        },
-      ],
-    },
-    cta: {
-      heading: "Rivolgiti a noi con fiducia",
-      subheading:
-        "La prima visita è gratuita. Prenota un appuntamento e parliamo di come possiamo aiutarti.",
-      primaryButton: "Prenota un appuntamento",
-      secondaryButton: "Vedi i nostri servizi",
-    },
+    // Paired in order with the portraits in AboutPage.astro.
+    team: [
+      { name: "Dr.ssa Slavica Pejda Repić", role: "Odontoiatra, specialista in ortodonzia" },
+      { name: "Dr. Dario Repić", role: "Odontoiatra, specialista in endodonzia e odontoiatria restaurativa" },
+      { name: "Danijela Maleta", role: "Odontoiatra" },
+      { name: "Magdalena Županović", role: "Odontoiatra" },
+      { name: "Katja Bažoka", role: "Assistente dentale" },
+      { name: "Manuela Škrobica", role: "Assistente dentale" },
+      { name: "Ana Papić", role: "Assistente dentale" },
+    ],
   },
 
   services: {
@@ -252,15 +147,64 @@ export const it: Translation = {
         "Implantologia, ortodonzia, endodonzia, protesi dentale, medicina dentale estetica, chirurgia orale, parodontologia, diagnostica radiologica e odontoiatria pediatrica.",
     },
     hero: {
-      title: "I NOSTRI SERVIZI",
-      description:
-        "Offriamo tutti i nostri servizi e trattamenti in ambienti modernamente attrezzati, secondo le regole della professione, affinché i nostri pazienti si sentano a proprio agio e siano soddisfatti del servizio.",
+      eyebrow: "Dental Centar Repić - Trogir",
+      title: "Dalla prevenzione agli interventi complessi.",
     },
     intro: {
-      heading: "Servizio dentale completo",
+      eyebrow: "Un approccio completo",
+      heading: "Un centro. Tante possibilità.",
       paragraph:
         "Dall'implantologia e l'ortodonzia alla medicina dentale estetica: offriamo una soluzione per tutte le tue esigenze dentali in un unico luogo, con un approccio professionale e materiali all'avanguardia.",
     },
+    // Paired in order with the images and detail pages in ServicesPage.astro.
+    cards: [
+      {
+        title: "Impianti dentali",
+        summary:
+          "Gli impianti dentali sono un intervento consolidato che sostituisce i denti persi senza intervenire sui denti vicini.",
+      },
+      {
+        title: "Ortodonzia",
+        summary:
+          "La terapia ortodontica (apparecchio per i denti) è indicata in caso di posizione e disposizione irregolare dei denti.",
+      },
+      {
+        title: "Endodonzia",
+        summary:
+          "Una disciplina specialistica dell'odontoiatria, strettamente legata all'odontoiatria restaurativa e alla cariologia.",
+      },
+      {
+        title: "Protesi dentale",
+        summary:
+          "Dedichiamo particolare attenzione alla conservazione della funzione dei denti e dell'intero apparato masticatorio.",
+      },
+      {
+        title: "Medicina dentale estetica",
+        summary:
+          "Un bel sorriso migliora l'umore, rafforza la fiducia in te stesso e ti aiuta a fare un'ottima prima impressione.",
+      },
+      {
+        title: "Chirurgia orale",
+        summary:
+          "Estrazioni chirurgiche e altri interventi di chirurgia orale, eseguiti con competenza e attenzione.",
+      },
+      {
+        title: "Parodontologia",
+        summary:
+          "Intervieni in tempo per prevenire le malattie gengivali e la perdita dei denti.",
+      },
+      {
+        title: "Diagnostica radiologica",
+        summary:
+          "Diagnostica radiologica moderna per individuare precocemente le patologie e pianificare con precisione la terapia.",
+      },
+      {
+        title: "Odontoiatria pediatrica",
+        summary:
+          "Un approccio delicato con i pazienti più piccoli e controlli preventivi per denti sani fin dalla prima infanzia.",
+      },
+    ],
+    // Treatment catalogue by area, listed in the footer.
     groups: [
       {
         title: "Implantologia e protesi",
@@ -318,37 +262,6 @@ export const it: Translation = {
         ],
       },
     ],
-    detailsHeading: "Singoli trattamenti",
-    equipment: {
-      heading: "Attrezzature e materiali",
-      paragraph:
-        "Utilizziamo materiali di alta qualità di produttori di fama internazionale e investiamo costantemente in nuove attrezzature, per individuare le patologie nella fase più precoce e garantire un trattamento tempestivo.",
-      features: [
-        {
-          title: "Materiali di alta qualità",
-          description:
-            "Materiali di produttori di fama internazionale in ogni trattamento",
-        },
-        {
-          title: "Diagnostica radiologica",
-          description:
-            "Tecnologia moderna per la diagnosi precoce e una pianificazione precisa della terapia",
-        },
-        {
-          title: "Formazione continua",
-          description:
-            "Investimento costante nella formazione professionale di tutto il team",
-        },
-      ],
-      imageAlt: "Attrezzature dentali moderne",
-    },
-    cta: {
-      heading: "Non trovi il servizio che cerchi?",
-      subheading:
-        "Chiamaci o prenota un appuntamento: fisseremo una visita e proporremo il trattamento migliore per te.",
-      primaryButton: "Prenota un appuntamento",
-      secondaryButton: "Turismo dentale",
-    },
   },
 
   tourism: {
@@ -436,47 +349,30 @@ export const it: Translation = {
         "Dental Centar Repić, Rimski put 3J, 21220 Trogir, Croazia. Telefono +385 21 796 241, e-mail info@dentalrepic.com. Nei giorni lavorativi 8:00 - 20:00.",
     },
     hero: {
-      title: "CONTATTI",
-      description:
-        "Rivolgiti a noi con fiducia. Compila il modulo o chiamaci per fissare un appuntamento: la prima visita è gratuita.",
+      eyebrow: "Dental Centar Repić - Trogir",
+      title: "Rivolgiti a noi con fiducia.",
     },
-    intro:
-      "Compila il modulo qui sotto e ti contatteremo il prima possibile, durante i nostri orari di apertura. La prima visita è gratuita.",
-    addressHeading: "Il nostro indirizzo",
+    intro: {
+      eyebrow: "Contatti",
+      heading: "Prenota un appuntamento",
+      paragraph:
+        "Compila il modulo qui sotto e ti contatteremo il prima possibile, durante i nostri orari di apertura. La prima visita è gratuita.",
+    },
+    addressHeading: "Indirizzo",
     contactHeading: "Contatti",
+    emergencyHeading: "Urgenze",
     phoneLabel: "Telefono",
     emailLabel: "E-mail",
-    urgentNotice:
-      "Se hai bisogno di un intervento urgente, chiama il +385 21 796 241.",
     form: {
       heading: "Prenota un appuntamento",
-      description:
-        "Compila il modulo qui sotto e ti contatteremo durante i nostri orari di apertura.",
+      description: [
+        "Siamo qui per rispondere a tutte le tue domande e fissare il tuo prossimo appuntamento.",
+        "Scrivici, chiamaci o passa a trovarci: il tuo nuovo sorriso inizia qui.",
+      ],
       nameLabel: "Nome e cognome",
-      namePlaceholder: "Il tuo nome e cognome",
       emailLabel: "E-mail",
-      emailPlaceholder: "Il tuo indirizzo e-mail",
-      phoneLabel: "Numero di telefono",
-      phonePlaceholder: "Il tuo numero di telefono",
-      reasonLabel: "Motivo della visita",
-      reasonOptions: [
-        "Prima visita - visita gratuita",
-        "Impianti",
-        "Apparecchi ortodontici",
-        "Corone e ponti",
-        "Medicina dentale estetica",
-        "Infiammazione dentale",
-        "Altro",
-      ],
-      preferredTimeLabel: "Orario preferito",
-      preferredTimeOptions: [
-        "Qualsiasi orario",
-        "08:00 - 11:00",
-        "11:00 - 14:00",
-        "14:00 - 16:00",
-      ],
-      messageLabel: "Note",
-      messagePlaceholder: "Descrivi brevemente il motivo della visita...",
+      messageLabel: "Messaggio",
+      messagePlaceholder: "Scrivi il tuo messaggio...",
       submit: "Invia",
       submitting: "Invio in corso...",
       successMessage:

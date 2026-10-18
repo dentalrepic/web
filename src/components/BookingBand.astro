@@ -1,0 +1,41 @@
+---
+/**
+ * The brown "book an appointment" band above the footer: a label, a serif
+ * heading, one line of text, then the booking button and the phone number.
+ */
+import site from "../data/site.json";
+import type { Locale } from "../i18n/config";
+import { localizePath, useTranslations } from "../i18n/utils";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const booking = t.common.booking;
+---
+
+<section class="bg-theme-ink py-12">
+  <div class="container">
+    <div class="mx-auto flex max-w-[640px] flex-col items-center gap-12 text-center text-white">
+      <div class="flex flex-col items-center gap-8">
+        <div>
+          <p class="eyebrow mb-2">{booking.eyebrow}</p>
+          <h2 class="font-serif text-3xl font-medium leading-tight tracking-normal lg:text-4xl">
+            {booking.heading}
+          </h2>
+        </div>
+        <p class="text-base leading-7 tracking-[0.02em]">{booking.text}</p>
+      </div>
+      <div class="flex flex-wrap justify-center gap-4 sm:gap-6">
+        <a class="button button-light" href={localizePath("/contact#form", locale)}>
+          {t.common.bookAppointment}
+        </a>
+        <a class="button button-light-outline" href={site.contact.phoneHref}>
+          {site.contact.phone}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

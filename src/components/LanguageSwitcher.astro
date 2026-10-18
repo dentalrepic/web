@@ -22,10 +22,12 @@ interface Props {
    * - `compact`: flag plus chevron only, for the mobile header bar
    */
   variant?: "default" | "compact";
+  /** `dark` for white text on the header's brown or photo ground. */
+  tone?: "light" | "dark";
   class?: string;
 }
 
-const { locale, variant = "default", class: className = "" } = Astro.props;
+const { locale, variant = "default", tone = "light", class: className = "" } = Astro.props;
 const t = useTranslations(locale);
 
 const alternates = getAlternateLinks(Astro.url.pathname);
@@ -51,10 +53,13 @@ const availableLocales =
 const isCompact = variant === "compact";
 ---
 
-<details class:list={["language-switcher relative", className]}>
+<details class:list={["language-switcher relative", className]} data-tone={tone}>
   <summary
     class:list={[
-      "language-summary flex items-center justify-center gap-1 rounded-lg cursor-pointer list-none text-theme-text-secondary transition-colors duration-200 hover:bg-theme-surface-hover hover:text-theme-primary",
+      "language-summary flex items-center justify-center gap-1 cursor-pointer list-none transition-colors duration-200",
+      tone === "dark"
+        ? "rounded text-white hover:bg-white/15"
+        : "rounded-lg text-theme-text-secondary hover:bg-theme-surface-hover hover:text-theme-primary",
       // 40px tall on mobile, comfortably above the WCAG 2.5.8 minimum.
       isCompact ? "h-10 px-1.5" : "h-9 px-2",
     ]}
@@ -144,6 +149,11 @@ const isCompact = variant === "compact";
   .language-switcher[open] .language-summary {
     background-color: var(--color-theme-surface-hover);
     color: var(--color-theme-primary);
+  }
+
+  .language-switcher[data-tone="dark"][open] .language-summary {
+    background-color: rgb(255 255 255 / 0.15);
+    color: #ffffff;
   }
 </style>
 

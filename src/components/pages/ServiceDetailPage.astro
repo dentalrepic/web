@@ -14,6 +14,8 @@ import FaqAccordion from "../FaqAccordion.astro";
 import Heading from "../Heading.astro";
 import Icon from "../Icon.astro";
 import heroImage from "../../assets/hero-services.jpg";
+import endodonticsHero from "../../assets/services/endodoncija-detail.jpg";
+import prostheticsHero from "../../assets/services/protetika-detail.jpg";
 import type { Locale } from "../../i18n/config";
 import { localizePath, useTranslations } from "../../i18n/utils";
 import { getServiceDetail, getServiceDetails } from "../../i18n/services";
@@ -33,6 +35,14 @@ if (!detail) {
   // Unreachable via the generated routes; guards against a stale link.
   return Astro.redirect(localizePath("/services", locale));
 }
+
+// Pages with a photo of their own; the rest share the default hero image.
+const heroImages: Partial<Record<ServiceDetailSlug, ImageMetadata>> = {
+  // From the clinic's old endodontics page on dentalrepic.com.hr.
+  endodoncija: endodonticsHero,
+  // Same photo as the prosthetics card on the services page.
+  protetika: prostheticsHero,
+};
 
 // Sibling pages available in this language, for the list at the foot.
 const related = getServiceDetails(locale).filter((entry) => entry.slug !== slug);
@@ -58,7 +68,7 @@ const faqLd = detail.faqs?.length
 ---
 
 <Layout locale={locale} title={detail.meta.title} description={detail.meta.description}>
-  <PageHero title={detail.title} description={detail.lead} image={heroImage} />
+  <PageHero title={detail.title} description={detail.lead} image={heroImages[slug] ?? heroImage} />
 
   <section class="section bg-theme-surface">
     <div class="container">
@@ -164,6 +174,6 @@ const faqLd = detail.faqs?.length
     heading={chrome.cta.heading}
     subheading={chrome.cta.subheading}
     primaryButtonText={chrome.cta.primaryButton}
-    primaryButtonLink={localizePath("/contact", locale)}
+    primaryButtonLink={localizePath("/contact#form", locale)}
   />
 </Layout>

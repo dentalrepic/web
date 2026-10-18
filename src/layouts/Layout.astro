@@ -13,9 +13,11 @@ interface Props {
 	locale: Locale;
 	title?: string;
 	description?: string;
+	/** Float the header over a photo hero at the top of the page. */
+	overlayNav?: boolean;
 }
 
-const { locale, title, description } = Astro.props;
+const { locale, title, description, overlayNav = false } = Astro.props;
 const t = useTranslations(locale);
 
 const defaultTitle = t.brand.name;
@@ -98,8 +100,8 @@ const businessLd = {
 			))
 		}
 
-		<!-- Theme Color - keep in sync with --color-theme-primary in tailwind.css -->
-		<meta name="theme-color" content="#1b7f83" />
+		<!-- Theme Color - keep in sync with --color-theme-ink in tailwind.css -->
+		<meta name="theme-color" content="#474442" />
 
 		<!-- Favicon: SVG for modern browsers, PNG for iOS home screens -->
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -116,9 +118,9 @@ const businessLd = {
 		/>
 	</head>
 	<body
-		class="bg-theme-surface-muted font-sans text-theme-text-primary antialiased selection:bg-theme-primary-lighter/50 selection:text-theme-primary-darker"
+		class="bg-theme-surface font-sans text-theme-text-primary antialiased selection:bg-theme-primary-lighter/50 selection:text-theme-primary-darker"
 	>
-		<Nav locale={locale} />
+		<Nav locale={locale} overlay={overlayNav} />
 		<main>
 			<!-- The page-specific content will be injected here -->
 			<slot />
@@ -128,7 +130,7 @@ const businessLd = {
 		<!-- Navigation Progress Bar -->
 		<div
 			id="nav-progress"
-			class="fixed top-0 left-0 h-1 bg-theme-primary z-[100] transition-all duration-300 ease-out"
+			class="fixed top-0 left-0 h-1 bg-theme-sand z-[100] transition-all duration-300 ease-out"
 			style="width: 0%; opacity: 0;"
 		></div>
 	</body>

@@ -1,0 +1,87 @@
+---
+/**
+ * Full-width photo hero: a small label and a large serif title in white,
+ * optionally followed by a lead paragraph and buttons (the `default` slot).
+ *
+ * The header overlays the top 80px of the photo (see Layout's `overlayNav`),
+ * so the photo runs to the top of the page. The design's photos carry their
+ * own wash behind the text, so no gradient is drawn over them.
+ */
+import { Image } from "astro:assets";
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  /** Lead paragraph under the title, in the brown ink. */
+  lead?: string;
+  /** Decorative backdrop: the title carries the meaning, so it has no alt text. */
+  image: ImageMetadata;
+  /** CSS object-position, to keep the subject in frame on narrow screens. */
+  focus?: string;
+  /**
+   * Colour of the small label: `ink` (brown) on photos with a pale wash,
+   * `white` on darker ones.
+   */
+  eyebrowTone?: "ink" | "white";
+  /** `center` for a hero with a lead and buttons, `end` for a title alone. */
+  align?: "center" | "end";
+}
+
+const {
+  eyebrow,
+  title,
+  lead,
+  image,
+  focus = "center",
+  eyebrowTone = "white",
+  align = "end",
+} = Astro.props;
+---
+
+<section class="relative isolate overflow-hidden bg-theme-ink">
+  <Image
+    src={image}
+    alt=""
+    widths={[640, 960, 1280, 1920, 2560]}
+    sizes="100vw"
+    class="absolute inset-0 -z-10 h-full w-full object-cover"
+    style={`object-position: ${focus}`}
+    loading="eager"
+    fetchpriority="high"
+  />
+
+  <div
+    class:list={[
+      "container flex min-h-[460px] pb-14 pt-32 md:min-h-[540px] lg:min-h-[616px]",
+      align === "center" ? "items-center lg:pb-20" : "items-end lg:pb-24",
+    ]}
+  >
+    <div class="max-w-[500px]">
+      <p
+        class:list={[
+          "eyebrow mb-2",
+          eyebrowTone === "ink" ? "text-theme-ink" : "text-white",
+        ]}
+      >
+        {eyebrow}
+      </p>
+      <h1 class="font-serif text-[2.5rem] font-semibold leading-[1.15] tracking-normal text-white sm:text-5xl lg:text-6xl">
+        {title}
+      </h1>
+      {
+        lead && (
+          <p class="mt-8 text-base leading-7 tracking-[0.02em] text-theme-ink lg:mt-12">
+            {lead}
+          </p>
+        )
+      }
+      {
+        Astro.slots.has("default") && (
+          <div class="mt-8 flex flex-wrap gap-4 sm:gap-6">
+            <slot />
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>

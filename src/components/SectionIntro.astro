@@ -1,0 +1,40 @@
+---
+/**
+ * Centred introduction on the warm off-white band: a small label, a serif
+ * heading and one paragraph. Anything in the default slot (feature boxes, a
+ * button) follows below. Sits directly under a PhotoHero.
+ */
+interface Props {
+  eyebrow: string;
+  heading: string;
+  paragraph: string;
+  /** `narrow` (640px) or `wide` (834px) measure for the paragraph. */
+  measure?: "narrow" | "wide";
+}
+
+const { eyebrow, heading, paragraph, measure = "narrow" } = Astro.props;
+---
+
+<section class="bg-theme-surface-warm py-12">
+  <div class="container">
+    <div class="flex flex-col items-center gap-12 text-center">
+      <div
+        class:list={[
+          "mx-auto flex flex-col items-center gap-8",
+          measure === "wide" ? "max-w-[834px]" : "max-w-[640px]",
+        ]}
+      >
+        <div>
+          <p class="eyebrow mb-2 text-theme-ink">{eyebrow}</p>
+          <h2 class="font-serif text-3xl font-medium leading-tight tracking-normal text-black lg:text-4xl">
+            {heading}
+          </h2>
+        </div>
+        <p class="text-base leading-7 tracking-[0.02em] text-theme-ink">
+          {paragraph}
+        </p>
+      </div>
+      <slot />
+    </div>
+  </div>
+</section>

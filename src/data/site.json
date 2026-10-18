@@ -19,5 +19,8 @@
       "closes": "20:00"
     }
   ],
-  "mapEmbedUrl": "https://maps.google.com/maps?q=Rimski%20put%203J%2C%2021220%20Trogir%2C%20Croatia&t=&z=15&ie=UTF8&iwloc=&output=embed"
+  "mapEmbedUrl": "https://maps.google.com/maps?q=Rimski%20put%203J%2C%2021220%20Trogir%2C%20Croatia&t=&z=15&ie=UTF8&iwloc=&output=embed",
+  "video": {
+    "vimeoId": "1222209152"
+  }
 }

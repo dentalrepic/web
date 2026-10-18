@@ -1,21 +1,34 @@
 ---
 /**
  * Home page body. Rendered by the localized route files.
+ *
+ * Layout follows the "Početna" design: a photo hero, the four headline
+ * treatments, the team, a short note on the visit, a carousel of photos of
+ * the clinic, the clinic's video, then the booking band.
  */
 import Layout from "../../layouts/Layout.astro";
 import { Image } from "astro:assets";
-import heroImage from "../../assets/hero-main.jpg";
-import welcomeImage from "../../assets/team-professionals.jpg";
-import whyUsImage from "../../assets/professional-staff.jpg";
-import ctaImage from "../../assets/hero-services.jpg";
-import ServicesIntroSection from "../ServicesIntroSection.astro";
-import FaqAccordion from "../FaqAccordion.astro";
-import Button from "../Button.astro";
+import PhotoHero from "../PhotoHero.astro";
+import SectionIntro from "../SectionIntro.astro";
+import BookingBand from "../BookingBand.astro";
 import Icon from "../Icon.astro";
-import Link from "../Link.astro";
-import site from "../../data/site.json";
+import heroImage from "../../assets/home/home-hero.jpg";
+import teamImage from "../../assets/home/team.jpg";
+import clinic1 from "../../assets/home/clinic-1.jpg";
+import clinic2 from "../../assets/home/clinic-2.jpg";
+import clinic3 from "../../assets/home/clinic-3.jpg";
+import clinic4 from "../../assets/home/clinic-4.jpg";
+import clinic5 from "../../assets/home/clinic-5.jpg";
+import clinic6 from "../../assets/home/clinic-6.jpg";
+import clinic7 from "../../assets/home/clinic-7.jpg";
+import videoPoster from "../../assets/home/video-poster.jpg";
+import generalPictogram from "../../assets/pictograms/general-dentistry.svg";
+import implantPictogram from "../../assets/pictograms/implantology.svg";
+import aestheticPictogram from "../../assets/pictograms/aesthetic-dentistry.svg";
+import orthodonticPictogram from "../../assets/pictograms/orthodontics.svg";
 import type { Locale } from "../../i18n/config";
 import { localizePath, useTranslations } from "../../i18n/utils";
+import site from "../../data/site.json";
 
 interface Props {
 	locale: Locale;
@@ -24,242 +37,354 @@ interface Props {
 const { locale } = Astro.props;
 const t = useTranslations(locale);
 const home = t.home;
+
+// Pictograms pair positionally with home.services.items.
+const pictograms = [generalPictogram, implantPictogram, aestheticPictogram, orthodonticPictogram];
+const services = home.services.items.map((item, index) => ({
+	...item,
+	pictogram: pictograms[index],
+}));
+
+// The two specialists head the staff list on the about page.
+const doctors = t.about.team.slice(0, 2);
+
+// Vimeo's do-not-track mode: no cookies, no viewing analytics.
+const videoSrc = `https://player.vimeo.com/video/${site.video.vimeoId}?autoplay=1&dnt=1`;
+
+// Gallery photos pair positionally with home.space.photoAlts.
+const gallery = [clinic1, clinic2, clinic3, clinic4, clinic5, clinic6, clinic7].map(
+	(image, index) => ({ image, alt: home.space.photoAlts[index] ?? "" }),
+);
 ---
 
-<Layout locale={locale} title={home.meta.title} description={home.meta.description}>
-	<!-- Hero Section -->
-	<section
-		class="relative min-h-[70vh] md:min-h-screen lg:min-h-[60vh] flex items-center py-16 md:py-0"
-		aria-label={home.hero.title}
+<Layout
+	locale={locale}
+	title={home.meta.title}
+	description={home.meta.description}
+	overlayNav
+>
+	<PhotoHero
+		eyebrow={home.hero.eyebrow}
+		title={home.hero.title}
+		lead={home.hero.lead}
+		image={heroImage}
+		focus="70% center"
+		eyebrowTone="ink"
+		align="center"
 	>
-		<div class="absolute inset-0 z-0">
-			<Image
-				src={heroImage}
-				alt={home.hero.imageAlt}
-				class="w-full h-full object-cover object-top"
-				loading="eager"
-				fetchpriority="high"
-				width={1920}
-				height={1080}
-			/>
-			<div class="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40"></div>
-		</div>
+		<a class="button button-ink" href={localizePath("/contact#form", locale)}>
+			{home.hero.ctaPrimary}
+		</a>
+		<a class="button button-ink-outline" href={localizePath("/services", locale)}>
+			{home.hero.ctaSecondary}
+		</a>
+	</PhotoHero>
 
-		<div class="container relative z-10">
-			<div class="max-w-3xl text-white text-center md:text-left mx-auto md:mx-0">
-				<h1
-					class="text-4xl md:text-[clamp(2rem,4vw,3.5rem)] font-bold leading-[1.1] mb-4 md:mb-6 tracking-tight animate-fade-in"
-				>
-					{home.hero.title}
-				</h1>
-				<p
-					class="text-lg md:text-[clamp(1rem,2vw,1.25rem)] mb-6 md:mb-10 opacity-95 leading-relaxed font-light max-w-md mx-auto md:mx-0 md:max-w-none"
-				>
-					{home.hero.subtitleLine1}<br class="hidden md:inline" />
-					{home.hero.subtitleLine2}
-				</p>
-				<div class="flex flex-wrap gap-3 md:gap-4 justify-center md:justify-start">
-					<Button
-						variant="white"
-						size="lg"
-						href={localizePath("/contact", locale)}
-						class="hover:shadow-xl hover:scale-105"
-					>
-						{home.hero.ctaPrimary}
-					</Button>
-					<Button
-						variant="white-outline"
-						size="lg"
-						href={localizePath("/services", locale)}
-						class="hover:shadow-xl"
-					>
-						{home.hero.ctaSecondary}
-					</Button>
-				</div>
-				<p class="mt-6 text-white/90 text-sm md:text-base">
-					<a
-						href={site.contact.phoneHref}
-						class="inline-flex items-center gap-2 font-semibold hover:text-white"
-					>
-						<Icon name="phone" size="sm" />
-						<span>{site.contact.phone}</span>
-					</a>
-					<span class="mx-2 text-white/50">&middot;</span>
-					<span>{t.common.callUsToday}</span>
-				</p>
-			</div>
-		</div>
-	</section>
+	<!-- Headline treatments -->
+	<SectionIntro
+		eyebrow={home.services.eyebrow}
+		heading={home.services.heading}
+		paragraph={home.services.paragraph}
+	>
+		<ul class="grid w-full grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-4 lg:gap-8">
+			{
+				services.map((service) => (
+					<li class="flex flex-col items-center gap-2 text-center">
+						<img
+							src={service.pictogram.src}
+							alt=""
+							width="60"
+							height="60"
+							class="h-[60px] w-[60px]"
+							loading="lazy"
+						/>
+						<h3 class="font-serif text-lg font-medium leading-7 tracking-normal text-black">
+							{service.title}
+						</h3>
+						<p class="text-sm leading-6 text-black">{service.summary}</p>
+					</li>
+				))
+			}
+		</ul>
+		<a class="button button-ink-outline" href={localizePath("/services", locale)}>
+			{home.services.cta}
+		</a>
+	</SectionIntro>
 
-	<!-- Welcome / About Section -->
-	<section class="section bg-theme-surface">
+	<!-- Team -->
+	<section class="bg-theme-surface py-12">
 		<div class="container">
-			<div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-				<div class="order-2 lg:order-1">
-					<p class="text-sm font-medium tracking-widest uppercase text-theme-primary mb-4">
-						{home.welcome.eyebrow}
-					</p>
-					<h2 class="mb-6">{home.welcome.heading}</h2>
-					<p class="text-theme-text-secondary text-lg leading-relaxed mb-8">
-						{home.welcome.intro}
-					</p>
-					<ul class="space-y-5 mb-6">
-						{
-							home.welcome.highlights.map((highlight) => (
-								<li class="flex items-start group">
-									<div class="flex-shrink-0 w-8 h-8 rounded-full bg-theme-primary-lighter/20 flex items-center justify-center mr-4 mt-0.5 group-hover:bg-theme-primary transition-colors duration-300">
-										<Icon
-											name="check"
-											size="sm"
-											class="text-theme-primary group-hover:text-white transition-colors duration-300"
-										/>
-									</div>
-									<div>
-										<h3 class="text-base lg:text-lg font-semibold text-theme-text-primary mb-1">
-											{highlight.title}
-										</h3>
-										<p class="text-theme-text-secondary">{highlight.description}</p>
-									</div>
-								</li>
-							))
-						}
-					</ul>
-					<div class="text-center md:text-left">
-						<Link href={localizePath("/about", locale)}>{home.welcome.link}</Link>
-					</div>
-				</div>
-				<div class="order-1 lg:order-2">
-					<div class="relative">
-						<div class="rounded-2xl overflow-hidden shadow-xl">
-							<Image
-								src={welcomeImage}
-								alt={home.welcome.imageAlt}
-								class="w-full h-auto"
-								loading="lazy"
-							/>
+			<div class="flex flex-col-reverse items-center gap-10 lg:flex-row lg:gap-20">
+				<div class="flex w-full flex-col items-start gap-10 lg:max-w-[464px]">
+					<div class="flex flex-col gap-8">
+						<div class="flex flex-col gap-12">
+							<div class="flex flex-col gap-4">
+								<p class="eyebrow text-theme-ink">{home.team.eyebrow}</p>
+								<h2 class="font-serif text-3xl font-medium leading-tight tracking-normal text-black lg:text-4xl">
+									{home.team.heading}
+								</h2>
+							</div>
+							<div class="text-theme-ink">
+								{
+									home.team.paragraphs.map((paragraph) => (
+										<p class="text-base leading-7 tracking-[0.02em]">{paragraph}</p>
+									))
+								}
+							</div>
 						</div>
-						<div
-							class="absolute -bottom-4 -left-4 w-24 h-24 bg-theme-primary-lighter/30 rounded-2xl -z-10"
-						></div>
+						<ul class="flex flex-col gap-4">
+							{
+								doctors.map((doctor) => (
+									<li class="text-xs leading-[18px] tracking-[0.02em]">
+										<span class="block font-medium uppercase text-black">{doctor.name}</span>
+										<span class="block text-theme-ink">{doctor.role}</span>
+									</li>
+								))
+							}
+						</ul>
 					</div>
+					<a class="button button-ink" href={localizePath("/about", locale)}>
+						{home.team.cta}
+					</a>
+				</div>
+				<Image
+					src={teamImage}
+					alt={home.team.imageAlt}
+					widths={[640, 960, 1280]}
+					sizes="(min-width: 1024px) 608px, 100vw"
+					class="aspect-[608/452] w-full rounded object-cover lg:w-auto lg:min-w-0 lg:flex-1"
+					loading="lazy"
+				/>
+			</div>
+		</div>
+	</section>
+
+	<!-- The visit -->
+	<SectionIntro
+		eyebrow={home.visit.eyebrow}
+		heading={home.visit.heading}
+		paragraph={home.visit.paragraph}
+	/>
+
+	<!-- The clinic -->
+	<section class="bg-theme-surface py-12">
+		<div class="container">
+			<div class="flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
+				<div class="flex flex-col gap-12 lg:max-w-[480px]">
+					<div class="flex flex-col gap-4">
+						<p class="eyebrow text-theme-ink">{home.space.eyebrow}</p>
+						<h2 class="font-serif text-3xl font-medium leading-tight tracking-normal text-black lg:text-4xl">
+							{home.space.heading}
+						</h2>
+					</div>
+					<p class="text-base leading-7 tracking-[0.02em] text-theme-ink">
+						{home.space.paragraph}
+					</p>
+				</div>
+
+				<!--
+					Photo carousel: the arrows step one photo at a time, and the
+					strip also scrolls with touch, trackpad or the keyboard (it
+					takes focus), snapping to each photo. The next photo peeks in
+					at the edge to show there is more.
+				-->
+				<div class="gallery-carousel relative lg:w-[612px] lg:shrink-0">
+					<ul
+						class="gallery -mx-4 flex snap-x snap-mandatory gap-8 overflow-x-auto px-4 md:-mx-8 md:px-8 lg:mx-0 lg:px-0"
+						tabindex="0"
+						aria-label={home.space.galleryLabel}
+					>
+						{
+							gallery.map((photo) => (
+								<li class="w-[82%] shrink-0 snap-start sm:w-[496px]">
+									<Image
+										src={photo.image}
+										alt={photo.alt}
+										widths={[496, 992]}
+										sizes="496px"
+										class="aspect-[496/452] w-full rounded object-cover"
+										loading="lazy"
+									/>
+								</li>
+							))
+						}
+					</ul>
+					<button
+						type="button"
+						class="gallery-button left-3"
+						data-direction="-1"
+						aria-label={home.space.previousLabel}
+						disabled
+					>
+						<Icon name="arrow-left" size="sm" />
+					</button>
+					<button
+						type="button"
+						class="gallery-button right-3"
+						data-direction="1"
+						aria-label={home.space.nextLabel}
+					>
+						<Icon name="arrow-right" size="sm" />
+					</button>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<!-- Services Section -->
-	<section
-		class="section bg-gradient-to-b from-theme-primary-lighter/10 via-theme-primary-lighter/5 to-theme-surface"
-	>
-		<ServicesIntroSection locale={locale} />
-	</section>
-
-	<!-- Why Us Section -->
-	<section class="section bg-theme-surface">
+	<!--
+		The clinic's video, hosted on Vimeo. The poster and play button stand in
+		for the player until clicked, so the page loads nothing from Vimeo for
+		visitors who never press play. Without JavaScript the button is a link
+		to the video on Vimeo.
+	-->
+	<section class="bg-theme-surface pb-12">
 		<div class="container">
-			<div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-				<div>
-					<h2 class="mb-4">{home.whyUs.heading}</h2>
-					<p class="text-lg text-theme-text-secondary mb-8">
-						{home.whyUs.subheading}
-					</p>
-					<ul class="flex flex-wrap gap-2.5">
-						{
-							home.whyUs.reasons.map((reason) => (
-								<li
-									class="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-theme-primary-lighter/15 border border-theme-primary-lighter/40 text-sm font-medium text-theme-primary-darker"
-								>
-									<Icon name="check" size="sm" class="text-theme-primary flex-shrink-0" />
-									<span>{reason}</span>
-								</li>
-							))
-						}
-					</ul>
-				</div>
-				<div class="w-full">
+			<div
+				class="video relative aspect-video w-full overflow-hidden rounded bg-theme-ink"
+				data-src={videoSrc}
+				data-title={home.space.videoTitle}
+			>
+				<a
+					href={`https://vimeo.com/${site.video.vimeoId}`}
+					class="video-play group absolute inset-0 block"
+					aria-label={home.space.playLabel}
+				>
 					<Image
-						src={whyUsImage}
-						alt={home.whyUs.imageAlt}
-						class="w-full object-cover rounded-2xl shadow-xl"
+						src={videoPoster}
+						alt=""
+						widths={[640, 1152, 1600, 1920]}
+						sizes="(min-width: 1280px) 1152px, 100vw"
+						class="h-full w-full object-cover"
 						loading="lazy"
 					/>
-				</div>
+					<span class="absolute inset-0 bg-black/20 transition-colors group-hover:bg-black/30"></span>
+					<svg
+						class="absolute left-1/2 top-1/2 h-16 w-16 -translate-x-1/2 -translate-y-1/2 text-white drop-shadow transition-transform group-hover:scale-110"
+						viewBox="0 0 64 64"
+						fill="none"
+						aria-hidden="true"
+					>
+						<path
+							fill="currentColor"
+							fill-rule="evenodd"
+							clip-rule="evenodd"
+							d="M5.33301 31.9999C5.33301 17.2723 17.2721 5.33325 31.9997 5.33325C39.0721 5.33325 45.8549 8.14277 50.8559 13.1437C55.8568 18.1447 58.6663 24.9275 58.6663 31.9999C58.6663 46.7275 46.7273 58.6666 31.9997 58.6666C17.2721 58.6666 5.33301 46.7275 5.33301 31.9999ZM27.1198 43.4133L42.6664 33.7066C43.2482 33.334 43.6001 32.6908 43.6001 31.9999C43.6001 31.3091 43.2482 30.6658 42.6664 30.2933L27.0664 20.5866C26.452 20.1992 25.6758 20.1754 25.0388 20.5243C24.4018 20.8733 24.004 21.5402 23.9998 22.2666V41.7333C23.9912 42.4773 24.3963 43.1646 25.0514 43.5173C25.7065 43.8701 26.5033 43.83 27.1198 43.4133Z"
+						></path>
+					</svg>
+				</a>
 			</div>
 		</div>
 	</section>
 
-	<!-- Problems We Solve -->
-	<section class="section bg-gradient-to-b from-theme-surface-muted to-theme-surface">
-		<div class="container">
-			<div class="narrow mx-auto text-center mb-12">
-				<h2>{home.problems.heading}</h2>
-			</div>
-			<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-				{
-					home.problems.items.map((item) => (
-						<div
-							class="bg-theme-surface rounded-xl p-6 shadow-md border border-theme-border hover:shadow-lg transition-shadow duration-300"
-						>
-							<div
-								class="w-11 h-11 rounded-lg bg-theme-primary/10 flex items-center justify-center mb-4"
-							>
-								<Icon name="medical" size="md" class="text-theme-primary" />
-							</div>
-							<h3 class="text-lg font-semibold text-theme-text-primary mb-2">
-								{item.title}
-							</h3>
-							<p class="text-sm text-theme-text-secondary leading-relaxed">
-								{item.description}
-							</p>
-						</div>
-					))
-				}
-			</div>
-		</div>
-	</section>
-
-	<!-- FAQ Section -->
-	<section class="section bg-theme-surface">
-		<div class="container">
-			<div class="narrow mx-auto">
-				<div class="text-center mb-12">
-					<p class="text-sm font-medium tracking-widest uppercase text-theme-primary mb-4">
-						{home.faq.eyebrow}
-					</p>
-					<h2>{home.faq.heading}</h2>
-				</div>
-				<FaqAccordion items={t.faqs.slice(0, 4)} />
-				<div class="text-center mt-10">
-					<Link href={localizePath("/info", locale)}>{home.faq.viewAll}</Link>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- CTA Section -->
-	<section class="relative py-20 lg:py-28 overflow-hidden">
-		<div class="absolute inset-0">
-			<Image
-				src={ctaImage}
-				alt={home.hero.imageAlt}
-				class="w-full h-full object-cover"
-				loading="lazy"
-			/>
-			<div class="absolute inset-0 bg-theme-primary-darker/90"></div>
-		</div>
-		<div class="relative container">
-			<div class="max-w-2xl mx-auto text-center text-white">
-				<h2 class="mb-6">{home.cta.heading}</h2>
-				<p class="text-lg mb-10 text-white/85">{home.cta.text}</p>
-				<div class="flex flex-col sm:flex-row justify-center gap-4">
-					<Button variant="white" href={localizePath("/contact", locale)} showIcon={true}>
-						{home.cta.button}
-					</Button>
-					<Button variant="white-outline" href={site.contact.phoneHref}>
-						{site.contact.phone}
-					</Button>
-				</div>
-			</div>
-		</div>
-	</section>
+	<BookingBand locale={locale} />
 </Layout>
+
+<style>
+	/* Hide the scrollbar on the photo strip; it still scrolls normally. */
+	.gallery {
+		scrollbar-width: none;
+	}
+
+	.gallery::-webkit-scrollbar {
+		display: none;
+	}
+
+	.gallery:focus-visible {
+		outline: 2px solid var(--color-theme-ink);
+		outline-offset: 4px;
+	}
+
+	/* Round white arrows over the photos, hidden at either end of the strip */
+	.gallery-button {
+		position: absolute;
+		top: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.75rem;
+		height: 2.75rem;
+		border-radius: 9999px;
+		background-color: rgb(255 255 255 / 0.9);
+		color: var(--color-theme-ink);
+		box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
+		transform: translateY(-50%);
+		transition:
+			opacity 200ms ease,
+			background-color 150ms ease;
+	}
+
+	.gallery-button:hover {
+		background-color: #ffffff;
+	}
+
+	.gallery-button:active:not(:disabled) {
+		transform: translateY(-50%) scale(0.95);
+	}
+
+	.gallery-button:disabled {
+		opacity: 0;
+		pointer-events: none;
+	}
+</style>
+
+<script>
+	/** Wire the carousel arrows: step one photo, and hide an arrow at its end. */
+	function setupGallery() {
+		document.querySelectorAll<HTMLElement>(".gallery-carousel").forEach((carousel) => {
+			const strip = carousel.querySelector<HTMLElement>(".gallery");
+			if (!strip || carousel.dataset.bound === "true") return;
+			carousel.dataset.bound = "true";
+
+			const buttons = carousel.querySelectorAll<HTMLButtonElement>(".gallery-button");
+			const step = () => {
+				const item = strip.querySelector("li");
+				const gap = parseFloat(getComputedStyle(strip).columnGap) || 0;
+				return (item?.getBoundingClientRect().width ?? strip.clientWidth) + gap;
+			};
+			const update = () => {
+				const max = strip.scrollWidth - strip.clientWidth - 1;
+				buttons.forEach((button) => {
+					const forward = button.dataset.direction === "1";
+					button.disabled = forward ? strip.scrollLeft >= max : strip.scrollLeft <= 1;
+				});
+			};
+
+			buttons.forEach((button) =>
+				button.addEventListener("click", () => {
+					strip.scrollBy({ left: Number(button.dataset.direction) * step(), behavior: "smooth" });
+				}),
+			);
+			strip.addEventListener("scroll", update, { passive: true });
+			window.addEventListener("resize", update);
+			update();
+		});
+	}
+
+	setupGallery();
+	document.addEventListener("astro:page-load", setupGallery);
+
+	/** Swap the video poster for the Vimeo player, playing, on click. */
+	function setupVideo() {
+		document.querySelectorAll<HTMLElement>(".video").forEach((video) => {
+			const play = video.querySelector<HTMLAnchorElement>(".video-play");
+			if (!play || video.dataset.bound === "true") return;
+			video.dataset.bound = "true";
+
+			play.addEventListener("click", (event) => {
+				event.preventDefault();
+				const iframe = document.createElement("iframe");
+				iframe.src = video.dataset.src ?? "";
+				iframe.title = video.dataset.title ?? "";
+				iframe.allow = "autoplay; fullscreen; picture-in-picture";
+				iframe.allowFullscreen = true;
+				iframe.className = "absolute inset-0 h-full w-full";
+				iframe.style.border = "0";
+				play.replaceWith(iframe);
+				iframe.focus();
+			});
+		});
+	}
+
+	setupVideo();
+	document.addEventListener("astro:page-load", setupVideo);
+</script>
