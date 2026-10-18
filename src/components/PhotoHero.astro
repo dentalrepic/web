@@ -5,7 +5,7 @@
  *
  * The header overlays the top 80px of the photo (see Layout's `overlayNav`),
  * so the photo runs to the top of the page. The design's photos carry their
- * own wash behind the text, so no gradient is drawn over them.
+ * own wash behind the text from tablet width up; on phones see `stacked`.
  */
 import { Image } from "astro:assets";
 
@@ -36,27 +36,39 @@ const {
   eyebrowTone = "white",
   align = "end",
 } = Astro.props;
+
+/*
+ * On phones the cover crop drops the pale wash the text sits on and puts it
+ * over the subject instead. A title alone at the bottom gets a bottom-up
+ * shade; a centred hero, with its brown lead and buttons, is stacked: the
+ * photo on top, the text below it on sand.
+ */
+const stacked = align === "center";
 ---
 
-<section class="relative isolate overflow-hidden bg-theme-ink">
+<section
+  class:list={[
+    "relative isolate overflow-hidden",
+    stacked ? "bg-theme-sand md:bg-theme-ink" : "bg-theme-ink",
+  ]}
+>
   <Image
     src={image}
     alt=""
     widths={[640, 960, 1280, 1920, 2560]}
     sizes="100vw"
-    class="absolute inset-0 -z-10 h-full w-full object-cover"
+    class:list={[
+      "-z-10 w-full object-cover",
+      stacked
+        ? "relative h-[360px] sm:h-[440px] md:absolute md:inset-0 md:h-full"
+        : "absolute inset-0 h-full",
+    ]}
     style={`object-position: ${focus}`}
     loading="eager"
     fetchpriority="high"
   />
   {
-    /*
-     * On phones the cover crop drops the pale wash the title sits on and puts
-     * it over the subject instead, so a bottom-up shade gives it a ground.
-     * Only for a title alone at the bottom: a centred hero keeps its brown
-     * lead and buttons on the photo's own light wash.
-     */
-    align === "end" && (
+    !stacked && (
       <div
         class="absolute inset-x-0 bottom-0 -z-10 h-3/4 bg-linear-to-t from-black/65 via-black/30 to-transparent md:hidden"
         aria-hidden="true"
@@ -66,8 +78,10 @@ const {
 
   <div
     class:list={[
-      "container flex min-h-[460px] pb-14 pt-32 md:min-h-[540px] lg:min-h-[616px]",
-      align === "center" ? "items-center lg:pb-20" : "items-end lg:pb-24",
+      "container flex md:min-h-[540px] lg:min-h-[616px]",
+      stacked
+        ? "pb-12 pt-10 md:items-center md:pb-14 md:pt-32 lg:pb-20"
+        : "min-h-[460px] items-end pb-14 pt-32 lg:pb-24",
     ]}
   >
     <div class="max-w-[500px]">
@@ -76,14 +90,19 @@ const {
           "eyebrow mb-2",
           eyebrowTone === "white"
             ? "text-white"
-            : align === "end"
-              ? "text-white md:text-theme-ink"
-              : "text-theme-ink",
+            : stacked
+              ? "text-theme-ink"
+              : "text-white md:text-theme-ink",
         ]}
       >
         {eyebrow}
       </p>
-      <h1 class="font-serif text-[2.5rem] font-semibold leading-[1.15] tracking-normal text-white sm:text-5xl lg:text-6xl">
+      <h1
+        class:list={[
+          "font-serif text-[2.5rem] font-semibold leading-[1.15] tracking-normal sm:text-5xl lg:text-6xl",
+          stacked ? "text-theme-ink md:text-white" : "text-white",
+        ]}
+      >
         {title}
       </h1>
       {
