@@ -49,6 +49,20 @@ const {
     loading="eager"
     fetchpriority="high"
   />
+  {
+    /*
+     * On phones the cover crop drops the pale wash the title sits on and puts
+     * it over the subject instead, so a bottom-up shade gives it a ground.
+     * Only for a title alone at the bottom: a centred hero keeps its brown
+     * lead and buttons on the photo's own light wash.
+     */
+    align === "end" && (
+      <div
+        class="absolute inset-x-0 bottom-0 -z-10 h-3/4 bg-linear-to-t from-black/65 via-black/30 to-transparent md:hidden"
+        aria-hidden="true"
+      />
+    )
+  }
 
   <div
     class:list={[
@@ -60,7 +74,11 @@ const {
       <p
         class:list={[
           "eyebrow mb-2",
-          eyebrowTone === "ink" ? "text-theme-ink" : "text-white",
+          eyebrowTone === "white"
+            ? "text-white"
+            : align === "end"
+              ? "text-white md:text-theme-ink"
+              : "text-theme-ink",
         ]}
       >
         {eyebrow}
