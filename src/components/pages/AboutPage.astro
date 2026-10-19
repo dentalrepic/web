@@ -40,7 +40,12 @@ const team = about.team.map((member, index) => ({
 ---
 
 <Layout locale={locale} title={about.meta.title} description={about.meta.description} overlayNav>
-  <PhotoHero eyebrow={about.hero.eyebrow} title={about.hero.title} image={heroImage} />
+  <PhotoHero
+    eyebrow={about.hero.eyebrow}
+    title={about.hero.title}
+    image={heroImage}
+    focus="74% center"
+  />
 
   <SectionIntro
     eyebrow={about.intro.eyebrow}
