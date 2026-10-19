@@ -14,6 +14,8 @@ interface Props {
 const { locale } = Astro.props;
 const t = useTranslations(locale);
 const booking = t.common.booking;
+// One sentence per line: "Rezervirajte svoj termin." / "Prvi pregled je besplatan."
+const headingLines = booking.heading.split(/(?<=\.)\s+/);
 ---
 
 <section class="bg-theme-ink py-12">
@@ -23,7 +25,14 @@ const booking = t.common.booking;
         <div>
           <p class="eyebrow mb-2">{booking.eyebrow}</p>
           <h2 class="font-serif text-3xl font-medium leading-tight tracking-normal lg:text-4xl">
-            {booking.heading}
+            {
+              headingLines.map((line, index) => (
+                <>
+                  {index > 0 && <br />}
+                  {line}
+                </>
+              ))
+            }
           </h2>
         </div>
         <p class="text-base leading-7 tracking-[0.02em]">{booking.text}</p>
