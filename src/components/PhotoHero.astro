@@ -26,6 +26,8 @@ interface Props {
   eyebrowTone?: "ink" | "white";
   /** `center` for a hero with a lead and buttons, `end` for a title alone. */
   align?: "center" | "end";
+  /** Darken the left of the photo behind the text, for a pale backdrop (md up). */
+  shade?: boolean;
 }
 
 const {
@@ -36,6 +38,7 @@ const {
   focus = "center",
   eyebrowTone = "white",
   align = "end",
+  shade = false,
 } = Astro.props;
 
 /*
@@ -57,6 +60,14 @@ const centred = align === "center";
     loading="eager"
     fetchpriority="high"
   />
+  {
+    shade && (
+      <div
+        class="absolute inset-0 -z-10 hidden bg-linear-to-r from-black/45 via-black/20 to-transparent md:block"
+        aria-hidden="true"
+      />
+    )
+  }
 
   <div
     class:list={[
