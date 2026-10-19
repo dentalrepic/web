@@ -2,20 +2,22 @@
 /**
  * One service detail page, e.g. /services/implantologija.
  *
+ * Layout follows the "Usluge Extended" design: the title and summary beside
+ * the service's photo, then a back link beside the text sections, the FAQ,
+ * the other services and the booking band.
+ *
  * Copy comes from `serviceDetails` in the locale files, which is a partial
  * record: these pages exist only in the languages the clinic wrote them in. The
  * route files never render a locale that lacks the page, so `detail` here is
  * always defined.
  */
 import Layout from "../../layouts/Layout.astro";
-import PageHero from "../PageHero.astro";
-import CallToActionSection from "../CallToActionSection.astro";
+import { Image } from "astro:assets";
+import BookingBand from "../BookingBand.astro";
 import FaqAccordion from "../FaqAccordion.astro";
 import Heading from "../Heading.astro";
 import Icon from "../Icon.astro";
-import heroImage from "../../assets/hero-services.jpg";
-import endodonticsHero from "../../assets/services/endodoncija-detail.jpg";
-import prostheticsHero from "../../assets/services/protetika-detail.jpg";
+import { serviceImages } from "../../data/serviceImages";
 import type { Locale } from "../../i18n/config";
 import { localizePath, useTranslations } from "../../i18n/utils";
 import { getServiceDetail, getServiceDetails } from "../../i18n/services";
@@ -35,14 +37,6 @@ if (!detail) {
   // Unreachable via the generated routes; guards against a stale link.
   return Astro.redirect(localizePath("/services", locale));
 }
-
-// Pages with a photo of their own; the rest share the default hero image.
-const heroImages: Partial<Record<ServiceDetailSlug, ImageMetadata>> = {
-  // From the clinic's old endodontics page on dentalrepic.com.hr.
-  endodoncija: endodonticsHero,
-  // Same photo as the prosthetics card on the services page.
-  protetika: prostheticsHero,
-};
 
 // Sibling pages available in this language, for the list at the foot.
 const related = getServiceDetails(locale).filter((entry) => entry.slug !== slug);
@@ -68,55 +62,63 @@ const faqLd = detail.faqs?.length
 ---
 
 <Layout locale={locale} title={detail.meta.title} description={detail.meta.description}>
-  <PageHero title={detail.title} description={detail.lead} image={heroImages[slug] ?? heroImage} />
+  <!-- Intro: title and summary beside the service's photo -->
+  <section class="bg-theme-surface-warm py-12">
+    <div class="container flex flex-col gap-10 lg:flex-row lg:items-center lg:gap-20">
+      <div class="flex flex-col gap-6 lg:w-[464px] lg:shrink-0 lg:gap-12">
+        <h1 class="text-3xl font-normal leading-tight tracking-[0.02em] text-black lg:text-4xl">
+          {detail.title}
+        </h1>
+        <p class="text-base leading-7 tracking-[0.02em] text-theme-ink">{detail.lead}</p>
+      </div>
+      <Image
+        src={serviceImages[slug]}
+        alt=""
+        widths={[608, 912, 1216]}
+        sizes="(min-width: 1024px) 608px, 100vw"
+        class="aspect-[608/400] w-full rounded object-cover lg:min-w-0 lg:flex-1"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+  </section>
 
-  <section class="section bg-theme-surface">
-    <div class="container">
-      <!-- Back to the services index -->
-      <a
-        href={servicesHref}
-        class="inline-flex items-center gap-2 mb-8 text-sm font-semibold text-theme-primary hover:text-theme-primary-dark"
-      >
-        <Icon name="arrow-left" size="sm" />
-        {chrome.backToServices}
-      </a>
-
-      <div class="narrow">
-        <p
-          class="text-sm font-semibold uppercase tracking-wide text-theme-primary mb-8"
+  <!-- Back to the services index, beside the text -->
+  <section class="bg-theme-surface py-12">
+    <div class="container flex flex-col gap-8 lg:flex-row">
+      <div class="lg:w-64 lg:shrink-0 lg:p-6">
+        <a
+          href={servicesHref}
+          class="text-lg font-medium leading-7 tracking-[0.02em] text-black hover:underline"
         >
-          {detail.eyebrow}
-        </p>
+          <span aria-hidden="true">&larr;</span>{" "}{chrome.backToServices}
+        </a>
+      </div>
 
+      <div class="flex max-w-[754px] flex-col gap-8 lg:p-6">
         {
           detail.sections.map((section) => (
-            <div class="mb-10 last:mb-0">
+            <div class="flex flex-col gap-2">
               {section.heading && (
-                <Heading level="h2" size="section" class="mb-4">
+                <h2 class="text-lg font-medium leading-7 tracking-[0.02em] text-black">
                   {section.heading}
-                </Heading>
+                </h2>
               )}
-              {section.paragraphs?.map((paragraph) => (
-                <p class="mb-4 text-base lg:text-lg leading-relaxed text-theme-text-secondary">
-                  {paragraph}
-                </p>
-              ))}
-              {section.bullets && (
-                <ul class="mt-4 space-y-2">
-                  {section.bullets.map((bullet) => (
-                    <li class="flex items-start gap-3">
-                      <Icon
-                        name="check"
-                        size="sm"
-                        class="text-theme-primary flex-shrink-0 mt-1.5"
-                      />
-                      <span class="text-base lg:text-lg text-theme-text-secondary">
+              <div class="text-base leading-7 tracking-[0.02em] text-black/55">
+                {section.paragraphs?.map((paragraph) => (
+                  <p class="mt-7 first:mt-0">{paragraph}</p>
+                ))}
+                {section.bullets && (
+                  <ul class="pl-2">
+                    {section.bullets.map((bullet) => (
+                      <li class="flex gap-3">
+                        <span aria-hidden="true">&bull;</span>
                         {bullet}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              )}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
             </div>
           ))
         }
@@ -126,7 +128,7 @@ const faqLd = detail.faqs?.length
 
   {
     detail.faqs && detail.faqs.length > 0 && (
-      <section class="section bg-theme-surface-muted">
+      <section class="section bg-theme-surface-warm">
         <div class="container">
           <div class="narrow">
             <Heading level="h2" class="mb-8">
@@ -170,10 +172,5 @@ const faqLd = detail.faqs?.length
     )
   }
 
-  <CallToActionSection
-    heading={chrome.cta.heading}
-    subheading={chrome.cta.subheading}
-    primaryButtonText={chrome.cta.primaryButton}
-    primaryButtonLink={localizePath("/contact#form", locale)}
-  />
+  <BookingBand locale={locale} />
 </Layout>

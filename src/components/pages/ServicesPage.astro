@@ -11,15 +11,7 @@ import PhotoHero from "../PhotoHero.astro";
 import SectionIntro from "../SectionIntro.astro";
 import BookingBand from "../BookingBand.astro";
 import heroImage from "../../assets/services/services-hero.jpg";
-import implantsImage from "../../assets/services/implantologija.jpg";
-import orthodonticsImage from "../../assets/services/ortodoncija.jpg";
-import endodonticsImage from "../../assets/services/endodoncija.jpg";
-import prostheticsImage from "../../assets/services/protetika.jpg";
-import aestheticImage from "../../assets/services/estetska-dentalna-medicina.jpg";
-import oralSurgeryImage from "../../assets/services/oralna-kirurgija.jpg";
-import periodontologyImage from "../../assets/services/parodontologija.jpg";
-import xrayImage from "../../assets/services/rtg-dijagnostika.jpg";
-import paediatricImage from "../../assets/services/djecja-dentalna-medicina.jpg";
+import { serviceImages } from "../../data/serviceImages";
 import type { Locale } from "../../i18n/config";
 import type { ServiceDetailSlug } from "../../i18n/types";
 import { localizePath, useTranslations } from "../../i18n/utils";
@@ -33,22 +25,23 @@ const { locale } = Astro.props;
 const t = useTranslations(locale);
 const services = t.services;
 
-// Image and detail page per card, paired positionally with services.cards.
-// Services without a detail page have no slug.
-const cardStyles: Array<{ image: ImageMetadata; slug?: ServiceDetailSlug }> = [
-  { image: implantsImage, slug: "implantologija" },
-  { image: orthodonticsImage, slug: "ortodoncija" },
-  { image: endodonticsImage, slug: "endodoncija" },
-  { image: prostheticsImage, slug: "protetika" },
-  { image: aestheticImage, slug: "estetska-dentalna-medicina" },
-  { image: oralSurgeryImage, slug: "oralna-kirurgija" },
-  { image: periodontologyImage, slug: "parodontologija" },
-  { image: xrayImage, slug: "rtg-dijagnostika" },
-  { image: paediatricImage, slug: "djecja-dentalna-medicina" },
+// Service per card, paired positionally with services.cards. Its photo is
+// shared with the service's detail page; see data/serviceImages.ts.
+const cardSlugs: ServiceDetailSlug[] = [
+  "implantologija",
+  "ortodoncija",
+  "endodoncija",
+  "protetika",
+  "estetska-dentalna-medicina",
+  "oralna-kirurgija",
+  "parodontologija",
+  "rtg-dijagnostika",
+  "djecja-dentalna-medicina",
 ];
 
 const cards = services.cards.map((card, index) => {
-  const { image, slug } = cardStyles[index] ?? {};
+  const slug = cardSlugs[index];
+  const image = slug ? serviceImages[slug] : undefined;
   // Link only where this language has the page; see i18n/services.ts.
   const href =
     slug && getServiceDetail(slug, locale)

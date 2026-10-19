@@ -426,15 +426,9 @@ export const de: Translation = {
   serviceDetails: {},
 
   serviceDetailChrome: {
-    backToServices: "Alle Leistungen",
+    backToServices: "Weitere Leistungen",
     faqHeading: "Häufige Fragen",
     relatedHeading: "Weitere Leistungen",
-    cta: {
-      heading: "Haben Sie eine Frage zu dieser Behandlung?",
-      subheading:
-        "Rufen Sie uns an oder buchen Sie einen Termin — die erste Untersuchung ist kostenlos, und den Behandlungsplan stimmen wir gemeinsam mit Ihnen ab.",
-      primaryButton: "Termin buchen",
-    },
     availableInLabel: "Auf Kroatisch und Englisch verfügbar",
   },
 

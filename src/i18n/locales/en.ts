@@ -426,12 +426,12 @@ export const en: Translation = {
         description:
           "Dental implants as a permanent solution for tooth loss. Bone augmentation, sinus lift and the All-on-4 method at Dental Centar Repić in Trogir.",
       },
-      eyebrow: "WHAT ARE DENTAL IMPLANTS",
       title: "Implantology",
       lead:
         "Implantology is the fastest growing branch of dental medicine. Implants are used to replace one or more lost teeth in the upper or lower jaw. The installed implants represent a replacement for the tooth root, and pass through the process of osteointegration (fusion with the jawbone) over a period of 3 to 6 months. During the osteointegration period of the implant, the patient is not toothless and instead wears a temporary replacement that ensures the aesthetics and function of the tooth until the final prosthetic is completed. The final prosthetic can be a single crown on the implant, a bridge on the implant or a prosthetic on the implant. Installation of the implant into the bone helps also to retain the quantity of bone inthe alveolar arch, as it stimulates the bone similar to the natural tooth, and does not lead to bone resorption, which is a consequence of tooth loss.",
       sections: [
         {
+          heading: "What are dental implants",
           bullets: [
             "Permanent solution",
             "Complete return of tooth function",
@@ -568,7 +568,6 @@ export const en: Translation = {
         description:
           "Fixed and removable braces. Orthodontic examination, therapy plan and treatment of misaligned teeth at Dental Centar Repić in Trogir.",
       },
-      eyebrow: "MOBILE AND FIXED BRACES",
       title: "Orthodontics",
       lead:
         "Orthodontic therapy is indicated in cases of improper positioning of teeth and distribution of teeth. The proper contactbetween teeth enables the even distribution of chewing forces, which enables the proper transfer of force to the gums and bone. Also, the proper distribution of teeth makesit easier to maintain oral hygiene. Improperly positioned teeth are often exposed to the accumulation of plaque deposits, which threatens the health of teeth and periodontal tissues.",
@@ -672,7 +671,6 @@ export const en: Translation = {
         description:
           "Dental crowns and bridges: metal-ceramic, metal-free ceramic, zirconia and glass-ceramic. Dental Centar Repić, Trogir.",
       },
-      eyebrow: "DENTAL PROSTHETICS",
       title: "Dental prosthetics",
       lead:
         "At the Repić Dental Centre, we pay special attention to preserving the function of teeth and the biting and stomatognatic system. Upon detailed clinical examination and analysis of x-rays of the teeth and jaws, we are then able to propose an individual prosthetic treatment plan for each patient, in order to compensate for one or more missing teeth. Depending on the clinical findings and the patient's budget, missing teeth can be replaced using mobile or fixed prosthetic solutions.",
@@ -744,12 +742,12 @@ export const en: Translation = {
         description:
           "Tooth whitening, ceramic veneers, Smile Design, tooth jewellery and air polishing. Aesthetic dental medicine at Dental Centar Repić in Trogir.",
       },
-      eyebrow: "FOR YOUR HEALTHY AND BEAUTIFUL SMILE",
       title: "Aesthetic dental medicine",
       lead:
         "Our imperative is to make it possible for every patient to have a lovely and healthy smile. Aesthetic dentistry includes a series of procedures used to create a beautiful smile, while also following certain guidelines to achieve complete harmony between the soft and hard structures of the teeth. Aesthetic dentistry procedures are an integration of various specialist branches of dentistry (orthodontics, periodontology, prosthetics, implantology, and restorative dental medicine), aimed at correcting deviations from aesthetic parameters and achieving the function and aesthetics of healthy teeth. Research has shown that aesthetic dental procedures have a strong psychological effect on patients, and can result in increased self-confidence and improved quality of life.",
       sections: [
         {
+          heading: "For your healthy and beautiful smile",
           paragraphs: [
             "Patients who are satisfied with the size and shape of their teeth, but wish only to freshen up their appearance or need only minor corrections, can achieve a brilliant smile with minimally invasive aesthetic procedures that we perform at our clinic.",
           ],
@@ -773,7 +771,6 @@ export const en: Translation = {
         description:
           "Treatment of tooth inflammation and root canals, with machine canal preparation and X-ray verification at Dental Centar Repić in Trogir.",
       },
-      eyebrow: "ROOT CANAL TREATMENT",
       title: "Endodontics",
       lead:
         "This is a specialist discipline in dental medicine that deals with the endodontic (internal) treatment of the tooth. In dental specialisation, this field is closely associated with restorative dentistry and cariology. Restorative dentistry and cariology treat the disorders of the hard tooth tissue (dentin), while advanced inflammatory changes to the pulp of the tooth, or the soft tissue, requires treatment of the root canal. This is performed using endodontic treatment, and is often called endodontics.",
@@ -821,7 +818,6 @@ export const en: Translation = {
         description:
           "Scaling, initial periodontal therapy and periodontal surgery at Dental Centar Repić in Trogir.",
       },
-      eyebrow: "PERIODONTOLOGY",
       title: "Periodontology",
       lead:
         "Periodontology is a branch of dental medicine that deals with preserving the health of the supporting apparatus of the teeth. The supporting apparatus is the surrounding bone, gums (gingiva) and the periodontal ligament that holds the tooth to the bone.",
@@ -869,12 +865,12 @@ export const en: Translation = {
         description:
           "Tooth extraction, wisdom tooth removal by alveotomy and apicoectomy under local anaesthesia at Dental Centar Repić in Trogir.",
       },
-      eyebrow: "TOP ORAL SURGERY SERVICE",
       title: "Oral surgery",
       lead:
         "At Dental Centar Repić, oral surgery is performed by award-winning doctors with many years of practice",
       sections: [
         {
+          heading: "Top oral surgery service",
           paragraphs: [
             "Oral surgery is the surgical branch of the dental profession. It includes the extraction of teeth, the extraction of impacted or retained teeth through the alveotomy procedure, operations on bone cysts in the upper and lower jaws, apicoectomy, frenectomy, the placement of dental implants in the jaw and sinus lift in the upper jaw. The most common surgical procedure is extraction (tooth removal). Despite the great efforts of the profession and patients to keep teeth in the mouth for as long as possible, there are cases when a tooth needs to be removed, either due to a deep cavity, breakage of the tooth, or periodontal disease.",
             "Tooth extraction is a routine surgical procedure that is performed under local anaesthesia. Before any surgical procedure in the oral cavity, the oral surgeon takes a detailed medical history of the patient. It is necessary to list any and all medications the patient is taking, to prevent their impact on bleeding during and after the procedure, and on the healing of the wound. After the surgical procedure, the wound is sutured or left open to heal on its own. The patient receives instructions on recommended procedures to reduce swelling and pain, and a check-up at the dentist is recommended one week later, to check on the healing of the wound and to remove any stitches.",
@@ -930,12 +926,12 @@ export const en: Translation = {
         description:
           "Digital single-tooth and panoramic X-rays with up to 90% less radiation, taken just before or after your procedure, at Dental Centar Repić in Trogir.",
       },
-      eyebrow: "X-RAY DIAGNOSTICS (INTRAORAL AND PANORAMIC X-RAYS)",
       title: "X-ray diagnostics",
       lead:
         "Single-tooth and panoramic X-rays with modern digital imaging and the lowest radiation doses",
       sections: [
         {
+          heading: "X-ray diagnostics (intraoral and panoramic X-rays)",
           paragraphs: [
             "X-ray images of the teeth and jaws are an important diagnostic tool in all areas of dental medicine, as they provide insight into all the anatomical and pathological formations in the bone that cannot be seen during the clinical examination. They are essential for the planning of virtually every procedure in dental medicine.",
             "Earlier conventional X-ray systems gave poor insight into the bone structure, with much higher exposure to radiation for both the patient and the technician. With the development of digital X-ray technology, the radiation dose has been reduced substantially, and image handling is now much simpler. The modern digital technology at Dental Centar Repić guarantees the lowest radiation dose (up to 90% less radiation compared to classical X-ray images). Our patients are also able to have X-rays just before or after the procedure, in order to avoid the need for multiple visits.",
@@ -954,12 +950,12 @@ export const en: Translation = {
         description:
           "A first dental visit around age 1, fluoride treatment, fissure sealing and painless anaesthesia for children at Dental Centar Repić in Trogir.",
       },
-      eyebrow: "DENTAL CARE FOR CHILDREN",
       title: "Pediatric dentistry",
       lead:
         "We place exceptional importance on preserving the oral health of children",
       sections: [
         {
+          heading: "Dental care for children",
           paragraphs: [
             "Visiting the dentist at an early age results in the development of good oral hygiene habits, and it is also important for removing fears, both in childhood and later on in life. The best time for the first visit to the dentist is around the age of 1.",
             "Through play and communication appropriate for the child's age, we aim to make dental procedures fun and minimally traumatic. We coat the teeth of the youngest children with a fluoride gel to prevent cavities. This method is completely painless for children.",
@@ -974,15 +970,9 @@ export const en: Translation = {
   },
 
   serviceDetailChrome: {
-    backToServices: "All services",
+    backToServices: "Other services",
     faqHeading: "Frequently asked questions",
     relatedHeading: "Other services",
-    cta: {
-      heading: "Have a question about this treatment?",
-      subheading:
-        "Call us or book an appointment — the first examination is free, and we agree the treatment plan together with you.",
-      primaryButton: "Book your appointment",
-    },
     availableInLabel: "Available in Croatian and English",
   },
 

@@ -425,12 +425,12 @@ export const hr: Translation = {
         description:
           "Zubni implantati kao trajno rješenje za gubitak zuba. Augmentacija kosti, sinus lift i All-on-4 metoda u Dental Centru Repić u Trogiru.",
       },
-      eyebrow: "ŠTO SU ZUBNI IMPLANTATI",
       title: "Implantologija",
       lead:
         "Zubni implantati predstavljaju uobičajeni zahvat kojim se nadomiještaju izgubljeni zubi bez zahvata na susjednim zubima.",
       sections: [
         {
+          heading: "Što su zubni implantati",
           paragraphs: [
             "Zubnim implantatima nadomještamo gubitak jednog ili više zuba u gornjoj ili donjoj čeljusti. Ugrađeni zubni implantati predstavljaju zamjenu korijena zuba te kroz 3 – 6 mjeseci prolaze proces osteointegracije (učvršćivanje unutar kosti). Za vrijeme trajanja oseointegracije implantata, pacijent nije bezub već nosi privremeni nadomjestak koji osigurava estetiku i funkciju do izrade konačnog protetskog rada. Konačni protetski rad može biti pojedinačna krunica na implantatu, most na implantatima ili proteza na implantatima. Ugradnja implantata u kost pomaže u očuvanju količine kosti tj. alveolarnog grebena jer stimulira kost slično prirodnom zubu te ne dolazi do resorpcije kosti, što je inače posljedica gubitka zuba.",
           ],
@@ -533,12 +533,12 @@ export const hr: Translation = {
         description:
           "Fiksni i mobilni aparatići za zube. Ortodontski pregled, plan terapije i liječenje nepravilnog položaja zubi u Dental Centru Repić u Trogiru.",
       },
-      eyebrow: "MOBILNI I FIKSNI APARATIĆI ZA ZUBE",
       title: "Ortodoncija",
       lead:
         "Ortodontska terapija (postavljanje aparatića za zube) indicirana je u slučajevima nepravilnog položaja i rasporeda zubi",
       sections: [
         {
+          heading: "Mobilni i fiksni aparatići za zube",
           paragraphs: [
             "Pravilni kontakti među zubima omogućuju ravnomjernu raspodjelu žvačnih sila čime se omogućuje ispravan prijenos sila na parodont i kost. Također, pravilan raspored zubi olakšava održavanje oralne higijene. Zubi u nepravilnom položaju često su izloženi nakupljanju naslaga plaka koje ugrožavaju zdravlje zubi i parodontnog tkiva. Aparatići za zube su naprave koje koristimo kako bismo proveli ortodontsko liječenje.",
           ],
@@ -641,7 +641,6 @@ export const hr: Translation = {
         description:
           "Zubne krunice i mostovi: metal-keramika, bezmetalna keramika, cirkon-oksidna keramika i staklokeramika. Dental Centar Repić, Trogir.",
       },
-      eyebrow: "DENTALNA PROTETIKA",
       title: "Protetika",
       lead:
         "U Dental Centru Repić posebnu pažnju posvećujemo očuvanju funkcije zuba i stomatognatnog sustava",
@@ -713,12 +712,12 @@ export const hr: Translation = {
         description:
           "Izbjeljivanje zubi, keramičke ljuskice, Smile Design, zubni nakit i pjeskarenje zuba. Estetska dentalna medicina u Dental Centru Repić u Trogiru.",
       },
-      eyebrow: "ZA VAŠ ZDRAV I LIJEP OSMIJEH",
       title: "Estetska dentalna medicina",
       lead:
         "Lijep osmijeh pridonosi dobrom raspoloženju, podiže samopouzdanje i pomaže Vam da ostavite pozitivan prvi dojam.",
       sections: [
         {
+          heading: "Za Vaš zdrav i lijep osmijeh",
           paragraphs: [
             "Imperativ našeg rada je omogućiti svakom pacijentu lijep i zdrav osmijeh. Estetska dentalna medicina podrazumijeva niz postupaka kojima se oblikuje lijep osmijeh, uz praćenje određenih smjernica kako bi se postigao potpuni sklad mekih i tvrdih zubnih struktura.",
             "Estetski dentalno-medicinski zahvat integrira postupke iz različitih specijalističkih grana dentalne medicine (ortodoncije, parodontologije, protetike, implantologije, restaurativne dentalne medicine), s ciljem ispravljanja odstupanja od estetskih parametara i postizanja funkcije i estetike zdravih zubnih struktura. Istraživanja su pokazala da estetski stomatološki zahvati imaju veliki psihološki učinak na pacijenta te dovode do porasta samopouzdanja i poboljšanja kvalitete života.",
@@ -743,12 +742,12 @@ export const hr: Translation = {
         description:
           "Liječenje upale zuba i korijenskih kanala. Strojna obrada kanala i kontrola RTG snimkom u Dental Centru Repić u Trogiru.",
       },
-      eyebrow: "LIJEČENJE KORIJENSKIH KANALA ZUBA",
       title: "Endodoncija",
       lead:
         "Endodoncija je specijalistička disciplina dentalne medicine udružena s restaurativnom stomatologijom i karijesologijom",
       sections: [
         {
+          heading: "Liječenje korijenskih kanala zuba",
           paragraphs: [
             "Restaurativna stomatologija i karijesologija liječe bolest tvrdog zubnog tkiva odnosno dentina, a kada dođe do nepovratnih upalnih promjena u pulpi zuba, potrebno je liječiti meko zubno tkivo odnosno pulpu zuba, na način da se liječe korijenski kanali. To se radi endodontskim liječenjem koje se često naziva i endodoncijom.",
           ],
@@ -789,7 +788,6 @@ export const hr: Translation = {
         description:
           "Uklanjanje zubnog kamenca, inicijalna parodontološka terapija i parodontološko-kirurški zahvati u Dental Centru Repić u Trogiru.",
       },
-      eyebrow: "PARODONTOLOGIJA",
       title: "Parodontologija",
       lead:
         "Reagirajte na vrijeme i spriječite bolesti i gubitak zuba",
@@ -831,12 +829,12 @@ export const hr: Translation = {
         description:
           "Vađenje zuba, vađenje umnjaka alveotomijom i apikotomija u lokalnoj anesteziji u Dental Centru Repić u Trogiru.",
       },
-      eyebrow: "VRHUNSKA USLUGA ORALNE KIRURGIJE",
       title: "Oralna kirurgija",
       lead:
         "Zahvate oralne kirurgije u Dental Centru Repić obavljaju nagrađivani doktori s dugogodišnjom praksom",
       sections: [
         {
+          heading: "Vrhunska usluga oralne kirurgije",
           paragraphs: [
             "Oralna kirurgija je kirurška grana stomatološke struke. U djelokrug rada oralnog kirurga ubrajaju se ekstrakcije (vađenja) zuba, ekstrakcije impaktiranih ili retiniranih zuba postupkom alveotomije, operacije cisti u kostima gornje i donje čeljusti, apikotomija, frenulektomija, ugradnja zubnih implantata u čeljust te podizanje dna sinusa gornje čeljusti (sinus lift). Najčešći oralnokirurški postupak je ekstrakcija (vađenje zuba). Uz velike napore struke i pacijenata da zube održimo u usnoj šupljini što je moguće duže, postoje slučajevi kada je zbog dubokog karijesa, loma zuba ili parodontne bolesti zube potrebno ekstrahirati.",
             "Ekstrakcije zuba su rutinski kirurški zahvati koji se izvode u lokalnoj anesteziji. Prije svakog kirurškog zahvata u usnoj šupljini oralni kirurg uzima detaljnu medicinsku anamnezu pacijenta. Bitno je navesti sve lijekove koje pacijent uzima kako bi se izbjegao njihov utjecaj na krvarenje tijekom i nakon zahvata te cijeljenje ekstrakcijske rane. Nakon izvedenog kirurškog zahvata, rana se zatvara šavovima ili se ostavi da zacijeli sama. Pacijent dobiva upute o preporučenim postupcima ublažavanja otekline i boli te se tjedan dana od vađenja zuba preporuča kontrolni pregled kod doktora dentalne medicine, kako bi se provjerilo cijeljenje ekstrakcijske rane i odstranili eventualni šavovi.",
@@ -892,12 +890,12 @@ export const hr: Translation = {
         description:
           "Digitalno snimanje pojedinačnog zuba i ortopan uz do 90% manje zračenja, neposredno prije ili nakon zahvata, u Dental Centru Repić u Trogiru.",
       },
-      eyebrow: "RTG DIJAGNOSTIKA (INTRAORALNE SNIMKE I ORTOPAN)",
       title: "RTG dijagnostika",
       lead:
         "Snimanje pojedinačnog zuba i ortopan uz moderno digitalno snimanje i najniže doze zračenja",
       sections: [
         {
+          heading: "RTG dijagnostika (intraoralne snimke i ortopan)",
           paragraphs: [
             "Rendgenske snimke zuba i čeljusti predstavljaju bitan dijagnostički alat u svim područjima dentalne medicine jer omogućuju prikaz svih anatomskih i patoloških tvorbi u kosti koje nisu vidljive prilikom kliničkog pregleda. Nužne su za planiranje gotovo svakog zahvata u dentalnoj medicini.",
             "Nekadašnji konvencionalni rendgenski sustavi lošije su prikazivali koštane strukture, uz puno veće zračenje za pacijenta i terapeuta. Razvoj digitalne radiologije omogućio je smanjenje doze zračenja te pojednostavljeno rukovanje snimkama. Moderna digitalna tehnologija koju posjeduje Dental Centar Repić garantira Vam najniže doze zračenja (do 90% smanjenje zračenja u odnosu na klasične RTG snimke). Našim pacijentima smo u mogućnosti ponuditi snimanje neposredno prije ili nakon zahvata kako bismo izbjegli potrebu za višekratnim dolascima.",
@@ -916,12 +914,12 @@ export const hr: Translation = {
         description:
           "Prvi posjet stomatologu oko 1. godine, fluoridacija, pečatni ispuni i bezbolna anestezija za djecu u Dental Centru Repić u Trogiru.",
       },
-      eyebrow: "DENTALNE USLUGE ZA DJECU",
       title: "Dječja dentalna medicina",
       lead:
         "Iznimnu važnost posvećujemo očuvanju oralnog zdravlja djece",
       sections: [
         {
+          heading: "Dentalne usluge za djecu",
           paragraphs: [
             "Posjeti stomatologu u ranoj dobi rezultiraju usađivanjem navika dobre oralne higijene i bitni su za uklanjanje straha, kako u djetinjstvu, tako i tijekom života. Najbolje vrijeme za prvi posjet stomatologu je oko djetetove 1. godine života.",
             "Kroz igru i komunikaciju primjerenu dobi djeteta stomatološki zahvat nastojimo učiniti zabavnim i minimalno traumatskim. Najmlađim pacijentima zube premazujemo gelovima na bazi fluora koji preveniraju nastanak zubnog karijesa. Takva metoda je potpuno bezbolna za dijete.",
@@ -936,15 +934,9 @@ export const hr: Translation = {
   },
 
   serviceDetailChrome: {
-    backToServices: "Sve usluge",
+    backToServices: "Ostale usluge",
     faqHeading: "Česta pitanja",
     relatedHeading: "Ostale usluge",
-    cta: {
-      heading: "Imate pitanje o ovoj usluzi?",
-      subheading:
-        "Nazovite nas ili rezervirajte termin — prvi pregled je besplatan, a plan terapije dogovaramo s Vama.",
-      primaryButton: "Rezervirajte termin",
-    },
     availableInLabel: "Dostupno na hrvatskom i engleskom",
   },
 

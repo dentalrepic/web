@@ -426,15 +426,9 @@ export const it: Translation = {
   serviceDetails: {},
 
   serviceDetailChrome: {
-    backToServices: "Tutti i servizi",
+    backToServices: "Altri servizi",
     faqHeading: "Domande frequenti",
     relatedHeading: "Altri servizi",
-    cta: {
-      heading: "Hai una domanda su questo trattamento?",
-      subheading:
-        "Chiamaci o prenota un appuntamento — la prima visita è gratuita e il piano di terapia lo concordiamo insieme a te.",
-      primaryButton: "Prenota un appuntamento",
-    },
     availableInLabel: "Disponibile in croato e inglese",
   },
 

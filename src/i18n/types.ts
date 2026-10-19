@@ -72,8 +72,6 @@ export interface ServiceDetail {
   /** Path segment under /services/. Shared across locales so URLs stay stable. */
   slug: ServiceDetailSlug;
   meta: { title: string; description: string };
-  /** Small label above the page title, e.g. "ŠTO SU ZUBNI IMPLANTATI". */
-  eyebrow: string;
   title: string;
   /** One-sentence summary, used as the hero lead and on the services index. */
   lead: string;
@@ -277,7 +275,6 @@ export interface Translation {
     faqHeading: string;
     /** Heading of the "other treatments" list at the foot of the page. */
     relatedHeading: string;
-    cta: { heading: string; subheading: string; primaryButton: string };
     /** Shown on the services index for pages not yet available in this language. */
     availableInLabel: string;
   };
