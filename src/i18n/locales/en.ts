@@ -75,7 +75,7 @@ export const en: Translation = {
     },
     team: {
       eyebrow: "Our team",
-      heading: "The people behind your care",
+      heading: "People behind your care",
       paragraphs: [
         "Knowledge, experience and teamwork in the service of your health.",
         "Our team brings together specialists from different fields of dentistry, who apply their knowledge and experience to simple and complex dental problems alike.",
