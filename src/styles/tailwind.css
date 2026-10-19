@@ -403,8 +403,8 @@
 		@apply h-full antialiased scroll-smooth;
 		font-family: theme(--font-primary);
 		color: theme(--color-theme-text-primary);
-		/* White, like the area beside the page box, so overscroll shows no grey */
-		background-color: theme(--color-theme-surface);
+		/* #DBD5D1 at 10% on white, solid so it does not compound with <body>; matches the page-box surround */
+		background-color: #fbfbfa;
 	}
 
 	/* Focus styles */
