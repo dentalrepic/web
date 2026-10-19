@@ -30,7 +30,6 @@ export const hr: Translation = {
     hoursHeading: "Radno vrijeme",
     closed: "Ne radimo",
     contactHeading: "Kontakt",
-    designCredit: "Dizajn",
   },
 
   common: {

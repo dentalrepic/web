@@ -1,5 +1,4 @@
 ---
-import designerLogo from "../assets/lidija-jankovic-logo.svg";
 import site from "../data/site.json";
 import { localeHtmlLang, type Locale } from "../i18n/config";
 import { useTranslations } from "../i18n/utils";
@@ -39,33 +38,23 @@ const hours = weekdays.map((day, index) => {
 
 <footer class="bg-theme-sand text-black">
   <div class="container py-14 lg:py-20">
-    <div class="flex flex-col gap-12 lg:flex-row lg:justify-between lg:gap-24">
+    <!--
+      Phones stack the clinic text, the hours beside the contact, then the
+      copyright last; from lg the copyright moves up under the clinic text and
+      the hours and contact take the right-hand column.
+    -->
+    <div
+      class="grid gap-12 lg:grid-cols-[minmax(0,562px)_auto] lg:justify-between lg:gap-x-24 lg:gap-y-14"
+    >
       <!-- About the clinic -->
-      <div class="flex max-w-[562px] flex-col gap-10 lg:gap-14">
-        <div class="space-y-2">
-          <p class="text-base leading-7 tracking-[0.02em]">{t.brand.name}</p>
-          <p class="text-sm leading-6 text-black/55">{t.footer.description}</p>
-        </div>
-        <div class="flex flex-wrap items-center gap-x-6 gap-y-3 text-xs leading-[18px] tracking-[0.02em]">
-          <p>&copy; {year} {t.brand.name}</p>
-          <!-- Designer credit: her monogram, dimmed to the footer's secondary grey -->
-          <p class="flex items-center gap-2 text-black/55">
-            {t.footer.designCredit}:
-            <a
-              href="https://lidijajankovic.com"
-              target="_blank"
-              rel="noopener"
-              class="opacity-55 transition-opacity hover:opacity-100"
-            >
-              <img src={designerLogo.src} alt="Lidija Jankovic" width="15" height="19" class="h-[19px] w-auto" />
-            </a>
-          </p>
-        </div>
+      <div class="space-y-2 lg:col-start-1 lg:row-start-1">
+        <p class="text-base leading-7 tracking-[0.02em]">{t.brand.name}</p>
+        <p class="text-sm leading-6 text-black/55">{t.footer.description}</p>
       </div>
 
-      <div class="flex flex-col gap-10 sm:flex-row sm:gap-10">
+      <div class="flex gap-6 sm:gap-10 lg:col-start-2 lg:row-span-2 lg:row-start-1">
         <!-- Opening hours -->
-        <div>
+        <div class="shrink-0">
           <h2 class="pb-4 text-sm font-normal leading-6 tracking-normal">
             {t.footer.hoursHeading}
           </h2>
@@ -93,7 +82,7 @@ const hours = weekdays.map((day, index) => {
             </p>
             <p class="text-sm leading-6">
               {t.contact.phoneLabel}:{" "}
-              <a href={site.contact.phoneHref} class="hover:text-black hover:underline">
+              <a href={site.contact.phoneHref} class="whitespace-nowrap hover:text-black hover:underline">
                 {site.contact.phone}
               </a>
               <br />
@@ -105,6 +94,20 @@ const hours = weekdays.map((day, index) => {
           </div>
         </div>
       </div>
+
+      <!-- Copyright, then the designer's credit as her design sets it -->
+      <p class="text-xs leading-[18px] tracking-[0.02em] lg:col-start-1 lg:row-start-2">
+        &copy; {year} {t.brand.name}
+        <span class="mx-1" aria-hidden="true">|</span>
+        <a
+          href="https://www.lidijajankovic.com"
+          target="_blank"
+          rel="noopener"
+          class="text-black/50 underline transition-colors hover:text-black"
+        >
+          Made by Lidija Jankovic
+        </a>
+      </p>
     </div>
   </div>
 </footer>

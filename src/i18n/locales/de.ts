@@ -30,7 +30,6 @@ export const de: Translation = {
     hoursHeading: "Öffnungszeiten",
     closed: "Geschlossen",
     contactHeading: "Kontakt",
-    designCredit: "Design",
   },
 
   common: {

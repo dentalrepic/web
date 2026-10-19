@@ -124,8 +124,6 @@ export interface Translation {
     /** Shown against a day the clinic is closed. */
     closed: string;
     contactHeading: string;
-    /** Label before the designer's name in the footer credit. */
-    designCredit: string;
   };
 
   common: {
