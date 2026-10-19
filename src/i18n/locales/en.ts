@@ -120,7 +120,7 @@ export const en: Translation = {
     },
     hero: {
       eyebrow: "Expertise that connects us",
-      title: "People you can trust.",
+      title: "People you\ncan trust.",
     },
     intro: {
       eyebrow: "Expertise and professionalism",

@@ -47,10 +47,11 @@ const {
  * top, the text below it on sand in ink. From md the text sits on the photo.
  */
 const centred = align === "center";
-// One sentence per line: "A modern approach." / "A healthy smile." From md a
-// multi-sentence title keeps each sentence whole, even past the 500px column;
-// a single sentence still wraps within it as designed.
-const titleLines = title.split(/(?<=\.)\s+/);
+// One sentence per line: "A modern approach." / "A healthy smile.", plus any
+// break written into the copy as "\n" ("People you\ncan trust."). From md a
+// title with several lines keeps each one whole, even past the 500px column;
+// a single line still wraps within it as designed.
+const titleLines = title.split(/\n|(?<=\.)\s+/);
 const keepWhole = titleLines.length > 1;
 ---
 
