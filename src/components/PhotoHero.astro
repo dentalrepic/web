@@ -5,7 +5,8 @@
  *
  * The header overlays the top 80px of the photo (see Layout's `overlayNav`),
  * so the photo runs to the top of the page. The design's photos carry their
- * own wash behind the text from tablet width up; on phones see `stacked`.
+ * own wash behind the text from tablet width up; on phones the text sits
+ * below the photo instead.
  */
 import { Image } from "astro:assets";
 
@@ -39,70 +40,40 @@ const {
 
 /*
  * On phones the cover crop drops the pale wash the text sits on and puts it
- * over the subject instead. A title alone at the bottom gets a bottom-up
- * shade; a centred hero, with its brown lead and buttons, is stacked: the
- * photo on top, the text below it on sand.
+ * over the subject instead, so every hero is stacked there: the photo on
+ * top, the text below it on sand in ink. From md the text sits on the photo.
  */
-const stacked = align === "center";
+const centred = align === "center";
 ---
 
-<section
-  class:list={[
-    "relative isolate overflow-hidden",
-    stacked ? "bg-theme-sand md:bg-theme-ink" : "bg-theme-ink",
-  ]}
->
+<section class="relative isolate overflow-hidden bg-theme-sand md:bg-theme-ink">
   <Image
     src={image}
     alt=""
     widths={[640, 960, 1280, 1920, 2560]}
     sizes="100vw"
-    class:list={[
-      "-z-10 w-full object-cover",
-      stacked
-        ? "relative h-[360px] sm:h-[440px] md:absolute md:inset-0 md:h-full"
-        : "absolute inset-0 h-full",
-    ]}
+    class="relative -z-10 h-[360px] w-full object-cover md:absolute md:inset-0 md:h-full"
     style={`object-position: ${focus}`}
     loading="eager"
     fetchpriority="high"
   />
-  {
-    !stacked && (
-      <div
-        class="absolute inset-x-0 bottom-0 -z-10 h-3/4 bg-linear-to-t from-black/65 via-black/30 to-transparent md:hidden"
-        aria-hidden="true"
-      />
-    )
-  }
 
   <div
     class:list={[
-      "container flex md:min-h-[540px] lg:min-h-[616px]",
-      stacked
-        ? "pb-12 pt-10 md:items-center md:pb-14 md:pt-32 lg:pb-20"
-        : "min-h-[460px] items-end pb-14 pt-32 lg:pb-24",
+      "container flex pb-12 pt-10 md:min-h-[540px] md:pb-14 md:pt-32 lg:min-h-[616px]",
+      centred ? "md:items-center lg:pb-20" : "md:items-end lg:pb-24",
     ]}
   >
     <div class="max-w-[500px]">
       <p
         class:list={[
-          "eyebrow mb-2",
-          eyebrowTone === "white"
-            ? "text-white"
-            : stacked
-              ? "text-theme-ink"
-              : "text-white md:text-theme-ink",
+          "eyebrow mb-2 text-theme-ink",
+          eyebrowTone === "white" && "md:text-white",
         ]}
       >
         {eyebrow}
       </p>
-      <h1
-        class:list={[
-          "font-serif text-[2.5rem] font-semibold leading-[1.15] tracking-normal sm:text-5xl lg:text-6xl",
-          stacked ? "text-theme-ink md:text-white" : "text-white",
-        ]}
-      >
+      <h1 class="font-serif text-[2.5rem] font-semibold leading-[1.15] tracking-normal text-theme-ink sm:text-5xl md:text-white lg:text-6xl">
         {title}
       </h1>
       {
