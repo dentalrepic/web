@@ -158,7 +158,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
               turnstileSiteKey && (
                 <div
                   id="turnstileWidget"
-                  class="min-h-[65px]"
+                  class="-mb-6 data-[shown]:mb-0"
                   data-sitekey={turnstileSiteKey}
                   data-language={locale}
                 />
@@ -166,7 +166,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
             }
 
             <div>
-              <button type="submit" class="button button-light">{contact.form.submit}</button>
+              <button type="submit" class="button button-light w-full justify-center">{contact.form.submit}</button>
             </div>
 
             <p
@@ -287,9 +287,18 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
           // The page may have been navigated away from while the script loaded.
           if (!widget.isConnected) return;
           turnstile = api;
+          // Hidden unless Cloudflare needs the visitor to act, or the check
+          // fails; until then the empty slot also cancels the form's gap.
+          const show = () => {
+            widget.dataset.shown = "";
+          };
           widgetId = api.render(widget, {
             sitekey: widget.dataset.sitekey,
             language: widget.dataset.language,
+            appearance: "interaction-only",
+            "before-interactive-callback": show,
+            "error-callback": show,
+            "unsupported-callback": show,
           });
           // Drop the widget on navigation so a revisit renders a fresh one.
           document.addEventListener(
@@ -303,6 +312,18 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
         });
     }
 
+    /**
+     * The check runs unseen, so a quick visitor can submit before it is done:
+     * wait up to five seconds for its token before calling it a failure.
+     */
+    const turnstileToken = async () => {
+      for (let waited = 0; ; waited += 250) {
+        const token = turnstile && widgetId ? turnstile.getResponse(widgetId) : undefined;
+        if (token || waited >= 5000) return token;
+        await new Promise((resolve) => setTimeout(resolve, 250));
+      }
+    };
+
     const setStatus = (message: string, ok: boolean) => {
       status.textContent = message;
       // White on the brown panel either way; failures get a warm red tint.
@@ -314,16 +335,22 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
       event.preventDefault();
       // novalidate is set so we control when native messages appear.
       if (!form.reportValidity()) return;
-      if (widget && !(turnstile && widgetId && turnstile.getResponse(widgetId))) {
-        setStatus(form.dataset.captcha ?? "", false);
-        return;
-      }
 
       if (button) {
         button.disabled = true;
         button.textContent = form.dataset.submitting ?? idleLabel;
       }
       status.textContent = "";
+
+      if (widget && !(await turnstileToken())) {
+        widget.dataset.shown = "";
+        setStatus(form.dataset.captcha ?? "", false);
+        if (button) {
+          button.disabled = false;
+          button.textContent = idleLabel;
+        }
+        return;
+      }
 
       try {
         const response = await fetch(form.action, {
