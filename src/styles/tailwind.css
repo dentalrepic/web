@@ -35,6 +35,8 @@
 	--font-primary: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 	/* Kept for backward-compat with existing classes (points to primary) */
 	--font-display: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+	/* Tailwind's font-sans (on <body>) would otherwise put the system font ahead of Roboto */
+	--font-sans: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 
 	/* Serif for headings: the photo heroes and section titles */
 	--font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
@@ -401,7 +403,8 @@
 		@apply h-full antialiased scroll-smooth;
 		font-family: theme(--font-primary);
 		color: theme(--color-theme-text-primary);
-		background-color: theme(--color-theme-surface-muted);
+		/* White, like the area beside the page box, so overscroll shows no grey */
+		background-color: theme(--color-theme-surface);
 	}
 
 	/* Focus styles */
