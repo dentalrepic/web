@@ -3,7 +3,8 @@
  * About page body. Rendered by the localized route files.
  *
  * Layout follows the "O nama" design: a full-width team photo, a short
- * introduction, a portrait grid of the staff, then the booking band.
+ * introduction, a portrait grid of the staff, patient reviews, then the
+ * booking band.
  */
 import Layout from "../../layouts/Layout.astro";
 import { Image } from "astro:assets";
@@ -68,6 +69,43 @@ const team = about.team.map((member, index) => ({
                 {member.name}
               </h2>
               <p class="text-sm leading-relaxed text-theme-text-muted">{member.role}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Patient reviews ("Iskustva pacijenata") -->
+  <section class="bg-theme-surface-warm py-12 lg:py-16">
+    <div class="container flex flex-col gap-10">
+      <div class="mx-auto flex max-w-[1000px] flex-col gap-4 text-center">
+        <h2 class="font-serif text-3xl font-medium leading-tight tracking-normal text-black lg:text-4xl">
+          {about.reviews.heading}
+        </h2>
+        <p class="text-base leading-7 tracking-[0.02em] text-black">
+          {
+            about.reviews.intro.map((line, index) => (
+              <>
+                {index > 0 && <br />}
+                {line}
+              </>
+            ))
+          }
+        </p>
+      </div>
+      <ul class="grid gap-6 md:grid-cols-3">
+        {
+          about.reviews.items.map((review) => (
+            <li>
+              <figure class="flex h-full flex-col gap-6 rounded bg-theme-surface p-6 lg:p-8">
+                <figcaption class="text-base leading-7 tracking-[0.02em] text-black">
+                  {review.name}
+                </figcaption>
+                <blockquote class="text-base leading-7 tracking-[0.02em] text-black/55">
+                  <p>{review.text}</p>
+                </blockquote>
+              </figure>
             </li>
           ))
         }

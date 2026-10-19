@@ -138,6 +138,31 @@ export const en: Translation = {
       { name: "Manuela Škrobica", role: "Dental assistant" },
       { name: "Ana Papić", role: "Dental assistant" },
     ],
+    // Patient reviews, translated from the Croatian originals; quoted with permission.
+    reviews: {
+      heading: "Patient experiences",
+      intro: [
+        "Trust we build with every visit.",
+        "Our patients' experiences reflect what matters to us: expertise, professionalism, a caring approach and quality of service.",
+      ],
+      items: [
+        {
+          name: "Toni Vešović",
+          text:
+            "Dental Centar Repić is one of the rare dental practices where the service is always top-notch. The staff are professional and attentive, but also cheerful and smiling. I had a couple of teeth repaired and an implant placed three years ago, and I can say I am still happy with the work.",
+        },
+        {
+          name: "Zorana Barada",
+          text:
+            "Besides repairing tooth decay, they successfully take away the fear of the dentist.",
+        },
+        {
+          name: "Joško Herceg",
+          text:
+            "Excellent doctors, expert and professional. All praise for their work with children too.",
+        },
+      ],
+    },
   },
 
   services: {

@@ -137,6 +137,31 @@ export const it: Translation = {
       { name: "Manuela Škrobica", role: "Assistente dentale" },
       { name: "Ana Papić", role: "Assistente dentale" },
     ],
+    // Patient reviews, translated from the Croatian originals; quoted with permission.
+    reviews: {
+      heading: "Le esperienze dei pazienti",
+      intro: [
+        "La fiducia che costruiamo a ogni visita.",
+        "Le esperienze dei nostri pazienti riflettono ciò che per noi conta: competenza, professionalità, attenzione e qualità del servizio.",
+      ],
+      items: [
+        {
+          name: "Toni Vešović",
+          text:
+            "Il Dental Centar Repić è uno dei rari studi dentistici in cui il servizio è sempre all'altezza. Il personale è professionale e attento, ma anche allegro e sorridente. Tre anni fa mi sono fatto curare un paio di denti e mettere un impianto, e posso dire di esserne ancora soddisfatto.",
+        },
+        {
+          name: "Zorana Barada",
+          text:
+            "Oltre a curare la carie, riescono a far passare la paura del dentista.",
+        },
+        {
+          name: "Joško Herceg",
+          text:
+            "Medici eccellenti, competenti e professionali. Complimenti anche per il lavoro con i bambini.",
+        },
+      ],
+    },
   },
 
   services: {

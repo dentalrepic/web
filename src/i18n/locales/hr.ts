@@ -137,6 +137,31 @@ export const hr: Translation = {
       { name: "Manuela Škrobica", role: "Dentalni asistent" },
       { name: "Ana Papić", role: "Dentalni asistent" },
     ],
+    // Patient reviews, quoted with the patients' permission (Croatian originals).
+    reviews: {
+      heading: "Iskustva pacijenata",
+      intro: [
+        "Povjerenje koje gradimo svakim posjetom.",
+        "Iskustva naših pacijenata odražavaju ono što nam je važno: stručnost, profesionalnost, pažljiv pristup i kvalitetu usluge.",
+      ],
+      items: [
+        {
+          name: "Toni Vešović",
+          text:
+            "Dental centar Repić je jedna od rijetkih zubarskih ordinacija gdje je usluga uvijek na razini. Osoblje je profesionalno i pažljivo, ali također vedro i nasmijano. Osobno sam popravio par zubiju i ugradio implantat prije 3 godine i mogu reći da sam i dalje zadovoljan s učinjenim.",
+        },
+        {
+          name: "Zorana Barada",
+          text:
+            "Osim saniranja zubnih kvarova, uspješno uklanjaju strah od zubara.",
+        },
+        {
+          name: "Joško Herceg",
+          text:
+            "Odlični doktori, stručni i profesionalni. Sve pohvale i na rad s djecom.",
+        },
+      ],
+    },
   },
 
   services: {

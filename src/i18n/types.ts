@@ -181,6 +181,12 @@ export interface Translation {
     intro: IntroCopy;
     /** Staff, in the same order as the portraits on the page. */
     team: TeamMember[];
+    /** "Iskustva pacijenata": a heading, two intro lines and patient quotes. */
+    reviews: {
+      heading: string;
+      intro: string[];
+      items: Array<{ name: string; text: string }>;
+    };
   };
 
   services: {
