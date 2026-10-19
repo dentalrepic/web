@@ -118,14 +118,17 @@ const businessLd = {
 		/>
 	</head>
 	<body
-		class="bg-theme-surface font-sans text-theme-text-primary antialiased selection:bg-theme-primary-lighter/50 selection:text-theme-primary-darker"
+		class="bg-[#dbd5d1] font-sans text-theme-text-primary antialiased selection:bg-theme-primary-lighter/50 selection:text-theme-primary-darker"
 	>
-		<Nav locale={locale} overlay={overlayNav} />
-		<main>
-			<!-- The page-specific content will be injected here -->
-			<slot />
-		</main>
-		<Footer locale={locale} />
+		<!-- The page box (see page-frame in tailwind.css); the design palette's solid White Snow shows either side -->
+		<div class="page-frame bg-theme-surface">
+			<Nav locale={locale} overlay={overlayNav} />
+			<main>
+				<!-- The page-specific content will be injected here -->
+				<slot />
+			</main>
+			<Footer locale={locale} />
+		</div>
 
 		<!-- Navigation Progress Bar -->
 		<div

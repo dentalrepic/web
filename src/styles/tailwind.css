@@ -180,6 +180,24 @@
 	}
 }
 
+/*
+ * The page box: the design's frames are 375px (phone) and 1280px (desktop),
+ * so on wider screens the whole page, backgrounds included, stays that wide
+ * and centred. Tablets in between fill the screen.
+ */
+@utility page-frame {
+	margin-inline: auto;
+	max-width: 375px;
+
+	@media (width >= theme(--breakpoint-md)) {
+		max-width: none;
+	}
+
+	@media (width >= theme(--breakpoint-xl)) {
+		max-width: theme(--breakpoint-xl);
+	}
+}
+
 @utility section {
 	padding-top: var(--section-spacing);
 	padding-bottom: var(--section-spacing);
