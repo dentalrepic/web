@@ -173,7 +173,7 @@ export const en: Translation = {
     },
     hero: {
       eyebrow: "Dental Centar Repić - Trogir",
-      title: "From prevention to complex treatment.",
+      title: "From prevention\nto complex treatment.",
     },
     intro: {
       eyebrow: "A complete approach",
