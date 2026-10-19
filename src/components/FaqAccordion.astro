@@ -7,9 +7,11 @@ interface Item {
 
 interface Props {
   items: Item[];
+  /** Tint the question on hover; the service pages turn this off. */
+  hover?: boolean;
 }
 
-const { items } = Astro.props as Props;
+const { items, hover = true } = Astro.props as Props;
 ---
 
 <div class="space-y-4">
@@ -20,10 +22,20 @@ const { items } = Astro.props as Props;
         class="group border-b border-theme-border"
       >
         <summary class="flex w-full items-center justify-between py-4 cursor-pointer list-none">
-          <span class="text-lg font-medium text-theme-text-primary group-hover:text-theme-primary transition-colors pr-8">
+          <span
+            class:list={[
+              "text-lg font-medium text-theme-text-primary pr-8",
+              hover && "group-hover:text-theme-primary transition-colors",
+            ]}
+          >
             {item.question}
           </span>
-          <span class="flex-shrink-0 w-8 h-8 rounded-full bg-black/5 flex items-center justify-center transition-colors group-hover:bg-theme-primary-lighter/20">
+          <span
+            class:list={[
+              "flex-shrink-0 w-8 h-8 rounded-full bg-black/5 flex items-center justify-center",
+              hover && "transition-colors group-hover:bg-theme-primary-lighter/20",
+            ]}
+          >
             <svg
               class="w-4 h-4 text-theme-primary transition-transform duration-200 group-open:rotate-45"
               fill="none"

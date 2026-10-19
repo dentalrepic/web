@@ -83,10 +83,7 @@ const cards = services.cards.map((card, index) => {
               <li>
                 <Tag
                   href={card.href}
-                  class:list={[
-                    "group flex h-full flex-col overflow-hidden rounded border border-black/10 bg-theme-surface",
-                    card.href && "transition-shadow hover:shadow-lg",
-                  ]}
+                  class="flex h-full flex-col overflow-hidden rounded border border-black/10 bg-theme-surface"
                 >
                   {card.image && (
                     <div class="h-60 overflow-hidden">
@@ -95,10 +92,7 @@ const cards = services.cards.map((card, index) => {
                         alt=""
                         widths={[400, 600, 800]}
                         sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw"
-                        class:list={[
-                          "h-full w-full object-cover",
-                          card.href && "transition-transform duration-500 group-hover:scale-105",
-                        ]}
+                        class="h-full w-full object-cover"
                         loading="lazy"
                       />
                     </div>
@@ -112,11 +106,7 @@ const cards = services.cards.map((card, index) => {
                     </p>
                     {card.href && (
                       <span class="mt-auto pt-8 text-base leading-7 tracking-[0.02em] text-black">
-                        {t.common.learnMore}{" "}
-                        <span
-                          class="inline-block transition-transform group-hover:translate-x-1"
-                          aria-hidden="true">&rarr;</span
-                        >
+                        {t.common.learnMore} <span aria-hidden="true">&rarr;</span>
                       </span>
                     )}
                   </div>

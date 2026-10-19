@@ -15,7 +15,6 @@ import Layout from "../../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import BookingBand from "../BookingBand.astro";
 import FaqAccordion from "../FaqAccordion.astro";
-import Heading from "../Heading.astro";
 import Icon from "../Icon.astro";
 import { serviceImages } from "../../data/serviceImages";
 import type { Locale } from "../../i18n/config";
@@ -89,7 +88,7 @@ const faqLd = detail.faqs?.length
       <div class="lg:w-64 lg:shrink-0 lg:p-6">
         <a
           href={servicesHref}
-          class="text-lg font-medium leading-7 tracking-[0.02em] text-black hover:underline"
+          class="text-lg font-medium leading-7 tracking-[0.02em] text-black"
         >
           <span aria-hidden="true">&larr;</span>{" "}{chrome.backToServices}
         </a>
@@ -131,10 +130,10 @@ const faqLd = detail.faqs?.length
       <section class="section bg-theme-surface-warm">
         <div class="container">
           <div class="narrow">
-            <Heading level="h2" class="mb-8">
+            <h2 class="text-2xl font-medium leading-tight tracking-[0.02em] text-black lg:text-3xl mb-8">
               {chrome.faqHeading}
-            </Heading>
-            <FaqAccordion items={detail.faqs} />
+            </h2>
+            <FaqAccordion items={detail.faqs} hover={false} />
           </div>
         </div>
       </section>
@@ -145,15 +144,15 @@ const faqLd = detail.faqs?.length
     related.length > 0 && (
       <section class="section-sm bg-theme-surface">
         <div class="container">
-          <Heading level="h2" size="section" class="mb-6">
+          <h2 class="text-2xl font-medium leading-tight tracking-[0.02em] text-black lg:text-3xl mb-6">
             {chrome.relatedHeading}
-          </Heading>
+          </h2>
           <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {related.map((entry) => (
               <li>
                 <a
                   href={localizePath(`/services/${entry.slug}`, locale)}
-                  class="flex items-center justify-between gap-3 rounded-xl border border-theme-border bg-theme-surface p-4 font-semibold text-theme-text-primary transition-colors hover:border-theme-primary hover:text-theme-primary"
+                  class="flex items-center justify-between gap-3 rounded border border-black/10 bg-theme-surface p-4 font-medium tracking-[0.02em] text-black"
                 >
                   {entry.title}
                   <Icon name="arrow-right" size="sm" class="flex-shrink-0" />
