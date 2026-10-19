@@ -13,6 +13,8 @@ interface Props {
 }
 
 const { eyebrow, heading, paragraph, measure = "narrow" } = Astro.props;
+// A "\n" in the copy starts a new line within the paragraph.
+const paragraphLines = paragraph.split("\n");
 ---
 
 <section class="bg-theme-surface-warm py-12">
@@ -31,7 +33,14 @@ const { eyebrow, heading, paragraph, measure = "narrow" } = Astro.props;
           </h2>
         </div>
         <p class="text-base leading-7 tracking-[0.02em] text-theme-ink">
-          {paragraph}
+          {
+            paragraphLines.map((line, index) => (
+              <>
+                {index > 0 && <br />}
+                {line}
+              </>
+            ))
+          }
         </p>
       </div>
       <slot />

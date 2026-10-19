@@ -375,7 +375,7 @@ export const en: Translation = {
     },
     hero: {
       eyebrow: "Dental Centar Repić - Trogir",
-      title: "Get in touch with confidence.",
+      title: "Get in touch\nwith confidence.",
     },
     intro: {
       eyebrow: "Contact",

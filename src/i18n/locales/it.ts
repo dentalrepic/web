@@ -53,7 +53,7 @@ export const it: Translation = {
     },
     hero: {
       eyebrow: "Dental Centar Repić - Trogir",
-      title: "Un approccio moderno. Un sorriso sano.",
+      title: "Un approccio\nmoderno. Un sorriso sano.",
       lead: "Cure dentali complete con un team esperto, tecnologia moderna e un approccio individuale a ogni paziente.",
       ctaPrimary: "Prenota un appuntamento",
       ctaSecondary: "I nostri servizi",
@@ -374,13 +374,13 @@ export const it: Translation = {
     },
     hero: {
       eyebrow: "Dental Centar Repić - Trogir",
-      title: "Rivolgiti a noi con fiducia.",
+      title: "Rivolgiti a noi\ncon fiducia.",
     },
     intro: {
       eyebrow: "Contatti",
       heading: "Prenota un appuntamento",
       paragraph:
-        "Compila il modulo qui sotto e ti contatteremo il prima possibile, durante i nostri orari di apertura. La prima visita è gratuita.",
+        "Compila il modulo qui sotto e ti contatteremo il prima possibile, durante i nostri orari di apertura.\nLa prima visita è gratuita.",
     },
     addressHeading: "Indirizzo",
     contactHeading: "Contatti",
