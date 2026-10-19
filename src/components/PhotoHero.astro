@@ -47,6 +47,11 @@ const {
  * top, the text below it on sand in ink. From md the text sits on the photo.
  */
 const centred = align === "center";
+// One sentence per line: "A modern approach." / "A healthy smile." From md a
+// multi-sentence title keeps each sentence whole, even past the 500px column;
+// a single sentence still wraps within it as designed.
+const titleLines = title.split(/(?<=\.)\s+/);
+const keepWhole = titleLines.length > 1;
 ---
 
 <section class="relative isolate overflow-hidden bg-theme-sand md:bg-theme-ink">
@@ -84,8 +89,15 @@ const centred = align === "center";
       >
         {eyebrow}
       </p>
-      <h1 class="font-serif text-[2.5rem] font-semibold leading-[1.15] tracking-normal text-theme-ink sm:text-5xl md:text-white lg:text-6xl">
-        {title}
+      <h1 class="font-serif text-[2.25rem] font-semibold leading-[1.15] tracking-normal text-theme-ink sm:text-5xl md:text-white lg:text-6xl">
+        {
+          titleLines.map((line, index) => (
+            <>
+              {index > 0 && <br />}
+              <span class:list={[keepWhole && "md:whitespace-nowrap"]}>{line}</span>
+            </>
+          ))
+        }
       </h1>
       {
         lead && (
