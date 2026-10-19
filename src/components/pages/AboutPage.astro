@@ -3,12 +3,13 @@
  * About page body. Rendered by the localized route files.
  *
  * Layout follows the "O nama" design: a full-width team photo, a short
- * introduction, then a portrait grid of the staff.
+ * introduction, a portrait grid of the staff, then the booking band.
  */
 import Layout from "../../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import PhotoHero from "../PhotoHero.astro";
 import SectionIntro from "../SectionIntro.astro";
+import BookingBand from "../BookingBand.astro";
 import heroImage from "../../assets/team/team-hero.jpg";
 import member1 from "../../assets/team/member-1.jpg";
 import member2 from "../../assets/team/member-2.jpg";
@@ -73,4 +74,6 @@ const team = about.team.map((member, index) => ({
       </ul>
     </div>
   </section>
+
+  <BookingBand locale={locale} />
 </Layout>
