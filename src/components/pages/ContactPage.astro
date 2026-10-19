@@ -144,6 +144,12 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
               <input class="field" type="email" id="email" name="email" autocomplete="email" required />
             </div>
 
+            <!-- Optional; /api/contact already includes it in the clinic's email -->
+            <div class="flex flex-col gap-2">
+              <label for="phone" class="field-label">{contact.phoneLabel}</label>
+              <input class="field" type="tel" id="phone" name="phone" autocomplete="tel" />
+            </div>
+
             <div class="flex flex-col gap-2">
               <label for="message" class="field-label">{contact.form.messageLabel}</label>
               <textarea
