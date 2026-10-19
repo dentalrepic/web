@@ -34,7 +34,7 @@ const isCurrentPage = (href: string) => {
 ---
 
 <header
-  class:list={["site-header page-frame top-0 inset-x-0 z-50", overlay ? "fixed" : "sticky"]}
+  class:list={["site-header page-frame top-0 inset-x-0 z-50", overlay ? "sticky md:fixed" : "sticky"]}
   data-overlay={overlay ? "true" : undefined}
   data-solid={overlay ? undefined : "true"}
 >
@@ -211,9 +211,15 @@ const isCurrentPage = (href: string) => {
     transition: background-color 200ms ease;
   }
 
-  /* Over the hero photo: the design's 20% brown tint */
-  .site-header[data-overlay]:not([data-solid]) {
-    background-color: rgb(71 68 66 / 0.2);
+  /*
+   * Over the hero photo: the design's 20% brown tint. Phones stack the photo
+   * below the header instead, so there it stays solid and never changes
+   * colour while scrolling.
+   */
+  @media (width >= 48rem) {
+    .site-header[data-overlay]:not([data-solid]) {
+      background-color: rgb(71 68 66 / 0.2);
+    }
   }
 
   /* Brown button over the photo; white once the header itself is brown */
