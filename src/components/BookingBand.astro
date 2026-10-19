@@ -24,7 +24,7 @@ const headingLines = booking.heading.split(/(?<=\.)\s+/);
       <div class="flex flex-col items-center gap-8">
         <div>
           <p class="eyebrow mb-2">{booking.eyebrow}</p>
-          <h2 class="font-serif text-3xl font-medium leading-tight tracking-normal lg:text-4xl">
+          <h2 class="font-serif text-[1.625rem] font-medium leading-tight tracking-normal sm:text-3xl lg:text-4xl">
             {
               headingLines.map((line, index) => (
                 <>
@@ -37,11 +37,12 @@ const headingLines = booking.heading.split(/(?<=\.)\s+/);
         </div>
         <p class="text-base leading-7 tracking-[0.02em]">{booking.text}</p>
       </div>
-      <div class="flex flex-wrap justify-center gap-4 sm:gap-6">
-        <a class="button button-light" href={localizePath("/contact#form", locale)}>
+      <!-- Stacked at full width on phones, so both buttons are the same size -->
+      <div class="flex w-full flex-col gap-4 sm:w-auto sm:flex-row sm:flex-wrap sm:justify-center sm:gap-6">
+        <a class="button button-light justify-center" href={localizePath("/contact#form", locale)}>
           {t.common.bookAppointment}
         </a>
-        <a class="button button-light-outline" href={site.contact.phoneHref}>
+        <a class="button button-light-outline justify-center" href={site.contact.phoneHref}>
           {site.contact.phone}
         </a>
       </div>
