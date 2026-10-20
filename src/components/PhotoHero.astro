@@ -44,7 +44,7 @@ const {
 /*
  * On phones the cover crop drops the pale wash the text sits on and puts it
  * over the subject instead, so every hero is stacked there: the photo on
- * top, the text below it on sand in ink. From md the text sits on the photo.
+ * top, the text below it on white in ink. From md the text sits on the photo.
  */
 const centred = align === "center";
 // One sentence per line: "A modern approach." / "A healthy smile.", plus any
@@ -55,7 +55,7 @@ const titleLines = title.split(/\n|(?<=\.)\s+/);
 const keepWhole = titleLines.length > 1;
 ---
 
-<section class="relative isolate overflow-hidden bg-theme-sand md:bg-theme-ink">
+<section class="relative isolate overflow-hidden bg-white md:bg-theme-ink">
   <Image
     src={image}
     alt=""
