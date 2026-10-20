@@ -114,8 +114,9 @@ const gallery = [clinic1, clinic2, clinic3, clinic4, clinic5, clinic6, clinic7].
 	<!-- Team -->
 	<section class="bg-theme-surface py-12">
 		<div class="container">
-			<div class="flex flex-col-reverse items-center gap-10 lg:flex-row lg:gap-20">
-				<div class="flex w-full flex-col items-start gap-10 lg:max-w-[464px]">
+			<!-- From lg the photo stretches to the text column and the button sits at its foot, so their bottoms line up in every language -->
+			<div class="flex flex-col-reverse items-center gap-10 lg:flex-row lg:items-stretch lg:gap-20">
+				<div class="flex w-full flex-col items-start gap-10 lg:max-w-[464px] lg:justify-between">
 					<div class="flex flex-col gap-8">
 						<div class="flex flex-col gap-12">
 							<div class="flex flex-col gap-4">
@@ -152,7 +153,7 @@ const gallery = [clinic1, clinic2, clinic3, clinic4, clinic5, clinic6, clinic7].
 					alt={home.team.imageAlt}
 					widths={[640, 960, 1280]}
 					sizes="(min-width: 1024px) 608px, 100vw"
-					class="aspect-[608/452] w-full rounded object-cover lg:w-auto lg:min-w-0 lg:flex-1"
+					class="aspect-[608/452] w-full rounded object-cover lg:aspect-auto lg:h-auto lg:w-auto lg:min-w-0 lg:flex-1"
 					loading="lazy"
 				/>
 			</div>
