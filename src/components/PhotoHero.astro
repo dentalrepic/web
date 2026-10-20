@@ -19,6 +19,8 @@ interface Props {
   image: ImageMetadata;
   /** CSS object-position, to keep the subject in frame on narrow screens. */
   focus?: string;
+  /** Phone-only object-position (below md), when the stacked crop needs its own. */
+  mobileFocus?: string;
   /**
    * Colour of the small label: `ink` (brown) on photos with a pale wash,
    * `white` on darker ones.
@@ -36,6 +38,7 @@ const {
   lead,
   image,
   focus = "center",
+  mobileFocus = focus,
   eyebrowTone = "white",
   align = "end",
   shade = false,
@@ -61,8 +64,8 @@ const keepWhole = titleLines.length > 1;
     alt=""
     widths={[640, 960, 1280, 1920, 2560]}
     sizes="100vw"
-    class="relative -z-10 h-[360px] w-full object-cover md:absolute md:inset-0 md:h-full"
-    style={`object-position: ${focus}`}
+    class="relative -z-10 h-[360px] w-full object-cover object-(--focus-m) md:absolute md:inset-0 md:h-full md:object-(--focus)"
+    style={`--focus: ${focus}; --focus-m: ${mobileFocus}`}
     loading="eager"
     fetchpriority="high"
   />
