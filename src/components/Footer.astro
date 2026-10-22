@@ -1,5 +1,6 @@
 ---
 import site from "../data/site.json";
+import SocialLinks from "./SocialLinks.astro";
 import { localeHtmlLang, type Locale } from "../i18n/config";
 import { useTranslations } from "../i18n/utils";
 
@@ -91,23 +92,35 @@ const hours = weekdays.map((day, index) => {
                 {site.contact.email}
               </a>
             </p>
+            <!--
+              From lg the social links sit here, as far below the e-mail line
+              as it sits below the phone; phones show them by the copyright.
+            -->
+            <SocialLinks class="-mt-2 hidden lg:flex" />
           </div>
         </div>
       </div>
 
-      <!-- Copyright, then the designer's credit as her design sets it -->
-      <p class="text-xs leading-[18px] tracking-[0.02em] lg:col-start-1 lg:row-start-2">
-        &copy; {year} {t.brand.name}
-        <span class="mx-1" aria-hidden="true">|</span>
+      <!--
+        Copyright, then the designer's credit as her design sets it. Phones put
+        the social links to the right of the copyright and the credit on its
+        own row below; from lg the credit follows the copyright after a bar.
+      -->
+      <div
+        class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 text-xs leading-[18px] tracking-[0.02em] lg:col-start-1 lg:row-start-2 lg:justify-start lg:gap-x-0"
+      >
+        <p class="text-xs leading-[18px]">&copy; {year} {t.brand.name}</p>
+        <SocialLinks class="flex lg:hidden" />
+        <span class="mx-1 hidden lg:inline" aria-hidden="true">|</span>
         <a
           href="https://www.lidijajankovic.com"
           target="_blank"
           rel="noopener"
-          class="text-black/50 underline transition-colors hover:text-black"
+          class="basis-full text-black/50 underline transition-colors hover:text-black lg:basis-auto"
         >
           Made by Lidija Jankovic
         </a>
-      </p>
+      </div>
     </div>
   </div>
 </footer>
