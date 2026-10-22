@@ -136,6 +136,7 @@ export const de: Translation = {
       { name: "Katja Bažoka", role: "Zahnmedizinische Fachangestellte" },
       { name: "Manuela Škrobica", role: "Zahnmedizinische Fachangestellte" },
       { name: "Ana Papić", role: "Zahnmedizinische Fachangestellte" },
+      { name: "Antonela Drnasin", role: "Zahnmedizinische Fachangestellte" },
     ],
     // Patient reviews, translated from the Croatian originals; quoted with permission.
     reviews: {

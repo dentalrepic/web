@@ -19,6 +19,7 @@ import member4 from "../../assets/team/member-4.jpg";
 import member6 from "../../assets/team/member-6.jpg";
 import member7 from "../../assets/team/member-7.jpg";
 import member8 from "../../assets/team/member-8.jpg";
+import member9 from "../../assets/team/member-9.jpg";
 import type { Locale } from "../../i18n/config";
 import { useTranslations } from "../../i18n/utils";
 
@@ -31,7 +32,7 @@ const t = useTranslations(locale);
 const about = t.about;
 
 // Portraits pair positionally with about.team in the translations.
-const portraits = [member1, member2, member3, member4, member6, member7, member8];
+const portraits = [member1, member2, member3, member4, member6, member7, member8, member9];
 
 const team = about.team.map((member, index) => ({
   ...member,

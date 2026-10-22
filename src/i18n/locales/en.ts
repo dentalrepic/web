@@ -137,6 +137,7 @@ export const en: Translation = {
       { name: "Katja Bažoka", role: "Dental assistant" },
       { name: "Manuela Škrobica", role: "Dental assistant" },
       { name: "Ana Papić", role: "Dental assistant" },
+      { name: "Antonela Drnasin", role: "Dental assistant" },
     ],
     // Patient reviews, translated from the Croatian originals; quoted with permission.
     reviews: {
