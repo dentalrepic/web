@@ -42,18 +42,19 @@ const hours = weekdays.map((day, index) => {
     <!--
       Phones stack the clinic text, the hours beside the contact, then the
       copyright last; from lg the copyright moves up under the clinic text and
-      the hours and contact take the right-hand column.
+      the hours and contact take the right-hand column. Below lg the grid has
+      two columns, so the social links line up under the contact column.
     -->
     <div
-      class="grid gap-12 lg:grid-cols-[minmax(0,562px)_auto] lg:justify-between lg:gap-x-24 lg:gap-y-14"
+      class="grid grid-cols-[auto_1fr] gap-x-6 gap-y-12 sm:gap-x-10 lg:grid-cols-[minmax(0,562px)_auto] lg:justify-between lg:gap-x-24 lg:gap-y-14"
     >
       <!-- About the clinic -->
-      <div class="space-y-2 lg:col-start-1 lg:row-start-1">
+      <div class="col-span-2 space-y-2 lg:col-span-1 lg:col-start-1 lg:row-start-1">
         <p class="text-base leading-7 tracking-[0.02em]">{t.brand.name}</p>
         <p class="text-sm leading-6 text-black/55">{t.footer.description}</p>
       </div>
 
-      <div class="flex gap-6 sm:gap-10 lg:col-start-2 lg:row-span-2 lg:row-start-1">
+      <div class="contents lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:flex lg:gap-10">
         <!-- Opening hours -->
         <div class="shrink-0">
           <h2 class="pb-4 text-sm font-normal leading-6 tracking-normal">
@@ -103,20 +104,21 @@ const hours = weekdays.map((day, index) => {
 
       <!--
         Copyright, then the designer's credit as her design sets it. Phones put
-        the social links to the right of the copyright and the credit on its
-        own row below; from lg the credit follows the copyright after a bar.
+        the social links beside the copyright, under the contact column, and
+        the credit on its own row below; from lg the credit follows the
+        copyright after a bar.
       -->
       <div
-        class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 text-xs leading-[18px] tracking-[0.02em] lg:col-start-1 lg:row-start-2 lg:justify-start lg:gap-x-0"
+        class="contents text-xs leading-[18px] tracking-[0.02em] lg:col-start-1 lg:row-start-2 lg:flex lg:items-center"
       >
-        <p class="text-xs leading-[18px]">&copy; {year} {t.brand.name}</p>
-        <SocialLinks class="flex lg:hidden" />
+        <p class="self-center text-xs leading-[18px]">&copy; {year} {t.brand.name}</p>
+        <SocialLinks class="flex self-center lg:hidden" />
         <span class="mx-1 hidden lg:inline" aria-hidden="true">|</span>
         <a
           href="https://www.lidijajankovic.com"
           target="_blank"
           rel="noopener"
-          class="basis-full text-black/50 underline transition-colors hover:text-black lg:basis-auto"
+          class="col-span-2 -mt-10 justify-self-start text-black/50 underline transition-colors hover:text-black lg:mt-0"
         >
           Made by Lidija Jankovic
         </a>
