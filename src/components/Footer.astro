@@ -95,7 +95,11 @@ const hours = weekdays.map((day, index) => {
         </div>
       </div>
 
-      <!-- Copyright, then the designer's credit as her design sets it -->
+      <!--
+        Copyright, then the designer's credit as her design sets it, but in the
+        55% grey of the other footer text: the design's 50% falls short of the
+        4.5:1 contrast WCAG asks for on the sand ground.
+      -->
       <p
         class="col-span-2 text-xs leading-[18px] tracking-[0.02em] lg:col-span-1 lg:col-start-1 lg:row-start-2"
       >
@@ -105,7 +109,7 @@ const hours = weekdays.map((day, index) => {
           href="https://www.lidijajankovic.com"
           target="_blank"
           rel="noopener"
-          class="text-black/50 underline transition-colors hover:text-black"
+          class="text-black/55 underline transition-colors hover:text-black"
         >
           Made by Lidija Janković
         </a>
